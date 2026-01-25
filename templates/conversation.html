@@ -1,0 +1,526 @@
+{% extends "base.html" %}
+
+{% block title %}对话练习 - 英语学习{% endblock %}
+
+{% block head %}
+<script src="/static/recorder.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900 flex flex-col" x-data="conversationPage()">
+    <!-- 顶部导航 -->
+    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg border-b border-slate-700/50">
+        <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
+            <button @click="goBack" class="text-slate-400 hover:text-slate-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <div class="text-center">
+                <span class="font-medium text-slate-100">对话练习</span>
+                <div class="text-xs text-slate-400">
+                    第 <span x-text="currentRound"></span> / <span x-text="totalRounds"></span> 轮
+                </div>
+            </div>
+            <div class="w-6"></div>
+        </div>
+    </header>
+
+    <!-- 加载状态 -->
+    <div x-show="isInitializing" class="flex-1 flex items-center justify-center">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-500 mx-auto mb-4"></div>
+            <p class="text-slate-400">正在准备对话...</p>
+        </div>
+    </div>
+
+    <!-- 错误状态 -->
+    <div x-show="initError" class="flex-1 flex items-center justify-center p-4">
+        <div class="text-center max-w-sm">
+            <div class="text-4xl mb-4">😔</div>
+            <p class="text-slate-300 mb-4" x-text="initError"></p>
+            <button @click="goBack" class="px-6 py-2 bg-slate-700 text-slate-200 rounded-lg">
+                返回
+            </button>
+        </div>
+    </div>
+
+    <!-- 对话界面 -->
+    <main x-show="!isInitializing && !initError" x-cloak class="flex-1 flex flex-col max-w-2xl mx-auto w-full p-4">
+        <!-- 对话历史 -->
+        <div class="flex-1 overflow-y-auto space-y-4 mb-4" x-ref="chatContainer">
+            <template x-for="(msg, idx) in messages" :key="idx">
+                <div :class="msg.role === 'ai' ? 'flex justify-start' : 'flex justify-end'">
+                    <div :class="msg.role === 'ai'
+                        ? 'bg-slate-700/50 text-slate-100 rounded-2xl rounded-tl-sm'
+                        : 'bg-sky-600 text-white rounded-2xl rounded-tr-sm'"
+                        class="max-w-[80%] px-4 py-3">
+                        <!-- 消息内容，支持换行 -->
+                        <div class="whitespace-pre-wrap" x-text="msg.content"></div>
+                        <div x-show="msg.chinese" class="text-sm opacity-70 mt-1" x-text="msg.chinese"></div>
+                        <!-- 播放按钮（AI 消息） -->
+                        <button
+                            x-show="msg.role === 'ai' && msg.ttsText"
+                            @click="playTTS(msg.ttsText)"
+                            class="mt-2 text-sky-300 hover:text-sky-200 text-sm flex items-center gap-1"
+                        >
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                            </svg>
+                            重播
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- 识别中提示 -->
+            <div x-show="isRecognizing" class="flex justify-end">
+                <div class="bg-sky-600/50 text-white rounded-2xl rounded-tr-sm px-4 py-3">
+                    <span class="animate-pulse">识别中...</span>
+                </div>
+            </div>
+
+            <!-- AI 思考中提示 -->
+            <div x-show="isLoading && !isRecognizing" class="flex justify-start">
+                <div class="bg-slate-700/50 text-slate-100 rounded-2xl rounded-tl-sm px-4 py-3">
+                    <span class="animate-pulse">AI 正在思考...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 目标单词提示 -->
+        <div x-show="targetWords.length > 0 && !isComplete" class="mb-4">
+            <div class="text-slate-400 text-sm mb-2">试着在回复中使用这些单词：</div>
+            <div class="flex flex-wrap gap-2">
+                <template x-for="word in targetWords" :key="word">
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-sm"
+                          x-text="word"></span>
+                </template>
+            </div>
+        </div>
+
+        <!-- 录音控制区 -->
+        <div x-show="!isComplete" class="flex flex-col items-center py-6">
+            <!-- 录音按钮 -->
+            <button
+                @mousedown="startRecording"
+                @mouseup="stopRecording"
+                @mouseleave="isRecording && stopRecording()"
+                @touchstart.prevent="startRecording"
+                @touchend.prevent="stopRecording"
+                :disabled="isLoading || isRecognizing || !recorderReady"
+                :class="isRecording
+                    ? 'bg-rose-500 scale-110 shadow-lg shadow-rose-500/50'
+                    : 'bg-sky-600 hover:bg-sky-500'"
+                class="w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                <svg x-show="!isRecording" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                </svg>
+                <div x-show="isRecording" class="w-6 h-6 bg-white rounded-sm"></div>
+            </button>
+            <p class="text-slate-400 text-sm mt-3">
+                <span x-show="!recorderReady">正在初始化麦克风...</span>
+                <span x-show="recorderReady && !isRecording">按住说英语</span>
+                <span x-show="isRecording">松开结束录音</span>
+            </p>
+
+            <!-- 录音时长 -->
+            <div x-show="isRecording" class="mt-2 text-rose-400 text-sm font-mono">
+                <span x-text="recordingDuration"></span>
+            </div>
+
+            <!-- 识别结果预览 -->
+            <div x-show="recognizedText && !isLoading" class="mt-4 text-center max-w-xs">
+                <p class="text-slate-400 text-sm">你说的：</p>
+                <p class="text-slate-100" x-text="recognizedText"></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- 完成弹窗 -->
+    <div x-show="isComplete" x-cloak
+         class="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100">
+        <div class="bg-slate-800 rounded-2xl p-6 max-w-sm w-full border border-slate-700 transform"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="scale-95"
+             x-transition:enter-end="scale-100">
+            <div class="text-4xl text-center mb-4">🎉</div>
+            <h2 class="text-xl font-bold text-slate-100 text-center mb-4">对话完成!</h2>
+            <div class="space-y-3 mb-6">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">练习单词</span>
+                    <span class="text-slate-100" x-text="summary.words_practiced?.length || 0"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">正确使用</span>
+                    <span class="text-emerald-400" x-text="summary.words_used_correctly?.length || 0"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">得分</span>
+                    <span class="text-sky-400" x-text="(summary.score || 0) + '分'"></span>
+                </div>
+            </div>
+            <!-- 使用的单词列表 -->
+            <div x-show="summary.words_used_correctly?.length > 0" class="mb-4">
+                <p class="text-slate-400 text-sm mb-2">你使用的单词：</p>
+                <div class="flex flex-wrap gap-1">
+                    <template x-for="word in summary.words_used_correctly" :key="word">
+                        <span class="px-2 py-1 bg-emerald-500/20 text-emerald-300 rounded text-xs" x-text="word"></span>
+                    </template>
+                </div>
+            </div>
+            <p class="text-slate-300 text-sm text-center mb-6" x-text="summary.overall_feedback"></p>
+            <button @click="goBack" class="w-full py-3 bg-gradient-to-r from-sky-500 to-blue-500 text-white rounded-xl font-medium hover:from-sky-600 hover:to-blue-600 transition">
+                返回首页
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function conversationPage() {
+    return {
+        // 数据
+        bookId: '{{ book_id }}',
+        words: [],
+        conversationId: null,
+        messages: [],
+        targetWords: [],
+        recognizedText: '',
+        currentRound: 0,
+        totalRounds: 5,
+        summary: {},
+
+        // 状态
+        isInitializing: true,
+        initError: null,
+        isLoading: false,
+        isRecording: false,
+        isRecognizing: false,
+        isComplete: false,
+        recorderReady: false,
+
+        // 录音相关
+        recorder: null,
+        audioPlayer: null,
+        recordingStartTime: null,
+        recordingDuration: '0:00',
+        recordingTimer: null,
+
+        async init() {
+            try {
+                // 检查录音支持
+                if (!AudioRecorder.isSupported()) {
+                    this.initError = '您的浏览器不支持录音功能，请使用 Chrome 或 Safari';
+                    this.isInitializing = false;
+                    return;
+                }
+
+                // 初始化录音器
+                this.recorder = new AudioRecorder();
+                const hasPermission = await this.recorder.requestPermission();
+                if (!hasPermission) {
+                    this.initError = '请允许使用麦克风以进行语音对话';
+                    this.isInitializing = false;
+                    return;
+                }
+                this.recorderReady = true;
+
+                // 从 sessionStorage 获取刚学的单词（带错误保护）
+                try {
+                    const storedWords = sessionStorage.getItem('learnedWords');
+                    if (storedWords) {
+                        this.words = JSON.parse(storedWords);
+                    }
+
+                    // 从 sessionStorage 获取对话轮数设置
+                    const storedRounds = sessionStorage.getItem('conversationRounds');
+                    if (storedRounds) {
+                        this.totalRounds = parseInt(storedRounds) || 5;
+                    }
+                } catch (e) {
+                    console.error('读取 sessionStorage 失败:', e);
+                }
+
+                if (this.words.length === 0) {
+                    this.initError = '没有找到已学习的单词，请先完成单词学习';
+                    this.isInitializing = false;
+                    return;
+                }
+
+                // 开始对话
+                await this.startConversation();
+
+            } catch (e) {
+                console.error('初始化失败:', e);
+                this.initError = '初始化失败: ' + e.message;
+            }
+
+            this.isInitializing = false;
+        },
+
+        async startConversation() {
+            this.isLoading = true;
+            try {
+                const response = await fetch('/api/conversation/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        words: this.words,
+                        mode: 'guided',
+                        rounds: this.totalRounds
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('API 请求失败');
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                this.conversationId = data.conversation_id;
+                this.targetWords = data.target_words || [];
+                this.currentRound = 1;
+
+                // 添加 AI 开场白
+                const greeting = data.greeting || '你好！让我们开始练习吧！';
+                const question = data.question || 'How are you today?';
+
+                this.messages.push({
+                    role: 'ai',
+                    content: greeting + '\n\n' + question,
+                    chinese: data.question_chinese,
+                    ttsText: question
+                });
+
+                // 播放 AI 问题的语音
+                await this.playTTS(question);
+
+            } catch (e) {
+                console.error('开始对话失败:', e);
+                this.initError = '开始对话失败: ' + e.message;
+            }
+            this.isLoading = false;
+        },
+
+        async startRecording() {
+            if (this.isLoading || this.isRecognizing || !this.recorderReady) return;
+
+            try {
+                await this.recorder.start();
+                this.isRecording = true;
+                this.recognizedText = '';
+
+                // 开始计时
+                this.recordingStartTime = Date.now();
+                this.recordingDuration = '0:00';
+                this.recordingTimer = setInterval(() => {
+                    const elapsed = Math.floor((Date.now() - this.recordingStartTime) / 1000);
+                    const mins = Math.floor(elapsed / 60);
+                    const secs = elapsed % 60;
+                    this.recordingDuration = `${mins}:${secs.toString().padStart(2, '0')}`;
+                }, 100);
+
+            } catch (e) {
+                console.error('录音启动失败:', e);
+                alert('录音启动失败，请检查麦克风权限');
+            }
+        },
+
+        async stopRecording() {
+            if (!this.isRecording) return;
+
+            // 停止计时
+            if (this.recordingTimer) {
+                clearInterval(this.recordingTimer);
+                this.recordingTimer = null;
+            }
+
+            try {
+                const audioBlob = await this.recorder.stop();
+                this.isRecording = false;
+
+                // 检查录音时长（至少 0.5 秒）
+                if (audioBlob.size < 1000) {
+                    console.log('录音太短，忽略');
+                    return;
+                }
+
+                this.isRecognizing = true;
+                this.scrollToBottom();
+
+                // 上传识别
+                const result = await this.recorder.uploadForRecognition(audioBlob);
+
+                if (result.success && result.text) {
+                    this.recognizedText = result.text;
+                    // 自动提交
+                    await this.submitReply(result.text);
+                } else {
+                    const errorMsg = result.error || '未能识别语音';
+                    alert('语音识别失败: ' + errorMsg + '\n请重试');
+                }
+
+            } catch (e) {
+                console.error('录音处理失败:', e);
+                alert('录音处理失败，请重试');
+            } finally {
+                this.isRecognizing = false;
+            }
+        },
+
+        async submitReply(text) {
+            // 添加用户消息
+            this.messages.push({ role: 'user', content: text });
+            this.scrollToBottom();
+
+            this.isLoading = true;
+            try {
+                const response = await fetch('/api/conversation/reply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        conversation_id: this.conversationId,
+                        user_input: text,
+                        target_words: this.targetWords
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('API 请求失败');
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // 构建 AI 回复
+                let aiContent = data.feedback || 'Good job!';
+                let ttsText = data.feedback || '';
+
+                if (data.correction) {
+                    aiContent += '\n\n📝 ' + data.correction;
+                }
+                if (data.next_question) {
+                    aiContent += '\n\n' + data.next_question;
+                    ttsText = data.next_question;
+                }
+
+                this.messages.push({
+                    role: 'ai',
+                    content: aiContent,
+                    chinese: data.next_question_chinese || data.feedback_chinese,
+                    ttsText: ttsText
+                });
+
+                this.targetWords = data.next_target_words || [];
+                this.currentRound = data.round || this.currentRound + 1;
+                this.totalRounds = data.total_rounds || 5;
+
+                // 播放 AI 回复
+                if (ttsText) {
+                    await this.playTTS(ttsText);
+                }
+
+                // 检查是否完成
+                if (data.is_complete) {
+                    await this.loadSummary();
+                }
+
+            } catch (e) {
+                console.error('提交回复失败:', e);
+                this.messages.push({
+                    role: 'ai',
+                    content: '抱歉，出现了一些问题。请再试一次。',
+                    chinese: ''
+                });
+            }
+
+            this.isLoading = false;
+            this.scrollToBottom();
+        },
+
+        async playTTS(text) {
+            if (!text) return;
+
+            try {
+                const url = `/api/tts/sentence?sentence=${encodeURIComponent(text)}`;
+
+                if (this.audioPlayer) {
+                    this.audioPlayer.unload();
+                }
+
+                this.audioPlayer = new Howl({
+                    src: [url],
+                    format: ['mp3'],
+                    onloaderror: (id, err) => {
+                        console.error('TTS 加载失败:', err);
+                    }
+                });
+
+                this.audioPlayer.play();
+
+            } catch (e) {
+                console.error('TTS 播放失败:', e);
+            }
+        },
+
+        async loadSummary() {
+            try {
+                const response = await fetch(`/api/conversation/summary/${this.conversationId}`);
+                if (response.ok) {
+                    this.summary = await response.json();
+                }
+                this.isComplete = true;
+            } catch (e) {
+                console.error('获取总结失败:', e);
+                this.isComplete = true;
+                this.summary = {
+                    words_practiced: this.words.map(w => w.word),
+                    words_used_correctly: [],
+                    overall_feedback: '对话已完成！',
+                    score: 0
+                };
+            }
+        },
+
+        scrollToBottom() {
+            this.$nextTick(() => {
+                if (this.$refs.chatContainer) {
+                    this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
+                }
+            });
+        },
+
+        goBack() {
+            // 清理录音器
+            if (this.recorder) {
+                this.recorder.cancel();
+            }
+            if (this.recordingTimer) {
+                clearInterval(this.recordingTimer);
+            }
+
+            // 清理 sessionStorage
+            sessionStorage.removeItem('learnedWords');
+
+            // 返回首页
+            window.location.href = '/';
+        }
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+
+{% block title %}英语学习{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900" x-data="indexPage()">
+    <!-- 顶部导航 -->
+    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg sticky top-0 z-10 border-b border-slate-700/50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <h1 class="text-xl font-bold text-slate-100">英语学习</h1>
+                <!-- 词书选择下拉 -->
+                <div class="relative">
+                    <button
+                        @click="showBookSelector = !showBookSelector"
+                        class="flex items-center space-x-1 text-sky-400 hover:text-sky-300 text-sm font-medium"
+                    >
+                        <span x-text="selectedBookName || '选择词书'"></span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <!-- 下拉菜单 -->
+                    <div
+                        x-show="showBookSelector"
+                        x-cloak
+                        @click.away="showBookSelector = false"
+                        class="absolute left-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-600 z-20"
+                    >
+                        {% for book in books %}
+                        <button
+                            @click="selectBook('{{ book.id }}', '{{ book.name }}'); showBookSelector = false"
+                            class="w-full text-left px-4 py-2 text-slate-200 hover:bg-slate-700 first:rounded-t-lg last:rounded-b-lg"
+                            :class="{ 'bg-sky-900/50 text-sky-300': selectedBook === '{{ book.id }}' }"
+                        >
+                            {{ book.name }}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-slate-400 text-sm">{{ user.username }}</span>
+                <button
+                    @click="logout"
+                    class="text-slate-400 hover:text-red-400 transition"
+                    title="退出登录"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-4xl mx-auto px-4 py-6">
+        <!-- 未选择词书时的提示 -->
+        <div x-show="!selectedBook" class="text-center py-12">
+            <div class="text-slate-600 text-6xl mb-4">
+                <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+            </div>
+            <p class="text-slate-500">请在顶部选择词书开始学习</p>
+        </div>
+
+        <!-- 已选择词书时显示学习界面 -->
+        <section x-show="selectedBook" x-cloak>
+            <!-- 学习统计 -->
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+                <div class="grid grid-cols-4 gap-3 text-center">
+                    <div class="bg-sky-500/10 border border-sky-500/20 rounded-lg p-3">
+                        <div class="text-xl font-bold text-sky-400" x-text="bookStats?.words_learned || 0"></div>
+                        <div class="text-xs text-slate-400">已学</div>
+                    </div>
+                    <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                        <div class="text-xl font-bold text-emerald-400" x-text="bookStats?.total_words || 0"></div>
+                        <div class="text-xs text-slate-400">总词数</div>
+                    </div>
+                    <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                        <div class="text-xl font-bold text-amber-400" x-text="bookStats?.due_today || 0"></div>
+                        <div class="text-xs text-slate-400">待复习</div>
+                    </div>
+                    <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                        <div class="text-xl font-bold text-violet-400" x-text="(bookStats?.accuracy || 0) + '%'"></div>
+                        <div class="text-xs text-slate-400">正确率</div>
+                    </div>
+                </div>
+                <!-- 进度条 -->
+                <div class="mt-4 bg-slate-700/50 rounded-full h-2 overflow-hidden">
+                    <div
+                        class="bg-gradient-to-r from-sky-500 to-blue-500 h-full transition-all duration-500"
+                        :style="`width: ${bookStats?.total_words > 0 ? (bookStats?.words_learned / bookStats?.total_words * 100) : 0}%`"
+                    ></div>
+                </div>
+            </div>
+
+            <!-- 学习配置 -->
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-4 mb-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- 章节选择 -->
+                    <div>
+                        <label class="text-xs text-slate-400 mb-1 block">章节</label>
+                        <select
+                            x-model="selectedUnit"
+                            class="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 text-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm"
+                        >
+                            <option value="">全部</option>
+                            <template x-for="unit in units" :key="unit">
+                                <option :value="unit" x-text="unit"></option>
+                            </template>
+                        </select>
+                    </div>
+                    <!-- 数量选择 -->
+                    <div>
+                        <label class="text-xs text-slate-400 mb-1 block">数量</label>
+                        <input
+                            type="number"
+                            x-model="selectedLimit"
+                            min="1"
+                            max="100"
+                            placeholder="输入数量"
+                            class="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 text-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <!-- 开始学习按钮 -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <button
+                    @click="startLearning('review')"
+                    :disabled="!bookStats?.words_learned"
+                    class="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-4 rounded-xl font-medium hover:from-amber-600 hover:to-orange-600 transition shadow-lg shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+                >
+                    <div class="text-lg">复习</div>
+                    <div class="text-sm opacity-80" x-text="(bookStats?.due_today || 0) + ' 个待复习'"></div>
+                </button>
+                <button
+                    @click="startLearning('new')"
+                    class="bg-gradient-to-r from-sky-500 to-blue-500 text-white py-4 rounded-xl font-medium hover:from-sky-600 hover:to-blue-600 transition shadow-lg shadow-blue-500/20"
+                >
+                    <div class="text-lg">学新词</div>
+                    <div class="text-sm opacity-80" x-text="'已学 ' + (bookStats?.words_learned || 0) + ' / 总计 ' + (bookStats?.total_words || 0)"></div>
+                </button>
+            </div>
+
+            <!-- 对话练习按钮 -->
+            <button
+                @click="startConversation"
+                :disabled="!bookStats?.words_learned"
+                class="w-full bg-gradient-to-r from-violet-500 to-purple-500 text-white py-4 rounded-xl font-medium hover:from-violet-600 hover:to-purple-600 transition shadow-lg shadow-purple-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none mb-4"
+            >
+                <div class="text-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                    </svg>
+                    对话练习
+                </div>
+                <div class="text-sm opacity-80">用已学单词和 AI 语音对话</div>
+            </button>
+
+            <!-- 跟读练习按钮 -->
+            <button
+                @click="startReading"
+                :disabled="!bookStats?.words_learned"
+                class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-4 rounded-xl font-medium hover:from-emerald-600 hover:to-teal-600 transition shadow-lg shadow-teal-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+            >
+                <div class="text-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    跟读练习
+                </div>
+                <div class="text-sm opacity-80">跟读 AI 生成的短文，评估发音</div>
+            </button>
+        </section>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function indexPage() {
+    // 从 localStorage 读取上次选择的词书（带错误保护）
+    let savedBook = null;
+    let savedBookName = null;
+    try {
+        savedBook = localStorage.getItem('selectedBook');
+        savedBookName = localStorage.getItem('selectedBookName');
+    } catch (e) {
+        console.error('读取 localStorage 失败:', e);
+    }
+
+    return {
+        selectedBook: savedBook || null,
+        selectedBookName: savedBookName || null,
+        bookStats: null,
+        units: [],
+        selectedUnit: '',
+        selectedLimit: '20',
+        showBookSelector: false,
+
+        async init() {
+            // 如果有保存的词书，自动加载
+            if (this.selectedBook) {
+                await this.loadBookData(this.selectedBook);
+            }
+        },
+
+        async loadStats(bookId) {
+            try {
+                const response = await fetch(`/api/stats/${bookId}`);
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (e) {
+                console.error('加载统计失败:', e);
+            }
+            return null;
+        },
+
+        async loadUnits(bookId) {
+            try {
+                const response = await fetch(`/api/book/${bookId}/units`);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.units = data.units || [];
+                }
+            } catch (e) {
+                console.error('加载章节失败:', e);
+                this.units = [];
+            }
+        },
+
+        async loadBookData(bookId) {
+            // 并行加载统计和单元数据，避免瀑布流
+            const [stats, _] = await Promise.all([
+                this.loadStats(bookId),
+                this.loadUnits(bookId)
+            ]);
+            this.bookStats = stats;
+        },
+
+        async selectBook(bookId, bookName) {
+            this.selectedBook = bookId;
+            this.selectedBookName = bookName;
+            this.selectedUnit = '';
+            this.selectedLimit = '20';
+
+            // 保存到 localStorage（带错误保护）
+            try {
+                localStorage.setItem('selectedBook', bookId);
+                localStorage.setItem('selectedBookName', bookName);
+            } catch (e) {
+                console.error('保存 localStorage 失败:', e);
+            }
+
+            await this.loadBookData(bookId);
+        },
+
+        startLearning(mode) {
+            if (!this.selectedBook) return;
+            let url = `/dictation/${this.selectedBook}?mode=${mode}`;
+            if (this.selectedUnit) {
+                url += `&unit=${encodeURIComponent(this.selectedUnit)}`;
+            }
+            if (this.selectedLimit) {
+                url += `&limit=${this.selectedLimit}`;
+            }
+            window.location.href = url;
+        },
+
+        startConversation() {
+            if (!this.selectedBook) return;
+            // 跳转到对话练习单元选择页面
+            window.location.href = `/conversation-setup/${this.selectedBook}`;
+        },
+
+        startReading() {
+            if (!this.selectedBook) return;
+            // 跳转到跟读练习页面
+            let url = `/reading/${this.selectedBook}`;
+            if (this.selectedUnit) {
+                url += `?unit=${encodeURIComponent(this.selectedUnit)}`;
+            }
+            window.location.href = url;
+        },
+
+        async logout() {
+            try {
+                await fetch('/api/auth/logout', { method: 'POST' });
+                localStorage.removeItem('selectedBook');
+                localStorage.removeItem('selectedBookName');
+                window.location.href = '/login';
+            } catch (e) {
+                console.error('退出失败:', e);
+            }
+        }
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,948 @@
+{% extends "base.html" %}
+
+{% block title %}听写练习 - 英语学习{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900 flex flex-col" x-data="dictationPage()">
+    <!-- 顶部导航 -->
+    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg border-b border-slate-700/50">
+        <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
+            <button @click="goBack" class="text-slate-400 hover:text-slate-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <div class="text-center">
+                <span class="font-medium text-slate-100">听写练习</span>
+                <div class="text-xs text-slate-400">
+                    <span x-text="currentIndex + 1"></span> / <span x-text="cards.length"></span>
+                </div>
+            </div>
+            <button @click="showSettings = true" class="text-slate-400 hover:text-slate-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- 进度条 -->
+        <div class="h-1 bg-slate-700/50">
+            <div
+                class="h-full bg-gradient-to-r from-sky-500 to-blue-500 transition-all duration-300"
+                :style="`width: ${cards.length > 0 ? ((currentIndex) / cards.length * 100) : 0}%`"
+            ></div>
+        </div>
+    </header>
+
+    <!-- 加载中 -->
+    <div x-show="loading" class="flex-1 flex items-center justify-center">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-4 border-sky-500 border-t-transparent mx-auto"></div>
+            <p class="text-slate-400 mt-4">加载中...</p>
+        </div>
+    </div>
+
+    <!-- 无单词 -->
+    <div x-show="!loading && cards.length === 0" x-cloak class="flex-1 flex items-center justify-center p-4">
+        <div class="text-center">
+            <div class="text-6xl mb-4">🎉</div>
+            <h2 class="text-xl font-medium text-slate-200 mb-2">暂无单词</h2>
+            <p class="text-slate-400 mb-6">当前没有需要学习的单词</p>
+            <button @click="goBack" class="bg-gradient-to-r from-sky-500 to-blue-500 text-white px-6 py-2 rounded-lg shadow-lg shadow-blue-500/20">返回</button>
+        </div>
+    </div>
+
+    <!-- 学习完成 -->
+    <div x-show="!loading && finished" x-cloak class="flex-1 flex items-center justify-center p-4">
+        <div class="text-center bg-slate-800/50 backdrop-blur rounded-2xl shadow-xl border border-slate-700/50 p-8 max-w-sm w-full">
+            <div class="text-6xl mb-4">🎊</div>
+            <h2 class="text-2xl font-bold text-slate-100 mb-2">学习完成!</h2>
+            <div class="grid grid-cols-2 gap-4 my-6">
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                    <div class="text-2xl font-bold text-emerald-400" x-text="correctCount"></div>
+                    <div class="text-sm text-slate-400">正确</div>
+                </div>
+                <div class="bg-rose-500/10 border border-rose-500/20 rounded-lg p-3">
+                    <div class="text-2xl font-bold text-rose-400" x-text="wrongCount"></div>
+                    <div class="text-sm text-slate-400">错误</div>
+                </div>
+            </div>
+            <p class="text-slate-300 mb-6">
+                正确率: <span class="font-bold" x-text="Math.round(correctCount / (correctCount + wrongCount) * 100) || 0"></span>%
+            </p>
+            <!-- 对话练习按钮（仅学新词模式显示） -->
+            <button
+                x-show="mode === 'new' && cards.length >= 5"
+                @click="startConversationPractice"
+                class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white py-3 rounded-lg font-medium mb-3 shadow-lg shadow-orange-500/20 hover:from-amber-600 hover:to-orange-600 transition"
+            >
+                🎤 开始对话练习
+            </button>
+            <button @click="goBack" class="w-full bg-gradient-to-r from-sky-500 to-blue-500 text-white py-3 rounded-lg font-medium shadow-lg shadow-blue-500/20 hover:from-sky-600 hover:to-blue-600 transition">返回首页</button>
+        </div>
+    </div>
+
+    <!-- 学习界面 -->
+    <main x-show="!loading && cards.length > 0 && !finished" x-cloak class="flex-1 flex flex-col max-w-2xl mx-auto w-full p-4">
+        <!-- 单词卡片 -->
+        <div class="bg-slate-800/50 backdrop-blur rounded-2xl shadow-xl border border-slate-700/50 flex-1 flex flex-col p-6">
+            <!-- 中文释义 -->
+            <div class="text-center py-8">
+                <div class="text-3xl font-bold text-slate-100" x-text="currentCard?.translation || ''"></div>
+                <div class="text-slate-500 mt-2" x-show="showPhonetic" x-text="currentCard?.phonetic || ''"></div>
+            </div>
+
+            <!-- 输入区域 -->
+            <div class="flex-1 flex flex-col justify-center">
+                <!-- 输入框 -->
+                <div class="relative">
+                    <input
+                        type="text"
+                        x-model="userInput"
+                        @keyup.enter="submitAnswer"
+                        :disabled="inputDisabled"
+                        x-ref="inputField"
+                        class="w-full text-center text-2xl py-4 bg-slate-700/50 border-2 border-slate-600 text-slate-100 rounded-xl focus:border-sky-500 focus:ring-0 outline-none transition disabled:bg-slate-700/30 disabled:text-slate-500"
+                        :class="{
+                            'border-emerald-500 bg-emerald-500/10': showResult && isCorrect,
+                            'border-rose-500 bg-rose-500/10': showResult && !isCorrect
+                        }"
+                        placeholder="请输入单词"
+                        autocomplete="off"
+                        autocapitalize="none"
+                        spellcheck="false"
+                    >
+                    <!-- 正确/错误图标 -->
+                    <div x-show="showResult" class="absolute right-4 top-1/2 -translate-y-1/2">
+                        <span x-show="isCorrect" class="text-emerald-400 text-2xl">✓</span>
+                        <span x-show="!isCorrect" class="text-rose-400 text-2xl">✗</span>
+                    </div>
+                </div>
+
+                <!-- 提示区域 -->
+                <div class="mt-4 min-h-[60px]">
+                    <!-- 错误提示 -->
+                    <div x-show="hint" x-cloak class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 text-center">
+                        <span class="text-amber-400" x-text="hint"></span>
+                        <span class="text-slate-400 text-sm ml-2" x-show="remainingAttempts > 0">
+                            还有 <span x-text="remainingAttempts"></span> 次机会
+                        </span>
+                    </div>
+
+                    <!-- 例句提示 -->
+                    <div x-show="exampleSentence" x-cloak class="bg-sky-500/10 border border-sky-500/30 rounded-lg p-3">
+                        <div class="text-sky-300" x-text="exampleSentence"></div>
+                        <div class="text-slate-400 text-sm mt-1" x-text="exampleChinese"></div>
+                    </div>
+
+                    <!-- 正确答案 -->
+                    <div x-show="showAnswer" x-cloak class="text-center">
+                        <div class="text-slate-400 text-sm">正确答案</div>
+                        <div class="text-2xl font-bold text-slate-100 mt-1" x-text="currentCard?.word || ''"></div>
+                        <div class="text-slate-500 text-sm mt-1" x-text="currentCard?.phonetic || ''"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 音频按钮 -->
+            <div x-show="!showPronunciationUI" class="flex justify-center space-x-4 py-4">
+                <button
+                    @click="playAudio('normal')"
+                    :disabled="attempt === 0 && !showResult"
+                    class="flex items-center space-x-2 px-4 py-2 bg-slate-700/50 text-slate-300 rounded-lg hover:bg-slate-600/50 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                    </svg>
+                    <span class="text-sm">听发音</span>
+                </button>
+                <button
+                    @click="playAudio('slow')"
+                    :disabled="attempt === 0 && !showResult"
+                    :class="canReplay ? 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300' : 'bg-slate-700/50 hover:bg-slate-600/50 text-slate-300'"
+                    class="flex items-center space-x-2 px-4 py-2 rounded-lg transition disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                    <span class="text-lg">🐢</span>
+                    <span class="text-sm">慢速</span>
+                </button>
+            </div>
+
+            <!-- 跟读发音评估界面 -->
+            <div x-show="showPronunciationUI" x-cloak class="mt-4 bg-purple-500/10 border border-purple-500/30 rounded-xl p-4">
+                <div class="text-center mb-4">
+                    <div class="text-lg font-medium text-purple-300 mb-1">跟读练习</div>
+                    <div class="text-2xl font-bold text-slate-100" x-text="currentCard?.word || ''"></div>
+                    <div class="text-slate-400 text-sm mt-1" x-text="currentCard?.phonetic || ''"></div>
+                </div>
+
+                <!-- 评估结果 -->
+                <div x-show="pronunciationResult?.success" class="mb-4 bg-slate-800/50 rounded-lg p-3">
+                    <div class="flex justify-center space-x-6 text-sm">
+                        <div class="text-center">
+                            <div class="text-slate-400">准确度</div>
+                            <div class="text-xl font-bold"
+                                :class="{
+                                    'text-emerald-400': pronunciationResult?.accuracy_score >= 75,
+                                    'text-amber-400': pronunciationResult?.accuracy_score >= 60 && pronunciationResult?.accuracy_score < 75,
+                                    'text-rose-400': pronunciationResult?.accuracy_score < 60
+                                }"
+                                x-text="Math.round(pronunciationResult?.accuracy_score || 0) + '%'"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-slate-400">流畅度</div>
+                            <div class="text-xl font-bold"
+                                :class="{
+                                    'text-emerald-400': pronunciationResult?.fluency_score >= 75,
+                                    'text-amber-400': pronunciationResult?.fluency_score >= 60 && pronunciationResult?.fluency_score < 75,
+                                    'text-rose-400': pronunciationResult?.fluency_score < 60
+                                }"
+                                x-text="Math.round(pronunciationResult?.fluency_score || 0) + '%'"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-slate-400">完整度</div>
+                            <div class="text-xl font-bold"
+                                :class="{
+                                    'text-emerald-400': pronunciationResult?.completeness_score >= 75,
+                                    'text-amber-400': pronunciationResult?.completeness_score >= 60 && pronunciationResult?.completeness_score < 75,
+                                    'text-rose-400': pronunciationResult?.completeness_score < 60
+                                }"
+                                x-text="Math.round(pronunciationResult?.completeness_score || 0) + '%'"></div>
+                        </div>
+                    </div>
+                    <!-- 识别出的文本 -->
+                    <div x-show="pronunciationResult?.recognized_text" class="mt-2 text-center text-slate-400 text-sm">
+                        识别: <span class="text-slate-300" x-text="pronunciationResult?.recognized_text"></span>
+                    </div>
+
+                    <!-- 字母-音素对照分析 -->
+                    <div x-show="pronunciationResult?.letter_mapping?.length > 0" class="mt-3 pt-3 border-t border-slate-700">
+                        <div class="text-xs text-slate-400 mb-2 text-center">发音分析</div>
+                        <!-- 字母行 -->
+                        <div class="flex flex-wrap justify-center gap-1 mb-1">
+                            <template x-for="(m, i) in pronunciationResult?.letter_mapping || []" :key="'letter-'+i">
+                                <span
+                                    class="px-2 py-1 rounded text-base font-bold cursor-default"
+                                    :class="{
+                                        'bg-emerald-500/20 text-emerald-300': m.accuracy >= 80,
+                                        'bg-amber-500/20 text-amber-300': m.accuracy >= 60 && m.accuracy < 80,
+                                        'bg-rose-500/20 text-rose-300': m.accuracy !== null && m.accuracy < 60,
+                                        'bg-slate-700/50 text-slate-400': m.accuracy === null
+                                    }"
+                                    :title="m.accuracy !== null ? '准确度: ' + Math.round(m.accuracy) + '%' : ''"
+                                    x-text="m.letter"
+                                ></span>
+                            </template>
+                        </div>
+                        <!-- 音素行 -->
+                        <div class="flex flex-wrap justify-center gap-1">
+                            <template x-for="(m, i) in pronunciationResult?.letter_mapping || []" :key="'phoneme-'+i">
+                                <span
+                                    class="px-2 py-0.5 text-xs font-mono text-slate-500"
+                                    :style="'min-width: ' + (m.letter.length * 0.6 + 1) + 'rem'"
+                                    x-text="m.phoneme || ''"
+                                ></span>
+                            </template>
+                        </div>
+                        <!-- 问题字母提示 -->
+                        <div x-show="pronunciationResult?.letter_mapping?.filter(m => m.accuracy !== null && m.accuracy < 60).length > 0"
+                             class="mt-2 text-center text-xs text-rose-400">
+                            <span>需要注意: </span>
+                            <span x-text="pronunciationResult?.letter_mapping?.filter(m => m.accuracy !== null && m.accuracy < 60).map(m => m.letter + ' /' + m.phoneme + '/').join(', ')"></span>
+                        </div>
+                    </div>
+                    <!-- 旧版音素详情（作为后备） -->
+                    <div x-show="!pronunciationResult?.letter_mapping?.length && pronunciationResult?.phoneme_details?.length > 0" class="mt-3 pt-3 border-t border-slate-700">
+                        <div class="text-xs text-slate-400 mb-2 text-center">音素分析</div>
+                        <div class="flex flex-wrap justify-center gap-1">
+                            <template x-for="(p, i) in pronunciationResult?.phoneme_details || []" :key="i">
+                                <span
+                                    class="px-2 py-1 rounded text-sm font-mono cursor-default"
+                                    :class="{
+                                        'bg-emerald-500/20 text-emerald-300': p.accuracy >= 80,
+                                        'bg-amber-500/20 text-amber-300': p.accuracy >= 60 && p.accuracy < 80,
+                                        'bg-rose-500/20 text-rose-300': p.accuracy < 60
+                                    }"
+                                    :title="'准确度: ' + Math.round(p.accuracy) + '%'"
+                                    x-text="p.phoneme"
+                                ></span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 反馈文本 -->
+                <div class="text-center text-slate-300 mb-2" x-text="pronunciationFeedback"></div>
+
+                <!-- 发音技巧提示 -->
+                <div x-show="pronunciationResult?.tips" class="text-center text-xs text-amber-400/80 mb-2">
+                    <span class="inline-flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span x-text="pronunciationResult?.tips"></span>
+                    </span>
+                </div>
+
+                <!-- 推荐练习单词 -->
+                <div x-show="pronunciationResult?.practice_words?.length > 0" class="mb-4 p-3 bg-indigo-500/10 border border-indigo-500/30 rounded-lg">
+                    <div class="text-xs text-indigo-300 mb-2 text-center">
+                        <span x-show="pronunciationResult?.focus_phoneme">
+                            练习 /<span x-text="pronunciationResult?.focus_phoneme"></span>/ 音：
+                        </span>
+                        <span x-show="!pronunciationResult?.focus_phoneme">推荐练习：</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <template x-for="(pw, i) in pronunciationResult?.practice_words || []" :key="'pw-'+i">
+                            <button
+                                @click="playPracticeWord(pw.word || pw)"
+                                :disabled="audioPlaying"
+                                class="px-4 py-2 bg-indigo-500/20 text-indigo-200 rounded-lg hover:bg-indigo-500/30 transition disabled:opacity-50 flex items-center gap-3"
+                            >
+                                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                                </svg>
+                                <span class="font-medium" x-text="pw.word || pw"></span>
+                                <span x-show="pw.pos" class="text-xs text-indigo-400" x-text="pw.pos"></span>
+                                <span x-show="pw.meaning" class="text-xs text-gray-400" x-text="pw.meaning"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- 录音按钮 -->
+                <div class="flex justify-center mb-4">
+                    <button
+                        @click="togglePronunciationRecording()"
+                        :disabled="pronunciationSubmitting || audioPlaying"
+                        class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-50"
+                        :class="{
+                            'bg-rose-500 hover:bg-rose-600 animate-pulse': isRecordingPronunciation,
+                            'bg-purple-500 hover:bg-purple-600': !isRecordingPronunciation
+                        }"
+                    >
+                        <svg x-show="!isRecordingPronunciation" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                        </svg>
+                        <svg x-show="isRecordingPronunciation" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="flex justify-center space-x-4">
+                    <button
+                        @click="replayPronunciationDemo()"
+                        :disabled="audioPlaying || isRecordingPronunciation"
+                        class="px-4 py-2 bg-slate-700/50 text-slate-300 rounded-lg hover:bg-slate-600/50 transition disabled:opacity-50"
+                    >
+                        再听一遍
+                    </button>
+
+                    <!-- 再试一次（未达到最大次数且有评估结果时显示） -->
+                    <button
+                        x-show="pronunciationResult && pronunciationAttempt < maxPronunciationAttempts"
+                        @click="retryPronunciation()"
+                        :disabled="audioPlaying || isRecordingPronunciation"
+                        class="px-4 py-2 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 transition disabled:opacity-50"
+                    >
+                        再试一次
+                    </button>
+
+                    <!-- 继续（有评估结果或达到最大次数时显示） -->
+                    <button
+                        x-show="pronunciationResult || pronunciationAttempt >= maxPronunciationAttempts"
+                        @click="continuePronunciation()"
+                        :disabled="audioPlaying"
+                        class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition disabled:opacity-50"
+                    >
+                        继续
+                    </button>
+
+                    <!-- 跳过（没有评估结果时显示） -->
+                    <button
+                        x-show="!pronunciationResult"
+                        @click="skipPronunciation()"
+                        class="px-4 py-2 bg-slate-700/50 text-slate-400 rounded-lg hover:bg-slate-600/50 transition"
+                    >
+                        跳过
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作按钮（跟读练习时隐藏） -->
+        <div x-show="!showPronunciationUI" class="grid grid-cols-2 gap-4 mt-4">
+            <button
+                @click="skipWord"
+                :disabled="inputDisabled && !showResult"
+                class="py-4 bg-slate-700/50 text-slate-300 rounded-xl font-medium hover:bg-slate-600/50 transition border border-slate-600 disabled:opacity-50"
+            >
+                跳过
+            </button>
+            <button
+                @click="showResult ? nextWord() : submitAnswer()"
+                :disabled="(!userInput && !showResult) || (showResult && audioPlaying)"
+                class="py-4 bg-gradient-to-r from-sky-500 to-blue-500 text-white rounded-xl font-medium hover:from-sky-600 hover:to-blue-600 transition shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:shadow-none"
+            >
+                <span x-text="showResult ? (audioPlaying ? '播放中...' : '下一个') : '确认'"></span>
+            </button>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/recorder.js"></script>
+<script>
+function dictationPage() {
+    return {
+        bookId: '{{ book_id }}',
+        urlParams: new URLSearchParams(window.location.search),
+        mode: '',
+        unit: '',
+        limit: 20,
+        loading: true,
+        finished: false,
+        showSettings: false,
+        showPhonetic: false,
+
+        cards: [],
+        currentIndex: 0,
+        currentCard: null,
+
+        userInput: '',
+        inputs: [],  // 记录所有输入
+        attempt: 0,
+        maxAttempts: 3,
+
+        hint: '',
+        showResult: false,
+        showAnswer: false,
+        isCorrect: false,
+        inputDisabled: false,
+        canReplay: false,
+        remainingAttempts: 3,
+
+        exampleSentence: '',
+        exampleChinese: '',
+
+        correctCount: 0,
+        wrongCount: 0,
+
+        // 音频播放器
+        audioPlayer: null,
+        audioPlaying: false,  // 音频是否正在播放
+
+        // 跟读发音评估
+        showPronunciationUI: false,      // 显示跟读界面
+        isRecordingPronunciation: false, // 录音中
+        pronunciationResult: null,        // 评估结果
+        pronunciationFeedback: '',        // 反馈文本
+        pronunciationAttempt: 0,          // 跟读次数
+        maxPronunciationAttempts: 2,      // 最多跟读次数
+        pronunciationRecorder: null,      // 录音器实例
+        pronunciationSubmitting: false,   // 正在提交评估
+        practiceWordAudioCache: {},       // 练习单词音频缓存
+
+        async init() {
+            // 从 URL 读取参数
+            this.mode = this.urlParams.get('mode') || 'review';
+            this.unit = this.urlParams.get('unit') || '';
+            const limitParam = this.urlParams.get('limit');
+            this.limit = limitParam ? parseInt(limitParam) : 20;
+            // limit=0 表示全部
+            if (this.limit === 0) this.limit = 9999;
+
+            await this.loadCards();
+            this.loading = false;
+            if (this.cards.length > 0) {
+                this.showCard(0);
+            }
+
+            // 全局键盘监听：回车键
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    if (this.showResult && !this.audioPlaying) {
+                        // 显示结果且音频播放完毕时，回车进入下一个
+                        this.nextWord();
+                    } else if (this.userInput && !this.inputDisabled) {
+                        // 有输入且未禁用时，提交答案
+                        this.submitAnswer();
+                    }
+                }
+            });
+        },
+
+        async loadCards() {
+            try {
+                const response = await fetch('/api/session/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        book_id: this.bookId,
+                        mode: this.mode,
+                        unit: this.unit || null,
+                        limit: this.limit
+                    })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    this.cards = data.cards;
+                }
+            } catch (e) {
+                console.error('加载单词失败:', e);
+            }
+        },
+
+        showCard(index) {
+            if (index >= this.cards.length) {
+                this.finished = true;
+                return;
+            }
+            this.currentIndex = index;
+            this.currentCard = this.cards[index];
+            this.userInput = '';
+            this.inputs = [];
+            this.attempt = 0;
+            this.hint = '';
+            this.showResult = false;
+            this.showAnswer = false;
+            this.isCorrect = false;
+            this.inputDisabled = false;
+            this.canReplay = false;
+            this.remainingAttempts = this.maxAttempts;
+            this.exampleSentence = '';
+            this.exampleChinese = '';
+
+            // 重置跟读状态
+            this.showPronunciationUI = false;
+            this.isRecordingPronunciation = false;
+            this.pronunciationResult = null;
+            this.pronunciationFeedback = '';
+            this.pronunciationAttempt = 0;
+            this.pronunciationSubmitting = false;
+
+            // 清除练习单词音频缓存
+            Object.values(this.practiceWordAudioCache).forEach(howl => howl.unload());
+            this.practiceWordAudioCache = {};
+
+            // 聚焦输入框
+            this.$nextTick(() => {
+                this.$refs.inputField?.focus();
+            });
+        },
+
+        async submitAnswer() {
+            if (!this.userInput.trim() || this.inputDisabled) return;
+
+            this.attempt++;
+            this.inputs.push(this.userInput.trim());
+
+            // 检查答案
+            const response = await fetch(`/api/session/submit?book_id=${this.bookId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    word: this.currentCard.word,
+                    input: this.userInput.trim(),
+                    attempt: this.attempt
+                })
+            });
+
+            if (!response.ok) return;
+
+            const result = await response.json();
+            this.isCorrect = result.correct;
+            this.remainingAttempts = result.remaining_attempts;
+
+            if (this.isCorrect) {
+                // 正确
+                this.showResult = true;
+                this.inputDisabled = true;
+                this.correctCount++;
+
+                // 异步保存，不阻塞 UI
+                this.completeWord(true, false);
+
+                // 触发跟读练习
+                await this.startPronunciationPractice();
+            } else {
+                // 错误处理
+                if (this.attempt === 1) {
+                    // 第1次错误：显示提示，并自动播放一次单词发音
+                    this.hint = result.hint;
+                    this.userInput = '';
+                    this.playAudio('normal');
+                } else if (this.attempt === 2) {
+                    // 第2次错误：播放慢速发音
+                    this.hint = '错误，听一下发音';
+                    this.playAudio('slow');
+                    this.canReplay = true;
+                    this.userInput = '';
+                } else {
+                    // 第3次错误：显示答案
+                    this.showResult = true;
+                    this.showAnswer = true;
+                    this.inputDisabled = true;
+                    this.wrongCount++;
+                    this.hint = '';
+
+                    // 异步保存，不阻塞 UI
+                    this.completeWord(false, false);
+
+                    // 触发跟读练习
+                    await this.startPronunciationPractice();
+                }
+            }
+        },
+
+        async skipWord() {
+            if (this.showResult) {
+                this.nextWord();
+                return;
+            }
+
+            this.inputs.push('[skipped]');
+            this.showResult = true;
+            this.showAnswer = true;
+            this.inputDisabled = true;
+            this.wrongCount++;
+            this.hint = '';
+
+            // 异步保存，不阻塞 UI
+            this.completeWord(false, true);
+
+            // 触发跟读练习
+            await this.startPronunciationPractice();
+        },
+
+        async completeWord(correct, skipped) {
+            try {
+                await fetch(`/api/session/complete?book_id=${this.bookId}&word=${this.currentCard.word}&correct=${correct}&attempts=${this.attempt}&skipped=${skipped}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.inputs)
+                });
+            } catch (e) {
+                console.error('保存失败:', e);
+            }
+        },
+
+        async loadExample() {
+            try {
+                const response = await fetch('/api/example-sentence', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        word: this.currentCard.word,
+                        translation: this.currentCard.translation
+                    })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.sentence) {
+                        this.exampleSentence = data.sentence;
+                        this.exampleChinese = data.chinese || '';
+                        // 播放例句，阻止下一步直到播放完毕
+                        this.playAudioUrl(`/api/tts/sentence?sentence=${encodeURIComponent(data.sentence)}`, true);
+                        return true;  // 成功获取例句
+                    } else if (data.error) {
+                        // API 返回错误（如 DeepSeek 未配置）
+                        console.log('例句服务不可用:', data.error);
+                    }
+                }
+            } catch (e) {
+                console.error('获取例句失败:', e);
+            }
+            return false;  // 未获取到例句
+        },
+
+        nextWord() {
+            this.showCard(this.currentIndex + 1);
+        },
+
+        playAudio(speed) {
+            if (!this.currentCard) return;
+            const url = `/api/tts/${speed}/${encodeURIComponent(this.currentCard.word)}`;
+            this.playAudioUrl(url);
+        },
+
+        playAudioUrl(url, blockNext = false) {
+            if (this.audioPlayer) {
+                this.audioPlayer.unload();
+            }
+            // 如果需要阻止下一步，设置播放状态
+            if (blockNext) {
+                this.audioPlaying = true;
+            }
+            this.audioPlayer = new Howl({
+                src: [url],
+                format: ['mp3'],
+                onend: () => {
+                    this.audioPlaying = false;
+                },
+                onloaderror: (id, err) => {
+                    console.error('音频加载失败:', err);
+                    this.audioPlaying = false;
+                }
+            });
+            this.audioPlayer.play();
+        },
+
+        goBack() {
+            window.location.href = '/';
+        },
+
+        // ========== 跟读发音评估相关方法 ==========
+
+        async startPronunciationPractice() {
+            // 播放标准发音（领读）
+            await this.playAudioAndWait('normal');
+
+            // 显示跟读 UI
+            this.showPronunciationUI = true;
+            this.pronunciationAttempt = 0;
+            this.pronunciationResult = null;
+            this.pronunciationFeedback = '请跟读这个单词';
+        },
+
+        playAudioAndWait(speed) {
+            return new Promise((resolve) => {
+                if (!this.currentCard) {
+                    resolve();
+                    return;
+                }
+                const url = `/api/tts/${speed}/${encodeURIComponent(this.currentCard.word)}`;
+                if (this.audioPlayer) {
+                    this.audioPlayer.unload();
+                }
+                this.audioPlaying = true;
+                this.audioPlayer = new Howl({
+                    src: [url],
+                    format: ['mp3'],
+                    onend: () => {
+                        this.audioPlaying = false;
+                        resolve();
+                    },
+                    onloaderror: (id, err) => {
+                        console.error('音频加载失败:', err);
+                        this.audioPlaying = false;
+                        resolve();
+                    }
+                });
+                this.audioPlayer.play();
+            });
+        },
+
+        async togglePronunciationRecording() {
+            if (this.isRecordingPronunciation) {
+                await this.stopRecordingPronunciation();
+            } else {
+                await this.startRecordingPronunciation();
+            }
+        },
+
+        async startRecordingPronunciation() {
+            try {
+                // 初始化录音器（如果需要）
+                if (!this.pronunciationRecorder) {
+                    this.pronunciationRecorder = new AudioRecorder();
+                }
+                await this.pronunciationRecorder.start();
+                this.isRecordingPronunciation = true;
+                this.pronunciationFeedback = '录音中...';
+            } catch (e) {
+                console.error('启动录音失败:', e);
+                this.pronunciationFeedback = '无法访问麦克风，请检查权限';
+            }
+        },
+
+        async stopRecordingPronunciation() {
+            if (!this.pronunciationRecorder) return;
+
+            try {
+                const audioBlob = await this.pronunciationRecorder.stop();
+                this.isRecordingPronunciation = false;
+                this.pronunciationFeedback = '正在评估...';
+
+                // 提交评估
+                await this.submitPronunciationAssessment(audioBlob);
+            } catch (e) {
+                console.error('停止录音失败:', e);
+                this.isRecordingPronunciation = false;
+                this.pronunciationFeedback = '录音失败，请重试';
+            }
+        },
+
+        async submitPronunciationAssessment(audioBlob) {
+            this.pronunciationSubmitting = true;
+            this.pronunciationAttempt++;
+
+            try {
+                // 检查录音数据大小
+                const blobSize = audioBlob.size;
+                console.log(`[录音] 音频大小: ${blobSize} bytes, 类型: ${audioBlob.type}`);
+
+                if (blobSize < 1000) {
+                    this.pronunciationFeedback = `录音时间太短（${blobSize} bytes），请按住按钮说完整个单词`;
+                    return;
+                }
+
+                if (blobSize < 5000) {
+                    console.warn(`[录音] 音频数据较小 (${blobSize} bytes)，可能影响识别效果`);
+                }
+
+                const formData = new FormData();
+                formData.append('audio', audioBlob, 'recording.webm');
+                formData.append('word', this.currentCard.word);
+                formData.append('book_id', this.bookId);
+
+                const response = await fetch('/api/pronunciation/assess', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success) {
+                        this.pronunciationResult = data;
+                        this.pronunciationFeedback = '';
+
+                        // 预加载练习单词音频（不阻塞 UI）
+                        this.preloadPracticeWordAudios(data.practice_words);
+                    } else {
+                        // 显示详细错误信息
+                        const errorMsg = data.error || '评估失败';
+                        console.error('[录音] 服务端错误:', errorMsg);
+                        this.pronunciationFeedback = `${errorMsg}，请重试`;
+                    }
+                } else {
+                    const errorData = await response.json().catch(() => ({}));
+                    const detail = errorData.detail || errorData.error || `HTTP ${response.status}`;
+                    console.error('[录音] 请求失败:', detail);
+                    this.pronunciationFeedback = `${detail}，请重试`;
+                }
+            } catch (e) {
+                console.error('提交评估失败:', e);
+                this.pronunciationFeedback = '网络错误，请重试';
+            } finally {
+                this.pronunciationSubmitting = false;
+            }
+        },
+
+        async replayPronunciationDemo() {
+            await this.playAudioAndWait('normal');
+        },
+
+        // 预加载练习单词音频（在显示结果时调用，不阻塞 UI）
+        preloadPracticeWordAudios(practiceWords) {
+            if (!practiceWords || practiceWords.length === 0) return;
+
+            practiceWords.forEach(pw => {
+                const word = pw.word || pw;
+                if (!word || this.practiceWordAudioCache[word]) return;
+
+                const url = `/api/tts/normal/${encodeURIComponent(word)}`;
+                // 使用 Howl 预加载但不播放
+                this.practiceWordAudioCache[word] = new Howl({
+                    src: [url],
+                    format: ['mp3'],
+                    preload: true,
+                    onloaderror: (id, err) => {
+                        console.error(`预加载 ${word} 音频失败:`, err);
+                        delete this.practiceWordAudioCache[word];
+                    }
+                });
+            });
+        },
+
+        async playPracticeWord(word) {
+            // 播放推荐练习单词的发音
+            if (this.audioPlaying) return;
+
+            this.audioPlaying = true;
+
+            // 优先使用缓存的音频
+            const cachedHowl = this.practiceWordAudioCache[word];
+            if (cachedHowl && cachedHowl.state() === 'loaded') {
+                // 停止当前播放（如果有）但不销毁缓存
+                if (this.audioPlayer && this.audioPlayer !== cachedHowl) {
+                    this.audioPlayer.stop();
+                }
+                cachedHowl.off('end');  // 清除旧监听器
+                cachedHowl.on('end', () => {
+                    this.audioPlaying = false;
+                });
+                cachedHowl.play();
+                this.audioPlayer = cachedHowl;
+            } else {
+                // 缓存未命中或未加载完成，实时加载
+                if (this.audioPlayer) {
+                    this.audioPlayer.stop();
+                }
+                const url = `/api/tts/normal/${encodeURIComponent(word)}`;
+                const newHowl = new Howl({
+                    src: [url],
+                    format: ['mp3'],
+                    onend: () => {
+                        this.audioPlaying = false;
+                    },
+                    onloaderror: (id, err) => {
+                        console.error('练习单词音频加载失败:', err);
+                        this.audioPlaying = false;
+                    }
+                });
+                newHowl.play();
+                this.audioPlayer = newHowl;
+            }
+        },
+
+        skipPronunciation() {
+            this.showPronunciationUI = false;
+            this.nextWord();
+        },
+
+        async retryPronunciation() {
+            this.pronunciationResult = null;
+            this.pronunciationFeedback = '请再次跟读';
+            // 先播放一次标准发音
+            await this.playAudioAndWait('normal');
+        },
+
+        continuePronunciation() {
+            this.showPronunciationUI = false;
+            this.nextWord();
+        },
+
+        // ========== 结束跟读相关方法 ==========
+
+        startConversationPractice() {
+            // 将已学单词存入 sessionStorage（带错误保护）
+            const learnedWords = this.cards.map(card => ({
+                word: card.word,
+                translation: card.translation
+            }));
+
+            // 根据单词数量计算对话轮数
+            const wordCount = learnedWords.length;
+            let rounds = 5;
+            if (wordCount < 10) rounds = 3;
+            else if (wordCount < 20) rounds = 5;
+            else if (wordCount < 40) rounds = 7;
+            else rounds = 10;
+
+            try {
+                sessionStorage.setItem('learnedWords', JSON.stringify(learnedWords));
+                sessionStorage.setItem('conversationRounds', rounds);
+            } catch (e) {
+                console.error('保存 sessionStorage 失败:', e);
+            }
+
+            // 跳转到对话练习页面
+            window.location.href = `/conversation/${this.bookId}`;
+        }
+    }
+}
+</script>
+{% endblock %}

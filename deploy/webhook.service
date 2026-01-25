@@ -1,0 +1,33 @@
+[Unit]
+Description=GitHub Webhook Receiver for English Learning App
+Documentation=https://github.com/YOUR_USERNAME/english-learning-app
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/english-learning-app/deploy
+
+# 虚拟环境路径
+Environment="PATH=/opt/english-learning-app/venv/bin:/usr/local/bin:/usr/bin:/bin"
+
+# Webhook 配置（从 .env 或直接设置）
+Environment="GITHUB_WEBHOOK_SECRET=your-webhook-secret-here"
+Environment="DEPLOY_SCRIPT=/opt/english-learning-app/deploy/deploy.sh"
+Environment="ALLOWED_BRANCH=refs/heads/main"
+
+# 启动命令
+ExecStart=/opt/english-learning-app/venv/bin/python webhook.py
+
+# 自动重启
+Restart=always
+RestartSec=5
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=webhook
+
+[Install]
+WantedBy=multi-user.target

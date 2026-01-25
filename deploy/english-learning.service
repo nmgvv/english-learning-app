@@ -1,0 +1,38 @@
+[Unit]
+Description=English Learning App - FastAPI Application
+Documentation=https://github.com/YOUR_USERNAME/english-learning-app
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/english-learning-app
+
+# 虚拟环境路径
+Environment="PATH=/opt/english-learning-app/venv/bin:/usr/local/bin:/usr/bin:/bin"
+
+# 加载环境变量
+EnvironmentFile=/opt/english-learning-app/.env
+
+# 启动命令
+ExecStart=/opt/english-learning-app/venv/bin/uvicorn server:app --host 0.0.0.0 --port 8000 --workers 1
+
+# 优雅停止
+ExecStop=/bin/kill -s TERM $MAINPID
+TimeoutStopSec=30
+
+# 自动重启
+Restart=always
+RestartSec=5
+
+# 限制
+LimitNOFILE=65536
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=english-learning
+
+[Install]
+WantedBy=multi-user.target

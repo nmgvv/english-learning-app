@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}英语学习{% endblock %}</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js (本地) -->
+    <script defer src="/static/alpine.min.js"></script>
+
+    <!-- Howler.js for audio (本地) -->
+    <script src="/static/howler.min.js"></script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <style>
+        /* 移动端适配 */
+        * {
+            touch-action: manipulation;
+        }
+
+        /* 防止双击缩放 */
+        html {
+            touch-action: manipulation;
+        }
+
+        /* 输入框聚焦时不缩放 */
+        input, textarea {
+            font-size: 16px;
+        }
+    </style>
+
+    {% block head %}{% endblock %}
+</head>
+<body class="bg-slate-900 min-h-screen">
+    {% block body %}{% endblock %}
+
+    <!-- Custom JS -->
+    <script src="/static/app.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

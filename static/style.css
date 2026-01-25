@@ -1,0 +1,111 @@
+/* 英语学习应用 - 自定义样式 */
+
+/* 隐藏元素 (Alpine.js x-cloak) */
+[x-cloak] {
+    display: none !important;
+}
+
+/* 移动端适配 */
+html {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 防止 iOS 输入框聚焦时缩放 */
+input, textarea, select {
+    font-size: 16px !important;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* 按钮点击效果 */
+button:active {
+    transform: scale(0.98);
+}
+
+/* 输入框聚焦动画 */
+input:focus {
+    transform: scale(1.01);
+}
+
+/* 卡片悬停效果 */
+.card-hover {
+    transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 加载动画 */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 渐入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 进度条动画 */
+.progress-bar {
+    transition: width 0.5s ease-out;
+}
+
+/* 移动端安全区域 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .safe-area-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* 深色模式支持 (可选) */
+@media (prefers-color-scheme: dark) {
+    /* 暂不启用深色模式 */
+}
+
+/* 打印样式 */
+@media print {
+    header, footer, button {
+        display: none !important;
+    }
+}

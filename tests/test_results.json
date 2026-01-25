@@ -1,0 +1,35 @@
+[
+  {
+    "name": "模型列表",
+    "success": true,
+    "message": "获取成功，共 168 个模型",
+    "data": null
+  },
+  {
+    "name": "Qwen-Plus",
+    "success": true,
+    "message": "文本生成成功，JSON 解析正常",
+    "data": {
+      "feedback": "翻译不完整，未覆盖'manage'的全部核心义项，尤其遗漏'设法做到'这一常见用法。",
+      "correct": false
+    }
+  },
+  {
+    "name": "Qwen3-ASR",
+    "success": true,
+    "message": "语音识别成功",
+    "data": {
+      "recognized_text": "欢迎使用阿里云。"
+    }
+  },
+  {
+    "name": "CosyVoice",
+    "success": true,
+    "message": "TTS 合成成功",
+    "data": {
+      "text": "Hello, welcome to the English learning application. Let's practice together.",
+      "output_file": "/Users/liuwei/Documents/English/english-learning-app/tests/test_output_cosyvoice.mp3",
+      "file_size": 61485
+    }
+  }
+]

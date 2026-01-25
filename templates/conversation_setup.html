@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}对话练习 - 选择单元{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900" x-data="conversationSetup()">
+    <!-- 顶部导航 -->
+    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg sticky top-0 z-10 border-b border-slate-700/50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+            <button @click="goBack" class="text-slate-400 hover:text-slate-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <h1 class="text-lg font-bold text-slate-100">对话练习</h1>
+            <div class="w-6"></div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-4xl mx-auto px-4 py-6">
+        <!-- 说明 -->
+        <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+            <div class="flex items-start space-x-3">
+                <div class="text-violet-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-slate-100 font-medium mb-1">语音对话练习</h2>
+                    <p class="text-slate-400 text-sm">选择一个或多个单元，AI 将根据这些单元中你已学过的单词，与你进行英语语音对话。对话轮数会根据单词数量自动调整。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 单元选择 -->
+        <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-slate-100 font-medium">选择单元</h3>
+                <div class="flex items-center space-x-2">
+                    <button
+                        @click="selectAll"
+                        class="text-xs text-sky-400 hover:text-sky-300"
+                    >全选</button>
+                    <span class="text-slate-600">|</span>
+                    <button
+                        @click="clearAll"
+                        class="text-xs text-slate-400 hover:text-slate-300"
+                    >清空</button>
+                </div>
+            </div>
+
+            <!-- 单元列表 -->
+            <div class="space-y-2 max-h-80 overflow-y-auto">
+                <template x-for="unit in units" :key="unit.name">
+                    <label
+                        class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition"
+                        :class="selectedUnits.includes(unit.name) ? 'bg-violet-500/20 border border-violet-500/50' : 'bg-slate-700/30 border border-transparent hover:bg-slate-700/50'"
+                    >
+                        <div class="flex items-center space-x-3">
+                            <input
+                                type="checkbox"
+                                :value="unit.name"
+                                x-model="selectedUnits"
+                                class="w-4 h-4 text-violet-500 bg-slate-700 border-slate-600 rounded focus:ring-violet-500"
+                            >
+                            <span class="text-slate-200" x-text="unit.name"></span>
+                        </div>
+                        <div class="text-sm">
+                            <span class="text-emerald-400" x-text="unit.learned_count"></span>
+                            <span class="text-slate-500">/</span>
+                            <span class="text-slate-400" x-text="unit.total_count"></span>
+                            <span class="text-slate-500 text-xs ml-1">已学</span>
+                        </div>
+                    </label>
+                </template>
+            </div>
+
+            <!-- 无单元提示 -->
+            <div x-show="units.length === 0" class="text-center py-8 text-slate-500">
+                加载中...
+            </div>
+        </div>
+
+        <!-- 已选统计 -->
+        <div x-show="selectedUnits.length > 0" class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-4 mb-4">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-slate-400">已选单元：<span class="text-violet-400" x-text="selectedUnits.length"></span> 个</span>
+                <span class="text-slate-400">可用单词：<span class="text-emerald-400" x-text="totalLearnedWords"></span> 个</span>
+                <span class="text-slate-400">对话轮数：<span class="text-sky-400" x-text="estimatedRounds"></span> 轮</span>
+            </div>
+        </div>
+
+        <!-- 开始按钮 -->
+        <button
+            @click="startConversation"
+            :disabled="totalLearnedWords < 5 || isLoading"
+            class="w-full bg-gradient-to-r from-violet-500 to-purple-500 text-white py-4 rounded-xl font-medium hover:from-violet-600 hover:to-purple-600 transition shadow-lg shadow-purple-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+        >
+            <span x-show="!isLoading">开始对话练习</span>
+            <span x-show="isLoading" class="flex items-center justify-center">
+                <svg class="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                准备中...
+            </span>
+        </button>
+
+        <!-- 提示 -->
+        <p x-show="totalLearnedWords < 5 && selectedUnits.length > 0" class="text-center text-amber-400 text-sm mt-3">
+            至少需要 5 个已学单词才能开始对话练习
+        </p>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function conversationSetup() {
+    return {
+        bookId: '{{ book_id }}',
+        units: [],
+        selectedUnits: [],
+        isLoading: false,
+
+        async init() {
+            await this.loadUnits();
+        },
+
+        async loadUnits() {
+            try {
+                const response = await fetch(`/api/book/${this.bookId}/units/stats`);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.units = data.units || [];
+                }
+            } catch (e) {
+                console.error('加载单元失败:', e);
+            }
+        },
+
+        get totalLearnedWords() {
+            return this.units
+                .filter(u => this.selectedUnits.includes(u.name))
+                .reduce((sum, u) => sum + u.learned_count, 0);
+        },
+
+        get estimatedRounds() {
+            const count = this.totalLearnedWords;
+            if (count < 10) return 3;
+            if (count < 20) return 5;
+            if (count < 40) return 7;
+            return 10;
+        },
+
+        selectAll() {
+            this.selectedUnits = this.units.map(u => u.name);
+        },
+
+        clearAll() {
+            this.selectedUnits = [];
+        },
+
+        async startConversation() {
+            if (this.totalLearnedWords < 5 || this.isLoading) return;
+
+            this.isLoading = true;
+
+            try {
+                // 获取选中单元的已学单词
+                const response = await fetch(`/api/book/${this.bookId}/learned-words`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ units: this.selectedUnits })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // 存储单词到 sessionStorage（带错误保护）
+                    try {
+                        sessionStorage.setItem('learnedWords', JSON.stringify(data.words));
+                        sessionStorage.setItem('conversationRounds', this.estimatedRounds);
+                    } catch (e) {
+                        console.error('保存 sessionStorage 失败:', e);
+                    }
+                    // 跳转到对话页面
+                    window.location.href = `/conversation/${this.bookId}`;
+                } else {
+                    alert('获取单词失败，请重试');
+                }
+            } catch (e) {
+                console.error('启动对话失败:', e);
+                alert('网络错误，请重试');
+            } finally {
+                this.isLoading = false;
+            }
+        },
+
+        goBack() {
+            window.location.href = '/';
+        }
+    }
+}
+</script>
+{% endblock %}

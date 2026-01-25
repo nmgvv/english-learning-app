@@ -1,0 +1,1434 @@
+{% extends "base.html" %}
+
+{% block title %}跟读练习 - 英语学习{% endblock %}
+
+{% block head %}
+<script src="/static/recorder.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900 flex flex-col" x-data="readingPage()">
+    <!-- 顶部导航 -->
+    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg border-b border-slate-700/50">
+        <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
+            <button @click="goBack" class="text-slate-400 hover:text-slate-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <div class="text-center">
+                <span class="font-medium text-slate-100">跟读练习</span>
+                <div class="text-xs text-slate-400" x-text="bookName"></div>
+            </div>
+            <div class="w-6"></div>
+        </div>
+    </header>
+
+    <!-- 加载状态 -->
+    <div x-show="isLoading && !passage" class="flex-1 flex items-center justify-center">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+            <p class="text-slate-400" x-text="loadingText"></p>
+        </div>
+    </div>
+
+    <!-- 错误状态 -->
+    <div x-show="error" class="flex-1 flex items-center justify-center p-4">
+        <div class="text-center max-w-sm">
+            <div class="text-4xl mb-4">😔</div>
+            <p class="text-slate-300 mb-4" x-text="error"></p>
+            <button @click="goBack" class="px-6 py-2 bg-slate-700 text-slate-200 rounded-lg">
+                返回
+            </button>
+        </div>
+    </div>
+
+    <!-- 主界面 -->
+    <main x-show="!error && passage" x-cloak class="flex-1 flex flex-col max-w-2xl mx-auto w-full p-4">
+
+        <!-- 选择模式界面 -->
+        <div x-show="phase === 'select'" class="flex-1 flex flex-col">
+            <!-- 短文显示 -->
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+                <div class="text-slate-100 text-lg leading-relaxed whitespace-pre-wrap" x-text="passage"></div>
+            </div>
+
+            <!-- 使用的单词 -->
+            <div x-show="wordsUsed.length > 0" class="mb-4">
+                <div class="text-slate-400 text-sm mb-2">包含单词：</div>
+                <div class="flex flex-wrap gap-2">
+                    <template x-for="word in wordsUsed" :key="word">
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm" x-text="word"></span>
+                    </template>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="flex gap-3 mb-6">
+                <button
+                    @click="playFullPassage"
+                    :disabled="isPlaying"
+                    class="flex-1 py-3 bg-slate-700 text-slate-200 rounded-xl hover:bg-slate-600 transition flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                    </svg>
+                    <span x-text="isPlaying ? '播放中...' : '播放全文'"></span>
+                </button>
+                <button
+                    @click="regeneratePassage"
+                    :disabled="isLoading"
+                    class="py-3 px-4 bg-slate-700 text-slate-200 rounded-xl hover:bg-slate-600 transition disabled:opacity-50"
+                    title="换一篇"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 模式选择 -->
+            <div class="text-slate-400 text-sm mb-3">选择练习模式：</div>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <button
+                    @click="startSentenceMode"
+                    class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-4 rounded-xl font-medium hover:from-emerald-600 hover:to-teal-600 transition shadow-lg shadow-teal-500/20"
+                >
+                    <div class="text-lg">逐句朗读</div>
+                    <div class="text-sm opacity-80">推荐初学者</div>
+                </button>
+                <button
+                    @click="startFullMode"
+                    class="bg-gradient-to-r from-sky-500 to-blue-500 text-white py-4 rounded-xl font-medium hover:from-sky-600 hover:to-blue-600 transition shadow-lg shadow-blue-500/20"
+                >
+                    <div class="text-lg">整篇朗读</div>
+                    <div class="text-sm opacity-80">练习连贯性</div>
+                </button>
+            </div>
+
+            <!-- 翻译练习入口 -->
+            <button
+                @click="startTranslateMode"
+                class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white py-4 rounded-xl font-medium hover:from-amber-600 hover:to-orange-600 transition shadow-lg shadow-orange-500/20"
+            >
+                <div class="text-lg flex items-center justify-center gap-2">
+                    <span>短文翻译练习</span>
+                </div>
+                <div class="text-sm opacity-80">将整篇短文翻译成中文</div>
+            </button>
+        </div>
+
+        <!-- 逐句模式界面 -->
+        <div x-show="phase === 'sentence'" class="flex-1 flex flex-col">
+            <!-- 进度 -->
+            <div class="text-center text-slate-400 text-sm mb-4">
+                第 <span x-text="currentSentenceIndex + 1"></span> / <span x-text="sentences.length"></span> 句
+            </div>
+
+            <!-- 短文显示（高亮当前句） -->
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+                <template x-for="(sentence, idx) in sentences" :key="idx">
+                    <span
+                        :class="{
+                            'text-emerald-400 font-medium': idx === currentSentenceIndex,
+                            'text-slate-500': idx < currentSentenceIndex,
+                            'text-slate-300': idx > currentSentenceIndex
+                        }"
+                        class="text-lg leading-relaxed"
+                        x-text="sentence + ' '"
+                    ></span>
+                </template>
+            </div>
+
+            <!-- 当前句评分（如果已评估） -->
+            <div x-show="sentenceResults[currentSentenceIndex]" class="bg-slate-800/30 rounded-xl p-4 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-slate-400">发音得分</span>
+                    <span
+                        :class="{
+                            'text-emerald-400': sentenceResults[currentSentenceIndex]?.accuracy >= 80,
+                            'text-amber-400': sentenceResults[currentSentenceIndex]?.accuracy >= 60 && sentenceResults[currentSentenceIndex]?.accuracy < 80,
+                            'text-rose-400': sentenceResults[currentSentenceIndex]?.accuracy < 60
+                        }"
+                        class="text-xl font-bold"
+                        x-text="(sentenceResults[currentSentenceIndex]?.accuracy || 0) + '%'"
+                    ></span>
+                </div>
+                <!-- 漏读单词 -->
+                <div x-show="sentenceResults[currentSentenceIndex]?.omittedWords?.length > 0" class="mb-1">
+                    <span class="text-rose-400 text-sm">漏读：</span>
+                    <template x-for="word in sentenceResults[currentSentenceIndex]?.omittedWords" :key="word">
+                        <span class="text-rose-300 text-sm ml-2 bg-rose-500/20 px-2 py-0.5 rounded" x-text="word"></span>
+                    </template>
+                </div>
+                <!-- 读错单词 -->
+                <div x-show="sentenceResults[currentSentenceIndex]?.mispronouncedWords?.length > 0" class="mb-1">
+                    <span class="text-amber-400 text-sm">读错：</span>
+                    <template x-for="pw in sentenceResults[currentSentenceIndex]?.mispronouncedWords" :key="pw.word">
+                        <span class="text-amber-300 text-sm ml-2 bg-amber-500/20 px-2 py-0.5 rounded" x-text="pw.word + ' (' + pw.accuracy + '%)'"></span>
+                    </template>
+                </div>
+                <!-- 需注意单词 -->
+                <div x-show="sentenceResults[currentSentenceIndex]?.problemWords?.length > 0">
+                    <span class="text-slate-500 text-sm">需注意：</span>
+                    <template x-for="pw in sentenceResults[currentSentenceIndex]?.problemWords" :key="pw.word">
+                        <span class="text-slate-400 text-sm ml-2" x-text="pw.word + ' (' + pw.accuracy + '%)'"></span>
+                    </template>
+                </div>
+            </div>
+
+            <!-- 播放当前句 -->
+            <button
+                @click="playCurrentSentence"
+                :disabled="isPlaying"
+                class="w-full py-3 bg-slate-700 text-slate-200 rounded-xl hover:bg-slate-600 transition flex items-center justify-center gap-2 mb-4 disabled:opacity-50"
+            >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                </svg>
+                <span x-text="isPlaying ? '播放中...' : '播放当前句'"></span>
+            </button>
+
+            <!-- 录音按钮 -->
+            <div class="flex flex-col items-center py-4">
+                <button
+                    @mousedown="startRecording"
+                    @mouseup="stopRecording"
+                    @mouseleave="isRecording && stopRecording()"
+                    @touchstart.prevent="startRecording"
+                    @touchend.prevent="stopRecording"
+                    :disabled="isAssessing || !recorderReady"
+                    :class="isRecording
+                        ? 'bg-rose-500 scale-110 shadow-lg shadow-rose-500/50'
+                        : 'bg-emerald-600 hover:bg-emerald-500'"
+                    class="w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <svg x-show="!isRecording" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                    <div x-show="isRecording" class="w-6 h-6 bg-white rounded-sm"></div>
+                </button>
+                <p class="text-slate-400 text-sm mt-3">
+                    <span x-show="!recorderReady">正在初始化麦克风...</span>
+                    <span x-show="recorderReady && !isRecording && !isAssessing">按住录音</span>
+                    <span x-show="isRecording">松开结束录音</span>
+                    <span x-show="isAssessing">评估中...</span>
+                </p>
+
+                <!-- 录音时长 -->
+                <div x-show="isRecording" class="mt-2 text-rose-400 text-sm font-mono" x-text="recordingDuration"></div>
+            </div>
+
+            <!-- 下一句/查看结果按钮 -->
+            <div class="mt-auto flex gap-3">
+                <button
+                    x-show="currentSentenceIndex < sentences.length - 1"
+                    @click="nextSentence"
+                    :disabled="!sentenceResults[currentSentenceIndex]"
+                    class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-medium hover:from-emerald-600 hover:to-teal-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    下一句
+                </button>
+                <button
+                    x-show="currentSentenceIndex === sentences.length - 1 && sentenceResults[currentSentenceIndex]"
+                    @click="showResults"
+                    class="flex-1 py-3 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-xl font-medium hover:from-violet-600 hover:to-purple-600 transition"
+                >
+                    查看评价
+                </button>
+            </div>
+        </div>
+
+        <!-- 整篇模式界面 -->
+        <div x-show="phase === 'full'" class="flex-1 flex flex-col">
+            <!-- 短文显示 -->
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+                <div class="text-slate-100 text-lg leading-relaxed whitespace-pre-wrap" x-text="passage"></div>
+            </div>
+
+            <!-- 播放全文 -->
+            <button
+                @click="playFullPassage"
+                :disabled="isPlaying"
+                class="w-full py-3 bg-slate-700 text-slate-200 rounded-xl hover:bg-slate-600 transition flex items-center justify-center gap-2 mb-4 disabled:opacity-50"
+            >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                </svg>
+                <span x-text="isPlaying ? '播放中...' : '播放全文'"></span>
+            </button>
+
+            <!-- 录音按钮 -->
+            <div class="flex flex-col items-center py-4">
+                <button
+                    @mousedown="startRecording"
+                    @mouseup="stopRecording"
+                    @mouseleave="isRecording && stopRecording()"
+                    @touchstart.prevent="startRecording"
+                    @touchend.prevent="stopRecording"
+                    :disabled="isAssessing || !recorderReady"
+                    :class="isRecording
+                        ? 'bg-rose-500 scale-110 shadow-lg shadow-rose-500/50'
+                        : 'bg-sky-600 hover:bg-sky-500'"
+                    class="w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <svg x-show="!isRecording" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                    <div x-show="isRecording" class="w-6 h-6 bg-white rounded-sm"></div>
+                </button>
+                <p class="text-slate-400 text-sm mt-3">
+                    <span x-show="!recorderReady">正在初始化麦克风...</span>
+                    <span x-show="recorderReady && !isRecording && !isAssessing">按住录音，一次读完整篇</span>
+                    <span x-show="isRecording">松开结束录音</span>
+                    <span x-show="isAssessing">评估中...</span>
+                </p>
+
+                <!-- 录音时长 -->
+                <div x-show="isRecording" class="mt-2 text-rose-400 text-sm font-mono" x-text="recordingDuration"></div>
+            </div>
+        </div>
+
+        <!-- 评估结果界面 -->
+        <div x-show="phase === 'result'" class="flex-1 flex flex-col overflow-y-auto">
+            <!-- 总体得分 -->
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4 text-center">
+                <div class="text-slate-400 text-sm mb-2">总体得分</div>
+                <div
+                    :class="{
+                        'text-emerald-400': overallScore >= 80,
+                        'text-amber-400': overallScore >= 60 && overallScore < 80,
+                        'text-rose-400': overallScore < 60
+                    }"
+                    class="text-5xl font-bold mb-2"
+                    x-text="overallScore + '%'"
+                ></div>
+            </div>
+
+            <!-- 各句得分 -->
+            <div class="bg-slate-800/30 rounded-xl p-4 mb-4">
+                <div class="text-slate-400 text-sm mb-3">各句得分</div>
+                <template x-for="(result, idx) in sentenceResults" :key="idx">
+                    <div class="flex items-center justify-between py-2 border-b border-slate-700/50 last:border-b-0">
+                        <span class="text-slate-300 text-sm truncate flex-1 mr-4" x-text="'句' + (idx + 1) + ': ' + sentences[idx].substring(0, 30) + (sentences[idx].length > 30 ? '...' : '')"></span>
+                        <div class="flex items-center gap-2">
+                            <div class="w-24 bg-slate-700/50 rounded-full h-2">
+                                <div
+                                    :class="{
+                                        'bg-emerald-500': result?.accuracy >= 80,
+                                        'bg-amber-500': result?.accuracy >= 60 && result?.accuracy < 80,
+                                        'bg-rose-500': result?.accuracy < 60
+                                    }"
+                                    class="h-full rounded-full transition-all"
+                                    :style="'width: ' + (result?.accuracy || 0) + '%'"
+                                ></div>
+                            </div>
+                            <span
+                                :class="{
+                                    'text-emerald-400': result?.accuracy >= 80,
+                                    'text-amber-400': result?.accuracy >= 60 && result?.accuracy < 80,
+                                    'text-rose-400': result?.accuracy < 60
+                                }"
+                                class="text-sm font-medium w-12 text-right"
+                                x-text="(result?.accuracy || 0) + '%'"
+                            ></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- 错误单词汇总 -->
+            <div x-show="getAllOmittedWords().length > 0 || getAllMispronouncedWords().length > 0" class="bg-slate-800/30 rounded-xl p-4 mb-4">
+                <!-- 漏读单词 -->
+                <div x-show="getAllOmittedWords().length > 0" class="mb-3">
+                    <div class="text-rose-400 text-sm mb-2">漏读的单词：</div>
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="word in getAllOmittedWords()" :key="word">
+                            <span class="text-rose-300 text-sm bg-rose-500/20 px-3 py-1 rounded-full" x-text="word"></span>
+                        </template>
+                    </div>
+                </div>
+                <!-- 读错单词 -->
+                <div x-show="getAllMispronouncedWords().length > 0">
+                    <div class="text-amber-400 text-sm mb-2">读错的单词：</div>
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="pw in getAllMispronouncedWords()" :key="pw.word">
+                            <span class="text-amber-300 text-sm bg-amber-500/20 px-3 py-1 rounded-full" x-text="pw.word + ' (' + pw.accuracy + '%)'"></span>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 问题和建议 -->
+            <div x-show="feedback?.problems?.length > 0 || feedback?.suggestions?.length > 0" class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+                <!-- 问题 -->
+                <div x-show="feedback?.problems?.length > 0" class="mb-3">
+                    <div class="text-amber-400 text-sm mb-2">主要问题：</div>
+                    <ul class="text-slate-300 text-sm space-y-1">
+                        <template x-for="problem in (feedback?.problems || [])" :key="problem">
+                            <li class="flex items-start gap-2">
+                                <span class="text-amber-500">•</span>
+                                <span x-text="problem"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+                <!-- 建议 -->
+                <div x-show="feedback?.suggestions?.length > 0">
+                    <div class="text-emerald-400 text-sm mb-2">改进建议：</div>
+                    <ul class="text-slate-300 text-sm space-y-1">
+                        <template x-for="suggestion in (feedback?.suggestions || [])" :key="suggestion">
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-500">•</span>
+                                <span x-text="suggestion"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 专项练习提示 -->
+            <div x-show="(getAllOmittedWords().length > 0 || getAllMispronouncedWords().length > 0) && !showWordPractice" class="bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-xl p-4 mb-4 border border-violet-500/30">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-violet-300 font-medium mb-1">需要针对错误单词练习吗？</div>
+                        <div class="text-slate-400 text-sm">可以逐个练习读错或漏读的单词</div>
+                    </div>
+                    <button
+                        @click="startWordPractice"
+                        class="px-4 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition text-sm font-medium"
+                    >
+                        开始练习
+                    </button>
+                </div>
+            </div>
+
+            <!-- 单词专项练习界面 -->
+            <div x-show="showWordPractice" class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-violet-400 font-medium">单词专项练习</div>
+                    <div class="text-slate-400 text-sm">
+                        <span x-text="currentPracticeIndex + 1"></span> / <span x-text="practiceWords.length"></span>
+                    </div>
+                </div>
+
+                <!-- 当前练习单词 -->
+                <div class="text-center py-6">
+                    <div class="text-3xl font-bold text-slate-100 mb-2" x-text="practiceWords[currentPracticeIndex]?.word || ''"></div>
+                    <button
+                        @click="playPracticeWord"
+                        :disabled="isPlaying"
+                        class="text-slate-400 hover:text-slate-200 transition"
+                    >
+                        <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                        </svg>
+                        <span class="text-sm ml-1">播放发音</span>
+                    </button>
+                </div>
+
+                <!-- 录音按钮 -->
+                <div class="flex flex-col items-center py-4">
+                    <button
+                        @mousedown="startPracticeRecording"
+                        @mouseup="stopPracticeRecording"
+                        @mouseleave="isPracticeRecording && stopPracticeRecording()"
+                        @touchstart.prevent="startPracticeRecording"
+                        @touchend.prevent="stopPracticeRecording"
+                        :disabled="isPracticeAssessing || !recorderReady"
+                        :class="isPracticeRecording
+                            ? 'bg-rose-500 scale-110 shadow-lg shadow-rose-500/50'
+                            : 'bg-violet-600 hover:bg-violet-500'"
+                        class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50"
+                    >
+                        <svg x-show="!isPracticeRecording" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                        </svg>
+                        <div x-show="isPracticeRecording" class="w-5 h-5 bg-white rounded-sm"></div>
+                    </button>
+                    <p class="text-slate-400 text-xs mt-2">
+                        <span x-show="!isPracticeRecording && !isPracticeAssessing">按住录音</span>
+                        <span x-show="isPracticeRecording">松开结束</span>
+                        <span x-show="isPracticeAssessing">评估中...</span>
+                    </p>
+                </div>
+
+                <!-- 单词练习结果 -->
+                <div x-show="practiceResult" class="text-center py-2">
+                    <span
+                        :class="{
+                            'text-emerald-400': practiceResult?.accuracy >= 80,
+                            'text-amber-400': practiceResult?.accuracy >= 60 && practiceResult?.accuracy < 80,
+                            'text-rose-400': practiceResult?.accuracy < 60
+                        }"
+                        class="text-2xl font-bold"
+                        x-text="(practiceResult?.accuracy || 0) + '%'"
+                    ></span>
+                </div>
+
+                <!-- 导航按钮 -->
+                <div class="flex gap-3 mt-4">
+                    <button
+                        @click="prevPracticeWord"
+                        :disabled="currentPracticeIndex === 0"
+                        class="flex-1 py-2 bg-slate-700 text-slate-200 rounded-lg hover:bg-slate-600 transition disabled:opacity-50 text-sm"
+                    >
+                        上一个
+                    </button>
+                    <button
+                        x-show="currentPracticeIndex < practiceWords.length - 1"
+                        @click="nextPracticeWord"
+                        class="flex-1 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition text-sm"
+                    >
+                        下一个
+                    </button>
+                    <button
+                        x-show="currentPracticeIndex === practiceWords.length - 1"
+                        @click="endWordPractice"
+                        class="flex-1 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition text-sm"
+                    >
+                        完成练习
+                    </button>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="mt-auto flex gap-3">
+                <button
+                    @click="restart"
+                    class="flex-1 py-3 bg-slate-700 text-slate-200 rounded-xl hover:bg-slate-600 transition"
+                >
+                    重新练习
+                </button>
+                <button
+                    @click="goBack"
+                    class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-medium hover:from-emerald-600 hover:to-teal-600 transition"
+                >
+                    返回首页
+                </button>
+            </div>
+        </div>
+
+        <!-- 翻译练习界面 -->
+        <div x-show="phase === 'translate'" class="flex-1 flex flex-col">
+            <!-- 标题 -->
+            <div class="text-center text-slate-400 text-sm mb-4">
+                请将下面的英文短文翻译成中文
+            </div>
+
+            <!-- 英文短文显示 -->
+            <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-amber-400 text-sm font-medium">英文原文</span>
+                    <!-- 播放短文朗读 -->
+                    <button
+                        @click="playPassageAudio"
+                        :disabled="isPlaying"
+                        class="px-3 py-1 bg-slate-700 text-slate-200 rounded-lg hover:bg-slate-600 transition flex items-center gap-1 text-sm disabled:opacity-50"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                        </svg>
+                        <span x-text="isPlaying ? '播放中' : '朗读'"></span>
+                    </button>
+                </div>
+                <p class="text-slate-100 text-lg leading-relaxed" x-text="passage"></p>
+            </div>
+
+            <!-- 录音按钮 -->
+            <div class="flex flex-col items-center py-4" x-show="!translateResult">
+                <div class="text-slate-400 text-sm mb-3">按住按钮，用中文说出翻译</div>
+                <button
+                    @mousedown="startTranslateRecording"
+                    @mouseup="stopTranslateRecording"
+                    @mouseleave="isTranslateRecording && stopTranslateRecording()"
+                    @touchstart.prevent="startTranslateRecording"
+                    @touchend.prevent="stopTranslateRecording"
+                    :disabled="isTranslateAssessing || !recorderReady"
+                    :class="isTranslateRecording
+                        ? 'bg-rose-500 scale-110 shadow-lg shadow-rose-500/50'
+                        : 'bg-amber-500 hover:bg-amber-400'"
+                    class="w-24 h-24 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50"
+                >
+                    <svg x-show="!isTranslateRecording" class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                    <div x-show="isTranslateRecording" class="w-8 h-8 bg-white rounded-sm"></div>
+                </button>
+                <div class="text-slate-500 text-sm mt-3" x-text="isTranslateRecording ? '松开结束录音' : '按住说话'"></div>
+            </div>
+
+            <!-- 评估中状态 -->
+            <div x-show="isTranslateAssessing && !translateResult" class="text-center py-8">
+                <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-amber-500 mx-auto mb-3"></div>
+                <div class="text-slate-400">正在评估翻译...</div>
+            </div>
+
+            <!-- 翻译结果 -->
+            <div x-show="translateResult" class="bg-slate-800/50 backdrop-blur rounded-xl p-5 border border-slate-700/50 overflow-y-auto max-h-[60vh]">
+                <!-- 你的翻译 -->
+                <div class="mb-4 pb-4 border-b border-slate-700/50">
+                    <div class="text-slate-400 text-sm mb-2">你的翻译:</div>
+                    <p class="text-slate-100 leading-relaxed" x-text="translateResult?.recognized_text || '(未识别)'"></p>
+                </div>
+
+                <!-- AI 参考翻译 -->
+                <div class="mb-4 pb-4 border-b border-slate-700/50">
+                    <div class="text-slate-400 text-sm mb-2">参考翻译:</div>
+                    <p class="text-amber-400 leading-relaxed" x-text="translateResult?.reference_text"></p>
+                </div>
+
+                <!-- 评分和评价 -->
+                <div class="mb-4">
+                    <!-- 得分 -->
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold" :class="translateResult?.score >= 80 ? 'text-emerald-400' : translateResult?.score >= 60 ? 'text-amber-400' : 'text-rose-400'" x-text="translateResult?.score || 0"></div>
+                            <div class="text-slate-500 text-sm">翻译得分</div>
+                        </div>
+                    </div>
+
+                    <!-- AI 评价 -->
+                    <div class="bg-slate-700/50 rounded-lg p-4">
+                        <div class="text-slate-300 mb-2" x-text="translateResult?.feedback"></div>
+
+                        <!-- 优点 -->
+                        <template x-if="translateResult?.strengths && translateResult.strengths.length > 0">
+                            <div class="mt-3">
+                                <div class="text-emerald-400 text-sm mb-1">优点：</div>
+                                <ul class="text-slate-400 text-sm list-disc list-inside">
+                                    <template x-for="item in translateResult.strengths" :key="item">
+                                        <li x-text="item"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+
+                        <!-- 需要改进 -->
+                        <template x-if="translateResult?.issues && translateResult.issues.length > 0">
+                            <div class="mt-3">
+                                <div class="text-amber-400 text-sm mb-1">需要改进：</div>
+                                <ul class="text-slate-400 text-sm list-disc list-inside">
+                                    <template x-for="item in translateResult.issues" :key="item">
+                                        <li x-text="item"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+
+                        <!-- 建议 -->
+                        <div x-show="translateResult?.suggestion" class="mt-3 text-slate-400 text-sm">
+                            <span class="text-sky-400">建议：</span>
+                            <span x-text="translateResult?.suggestion"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 重试/完成按钮 -->
+                <div class="flex gap-3">
+                    <button
+                        @click="retryTranslate"
+                        class="flex-1 py-3 bg-slate-700 text-slate-200 rounded-xl hover:bg-slate-600 transition"
+                    >
+                        重新翻译
+                    </button>
+                    <button
+                        @click="finishTranslate"
+                        class="flex-1 py-3 bg-amber-500 text-white rounded-xl hover:bg-amber-600 transition font-medium"
+                    >
+                        完成
+                    </button>
+                </div>
+            </div>
+
+            <!-- 返回按钮 -->
+            <div class="mt-auto pt-4" x-show="!translateResult">
+                <button
+                    @click="exitTranslateMode"
+                    class="w-full py-3 bg-slate-700 text-slate-300 rounded-xl hover:bg-slate-600 transition"
+                >
+                    返回选择
+                </button>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function readingPage() {
+    return {
+        // 数据
+        bookId: '{{ book_id }}',
+        bookName: '{{ book_name }}',
+        unit: '{{ unit }}',
+        passage: '',
+        sentences: [],
+        wordsUsed: [],
+
+        // 状态
+        phase: 'select',  // select, sentence, full, result, translate
+        isLoading: false,
+        loadingText: '正在生成短文...',
+        error: null,
+        isPlaying: false,
+        isRecording: false,
+        isAssessing: false,
+        recorderReady: false,
+
+        // 翻译练习数据
+        translateResult: null,        // 翻译评估结果
+        isTranslateRecording: false,  // 是否正在录制翻译
+        isTranslateAssessing: false,  // 是否正在评估翻译
+        translateRecorder: null,      // 翻译录音器
+
+        // 逐句模式数据
+        currentSentenceIndex: 0,
+        sentenceResults: [],
+
+        // 整篇模式数据
+        fullResult: null,
+
+        // 结果数据
+        overallScore: 0,
+        feedback: null,
+
+        // 单词专项练习
+        showWordPractice: false,
+        practiceWords: [],
+        currentPracticeIndex: 0,
+        practiceResult: null,
+        isPracticeRecording: false,
+        isPracticeAssessing: false,
+        practiceWordAudioCache: {},  // 练习单词音频缓存
+
+        // 缓存（避免重复计算）
+        _cachedOmittedWords: null,
+        _cachedMispronouncedWords: null,
+
+        // 录音相关
+        recorder: null,
+        audioPlayer: null,
+        recordingStartTime: null,
+        recordingDuration: '0:00',
+        recordingTimer: null,
+
+        async init() {
+            try {
+                // 检查录音支持
+                if (!AudioRecorder.isSupported()) {
+                    this.error = '您的浏览器不支持录音功能，请使用 Chrome 或 Safari';
+                    return;
+                }
+
+                // 初始化录音器
+                this.recorder = new AudioRecorder();
+                const hasPermission = await this.recorder.requestPermission();
+                if (!hasPermission) {
+                    this.error = '请允许使用麦克风以进行跟读练习';
+                    return;
+                }
+                this.recorderReady = true;
+
+                // 生成短文
+                await this.generatePassage();
+
+            } catch (e) {
+                console.error('初始化失败:', e);
+                this.error = '初始化失败: ' + e.message;
+            }
+        },
+
+        async generatePassage() {
+            this.isLoading = true;
+            this.loadingText = '正在生成短文...';
+
+            try {
+                let url = `/api/reading/generate?book_id=${encodeURIComponent(this.bookId)}`;
+                if (this.unit) {
+                    url += `&unit=${encodeURIComponent(this.unit)}`;
+                }
+
+                const response = await fetch(url, { method: 'POST' });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.detail || 'API 请求失败');
+                }
+
+                const data = await response.json();
+
+                this.passage = data.passage;
+                this.sentences = data.sentences;
+                this.wordsUsed = data.words_used || [];
+                this.sentenceResults = new Array(this.sentences.length).fill(null);
+
+            } catch (e) {
+                console.error('生成短文失败:', e);
+                this.error = '生成短文失败: ' + e.message;
+            }
+
+            this.isLoading = false;
+        },
+
+        async regeneratePassage() {
+            this.passage = '';
+            this.sentences = [];
+            this.wordsUsed = [];
+            this.sentenceResults = [];
+            this.currentSentenceIndex = 0;
+            this.phase = 'select';
+            await this.generatePassage();
+        },
+
+        async playFullPassage() {
+            await this.playTTS(this.passage, 'en');
+        },
+
+        async playCurrentSentence() {
+            if (this.sentences[this.currentSentenceIndex]) {
+                await this.playTTS(this.sentences[this.currentSentenceIndex], 'en');
+            }
+        },
+
+        async playTTS(text, lang = 'en') {
+            if (!text || this.isPlaying) return;
+
+            this.isPlaying = true;
+
+            try {
+                const url = lang === 'zh'
+                    ? `/api/tts/chinese?text=${encodeURIComponent(text)}`
+                    : `/api/tts/sentence?sentence=${encodeURIComponent(text)}`;
+
+                if (this.audioPlayer) {
+                    this.audioPlayer.unload();
+                }
+
+                this.audioPlayer = new Howl({
+                    src: [url],
+                    format: ['mp3'],
+                    onend: () => {
+                        this.isPlaying = false;
+                    },
+                    onloaderror: (id, err) => {
+                        console.error('TTS 加载失败:', err);
+                        this.isPlaying = false;
+                    }
+                });
+
+                this.audioPlayer.play();
+
+            } catch (e) {
+                console.error('TTS 播放失败:', e);
+                this.isPlaying = false;
+            }
+        },
+
+        startSentenceMode() {
+            this.phase = 'sentence';
+            this.currentSentenceIndex = 0;
+            this.sentenceResults = new Array(this.sentences.length).fill(null);
+        },
+
+        startFullMode() {
+            this.phase = 'full';
+        },
+
+        // ==================== 翻译练习相关方法 ====================
+
+        startTranslateMode() {
+            // 检查是否有短文
+            if (!this.passage) {
+                alert('请先生成短文');
+                return;
+            }
+
+            // 初始化翻译练习
+            this.translateResult = null;
+            this.phase = 'translate';
+        },
+
+        async playPassageAudio() {
+            if (this.isPlaying || !this.passage) return;
+
+            this.isPlaying = true;
+
+            try {
+                // 使用句子 TTS API 播放整篇短文
+                const url = `/api/tts/sentence?sentence=${encodeURIComponent(this.passage)}`;
+                const howl = new Howl({
+                    src: [url],
+                    format: ['mp3'],
+                    onend: () => { this.isPlaying = false; },
+                    onloaderror: () => {
+                        console.error('音频加载失败');
+                        this.isPlaying = false;
+                    }
+                });
+                howl.play();
+            } catch (e) {
+                console.error('播放失败:', e);
+                this.isPlaying = false;
+            }
+        },
+
+        async startTranslateRecording() {
+            if (this.isTranslateAssessing || !this.recorderReady) return;
+
+            try {
+                // 使用同一个 recorder 实例
+                if (!this.translateRecorder) {
+                    this.translateRecorder = new AudioRecorder();
+                }
+                await this.translateRecorder.start();
+                this.isTranslateRecording = true;
+            } catch (e) {
+                console.error('翻译录音启动失败:', e);
+                alert('录音启动失败，请检查麦克风权限');
+            }
+        },
+
+        async stopTranslateRecording() {
+            if (!this.isTranslateRecording) return;
+
+            try {
+                const audioBlob = await this.translateRecorder.stop();
+                this.isTranslateRecording = false;
+
+                // 检查录音大小
+                if (audioBlob.size < 1000) {
+                    console.log('翻译录音太短，忽略');
+                    return;
+                }
+
+                this.isTranslateAssessing = true;
+
+                // 提交翻译评估
+                await this.submitPassageTranslation(audioBlob);
+
+            } catch (e) {
+                console.error('翻译录音处理失败:', e);
+                alert('录音处理失败，请重试');
+            } finally {
+                this.isTranslateAssessing = false;
+            }
+        },
+
+        async submitPassageTranslation(audioBlob) {
+            // 构建 FormData
+            const formData = new FormData();
+
+            // 根据 audioBlob 类型确定文件名
+            let filename = 'recording.webm';
+            if (audioBlob.type.includes('ogg')) {
+                filename = 'recording.ogg';
+            } else if (audioBlob.type.includes('wav')) {
+                filename = 'recording.wav';
+            }
+
+            formData.append('audio', audioBlob, filename);
+            formData.append('passage', this.passage);  // 英文短文
+            formData.append('book_id', this.bookId);
+
+            console.log('[短文翻译] 短文:', this.passage.substring(0, 50) + '...');
+
+            try {
+                const response = await fetch('/api/translation/passage', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    this.translateResult = await response.json();
+                    console.log('[短文翻译] 结果:', this.translateResult);
+                } else {
+                    const errorData = await response.json();
+                    this.translateResult = {
+                        success: false,
+                        recognized_text: '',
+                        reference_text: '(生成失败)',
+                        score: 0,
+                        feedback: errorData.error || '评估失败',
+                        strengths: [],
+                        issues: ['服务错误'],
+                        suggestion: '请稍后重试'
+                    };
+                }
+            } catch (e) {
+                console.error('翻译评估请求失败:', e);
+                this.translateResult = {
+                    success: false,
+                    recognized_text: '',
+                    reference_text: '(网络错误)',
+                    score: 0,
+                    feedback: '网络错误',
+                    strengths: [],
+                    issues: ['请求失败'],
+                    suggestion: '请检查网络连接'
+                };
+            }
+        },
+
+        retryTranslate() {
+            // 重新翻译
+            this.translateResult = null;
+        },
+
+        finishTranslate() {
+            // 完成翻译，返回选择页面
+            this.phase = 'select';
+            this.translateResult = null;
+        },
+
+        exitTranslateMode() {
+            this.phase = 'select';
+            this.translateResult = null;
+        },
+
+        // ==================== 原有录音方法 ====================
+
+        async startRecording() {
+            if (this.isAssessing || !this.recorderReady) return;
+
+            try {
+                await this.recorder.start();
+                this.isRecording = true;
+
+                // 开始计时（500ms 更新一次，节省性能）
+                this.recordingStartTime = Date.now();
+                this.recordingDuration = '0:00';
+                this.recordingTimer = setInterval(() => {
+                    const elapsed = Math.floor((Date.now() - this.recordingStartTime) / 1000);
+                    const mins = Math.floor(elapsed / 60);
+                    const secs = elapsed % 60;
+                    this.recordingDuration = `${mins}:${secs.toString().padStart(2, '0')}`;
+                }, 500);
+
+            } catch (e) {
+                console.error('录音启动失败:', e);
+                alert('录音启动失败，请检查麦克风权限');
+            }
+        },
+
+        async stopRecording() {
+            if (!this.isRecording) return;
+
+            // 停止计时
+            if (this.recordingTimer) {
+                clearInterval(this.recordingTimer);
+                this.recordingTimer = null;
+            }
+
+            try {
+                const audioBlob = await this.recorder.stop();
+                this.isRecording = false;
+
+                // 检查录音时长
+                if (audioBlob.size < 1000) {
+                    console.log('录音太短，忽略');
+                    return;
+                }
+
+                this.isAssessing = true;
+
+                // 根据模式评估
+                if (this.phase === 'sentence') {
+                    await this.assessSentence(audioBlob);
+                } else if (this.phase === 'full') {
+                    await this.assessFullPassage(audioBlob);
+                }
+
+            } catch (e) {
+                console.error('录音处理失败:', e);
+                alert('录音处理失败，请重试');
+            } finally {
+                this.isAssessing = false;
+            }
+        },
+
+        async assessSentence(audioBlob) {
+            const sentence = this.sentences[this.currentSentenceIndex];
+
+            // 根据 audioBlob 的 MIME 类型确定文件扩展名
+            let filename = 'recording.webm';
+            if (audioBlob.type.includes('ogg')) {
+                filename = 'recording.ogg';
+            } else if (audioBlob.type.includes('wav')) {
+                filename = 'recording.wav';
+            }
+            console.log('[DEBUG] 音频类型:', audioBlob.type, '文件名:', filename);
+
+            const formData = new FormData();
+            formData.append('audio', audioBlob, filename);
+            formData.append('sentence', sentence);
+            formData.append('book_id', this.bookId);
+
+            try {
+                const response = await fetch('/api/reading/assess-sentence', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.detail || '评估失败');
+                }
+
+                const result = await response.json();
+
+                this.sentenceResults[this.currentSentenceIndex] = {
+                    accuracy: result.accuracy_score,
+                    fluency: result.fluency_score,
+                    completeness: result.completeness_score,
+                    problemWords: result.problem_words || [],
+                    omittedWords: result.omitted_words || [],
+                    mispronouncedWords: result.mispronounced_words || []
+                };
+                // 清除缓存
+                this.clearResultsCache();
+
+            } catch (e) {
+                console.error('句子评估失败:', e);
+                alert('评估失败: ' + e.message);
+            }
+        },
+
+        async assessFullPassage(audioBlob) {
+            // 根据 audioBlob 的 MIME 类型确定文件扩展名
+            let filename = 'recording.webm';
+            if (audioBlob.type.includes('ogg')) {
+                filename = 'recording.ogg';
+            } else if (audioBlob.type.includes('wav')) {
+                filename = 'recording.wav';
+            }
+            console.log('[DEBUG] 整篇模式 - 音频类型:', audioBlob.type, '文件名:', filename);
+
+            const formData = new FormData();
+            formData.append('audio', audioBlob, filename);
+            formData.append('sentence', this.passage);
+            formData.append('book_id', this.bookId);
+
+            try {
+                const response = await fetch('/api/reading/assess-sentence', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.detail || '评估失败');
+                }
+
+                const result = await response.json();
+
+                // 整篇模式：为每句设置相同的分数（简化处理）
+                // 或者根据 word_scores 分配到各句
+                this.fullResult = result;
+
+                // 简单处理：所有句子使用相同分数，但保留错误单词信息
+                for (let i = 0; i < this.sentences.length; i++) {
+                    this.sentenceResults[i] = {
+                        accuracy: result.accuracy_score,
+                        fluency: result.fluency_score,
+                        completeness: result.completeness_score,
+                        problemWords: result.problem_words || [],
+                        omittedWords: result.omitted_words || [],
+                        mispronouncedWords: result.mispronounced_words || []
+                    };
+                }
+                // 清除缓存
+                this.clearResultsCache();
+
+                // 直接显示结果
+                await this.showResults();
+
+            } catch (e) {
+                console.error('整篇评估失败:', e);
+                alert('评估失败: ' + e.message);
+            }
+        },
+
+        nextSentence() {
+            if (this.currentSentenceIndex < this.sentences.length - 1) {
+                this.currentSentenceIndex++;
+            }
+        },
+
+        async showResults() {
+            this.isLoading = true;
+            this.loadingText = '正在生成评价...';
+
+            // 计算总分
+            const validResults = this.sentenceResults.filter(r => r !== null && r.accuracy !== undefined);
+            if (validResults.length > 0) {
+                const total = validResults.reduce((sum, r) => sum + (r.accuracy || 0), 0);
+                this.overallScore = Math.round(total / validResults.length);
+            } else {
+                this.overallScore = 0;
+            }
+
+            // 确保 overallScore 是有效数字
+            if (isNaN(this.overallScore)) {
+                this.overallScore = 0;
+            }
+
+            // 获取 LLM 评价
+            try {
+                const response = await fetch('/api/reading/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        passage: this.passage,
+                        sentences: this.sentences,
+                        sentence_results: this.sentenceResults.map(r => r || { accuracy: 0 }),
+                        overall_score: this.overallScore,
+                        omitted_words: this.getAllOmittedWords(),
+                        mispronounced_words: this.getAllMispronouncedWords()
+                    })
+                });
+
+                if (response.ok) {
+                    this.feedback = await response.json();
+                } else {
+                    console.error('获取评价失败:', await response.text());
+                }
+
+            } catch (e) {
+                console.error('获取评价失败:', e);
+            }
+
+            this.isLoading = false;
+            this.phase = 'result';
+        },
+
+        // 获取所有漏读单词（去重，带缓存）
+        getAllOmittedWords() {
+            if (this._cachedOmittedWords !== null) {
+                return this._cachedOmittedWords;
+            }
+            const words = new Set();
+            for (const result of this.sentenceResults) {
+                if (result?.omittedWords) {
+                    for (const word of result.omittedWords) {
+                        words.add(word);
+                    }
+                }
+            }
+            this._cachedOmittedWords = Array.from(words);
+            return this._cachedOmittedWords;
+        },
+
+        // 获取所有读错单词（去重，保留最低准确度，带缓存）
+        getAllMispronouncedWords() {
+            if (this._cachedMispronouncedWords !== null) {
+                return this._cachedMispronouncedWords;
+            }
+            const wordMap = new Map();
+            for (const result of this.sentenceResults) {
+                if (result?.mispronouncedWords) {
+                    for (const pw of result.mispronouncedWords) {
+                        const existing = wordMap.get(pw.word);
+                        if (!existing || existing.accuracy > pw.accuracy) {
+                            wordMap.set(pw.word, pw);
+                        }
+                    }
+                }
+            }
+            this._cachedMispronouncedWords = Array.from(wordMap.values());
+            return this._cachedMispronouncedWords;
+        },
+
+        // 清除缓存（当 sentenceResults 变化时调用）
+        clearResultsCache() {
+            this._cachedOmittedWords = null;
+            this._cachedMispronouncedWords = null;
+        },
+
+        // 开始单词专项练习
+        startWordPractice() {
+            // 收集所有需要练习的单词
+            const omitted = this.getAllOmittedWords().map(w => ({ word: w, type: 'omitted' }));
+            const mispronounced = this.getAllMispronouncedWords().map(pw => ({ word: pw.word, type: 'mispronounced', accuracy: pw.accuracy }));
+            this.practiceWords = [...omitted, ...mispronounced];
+            this.currentPracticeIndex = 0;
+            this.practiceResult = null;
+            this.showWordPractice = true;
+
+            // 预加载所有练习单词的音频
+            this.preloadPracticeWordAudios();
+        },
+
+        // 预加载练习单词音频
+        preloadPracticeWordAudios() {
+            this.practiceWords.forEach(pw => {
+                const word = pw.word;
+                if (!word || this.practiceWordAudioCache[word]) return;
+
+                const url = `/api/tts/sentence?sentence=${encodeURIComponent(word)}`;
+                this.practiceWordAudioCache[word] = new Howl({
+                    src: [url],
+                    format: ['mp3'],
+                    preload: true,
+                    onloaderror: (id, err) => {
+                        console.error(`预加载 ${word} 音频失败:`, err);
+                        delete this.practiceWordAudioCache[word];
+                    }
+                });
+            });
+        },
+
+        // 播放当前练习单词
+        async playPracticeWord() {
+            const word = this.practiceWords[this.currentPracticeIndex]?.word;
+            if (!word || this.isPlaying) return;
+
+            this.isPlaying = true;
+
+            // 优先使用缓存的音频
+            const cachedHowl = this.practiceWordAudioCache[word];
+            if (cachedHowl && cachedHowl.state() === 'loaded') {
+                // 停止当前播放但不销毁缓存
+                if (this.audioPlayer && this.audioPlayer !== cachedHowl) {
+                    this.audioPlayer.stop();
+                }
+                cachedHowl.off('end');
+                cachedHowl.on('end', () => {
+                    this.isPlaying = false;
+                });
+                cachedHowl.play();
+                this.audioPlayer = cachedHowl;
+            } else {
+                // 缓存未命中或未加载完成，使用原有方法
+                await this.playTTS(word, 'en');
+            }
+        },
+
+        // 开始练习录音
+        async startPracticeRecording() {
+            if (this.isPracticeAssessing || !this.recorderReady) return;
+
+            try {
+                await this.recorder.start();
+                this.isPracticeRecording = true;
+                this.practiceResult = null;
+            } catch (e) {
+                console.error('录音启动失败:', e);
+            }
+        },
+
+        // 停止练习录音并评估
+        async stopPracticeRecording() {
+            if (!this.isPracticeRecording) return;
+
+            try {
+                const audioBlob = await this.recorder.stop();
+                this.isPracticeRecording = false;
+
+                if (audioBlob.size < 1000) {
+                    return;
+                }
+
+                this.isPracticeAssessing = true;
+
+                const word = this.practiceWords[this.currentPracticeIndex]?.word;
+                if (!word) return;
+
+                // 确定文件名
+                let filename = 'recording.webm';
+                if (audioBlob.type.includes('ogg')) {
+                    filename = 'recording.ogg';
+                } else if (audioBlob.type.includes('wav')) {
+                    filename = 'recording.wav';
+                }
+
+                const formData = new FormData();
+                formData.append('audio', audioBlob, filename);
+                formData.append('word', word);
+                formData.append('book_id', this.bookId);
+
+                const response = await fetch('/api/pronunciation/assess', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    this.practiceResult = {
+                        accuracy: result.accuracy_score || 0
+                    };
+                }
+
+            } catch (e) {
+                console.error('练习评估失败:', e);
+            } finally {
+                this.isPracticeAssessing = false;
+            }
+        },
+
+        // 上一个练习单词
+        prevPracticeWord() {
+            if (this.currentPracticeIndex > 0) {
+                this.currentPracticeIndex--;
+                this.practiceResult = null;
+            }
+        },
+
+        // 下一个练习单词
+        nextPracticeWord() {
+            if (this.currentPracticeIndex < this.practiceWords.length - 1) {
+                this.currentPracticeIndex++;
+                this.practiceResult = null;
+            }
+        },
+
+        // 结束单词练习
+        endWordPractice() {
+            this.showWordPractice = false;
+            this.practiceWords = [];
+            this.currentPracticeIndex = 0;
+            this.practiceResult = null;
+
+            // 清除音频缓存
+            Object.values(this.practiceWordAudioCache).forEach(howl => howl.unload());
+            this.practiceWordAudioCache = {};
+        },
+
+        restart() {
+            this.phase = 'select';
+            this.currentSentenceIndex = 0;
+            this.sentenceResults = new Array(this.sentences.length).fill(null);
+            this.fullResult = null;
+            this.overallScore = 0;
+            this.feedback = null;
+            // 重置专项练习状态
+            this.showWordPractice = false;
+            this.practiceWords = [];
+            this.currentPracticeIndex = 0;
+            this.practiceResult = null;
+        },
+
+        goBack() {
+            // 清理录音器
+            if (this.recorder) {
+                this.recorder.cancel();
+            }
+            if (this.recordingTimer) {
+                clearInterval(this.recordingTimer);
+            }
+            if (this.audioPlayer) {
+                this.audioPlayer.unload();
+            }
+
+            window.location.href = '/';
+        }
+    }
+}
+</script>
+{% endblock %}
