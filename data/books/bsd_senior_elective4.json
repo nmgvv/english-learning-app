@@ -1,0 +1,1885 @@
+[
+  {
+    "word": "estimate",
+    "phonetic": "/ˈestimeit/",
+    "translation": "n. 估计，判断；vt. 估计，评价，判断；vi. 估计",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "visible",
+    "phonetic": "/ˈvizəbl/",
+    "translation": "a. 看得见的，明显的，显然的；n. 可见物",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "symptom",
+    "phonetic": "/ˈsimptəm/",
+    "translation": "n. 症状，征候，征兆；[医] 症状",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45,
+    "optional": true
+  },
+  {
+    "word": "bury",
+    "phonetic": "/ˈberi/",
+    "translation": "vt. 埋葬，埋藏",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "pose",
+    "phonetic": "/pəuz/",
+    "translation": "n. 姿势，姿态，装模作样，伪装；vi. 摆姿势，装模作样，假装；vt. 使摆好姿势，提出，造成",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "lung",
+    "phonetic": "/lʌŋ/",
+    "translation": "n. 肺，肺脏，空地；[医] 肺",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "steadily",
+    "phonetic": "/ˈstedili/",
+    "translation": "adv. 稳定地，无变化地，有规则地",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45,
+    "optional": true
+  },
+  {
+    "word": "paragraph",
+    "phonetic": "/ˈpærəgrɑ:f/",
+    "translation": "n. 段落，短评；vt. 将...分段，分段落；vi. 写短讯；[计] 段落",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "corresponding",
+    "phonetic": "/.kɒriˈspɒndiŋ/",
+    "translation": "a. 相当的，一致的，通信的；[计] 对应",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "symbolically",
+    "phonetic": "/sɪmˈbɒlɪklɪ/",
+    "translation": "adv.象征地，象征性地",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "phenomenon",
+    "phonetic": "/fiˈnɒminən/",
+    "translation": "n. 现象，迹象，表现，奇迹，奇才；[化] 现象",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "database",
+    "phonetic": "/ˈdeitəbeis/",
+    "translation": "n. 数据库；[计] 数据库",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "suspect",
+    "phonetic": "/səˈspekt/",
+    "translation": "n. 被怀疑者，嫌疑犯；a. 令人怀疑的，不可信的，可疑的；v. 怀疑，猜想",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "victim",
+    "phonetic": "/ˈviktim/",
+    "translation": "n. 受害人，牺牲者，牺牲品；[法] 受害人，被害人，遭难者",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "outbreak",
+    "phonetic": "/ˈautbreik/",
+    "translation": "n. 爆发，暴动；[医] 暴发",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "trial",
+    "phonetic": "/ˈtraiəl/",
+    "translation": "n. 审判，试验，艰苦，麻烦事，考验；a. 审讯的，试验性的",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "actual",
+    "phonetic": "/ˈæktʃuəl/",
+    "translation": "a. 真实的，实际的，现行的；[医] 实际死亡率",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "underline",
+    "phonetic": "/ˈʌndəlain/",
+    "translation": "vt. 在...下面划线，作...的衬里，强调；n. 下划线，图下说明文字；[计] 加下划线; 下划线",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "thorough",
+    "phonetic": "/ˈθʌrə/",
+    "translation": "adj.彻底的，全面的，详尽的",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "systematic",
+    "phonetic": "/.sistiˈmætik/",
+    "translation": "a. 有系统的，分类上的，体系的；[医] 系统的，系的，分类的",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "globe",
+    "phonetic": "/gləub/",
+    "translation": "n. 球，球状物，地球仪，天体；v. (使)成球状",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "differ",
+    "phonetic": "/ˈdifə/",
+    "translation": "vi. 不一致，不同；[机] 差异，不同",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "identify",
+    "phonetic": "/aiˈdentifai/",
+    "translation": "vt. 识别，认为...等同于，确定，使参与；vi. 一致，认同",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "mineral",
+    "phonetic": "/ˈminərəl/",
+    "translation": "n. 矿物，无机物，苏打水；a. 矿物的，似矿物的",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "needle",
+    "phonetic": "/ˈniːdl/",
+    "translation": "n. 针，尖；vt. 用针缝；vi. 缝纫；[计] 探针",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "astronomer",
+    "phonetic": "/əˈstrɒnəmə/",
+    "translation": "n. 天文学家",
+    "unit": "Unit 10 Lesson 1",
+    "page": 45
+  },
+  {
+    "word": "clinic",
+    "phonetic": "/ˈklinik/",
+    "translation": "n. 诊所，临床教学；[医] 诊所(门诊部); 临床(讲解); 临床(学)科",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "gallery",
+    "phonetic": "/ˈgæləri/",
+    "translation": "n. 走廊，最高楼座，画廊，收集，图库；[计] 图库",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "grocery",
+    "phonetic": "/ˈgrəusəri/",
+    "translation": "n. 食品杂货店，食品杂货业",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "stadium",
+    "phonetic": "/ˈsteidiəm/",
+    "translation": "n. 露天大型运动场；[医] 期，病期",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "bakery",
+    "phonetic": "/ˈbeikəri/",
+    "translation": "n.面包烘房，糕饼店",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "cafeteria",
+    "phonetic": "/.kæfiˈtiəriə/",
+    "translation": "n. 自助餐厅；[经] 自助餐厅",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "canteen",
+    "phonetic": "/kænˈtiːn/",
+    "translation": "n. 水壶，军中俱乐部，临时流动餐馆，小卖部",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "suburb",
+    "phonetic": "/ˈsʌbə:b/",
+    "translation": "n. 市郊住宅区，郊区，边缘",
+    "unit": "Unit 10 Topic Talk",
+    "page": 45
+  },
+  {
+    "word": "forum",
+    "phonetic": "/ˈfɒ:rəm/",
+    "translation": "n. 论坛，公开讨论的广场，法庭，讨论会；[法] 讨论会，专题讨论，公共论坛",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "conflict",
+    "phonetic": "/ˈkɒnflikt/",
+    "translation": "n. 战斗，冲突，矛盾，争执；vi. 争执，战斗，冲突，抵触；[计] 冲突",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "intervention",
+    "phonetic": "/.intəˈvenʃən/",
+    "translation": "n. 插入，介入，调停；[经] 干预",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "disagreement",
+    "phonetic": "/.disəˈgriːmənt/",
+    "translation": "n. 不合，争论，不一致；[法] 不一致，不同意，陪审团的意见不一",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "envy",
+    "phonetic": "/ˈenvi/",
+    "translation": "n. 羡慕，嫉妒；vt. 羡慕，嫉妒",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "friction",
+    "phonetic": "/ˈfrikʃən/",
+    "translation": "n. 摩擦，摩擦治疗，不和；[医] 摩擦",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "encouragement",
+    "phonetic": "/inˈkʌridʒmənt/",
+    "translation": "n. 鼓励，激励，奖励；[法] 怂恿，煽动，助长",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "hang out",
+    "phonetic": "/hæŋ ˈaʊt/",
+    "translation": "闲待，厮混",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "disturb",
+    "phonetic": "/disˈtə:b/",
+    "translation": "vt. 扰乱，妨碍，使不安；[法] 滋扰，扰乱",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "apologise",
+    "phonetic": "/əˈpɔlədʒaiz/",
+    "translation": "vi. 道歉（等于apologize）",
+    "unit": "Unit 10 Topic Talk",
+    "page": 46
+  },
+  {
+    "word": "theory",
+    "phonetic": "/ˈθiəri/",
+    "translation": "n. 理论，学说，原理，意见，推测；[化] 理论",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "chain",
+    "phonetic": "/tʃein/",
+    "translation": "n. 链，枷锁，束缚；vt. 用铁练锁住，束缚，囚禁",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "impression",
+    "phonetic": "/imˈpreʃən/",
+    "translation": "n. 印象，意念，盖印，印记，印数，底色，效果；[医] 压迹，印模，印象，影响",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "network",
+    "phonetic": "/ˈnetwə:k/",
+    "translation": "n. 网络，广播网，网状物；[计] 网络",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "sociologist",
+    "phonetic": "/.səusiˈɒlədʒist/",
+    "translation": "n. 社会学家；[法] 社会学家",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "random",
+    "phonetic": "/ˈrændəm/",
+    "translation": "n. 随意，随机；a. 任意的，随便的，胡乱的，随机的；adv. 胡乱地",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "parcel",
+    "phonetic": "/ˈpɑ:sl/",
+    "translation": "n. 包裹，部分，片；vt. 分配，打包；a. 部分的；adv. 局部地",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "release",
+    "phonetic": "/riˈliːs/",
+    "translation": "n. 释放，发泄，豁免，发行，释放证书；vt. 释放，解除，放松，豁免，免除，发布，放弃，让与；n. 发布；[计] 版本，发布",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "bimonthly",
+    "phonetic": "/.baiˈmʌnθli/",
+    "translation": "a. 两月一次的，每月两次的",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "phrase",
+    "phonetic": "/freiz/",
+    "translation": "n. 惯用语，词组，成语，措词，乐句；vt. 用短语表达，把(乐曲)分成短句；[计] 短语",
+    "unit": "Unit 10 Lesson 1",
+    "page": 46
+  },
+  {
+    "word": "additionally",
+    "phonetic": "/əˈdɪʃənəli/",
+    "translation": "adv. 另外，此外",
+    "unit": "Unit 10 Lesson 2",
+    "page": 46
+  },
+  {
+    "word": "closely-knit",
+    "phonetic": "/ˈkləʊsli ˌnɪt/",
+    "translation": "a. 紧紧结合在一起的，论据严谨的",
+    "unit": "Unit 10 Lesson 2",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "frequently",
+    "phonetic": "/ˈfriːkwəntli/",
+    "translation": "adv. 频繁，经常地",
+    "unit": "Unit 10 Lesson 2",
+    "page": 46
+  },
+  {
+    "word": "household",
+    "phonetic": "/ˈhaushəuld/",
+    "translation": "n. 一家人，家庭，家族，王室；a. 家庭的，家常的，王室的",
+    "unit": "Unit 10 Lesson 2",
+    "page": 46
+  },
+  {
+    "word": "outskirts",
+    "phonetic": "/ˈautskə:ts/",
+    "translation": "n.市郊，郊区，远离城市中心的地区",
+    "unit": "Unit 10 Lesson 2",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "bond",
+    "phonetic": "/bɒnd/",
+    "translation": "n. 捆绑物，结合，债券，契约，粘合剂，保证人，键，关栈保留；vt. 存入关栈，使黏合；vi. 结合",
+    "unit": "Unit 10 Lesson 2",
+    "page": 46
+  },
+  {
+    "word": "consequence",
+    "phonetic": "/ˈkɒnsikwəns/",
+    "translation": "n. 结果，重要性；[法] 结果，后果，推断",
+    "unit": "Unit 10 Lesson 2",
+    "page": 46
+  },
+  {
+    "word": "gable",
+    "phonetic": "/ˈgeibl/",
+    "translation": "n. 山形墙，人字板",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "adopt",
+    "phonetic": "/əˈdɒpt/",
+    "translation": "vt. 采用，正式通过，收养，接受；[医] 采取",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46
+  },
+  {
+    "word": "stiff",
+    "phonetic": "/stif/",
+    "translation": "a. 坚硬的，严厉的，呆板的，生硬的，刚强的，强烈的，粘的，稠的，艰难的；n. 死尸，醉鬼，钞票；vt. 不肯付...小费",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "freeze",
+    "phonetic": "/friːz/",
+    "translation": "vi. 冻结，冷冻，僵硬，楞住；vt. 使结冰，使冻住，使呆住；n. 结冰，凝固；[计] 冻结",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46
+  },
+  {
+    "word": "amazement",
+    "phonetic": "/əˈmeizmənt/",
+    "translation": "n. 惊愕，惊异",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "clasp",
+    "phonetic": "/klɑ:sp/",
+    "translation": "n. 扣件，搭扣；（尤指项链、手镯等的）扣环 vt. 扣紧，扣住；（用手）紧握，（尤指情感上）紧抱",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "burst into",
+    "phonetic": "/bɜːst ˈɪntə/",
+    "translation": "突然……起来（尤指唱歌、哭、笑等）",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "proceed",
+    "phonetic": "/prəuˈsiːd/",
+    "translation": "vi. 继续进行，进行，开始，发出，起诉；[法] 所得，收入，收益",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46
+  },
+  {
+    "word": "reveal",
+    "phonetic": "/riˈviːl/",
+    "translation": "vt. 露出，显示，透露，揭露，泄露，(神)启示；n. 窗侧，门侧",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46
+  },
+  {
+    "word": "tear-stained",
+    "phonetic": "/ˈtɪərˌsteɪnd/",
+    "translation": "a. 泪水沾湿的",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46
+  },
+  {
+    "word": "orphan",
+    "phonetic": "/ˈɒ:fən/",
+    "translation": "n. 孤儿；a. 无双亲的，孤儿的；vt. 使成孤儿；[计] 弧体",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "investigate",
+    "phonetic": "/inˈvestigeit/",
+    "translation": "vi.&vt.查明，调查侦查",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46
+  },
+  {
+    "word": "sigh",
+    "phonetic": "/sai/",
+    "translation": "n. 叹息；vi. 叹息，渴望；vt. 叹息着说",
+    "unit": "Unit 10 Lesson 3",
+    "page": 46,
+    "optional": true
+  },
+  {
+    "word": "despair",
+    "phonetic": "/diˈspєə/",
+    "translation": "n. 绝望，失望；vi. 绝望",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "dare",
+    "phonetic": "/dєə/",
+    "translation": "n. 挑战，挑动，大胆；v. 敢，胆敢",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "bare",
+    "phonetic": "/bєə/",
+    "translation": "a. 赤裸的，缺少的，无遮蔽的，坦率的；vt. 使赤裸，露出",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "faucet",
+    "phonetic": "/ˈfɒ:sit/",
+    "translation": "n. 龙头，开关，旋塞",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "shiver",
+    "phonetic": "/ˈʃivə/",
+    "translation": "vi. 颤抖，哆嗦，被打碎；vt. 使迎风飘动，粉碎；n. 战栗，碎块",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "bone",
+    "phonetic": "/bəun/",
+    "translation": "n. 骨头，骨，骨制品；vt. 剔骨；vi. 专心致志",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "appeal",
+    "phonetic": "/əˈpiːl/",
+    "translation": "n. 恳求，诉请，上诉，吸引力；vi. 呼吁，诉请，要求，上诉，有吸引力；vt. 将...上诉",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "emperor",
+    "phonetic": "/ˈempərə/",
+    "translation": "n. 皇帝，君主",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "sorrow",
+    "phonetic": "/ˈsɒrəu/",
+    "translation": "n. 悲伤，哀惜，不幸；vi. 悲伤，懊悔，遗憾",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "loan",
+    "phonetic": "/ləun/",
+    "translation": "n. 贷款，借出；v. 借，供应货款，借给",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "forgiveness",
+    "phonetic": "/fəˈgivnis/",
+    "translation": "n. 宽恕，宽仁之心",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "debt",
+    "phonetic": "/det/",
+    "translation": "n. 债务，罪过；[经] 借款，欠款，债务",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "interrupt",
+    "phonetic": "/.intəˈrʌpt/",
+    "translation": "vt. 中断，妨碍，插嘴；vi. 打断；n. 中断；[计] 中断",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "sob",
+    "phonetic": "/sɒb/",
+    "translation": "vi. 啜泣，呜咽；vt. 哭诉，哭得使；n. 啜泣，呜咽",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "pillow",
+    "phonetic": "/ˈpiləu/",
+    "translation": "n. 枕头，靠垫，枕状岩；vt. 作...的枕头，垫，枕于；vi. 靠在枕上",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "dive",
+    "phonetic": "/daiv/",
+    "translation": "n. 潜水，跳水；vi. 跳水，俯冲，猛冲；vt. 把...突然伸入",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "frown",
+    "phonetic": "/fraun/",
+    "translation": "n. 皱眉；vi. 皱眉头；vt. 皱眉表示",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "resolutely",
+    "phonetic": "/ˈrɛz.əˌl(j)uːtli/",
+    "translation": "adv. 坚决地；毅然地",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "republic",
+    "phonetic": "/riˈpʌblik/",
+    "translation": "n. 共和国，共和政体，团体，界",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "legal",
+    "phonetic": "/ˈliːgəl/",
+    "translation": "a. 法律的，法定的，合法的；[经] 法定权利; 法律(上)的，合法的",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "document",
+    "phonetic": "/ˈdɒkjumənt/",
+    "translation": "n. 文件，公文，文档；vt. 证明，为...引证；[计] 文档",
+    "unit": "Unit 10 Lesson 3",
+    "page": 47
+  },
+  {
+    "word": "negotiate",
+    "phonetic": "/niˈgəuʃieit/",
+    "translation": "vi. 商议，谈判，交涉；vt. 谈妥，转让，处理",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "compromise",
+    "phonetic": "/ˈkɒmprəmaiz/",
+    "translation": "n. 妥协，折中，折中方案，和解；vi. 妥协处理；vt. 危害",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47,
+    "optional": true
+  },
+  {
+    "word": "inquire",
+    "phonetic": "/inˈkwaiə/",
+    "translation": "v. 询问，问明，查究",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "resolve",
+    "phonetic": "/riˈzɒlv/",
+    "translation": "vi. 决定，分解，决心；vt. 使分解，解析，解决，消除，决心；n. 决定之事，决心，坚决",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "annoying",
+    "phonetic": "/əˈnɒiiŋ/",
+    "translation": "adj.讨厌的，令人气恼的",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "inconvenience",
+    "phonetic": "/.inkənˈviːnjəns/",
+    "translation": "n. 不便，困难；vt. 使感不便，使感困难",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "detect",
+    "phonetic": "/diˈtekt/",
+    "translation": "vt. 发现，察觉，探测；[法] 发现，查明，探测",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "somewhat",
+    "phonetic": "/ˈsʌmhwɒt/",
+    "translation": "n. 某物，几分；adv. 多少，几分",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "annoy",
+    "phonetic": "/əˈnɒi/",
+    "translation": "vt. 使恼怒，骚扰",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "ashamed",
+    "phonetic": "/əˈʃeimd/",
+    "translation": "a. 惭愧的，羞耻的",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "maturity",
+    "phonetic": "/məˈtjuəriti/",
+    "translation": "n. 成熟，完备，到期；[医] 成熟，成熟期，发育期",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "monitor",
+    "phonetic": "/ˈmɒnitə/",
+    "translation": "n. 监督器，级长，监听员，班长，监视器，告诫物；v. 监视，监听，监督；[计] 监视器，监视程序; 监视",
+    "unit": "Unit 11 Topic Talk",
+    "page": 47
+  },
+  {
+    "word": "self-control",
+    "phonetic": "/ˈselfkənˈtrəul/",
+    "translation": "n. 克己，自制",
+    "unit": "Unit 11 Topic Talk",
+    "page": 48
+  },
+  {
+    "word": "pack",
+    "phonetic": "/pæk/",
+    "translation": "n. 包裹，一伙，一副，背包，包装；vt. 包装，捆扎，塞满，压紧，挑选；vi. 包装货物，挤，群集，被包装；[计] 压缩",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "tank",
+    "phonetic": "/tæŋk/",
+    "translation": "n. 槽，箱，柜，罐，池塘，储水池，坦克；vt. 储于箱中",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "plug",
+    "phonetic": "/plʌg/",
+    "translation": "n. 塞子，栓，插头；vt. 插入，塞住，接插头；vi. 被塞住",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "drummer",
+    "phonetic": "/ˈdrʌmə/",
+    "translation": "n. 鼓手，旅行推销员；[经] 跑街，旅行商人，旅行销货人",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48,
+    "optional": true
+  },
+  {
+    "word": "complaint",
+    "phonetic": "/kəmˈpleint/",
+    "translation": "n. 诉苦，抱怨，控诉；[医] 陈诉; 病",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "drum",
+    "phonetic": "/drʌm/",
+    "translation": "n. 鼓，鼓声；vi. 击鼓，作鼓声；vt. 打鼓奏出；[计] 磁鼓",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48,
+    "optional": true
+  },
+  {
+    "word": "vote",
+    "phonetic": "/vəut/",
+    "translation": "n. 投票，选举，选票，表决，选举权，得票数；vi. 投票，选举；vt. 投票选举，投票决定，公认，使投票",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "resolution",
+    "phonetic": "/.rezəˈluːʃən/",
+    "translation": "n. 解析，决心，坚定，决定，决议，消除，解答，分解；n. 图形分辨率；[计] 图形分辨率",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "warning",
+    "phonetic": "/ˈwɒ:niŋ/",
+    "translation": "n. 警告，预告，预兆，通知；[法] 警告，警戒，预告; 警告的，注意的",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "cease",
+    "phonetic": "/siːs/",
+    "translation": "n. 停止；v. 停止，终了",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "property",
+    "phonetic": "/ˈprɒpəti/",
+    "translation": "n. 财产，所有权，性质，属性；[计] 属性",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "chorus",
+    "phonetic": "/ˈkɒ:rəs/",
+    "translation": "n. 合唱队，齐声；v. 齐声说道，合唱",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "departure",
+    "phonetic": "/diˈpɑ:tʃə/",
+    "translation": "n. 离开，出发，违背，偏离；[经] 启运",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "prejudiced",
+    "phonetic": "/ˈpredʒədist/",
+    "translation": "有偏见的，有成见的，歧视的",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "bitter",
+    "phonetic": "/ˈbitə/",
+    "translation": "a. 苦的，痛苦的，怀恨的；adv. 刺骨；v. (使)变苦",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "assign",
+    "phonetic": "/əˈsain/",
+    "translation": "vt. 分配，指派，赋值；[计] 赋值",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "anyhow",
+    "phonetic": "/ˈenihau/",
+    "translation": "adv. 非正式）尽管如此；至少",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "remote",
+    "phonetic": "/riˈməut/",
+    "translation": "a. 遥远的，偏僻的，疏远的，微少的；[计] 远程，远程访问实用程序",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "edge",
+    "phonetic": "/edʒ/",
+    "translation": "n. 边缘，尖锐，刀刃，优势；vt. 使锐利，挤进，镶边；vi. 缓缓移动",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "arrest",
+    "phonetic": "/əˈrest/",
+    "translation": "n. 逮捕，监禁；vt. 拘捕，抑制，吸引，阻止",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "tailor",
+    "phonetic": "/ˈteilə/",
+    "translation": "n. 裁缝，成衣匠；vt. 缝制，制作，使适应；vi. 做裁缝",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "pleasant",
+    "phonetic": "/ˈpleznt/",
+    "translation": "a. 愉快的，可爱的，活泼的，亲切的",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "violence",
+    "phonetic": "/ˈvaiələns/",
+    "translation": "n. 猛烈，暴力，暴虐，暴行；[法] 暴行，暴力，暴乱",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "literally",
+    "phonetic": "/ˈlitərəli/",
+    "translation": "确实地；实际上；字面上地（用作强调，常含夸张或非字面义）",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "tolerate",
+    "phonetic": "/ˈtɒləreit/",
+    "translation": "vt. 宽容，容许，有耐力",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "keen",
+    "phonetic": "/kiːn/",
+    "translation": "a. 锋利的，敏锐的，强烈的，敏捷的，热心的，渴望的；n. 挽歌，痛哭；v. 唱挽歌，痛哭",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48,
+    "optional": true
+  },
+  {
+    "word": "balcony",
+    "phonetic": "/ˈbælkəni/",
+    "translation": "n. 阳台，戏院楼厅",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48,
+    "optional": true
+  },
+  {
+    "word": "unsuspecting",
+    "phonetic": "/.ʌnsəˈspektiŋ/",
+    "translation": "a. 不怀疑的，无疑虑的，信任的；[法] 无怀疑的，信任的",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "bother",
+    "phonetic": "/ˈbɒðə/",
+    "translation": "vt. 烦扰，迷惑；vi. 烦恼，操心；n. 麻烦，纠纷，讨厌的人",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "recall",
+    "phonetic": "/riˈkɒ:l/",
+    "translation": "n. 回忆，召回，撤消；vt. 回想，回忆，召回，撤消，使恢复；[计] 检索",
+    "unit": "Unit 11 Lesson 1",
+    "page": 48
+  },
+  {
+    "word": "violently",
+    "phonetic": "/ˈvaiələntli/",
+    "translation": "adv. 猛烈地，激烈地，极端地",
+    "unit": "Unit 11 Lesson 2",
+    "page": 48
+  },
+  {
+    "word": "withdraw",
+    "phonetic": "/wiðˈdrɒ:/",
+    "translation": "vt. 撤回，取回，撤消，使撤退，拉开，移开；vi. 撤退，离开",
+    "unit": "Unit 11 Lesson 2",
+    "page": 48
+  },
+  {
+    "word": "firmly",
+    "phonetic": "/ˈfə:mli/",
+    "translation": "adv. 坚固，坚定，断然",
+    "unit": "Unit 11 Lesson 2",
+    "page": 48
+  },
+  {
+    "word": "soldier",
+    "phonetic": "/ˈsəuldʒə/",
+    "translation": "n. 军人，士兵，兵蚁；vi. 从军，尽职，偷懒，磨洋工",
+    "unit": "Unit 11 Lesson 3",
+    "page": 48
+  },
+  {
+    "word": "bomb",
+    "phonetic": "/bɒm/",
+    "translation": "n. 炸弹；vt. 轰炸，投弹于；vi. 失败",
+    "unit": "Unit 11 Lesson 3",
+    "page": 48
+  },
+  {
+    "word": "general",
+    "phonetic": "/ˈdʒenərəl/",
+    "translation": "n. 一般，将军，大体；a. 全面的，大体的，总的，一般的，普遍的；n. 常规；[计] 常规",
+    "unit": "Unit 11 Lesson 3",
+    "page": 48
+  },
+  {
+    "word": "trench",
+    "phonetic": "/trentʃ/",
+    "translation": "n. 渠，沟渠，战壕；vt. 在...开沟，挖战壕于，用战壕围住；vi. 挖战壕，开沟",
+    "unit": "Unit 11 Lesson 3",
+    "page": 48,
+    "optional": true
+  },
+  {
+    "word": "frontier",
+    "phonetic": "/ˈfrʌntjə/",
+    "translation": "n. 边界，边境；[法] 国境，边境，边界",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "murder",
+    "phonetic": "/ˈmə:də/",
+    "translation": "n. 谋杀；vt. 谋杀，损毁，破坏；vi. 犯杀人罪",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "border",
+    "phonetic": "/ˈbɒ:də/",
+    "translation": "n. 边缘，边境，边界，花坛；vt. 在...上镶边，接近；vi. 接界，近似；[计] 边框",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "flee",
+    "phonetic": "/fliː/",
+    "translation": "vt. 逃避，逃跑，逃走；vi. 逃，消失",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49,
+    "optional": true
+  },
+  {
+    "word": "weep",
+    "phonetic": "/wiːp/",
+    "translation": "n. 哭，哭泣；vi. 哭泣，流泪，哀悼，滴落；vt. 哭着使...，悲叹，滴下",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "civilian",
+    "phonetic": "/siˈviljən/",
+    "translation": "n. 平民，民法专家；a. 平民的，百姓的，民用的",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "machine gun",
+    "phonetic": "/məˈʃiːn ˈɡʌn/",
+    "translation": "机关枪",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "panic",
+    "phonetic": "/ˈpænik/",
+    "translation": "n. 恐慌，惊慌；a. 惊慌的，没有理由的，恐慌的；vt. 使惊慌，使狂热；vi. 惊慌",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "pray",
+    "phonetic": "/prei/",
+    "translation": "v. 祈祷，恳求，请",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "identification",
+    "phonetic": "/ai.dentifiˈkeiʃən/",
+    "translation": "n. 识别，身份证明，认同；[化] 鉴定; 鉴别; 鉴别法; 认证",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "pile",
+    "phonetic": "/pail/",
+    "translation": "n. 堆，大堆，大厦，建筑群，电池，大量，桥桩，软毛，痔疮；vi. 堆起，堆积，积累，挤，猛烈攻击；vt. 堆于，累积，堆叠，打桩于，用桩支撑",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49,
+    "optional": true
+  },
+  {
+    "word": "display",
+    "phonetic": "/disˈplei/",
+    "translation": "n. 显示，陈列，炫耀，显示器；vt. 陈列，显示，表现，夸示；[计] 显示器; 显示",
+    "unit": "Unit 11 Lesson 3",
+    "page": 49
+  },
+  {
+    "word": "ban",
+    "phonetic": "/bæn/",
+    "translation": "n. 禁令；vt. 禁止，取缔",
+    "unit": "Unit 11 Writing Workshop",
+    "page": 49
+  },
+  {
+    "word": "tobacco",
+    "phonetic": "/təˈbækəu/",
+    "translation": "n. 烟草，香烟；[医] 烟草",
+    "unit": "Unit 11 Writing Workshop",
+    "page": 49
+  },
+  {
+    "word": "cigarette",
+    "phonetic": "/.sigəˈret/",
+    "translation": "n. 香烟，纸烟",
+    "unit": "Unit 11 Writing Workshop",
+    "page": 49
+  },
+  {
+    "word": "alcohol",
+    "phonetic": "/ˈælkəhɒl/",
+    "translation": "n. 酒精，酒；[化] 醇; 乙醇; 酒精",
+    "unit": "Unit 11 Writing Workshop",
+    "page": 49
+  },
+  {
+    "word": "fried",
+    "phonetic": "/fraid/",
+    "translation": "adj.油炸的，油煎的",
+    "unit": "Unit 11 Writing Workshop",
+    "page": 49
+  },
+  {
+    "word": "harm",
+    "phonetic": "/hɑ:m/",
+    "translation": "n. 伤害，害处；vt. 伤害，损害",
+    "unit": "Unit 11 Writing Workshop",
+    "page": 49
+  },
+  {
+    "word": "desirable",
+    "phonetic": "/diˈzairəbl/",
+    "translation": "adj.理想的，值得拥有的；值得做的",
+    "unit": "Unit 11 Writing Workshop",
+    "page": 49
+  },
+  {
+    "word": "sacred",
+    "phonetic": "/ˈseikrid/",
+    "translation": "a. 神圣的，献给上帝的，庄严的，祭祀的；[法] 神圣的，不可侵犯的",
+    "unit": "Unit 11 Reading Club 1",
+    "page": 49
+  },
+  {
+    "word": "permanent",
+    "phonetic": "/ˈpə:mənənt/",
+    "translation": "a. 永久的，不变的，固定的，持久的；n. 烫发；[计] 永久的",
+    "unit": "Unit 11 Reading Club 1",
+    "page": 49
+  },
+  {
+    "word": "representative",
+    "phonetic": "/.repriˈzentətiv/",
+    "translation": "n. 代表，众议员，典型；a. 描写的，表现的，代理的，代表的，代议制的，典型的",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "greet",
+    "phonetic": "/griːt/",
+    "translation": "vt. 问候，致敬，欢迎，映入眼帘",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "mud",
+    "phonetic": "/mʌd/",
+    "translation": "n. 泥，诽谤；vt. 弄脏",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "distribute",
+    "phonetic": "/diˈstribjuːt/",
+    "translation": "vt. 分配，散布，分发；[经] 分配，分发",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "temporary",
+    "phonetic": "/ˈtempərəri/",
+    "translation": "a. 暂时的，临时的；n. 临时工，临时雇员；[计] 临时",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "midnight",
+    "phonetic": "/ˈmidnait/",
+    "translation": "n. 午夜，子夜，半夜；a. 午夜的，半夜的",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "ward",
+    "phonetic": "/wɒ:d/",
+    "translation": "n. 病房，守卫，保卫，保护，监护，牢房，行政区，锁孔内的榫舌；vt. 使入病房，守护，保卫",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "dozen",
+    "phonetic": "/ˈdʌzn/",
+    "translation": "n. 打，十二个；a. 一打的",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "surgeon",
+    "phonetic": "/ˈsə:dʒən/",
+    "translation": "n. 外科医生，军医，船医；[医] 外科医师",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "ceremony",
+    "phonetic": "/ˈseriməni/",
+    "translation": "n. 典礼，仪式，礼节；[法] 典礼，仪式",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49,
+    "optional": true
+  },
+  {
+    "word": "appreciation",
+    "phonetic": "/ə.priːʃiˈeiʃən/",
+    "translation": "n. 感激，赏识，鉴别；[经] 涨价，增值",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "incident",
+    "phonetic": "/ˈinsidənt/",
+    "translation": "n. 事件，事变，小事；a. 附带的，易于发生的，外来的，入射的",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "obesity",
+    "phonetic": "/əuˈbiːsiti/",
+    "translation": "n. 肥胖；[医] 肥胖，多脂",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49,
+    "optional": true
+  },
+  {
+    "word": "tax",
+    "phonetic": "/tæks/",
+    "translation": "n. 税，税款，重负，会费；vt. 课以税，使负重荷，斥责",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "false",
+    "phonetic": "/fɒ:ls/",
+    "translation": "a. 错误的，虚伪的，假的，不老实的；adv. 不准确地，欺诈地",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "invest",
+    "phonetic": "/inˈvest/",
+    "translation": "vt. 投资，花费，笼罩，授予；vi. 投资，利用",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "conclude",
+    "phonetic": "/kənˈkluːd/",
+    "translation": "vt. 结束，作结论，推断；vi. 结束，推断",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "beneficial",
+    "phonetic": "/.beniˈfiʃəl/",
+    "translation": "a. 有益的，受益的；[经] 有使用权的，可享利益的",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "recovery",
+    "phonetic": "/riˈkʌvəri/",
+    "translation": "n. 恢复，复原，痊愈，重获；[计] 恢复",
+    "unit": "Unit 11 Reading Club 2",
+    "page": 49
+  },
+  {
+    "word": "loose",
+    "phonetic": "/luːs/",
+    "translation": "n. 发射，放任，放纵；a. 宽松的，松的，宽的，不牢固的，散漫的，自由的，不精确的；vt. 释放，放枪，开船；vi. 变松，开火；adv. 松散地",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "carpet",
+    "phonetic": "/ˈkɑ:pit/",
+    "translation": "n. 地毯，地毯状物；vt. 铺以地毯，铺盖",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "ankle",
+    "phonetic": "/ˈæŋkl/",
+    "translation": "n. 踝；[医] 踝，踝关节",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "greed",
+    "phonetic": "/griːd/",
+    "translation": "n. 贪欲，贪婪",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "fry",
+    "phonetic": "/frai/",
+    "translation": "n. 油炸食物，鱼苗；v. 油炸，煎",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "request",
+    "phonetic": "/riˈkwest/",
+    "translation": "n. 请求，需要，申请书；vt. 请求，要求，邀请；[计] 请求",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "well-being",
+    "phonetic": "/ˈwelbiiŋ/",
+    "translation": "a. 安宁的，康乐的",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "vitamin",
+    "phonetic": "/ˈvaitəmin/",
+    "translation": "n. 维生素；[化] 维生素",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50,
+    "optional": true
+  },
+  {
+    "word": "entertainment",
+    "phonetic": "/.entəˈteinmənt/",
+    "translation": "n. 娱乐，款待，娱乐表演",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "innovation",
+    "phonetic": "/.inəuˈveiʃən/",
+    "translation": "n. 改革，创新；[法] 创新，改革，刷新",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "gifted",
+    "phonetic": "/ˈgiftid/",
+    "translation": "有天赋的，有才华的",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "labour-saving",
+    "phonetic": "/ˈleibə ˈseiviŋ/",
+    "translation": "n. 节省劳动力",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "productive",
+    "phonetic": "/prəˈdʌktiv/",
+    "translation": "a. 能生产的，有生产价值的，多产的；[医] 产出性的，产生性的",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "garbage",
+    "phonetic": "/ˈgɑ:bidʒ/",
+    "translation": "n. 垃圾，废物；[计] 无用信息",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "device",
+    "phonetic": "/diˈvais/",
+    "translation": "n. 装置，设计，策略，发明物，设备；[计] 设备; DOS内部命令:该命令要求DOS安装一个设备驱动程序",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 50
+  },
+  {
+    "word": "scientific",
+    "phonetic": "/.saiənˈtifik/",
+    "translation": "a. 科学的，系统的，符合科学规律的；[计] 科学记数法",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "microscope",
+    "phonetic": "/ˈmaikrəuskəup/",
+    "translation": "n. 显微镜；[化] 显微镜",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "donate",
+    "phonetic": "/ˈdəuneit/",
+    "translation": "vi. 捐献（器官），献（血）；捐赠，捐献",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "correspond",
+    "phonetic": "/.kɒriˈspɒnd/",
+    "translation": "vi. 符合，通信，相当；[法] 符合，一致，相当",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "instant",
+    "phonetic": "/ˈinstənt/",
+    "translation": "n. 立即，瞬间；a. 紧急的，立即的，即时的",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "launch",
+    "phonetic": "/lɒ:ntʃ/",
+    "translation": "n. 下水，汽艇，发射；vt. 使下水，发射，发动；vi. 起飞，下水，投入，开始",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "satellite",
+    "phonetic": "/ˈsætlait/",
+    "translation": "n. 人造卫星；[医] 伴行静脉，陪静脉，陪病部，随体，卫星",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "orbit",
+    "phonetic": "/ˈɒ:bit/",
+    "translation": "n. 轨道，常轨，眼眶；vt. 绕...轨道而行；vi. 进入轨道，盘旋",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "split",
+    "phonetic": "/split/",
+    "translation": "n. 劈开，裂片，裂缝，分裂，派系，派别，柳条；a. 劈开的；vi. 分离，分开，裂开，被劈开；vt. 劈开，切开，使分裂，使分离；[计] 拆分",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50,
+    "optional": true
+  },
+  {
+    "word": "particle",
+    "phonetic": "/ˈpɑ:tikl/",
+    "translation": "n. 颗粒，粒子，质点，极小量；[化] 粒子; 质点",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50,
+    "optional": true
+  },
+  {
+    "word": "premier",
+    "phonetic": "/ˈpriːmjə/",
+    "translation": "n. 总理，首相；a. 首位的，最初的",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "outspoken",
+    "phonetic": "/.autˈspəukən/",
+    "translation": "a. 直言无讳的，坦率的，坦白无隐的",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50,
+    "optional": true
+  },
+  {
+    "word": "subsequently",
+    "phonetic": "/ˈsʌbsikwəntli/",
+    "translation": "adv. 后来，随后",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "relativity",
+    "phonetic": "/.reləˈtiviti/",
+    "translation": "n. 有关系，相关性，相对性；[化] 相对性",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50,
+    "optional": true
+  },
+  {
+    "word": "constant",
+    "phonetic": "/ˈkɒnstənt/",
+    "translation": "n. 常数，恒量；a. 不变的，一定的，时常的；[计] 常量; 常数; 恒值",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "finding",
+    "phonetic": "/ˈfaindiŋ/",
+    "translation": "n. 发现，发现物，决定，裁决；[法] 调查结果，对事实的认定，判定的要素",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "biologist",
+    "phonetic": "/baiˈɒlədʒist/",
+    "translation": "n. 生物学家；[医] 生物学家",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "mould",
+    "phonetic": "/məuld/",
+    "translation": "n. 模子，模制品，松软沃土，霉；vt. 形成，浇铸，用泥土覆盖；vi. 发霉",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50,
+    "optional": true
+  },
+  {
+    "word": "penicillin",
+    "phonetic": "/.peniˈsilin/",
+    "translation": "n. 盘尼西林，青霉素；[化] 青霉素",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50,
+    "optional": true
+  },
+  {
+    "word": "perceive",
+    "phonetic": "/pəˈsiːv/",
+    "translation": "v. 感觉; 认识，理解; 察觉到，意识到，注意到",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "million",
+    "phonetic": "/ˈmiljən/",
+    "translation": "n. 百万，无数；num. 百万",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "humble",
+    "phonetic": "/ˈhʌmbl/",
+    "translation": "a. 低下的，谦逊的，粗陋的；vt. 使...卑下，降低...地位，贬抑",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "outcome",
+    "phonetic": "/ˈautkʌm/",
+    "translation": "n. 结果，出口",
+    "unit": "Unit 12 Topic Talk",
+    "page": 50
+  },
+  {
+    "word": "navy",
+    "phonetic": "/ˈneivi/",
+    "translation": "n. 海军，海军人员，海军军力，烟蒂",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "accuracy",
+    "phonetic": "/ˈækjurəsi/",
+    "translation": "n. 精确，正确；[计] 准确度",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "missile",
+    "phonetic": "/ˈmisail/",
+    "translation": "n. 发射物，导弹，飞弹，火箭；a. 可发射的",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "physicist",
+    "phonetic": "/ˈfizisist/",
+    "translation": "n. 物理学家，机械唯物论者，自然科学家；[医] 菲西克氏手术(虹膜圆片切除)",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "joint",
+    "phonetic": "/dʒɒint/",
+    "translation": "n. 连接处，接合，关节；a. 共同的，联合的，连接的，合办的；vt. 连接，接合，使有接头；vi. 贴合，长节",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "emerge",
+    "phonetic": "/iˈmə:dʒ/",
+    "translation": "vi. 浮现，形成，出现，(事实)显露",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "coincidence",
+    "phonetic": "/kəuˈinsidəns/",
+    "translation": "n. 巧合，同时发生；[电] 符合计数器",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51,
+    "optional": true
+  },
+  {
+    "word": "clueless",
+    "phonetic": "/ˈkluːləs/",
+    "translation": "a. 无能的，笨的",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "theoretical",
+    "phonetic": "/θiəˈretikəl/",
+    "translation": "a. 理论的，理论上的，假设的，推理的；[计] 理论的",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "overcome",
+    "phonetic": "/.əuvəˈkʌm/",
+    "translation": "vt. 战胜，克服，胜过；vi. 得胜",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "PhD",
+    "phonetic": "ˌpiː eɪtʃ ˈdiː",
+    "translation": "abbr. 哲学博士学位（Doctor of Philosophy）",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "cosmology",
+    "phonetic": "/kɒzˈmɒlədʒi/",
+    "translation": "n. 宇宙哲学，宇宙论；[电] 宇宙论",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51,
+    "optional": true
+  },
+  {
+    "word": "grand",
+    "phonetic": "/grænd/",
+    "translation": "a. 庄重的，壮观的，显赫的，重大的，最高的，雄伟的，宏大的，豪华的，傲慢的；[法] 重大的，主要的，伟大的",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "steam",
+    "phonetic": "/stiːm/",
+    "translation": "n. 蒸汽，精力；a. 蒸汽的；vi. 蒸发，行驶，发怒；vt. 蒸，煮，散发",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "kettle",
+    "phonetic": "/ˈketl/",
+    "translation": "n. 茶壶，罐；[化] 釜体釜; 锅",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "boil",
+    "phonetic": "/bɒil/",
+    "translation": "vi./vt. （使）沸腾，煮沸；（用沸水）煮；n. 沸腾；（皮肤上的）脓肿",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "fibre",
+    "phonetic": "/ˈfaibə/",
+    "translation": "n. 纤维，构造，纤维制品；[化] 纤维",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "explode",
+    "phonetic": "/ikˈspləud/",
+    "translation": "vi. 爆炸，爆发，激增；vt. 使爆炸",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "regulate",
+    "phonetic": "/ˈregjuleit/",
+    "translation": "vt. 管理，控制，调节，调整，校准；[经] 控制，管理",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "tube",
+    "phonetic": "/tjuːb/",
+    "translation": "n. 管，软管，隧道；vt. 把...装管，使通过管子；[计] 管子",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "circuit",
+    "phonetic": "/ˈsə:kit/",
+    "translation": "n. 电路，环(行)道，巡回；[计] 线路; 电路",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "efficiently",
+    "phonetic": "/iˈfiʃəntli/",
+    "translation": "adv. 生效，能胜任，有能力，效率高，有效",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "propose",
+    "phonetic": "/prəˈpəuz/",
+    "translation": "vt. 计划，打算，建议，提议，求(婚)；vi. 打算，求婚",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "incubation",
+    "phonetic": "/.inkjuˈbeiʃən/",
+    "translation": "n. 抱蛋，孵化，酝酿；[医] 孵育，孵化，潜伏，宿庙求梦(古希腊)",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51,
+    "optional": true
+  },
+  {
+    "word": "Evaluation",
+    "phonetic": "/i.væljuˈeiʃən/",
+    "translation": "n. 评估，估价，求值；[计] 鉴定; 评价; 求值",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "decline",
+    "phonetic": "/diˈklain/",
+    "translation": "n. 衰退，跌落，下降；vt. 使降低，婉谢；vi. 下降，衰落，偏斜",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "in spite of",
+    "phonetic": "/ɪn spaɪt əv/",
+    "translation": "虽然；不顾；尽管……(仍……)",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "bonus",
+    "phonetic": "/ˈbəunəs/",
+    "translation": "n. 奖金，红利；[经] 奖金，红利，额外补贴",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "gravity",
+    "phonetic": "/ˈgræviti/",
+    "translation": "n. 地心引力，重力；[化] 重力",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "improvement",
+    "phonetic": "/imˈpruːvmənt/",
+    "translation": "n. 进步，改善，利用；[医] 改善，好转，进步",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "revolution",
+    "phonetic": "/.revəˈluːʃən/",
+    "translation": "n. 革命，大变革，旋转，转数，循环；[化] 回转",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51,
+    "optional": true
+  },
+  {
+    "word": "availability",
+    "phonetic": "/ə.veiləˈbiliti/",
+    "translation": "n. 有效性，可利用性，可利用的人；[计] 有效性; 可用性",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "mass",
+    "phonetic": "/mæs/",
+    "translation": "n. 块，大多数，质量，大量，群众，弥撒；a. 群众的，大规模的，整个的；vt. 使集合，集中；vi. 聚集",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "sailor",
+    "phonetic": "/ˈseilə/",
+    "translation": "n. 水手，船员，海员；[法] 水手，船员，海员",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "illustrate",
+    "phonetic": "/ˈiləstreit/",
+    "translation": "vt. 举例说明，作图解，阐明；vi. 举例说明",
+    "unit": "Unit 12 Lesson 1",
+    "page": 51
+  },
+  {
+    "word": "mechanical",
+    "phonetic": "/miˈkænikəl/",
+    "translation": "a. 机械的，机械性的，力学的；[医] 机械的，力学的",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 52
+  },
+  {
+    "word": "preserve",
+    "phonetic": "/priˈzə:v/",
+    "translation": "vt. 保护，保持，保存，维持，腌，禁猎；vi. 加工食品，禁猎；n. 加工成的食品，禁猎地，保护区，防护物",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 52
+  },
+  {
+    "word": "specifically",
+    "phonetic": "/spiˈsifikli/",
+    "translation": "adv. 特定地，明确地，按特性",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 52
+  },
+  {
+    "word": "accurate",
+    "phonetic": "/ˈækjurət/",
+    "translation": "a. 正确的，精确的；[经] 准确的，精确的",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 52
+  },
+  {
+    "word": "electric",
+    "phonetic": "/iˈlektik/",
+    "translation": "a. 电的，导电的，电动的；[医] 电的",
+    "unit": "Unit 12 Reading Club 2",
+    "page": 52
+  }
+]

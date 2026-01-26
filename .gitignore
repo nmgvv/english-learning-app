@@ -72,3 +72,6 @@ temp/
 .cache/
 .pytest_cache/
 .mypy_cache/
+data/ecdict.db
+data/ecdict.db
+data/ecdict.db

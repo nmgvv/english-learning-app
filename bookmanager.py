@@ -30,6 +30,7 @@ from pathlib import Path
 
 # 词书中文名映射
 BOOK_NAMES = {
+    # 初中词书
     "bsd_grade7_up": "北师大七年级上册",
     "bsd_grade7_down": "北师大七年级下册",
     "bsd_grade8_up": "北师大八年级上册",
@@ -39,6 +40,14 @@ BOOK_NAMES = {
     "pep_grade7_up": "人教版七年级上册",
     "pep_grade7_down": "人教版七年级下册",
     "zhongkao": "中考词汇",
+    # 高中词书
+    "bsd_senior_compulsory1": "北师大高中必修一",
+    "bsd_senior_compulsory2": "北师大高中必修二",
+    "bsd_senior_compulsory3": "北师大高中必修三",
+    "bsd_senior_elective1": "北师大高中选择性必修一",
+    "bsd_senior_elective2": "北师大高中选择性必修二",
+    "bsd_senior_elective3": "北师大高中选择性必修三",
+    "bsd_senior_elective4": "北师大高中选择性必修四",
 }
 
 

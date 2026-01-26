@@ -407,12 +407,14 @@ def update_progress(db: Session, user_id: int, book_id: str, word: str,
 
 
 def get_due_cards(db: Session, user_id: int, book_id: str) -> List[Progress]:
-    """获取今日待复习的单词"""
+    """获取今日待复习的单词（以今日23:59:59为截止时间）"""
     now = datetime.utcnow()
+    # 计算今日结束时间（23:59:59），避免复习过程中数量增加
+    end_of_today = now.replace(hour=23, minute=59, second=59, microsecond=999999)
     return db.query(Progress).filter(
         Progress.user_id == user_id,
         Progress.book_id == book_id,
-        Progress.due <= now
+        Progress.due <= end_of_today
     ).all()
 
 
