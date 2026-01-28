@@ -23,7 +23,6 @@ for _proxy_key in ['http_proxy', 'https_proxy', 'HTTP_PROXY', 'HTTPS_PROXY', 'al
 
 import json
 import asyncio
-import tempfile
 from datetime import datetime
 from typing import Optional, List
 from pathlib import Path
@@ -53,12 +52,8 @@ from dictation import (
     calculate_similarity, get_error_hint
 )
 
-# TTS
-try:
-    import edge_tts
-    TTS_AVAILABLE = True
-except ImportError:
-    TTS_AVAILABLE = False
+# TTS（统一模块）
+from tts import init_tts_service
 
 # 阿里云百炼 (Qwen-Plus)
 try:
@@ -67,16 +62,12 @@ try:
 except ImportError:
     QWEN_AVAILABLE = False
 
-# 阿里云百炼 Qwen3-TTS（替代 edge-tts）
-QWEN_TTS_AVAILABLE = bool(os.getenv("DASHSCOPE_API_KEY"))
-
 # Conversation and Speech modules
 from conversation import ConversationManager
 from speech import (
     SpeechRecognizer, PronunciationAssessor,
     generate_feedback_text, generate_ai_feedback, ACCURACY_THRESHOLD,
-    QwenChineseSpeechRecognizer, generate_translation_feedback, calculate_text_similarity,
-    Qwen3TTS, synthesize_speech
+    QwenChineseSpeechRecognizer, generate_translation_feedback, calculate_text_similarity
 )
 
 # Database models for pronunciation
@@ -108,6 +99,9 @@ AUDIO_CACHE_DIR.mkdir(exist_ok=True)
 RECORDINGS_DIR = STATIC_DIR / "recordings"
 RECORDINGS_DIR.mkdir(exist_ok=True)
 
+# 初始化统一 TTS 服务
+tts_service = init_tts_service(AUDIO_CACHE_DIR)
+
 # 创建应用
 app = FastAPI(title="英语学习应用", version="1.0.0")
 
@@ -138,7 +132,7 @@ class UserLogin(BaseModel):
 
 
 class SessionStart(BaseModel):
-    book_id: str
+    book_id: Optional[str] = None  # 复习模式可以为空（全局复习）
     mode: str = "review"  # review / new / all
     unit: Optional[str] = None
     limit: int = 20
@@ -148,6 +142,16 @@ class AnswerSubmit(BaseModel):
     word: str
     input: str
     attempt: int
+    book_id: str  # 单词所属词书
+
+
+class SessionComplete(BaseModel):
+    word: str
+    book_id: str
+    correct: bool
+    attempts: int
+    inputs: List[str]
+    skipped: bool = False
 
 
 class ExampleRequest(BaseModel):
@@ -251,6 +255,26 @@ async def register_page(request: Request, db: Session = Depends(get_db)):
     })
 
 
+@app.get("/dictation", response_class=HTMLResponse)
+async def dictation_global_page(request: Request, db: Session = Depends(get_db)):
+    """全局复习页面（不指定词书）"""
+    user = get_current_user(request, db)
+    if not user:
+        return RedirectResponse(url="/login", status_code=302)
+
+    # 获取所有词书（用于显示词书名称）
+    book_ids = book_manager.list_books()
+    books = [{"id": b, "name": get_book_display_name(b)} for b in book_ids]
+
+    return templates.TemplateResponse("dictation.html", {
+        "request": request,
+        "user": user,
+        "book_id": None,  # 全局复习模式
+        "total_words": 0,
+        "books": books
+    })
+
+
 @app.get("/dictation/{book_id}", response_class=HTMLResponse)
 async def dictation_page(request: Request, book_id: str, db: Session = Depends(get_db)):
     """听写练习页面"""
@@ -263,11 +287,16 @@ async def dictation_page(request: Request, book_id: str, db: Session = Depends(g
     if not words:
         raise HTTPException(status_code=404, detail="词书不存在")
 
+    # 获取所有词书（用于显示词书名称）
+    book_ids = book_manager.list_books()
+    books = [{"id": b, "name": get_book_display_name(b)} for b in book_ids]
+
     return templates.TemplateResponse("dictation.html", {
         "request": request,
         "user": user,
         "book_id": book_id,
-        "total_words": len(words)
+        "total_words": len(words),
+        "books": books
     })
 
 
@@ -535,7 +564,48 @@ async def api_session_start(
     user: dict = Depends(require_auth),
     db: Session = Depends(get_db)
 ):
-    """开始学习会话"""
+    """开始学习会话
+
+    复习模式：
+    - book_id 为空时，全局复习所有词书的待复习单词
+    - book_id 指定时，只复习该词书
+
+    学新词模式：
+    - book_id 必须指定
+    """
+    import random
+
+    # 学新词模式必须指定词书
+    if data.mode == "new" and not data.book_id:
+        raise HTTPException(status_code=400, detail="学新词模式必须指定词书")
+
+    now = datetime.utcnow()
+    cards = []
+
+    # 全局复习模式（不指定 book_id）
+    if data.mode == "review" and not data.book_id:
+        # 获取所有待复习的单词（来自所有词书）
+        due_cards = get_due_cards(db, user["id"])  # 全局，已随机化
+
+        for p in due_cards[:data.limit]:
+            # 从词书获取单词详情
+            word_obj = book_manager.get_word(p.book_id, p.word)
+            if word_obj:
+                cards.append({
+                    "word": word_obj.word,
+                    "phonetic": word_obj.phonetic,
+                    "translation": word_obj.translation,
+                    "unit": word_obj.unit,
+                    "book_id": p.book_id,  # 记录词书来源
+                    "is_new": False
+                })
+
+        return {
+            "total": len(cards),
+            "cards": cards
+        }
+
+    # 指定词书的模式
     words = book_manager.load(data.book_id)
     if not words:
         raise HTTPException(status_code=404, detail="词书不存在")
@@ -548,10 +618,6 @@ async def api_session_start(
     progress_list = get_user_progress(db, user["id"], data.book_id)
     progress_map = {p.word: p for p in progress_list}
 
-    # 根据模式筛选单词
-    now = datetime.utcnow()
-    cards = []
-
     for word in words:
         p = progress_map.get(word.word)
 
@@ -563,39 +629,19 @@ async def api_session_start(
                     "phonetic": word.phonetic,
                     "translation": word.translation,
                     "unit": word.unit,
+                    "book_id": data.book_id,
                     "is_new": True
                 })
         elif data.mode == "review":
-            # 复习模式：按 FSRS 算法选择需要复习的单词
-            # 1. 优先选择已到期的单词（due <= now）
-            # 2. 在到期单词中，按可提取性从低到高排序（最容易遗忘的优先）
-            if p:
-                # 计算排序优先级
-                # priority: 越小越优先复习
-                # - 已到期：priority = retrievability (0-1)
-                # - 未到期：priority = 2 + days_until_due (确保排在到期单词后面)
-                priority = 2.0  # 默认：未设置 due 的排在中间
-
-                if p.due:
-                    days_until_due = (p.due - now).total_seconds() / 86400
-                    if days_until_due <= 0:
-                        # 已到期：按可提取性排序（越低越优先）
-                        if p.stability and p.stability > 0 and p.last_review:
-                            elapsed_days = (now - p.last_review).total_seconds() / 86400
-                            priority = retrievability(p.stability, max(0, elapsed_days))
-                        else:
-                            priority = 0.5  # 没有 stability 数据，给中等优先级
-                    else:
-                        # 未到期：排在后面，按剩余天数排序
-                        priority = 2.0 + days_until_due
-
+            # 指定词书的复习模式
+            if p and p.due and p.due <= now.replace(hour=23, minute=59, second=59):
                 cards.append({
                     "word": word.word,
                     "phonetic": word.phonetic,
                     "translation": word.translation,
                     "unit": word.unit,
-                    "is_new": False,
-                    "_priority": priority  # 用于排序
+                    "book_id": data.book_id,
+                    "is_new": False
                 })
         else:
             # all: 所有词
@@ -605,15 +651,13 @@ async def api_session_start(
                 "phonetic": word.phonetic,
                 "translation": word.translation,
                 "unit": word.unit,
+                "book_id": data.book_id,
                 "is_new": is_new
             })
 
-    # 复习模式：按 FSRS 优先级排序
+    # 复习模式：随机顺序（防止顺序记忆）
     if data.mode == "review":
-        cards.sort(key=lambda c: c.get("_priority", 2.0))
-        # 移除内部排序字段（前端不需要）
-        for card in cards:
-            card.pop("_priority", None)
+        random.shuffle(cards)
 
     # 限制数量
     cards = cards[:data.limit]
@@ -627,13 +671,12 @@ async def api_session_start(
 @app.post("/api/session/submit")
 async def api_session_submit(
     data: AnswerSubmit,
-    book_id: str,
     user: dict = Depends(require_auth),
     db: Session = Depends(get_db)
 ):
     """提交答案"""
-    # 获取单词信息
-    word_obj = book_manager.get_word(book_id, data.word)
+    # 获取单词信息（从请求体中的 book_id）
+    word_obj = book_manager.get_word(data.book_id, data.word)
     if not word_obj:
         raise HTTPException(status_code=404, detail="单词不存在")
 
@@ -656,12 +699,7 @@ async def api_session_submit(
 
 @app.post("/api/session/complete")
 async def api_session_complete(
-    book_id: str,
-    word: str,
-    correct: bool,
-    attempts: int,
-    inputs: List[str],
-    skipped: bool = False,
+    data: SessionComplete,
     user: dict = Depends(require_auth),
     db: Session = Depends(get_db)
 ):
@@ -670,12 +708,12 @@ async def api_session_complete(
     from database import get_word_progress
 
     # 使用 dictation.py 的评分函数
-    grade = grade_from_attempts(attempts, correct, skipped)
+    grade = grade_from_attempts(data.attempts, data.correct, data.skipped)
 
     now = datetime.utcnow()
 
     # 获取现有进度
-    progress = get_word_progress(db, user["id"], book_id, word)
+    progress = get_word_progress(db, user["id"], data.book_id, data.word)
 
     if progress:
         # 复习卡：更新现有进度
@@ -701,13 +739,13 @@ async def api_session_complete(
             stability = next_recall_stability(difficulty, progress.stability, r, grade)
             state = 2  # 复习中
 
-        if skipped:
+        if data.skipped:
             lapses += 1
 
     else:
         # 新卡片：使用初始化函数
         reps = 1
-        lapses = 1 if (not correct or skipped) else 0
+        lapses = 1 if (not data.correct or data.skipped) else 0
         difficulty = init_difficulty(grade)
         stability = init_stability(grade)
         state = 1 if grade < 3 else 2
@@ -718,7 +756,7 @@ async def api_session_complete(
 
     # 更新数据库
     update_progress(
-        db, user["id"], book_id, word,
+        db, user["id"], data.book_id, data.word,
         difficulty=difficulty,
         stability=stability,
         state=state,
@@ -729,8 +767,8 @@ async def api_session_complete(
     )
 
     # 添加历史记录
-    result = "skipped" if skipped else ("correct" if correct else "wrong")
-    add_history(db, user["id"], book_id, word, inputs, result, attempts, grade)
+    result = "skipped" if data.skipped else ("correct" if data.correct else "wrong")
+    add_history(db, user["id"], data.book_id, data.word, data.inputs, result, data.attempts, grade)
 
     return {
         "success": True,
@@ -743,97 +781,45 @@ async def api_session_complete(
 # ==================== TTS API ====================
 
 @app.get("/api/tts/{speed}/{word}")
-async def api_tts(speed: str, word: str, user: dict = Depends(require_auth)):
-    """获取单词发音（需要认证）- 使用 Qwen3-TTS"""
-    # 清理单词（只保留字母和空格）
+async def api_tts(speed: str, word: str, voice: Optional[str] = None, user: dict = Depends(require_auth)):
+    """获取单词发音（需要认证）- 统一 TTS 服务"""
     safe_word = "".join(c for c in word if c.isalpha() or c.isspace())
     if not safe_word:
         raise HTTPException(status_code=400, detail="无效的单词")
 
-    # 缓存文件路径（使用 .wav 格式）
-    cache_file = AUDIO_CACHE_DIR / f"{safe_word}_{speed}.wav"
-
-    # 检查缓存
-    if not cache_file.exists():
-        # 优先使用 Qwen3-TTS
-        if QWEN_TTS_AVAILABLE:
-            try:
-                tts = Qwen3TTS()
-                # slow 模式使用较慢语速
-                rate = 0.75 if speed == "slow" else 1.0
-                audio_data = await tts.synthesize(safe_word, language="English", rate=rate)
-                if audio_data:
-                    with open(cache_file, 'wb') as f:
-                        f.write(audio_data)
-                else:
-                    raise Exception("音频生成失败")
-            except Exception as e:
-                raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
-        # 回退到 edge-tts
-        elif TTS_AVAILABLE:
-            cache_file = AUDIO_CACHE_DIR / f"{safe_word}_{speed}.mp3"
-            rate = "-30%" if speed == "slow" else "+0%"
-            try:
-                communicate = edge_tts.Communicate(safe_word, "en-US-JennyNeural", rate=rate)
-                await communicate.save(str(cache_file))
-            except Exception as e:
-                raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
-        else:
-            raise HTTPException(status_code=503, detail="TTS 服务不可用")
-
-    # 根据文件类型返回正确的 MIME 类型
-    media_type = "audio/wav" if str(cache_file).endswith(".wav") else "audio/mpeg"
-    return FileResponse(
-        str(cache_file),
-        media_type=media_type,
-        filename=f"{safe_word}.wav" if str(cache_file).endswith(".wav") else f"{safe_word}.mp3"
-    )
+    result = await tts_service.synthesize(text=safe_word, language="en", speed=speed, voice_id=voice)
+    if not result:
+        raise HTTPException(status_code=503, detail="TTS 服务不可用")
+    return FileResponse(str(result), media_type="audio/mpeg", filename=f"{safe_word}.mp3")
 
 
 @app.get("/api/tts/sentence")
 async def api_tts_sentence(
     sentence: str,
+    voice: Optional[str] = None,
     user: dict = Depends(require_auth)
 ):
-    """
-    获取句子发音（需要认证）- 使用 Qwen3-TTS 智能语调
+    """获取句子发音（需要认证）- 统一 TTS 服务"""
+    result = await tts_service.synthesize(text=sentence, language="en", speed="moderate", voice_id=voice)
+    if not result:
+        raise HTTPException(status_code=503, detail="TTS 服务不可用")
+    return FileResponse(str(result), media_type="audio/mpeg")
 
-    Qwen3-TTS 会根据文本内容（疑问句、感叹句等）自动调整语调
-    """
-    # 优先使用 Qwen3-TTS（智能语调）
-    if QWEN_TTS_AVAILABLE:
-        try:
-            tts = Qwen3TTS()
-            audio_data = await tts.synthesize(sentence)
 
-            if audio_data:
-                return Response(
-                    content=audio_data,
-                    media_type="audio/wav",
-                    headers={"Content-Disposition": "inline; filename=sentence.wav"}
-                )
-            else:
-                raise Exception("音频生成失败")
-        except Exception as e:
-            # 如果 Qwen3-TTS 失败，尝试回退到 edge-tts
-            if TTS_AVAILABLE:
-                pass  # 继续使用 edge-tts
-            else:
-                raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
+@app.get("/api/tts/config")
+async def api_tts_config(user: dict = Depends(require_auth)):
+    """返回当前 TTS 引擎配置信息"""
+    return {
+        "current_engine": tts_service.get_active_engine_name(),
+        "available_engines": tts_service.get_engine_info(),
+        "english_voices": tts_service.get_english_voices(),
+    }
 
-    # 回退到 edge-tts
-    if TTS_AVAILABLE:
-        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
-            tmp_path = tmp.name
 
-        try:
-            communicate = edge_tts.Communicate(sentence, "en-US-JennyNeural", rate="-10%")
-            await communicate.save(tmp_path)
-            return FileResponse(tmp_path, media_type="audio/mpeg")
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
-
-    raise HTTPException(status_code=503, detail="TTS 服务不可用")
+@app.get("/api/tts/voices")
+async def api_tts_voices(user: dict = Depends(require_auth)):
+    """返回可用的英文音色列表"""
+    return {"voices": tts_service.get_english_voices()}
 
 
 # ==================== 阿里云百炼 Qwen API ====================
@@ -893,16 +879,62 @@ async def api_example_sentence(data: ExampleRequest, user: dict = Depends(requir
 
 # ==================== 统计 API ====================
 
+# 注意：固定路径必须放在动态路径之前，否则 "global" 会被当作 book_id
+
+@app.get("/api/stats/global")
+async def api_global_stats(user: dict = Depends(require_auth), db: Session = Depends(get_db)):
+    """获取全局学习统计（跨所有词书）"""
+    stats = get_user_stats(db, user["id"])  # 不传 book_id
+
+    # 获取所有词书的总词数
+    book_ids = book_manager.list_books()  # 返回字符串列表
+    total_words = 0
+    for book_id in book_ids:
+        words = book_manager.load(book_id)
+        if words:
+            total_words += len(words)
+    stats["total_words"] = total_words
+
+    # 获取全局待复习数
+    due_cards = get_due_cards(db, user["id"])  # 不传 book_id = 全局
+    stats["due_today"] = len(due_cards)
+
+    # 获取当前掌握数（从曲线数据获取）
+    from database import get_global_mastered_curve
+    curve_data = get_global_mastered_curve(db, user["id"], days=1)
+    stats["mastered"] = curve_data.get("total", 0)
+
+    return stats
+
+
+@app.get("/api/stats/mastered-curve")
+async def api_mastered_curve(
+    days: int = 7,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取掌握单词数曲线
+
+    Args:
+        days: 统计天数，默认7天，0表示全部
+
+    Returns:
+        {"dates": ["01-20", ...], "counts": [10, ...], "total": 当前总掌握数}
+    """
+    from database import get_global_mastered_curve
+    return get_global_mastered_curve(db, user["id"], days)
+
+
 @app.get("/api/stats/{book_id}")
 async def api_stats(book_id: str, user: dict = Depends(require_auth), db: Session = Depends(get_db)):
-    """获取学习统计"""
+    """获取学习统计（指定词书）"""
     stats = get_user_stats(db, user["id"], book_id)
 
     # 获取词书总词数
     words = book_manager.load(book_id)
     stats["total_words"] = len(words) if words else 0
 
-    # 获取今日待复习数
+    # 获取今日待复习数（该词书）
     due_cards = get_due_cards(db, user["id"], book_id)
     stats["due_today"] = len(due_cards)
 
@@ -1285,53 +1317,11 @@ async def api_pronunciation_assess(
 
 @app.get("/api/pronunciation/feedback-audio")
 async def api_pronunciation_feedback_audio(text: str):
-    """
-    生成中文反馈语音 - 使用 Qwen3-TTS
-    """
-    import hashlib
-
-    # 缓存策略：根据文本内容生成缓存 key
-    cache_key = hashlib.md5(text.encode()).hexdigest()[:10]
-
-    # 优先使用 Qwen3-TTS
-    if QWEN_TTS_AVAILABLE:
-        cache_file = AUDIO_CACHE_DIR / f"feedback_zh_{cache_key}.wav"
-
-        if not cache_file.exists():
-            try:
-                tts = Qwen3TTS()
-                audio_data = await tts.synthesize(text, language="Chinese")
-                if audio_data:
-                    with open(cache_file, 'wb') as f:
-                        f.write(audio_data)
-                else:
-                    raise Exception("音频生成失败")
-            except Exception as e:
-                # 回退到 edge-tts
-                if TTS_AVAILABLE:
-                    cache_file = AUDIO_CACHE_DIR / f"feedback_zh_{cache_key}.mp3"
-                    communicate = edge_tts.Communicate(text, "zh-CN-XiaoxiaoNeural")
-                    await communicate.save(str(cache_file))
-                else:
-                    raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
-
-        media_type = "audio/wav" if str(cache_file).endswith(".wav") else "audio/mpeg"
-        return FileResponse(str(cache_file), media_type=media_type)
-
-    # 回退到 edge-tts
-    if TTS_AVAILABLE:
-        cache_file = AUDIO_CACHE_DIR / f"feedback_zh_{cache_key}.mp3"
-
-        if not cache_file.exists():
-            try:
-                communicate = edge_tts.Communicate(text, "zh-CN-XiaoxiaoNeural")
-                await communicate.save(str(cache_file))
-            except Exception as e:
-                raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
-
-        return FileResponse(str(cache_file), media_type="audio/mpeg")
-
-    raise HTTPException(status_code=503, detail="TTS 服务不可用")
+    """生成中文反馈语音 - 统一 TTS 服务"""
+    result = await tts_service.synthesize(text=text, language="zh", speed="normal")
+    if not result:
+        raise HTTPException(status_code=503, detail="TTS 服务不可用")
+    return FileResponse(str(result), media_type="audio/mpeg")
 
 
 @app.get("/api/pronunciation/stats")
@@ -1708,59 +1698,15 @@ async def api_reading_feedback(
 
 @app.get("/api/tts/chinese")
 async def api_tts_chinese(text: str, user: dict = Depends(require_auth)):
-    """
-    生成中文语音（需要认证）- 使用 Qwen3-TTS
-
-    用于播放中文评价反馈
-    """
-    import hashlib
-
-    # 缓存策略
-    cache_key = hashlib.md5(text.encode()).hexdigest()[:12]
-
-    # 优先使用 Qwen3-TTS
-    if QWEN_TTS_AVAILABLE:
-        cache_file = AUDIO_CACHE_DIR / f"zh_{cache_key}.wav"
-
-        if not cache_file.exists():
-            try:
-                tts = Qwen3TTS()
-                audio_data = await tts.synthesize(text, language="Chinese")
-                if audio_data:
-                    with open(cache_file, 'wb') as f:
-                        f.write(audio_data)
-                else:
-                    raise Exception("音频生成失败")
-            except Exception as e:
-                # 回退到 edge-tts
-                if TTS_AVAILABLE:
-                    cache_file = AUDIO_CACHE_DIR / f"zh_{cache_key}.mp3"
-                    communicate = edge_tts.Communicate(text, "zh-CN-XiaoxiaoNeural")
-                    await communicate.save(str(cache_file))
-                else:
-                    raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
-
-        media_type = "audio/wav" if str(cache_file).endswith(".wav") else "audio/mpeg"
-        return FileResponse(str(cache_file), media_type=media_type)
-
-    # 回退到 edge-tts
-    if TTS_AVAILABLE:
-        cache_file = AUDIO_CACHE_DIR / f"zh_{cache_key}.mp3"
-
-        if not cache_file.exists():
-            try:
-                communicate = edge_tts.Communicate(text, "zh-CN-XiaoxiaoNeural")
-                await communicate.save(str(cache_file))
-            except Exception as e:
-                raise HTTPException(status_code=500, detail=f"TTS 生成失败: {e}")
-
-        return FileResponse(str(cache_file), media_type="audio/mpeg")
-
-    raise HTTPException(status_code=503, detail="TTS 服务不可用")
+    """生成中文语音（需要认证）- 统一 TTS 服务"""
+    result = await tts_service.synthesize(text=text, language="zh", speed="normal")
+    if not result:
+        raise HTTPException(status_code=503, detail="TTS 服务不可用")
+    return FileResponse(str(result), media_type="audio/mpeg")
 
 
 # ==================== 启动 ====================
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)

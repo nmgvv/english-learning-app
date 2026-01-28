@@ -406,16 +406,35 @@ def update_progress(db: Session, user_id: int, book_id: str, word: str,
     return progress
 
 
-def get_due_cards(db: Session, user_id: int, book_id: str) -> List[Progress]:
-    """获取今日待复习的单词（以今日23:59:59为截止时间）"""
+def get_due_cards(db: Session, user_id: int, book_id: str = None) -> List[Progress]:
+    """获取今日待复习的单词（全局或指定词书）
+
+    Args:
+        user_id: 用户ID
+        book_id: 词书ID，如果为 None 则获取所有词书的待复习单词
+
+    Returns:
+        随机顺序的待复习单词列表（防止顺序记忆）
+    """
+    import random
     now = datetime.utcnow()
     # 计算今日结束时间（23:59:59），避免复习过程中数量增加
     end_of_today = now.replace(hour=23, minute=59, second=59, microsecond=999999)
-    return db.query(Progress).filter(
+
+    query = db.query(Progress).filter(
         Progress.user_id == user_id,
-        Progress.book_id == book_id,
         Progress.due <= end_of_today
-    ).all()
+    )
+
+    # 如果指定了词书，则过滤
+    if book_id:
+        query = query.filter(Progress.book_id == book_id)
+
+    cards = query.all()
+
+    # 随机打乱顺序，防止顺序记忆
+    random.shuffle(cards)
+    return cards
 
 
 # ==================== 历史记录操作 ====================
@@ -480,6 +499,116 @@ def get_user_stats(db: Session, user_id: int, book_id: str = None) -> dict:
         "skipped": skipped,
         "accuracy": round(correct / total * 100, 1) if total > 0 else 0,
         "words_learned": words_learned
+    }
+
+
+def get_global_mastered_curve(db: Session, user_id: int, days: int = 7) -> dict:
+    """获取全局掌握单词数曲线（跨所有词书）
+
+    掌握定义：
+    - 一次答对(attempts=1, result=correct) → 计入掌握
+    - 答错(result=wrong) → 从掌握中移除
+
+    Args:
+        user_id: 用户ID
+        days: 统计天数，0 表示全部
+
+    Returns:
+        {"dates": ["01-20", ...], "counts": [10, ...], "total": 当前总掌握数}
+    """
+    from datetime import timedelta
+    from collections import defaultdict
+
+    # 查询用户所有历史记录，按时间排序
+    query = db.query(History).filter(
+        History.user_id == user_id
+    ).order_by(History.time.asc())
+
+    records = query.all()
+
+    if not records:
+        return {"dates": [], "counts": [], "total": 0}
+
+    # 使用集合跟踪当前掌握的单词
+    mastered_words = set()
+    # 每日掌握数记录
+    daily_counts = defaultdict(int)
+
+    for record in records:
+        word = record.word
+        result = record.result
+        attempts = record.attempts
+        date_str = record.time.strftime("%m-%d")
+
+        # 一次答对 → 加入掌握
+        if result == "correct" and attempts == 1:
+            mastered_words.add(word)
+        # 答错 → 移出掌握
+        elif result == "wrong":
+            mastered_words.discard(word)
+
+        # 记录当天结束时的掌握数
+        daily_counts[date_str] = len(mastered_words)
+
+    # 过滤时间范围
+    if days > 0:
+        end_date = datetime.utcnow().date()
+        start_date = end_date - timedelta(days=days - 1)
+
+        filtered_dates = []
+        filtered_counts = []
+
+        # 生成连续日期
+        current_date = start_date
+        last_count = 0
+
+        # 找到 start_date 之前的最后一个掌握数作为基准
+        for record in records:
+            if record.time.date() < start_date:
+                word = record.word
+                result = record.result
+                attempts = record.attempts
+                if result == "correct" and attempts == 1:
+                    mastered_words.add(word)
+                elif result == "wrong":
+                    mastered_words.discard(word)
+        last_count = len(mastered_words)
+
+        # 重新计算指定日期范围内的数据
+        mastered_in_range = mastered_words.copy()
+        for record in records:
+            if record.time.date() >= start_date:
+                word = record.word
+                result = record.result
+                attempts = record.attempts
+                if result == "correct" and attempts == 1:
+                    mastered_in_range.add(word)
+                elif result == "wrong":
+                    mastered_in_range.discard(word)
+                daily_counts[record.time.strftime("%m-%d")] = len(mastered_in_range)
+
+        while current_date <= end_date:
+            date_str = current_date.strftime("%m-%d")
+            if date_str in daily_counts:
+                last_count = daily_counts[date_str]
+            filtered_dates.append(date_str)
+            filtered_counts.append(last_count)
+            current_date += timedelta(days=1)
+
+        return {
+            "dates": filtered_dates,
+            "counts": filtered_counts,
+            "total": len(mastered_words)
+        }
+
+    # 全部数据
+    dates = list(daily_counts.keys())
+    counts = list(daily_counts.values())
+
+    return {
+        "dates": dates,
+        "counts": counts,
+        "total": len(mastered_words)
     }
 
 

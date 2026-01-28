@@ -34,7 +34,6 @@ import os
 import sys
 import argparse
 import asyncio
-import tempfile
 from datetime import datetime, timedelta
 from dataclasses import dataclass, field, asdict
 from typing import List, Optional, Dict
@@ -60,15 +59,7 @@ except ImportError:
 PROJECT_ROOT = Path(__file__).parent
 DEFAULT_BOOK = "bsd_grade7_up"
 
-# TTS
-try:
-    import edge_tts
-    TTS_AVAILABLE = True
-except ImportError:
-    TTS_AVAILABLE = False
-
-# Qwen3-TTS（优先使用）
-QWEN_TTS_AVAILABLE = bool(os.getenv("DASHSCOPE_API_KEY"))
+# TTS（使用统一 tts 模块）
 
 # FSRS 参数
 FSRS_W = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61]
@@ -451,129 +442,29 @@ def get_error_hint(correct: str, user_input: str) -> str:
         return "错误"
 
 
-async def speak_word(word: str, voice: str = "en-US-JennyNeural"):
-    """播放单词发音 - 优先使用 Qwen3-TTS"""
-    # 优先使用 Qwen3-TTS
-    if QWEN_TTS_AVAILABLE:
-        try:
-            from speech import Qwen3TTS
-            tts = Qwen3TTS()
-            audio_data = await tts.synthesize(word, language="English")
-
-            if audio_data:
-                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-                    tmp_path = tmp.name
-                    tmp.write(audio_data)
-
-                os.system(f'afplay "{tmp_path}" 2>/dev/null')
-                os.unlink(tmp_path)
-                return
-        except Exception as e:
-            pass  # 回退到 edge-tts
-
-    # 回退到 edge-tts
-    if TTS_AVAILABLE:
-        try:
-            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
-                tmp_path = tmp.name
-
-            communicate = edge_tts.Communicate(word, voice)
-            await communicate.save(tmp_path)
-
-            os.system(f'afplay "{tmp_path}" 2>/dev/null')
-            os.unlink(tmp_path)
-        except Exception as e:
-            pass
+async def _tts_synthesize_and_play(text: str, speed: str = "normal"):
+    """使用统一 TTS 模块合成并通过 afplay 播放（CLI 模式专用）"""
+    from tts import TTSService
+    cache_dir = PROJECT_ROOT / "static" / "audio"
+    service = TTSService(cache_dir)
+    result = await service.synthesize(text=text, language="en", speed=speed)
+    if result:
+        os.system(f'afplay "{result}" 2>/dev/null')
 
 
 def play_word(word: str):
-    """同步播放单词"""
-    if QWEN_TTS_AVAILABLE or TTS_AVAILABLE:
-        asyncio.run(speak_word(word))
-
-
-async def speak_word_slow(word: str, voice: str = "en-US-JennyNeural"):
-    """慢速播放单词发音 - 优先使用 Qwen3-TTS"""
-    # 优先使用 Qwen3-TTS
-    if QWEN_TTS_AVAILABLE:
-        try:
-            from speech import Qwen3TTS
-            tts = Qwen3TTS()
-            # Qwen3-TTS 会根据文本自动调整语调
-            audio_data = await tts.synthesize(word, language="English")
-
-            if audio_data:
-                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-                    tmp_path = tmp.name
-                    tmp.write(audio_data)
-
-                os.system(f'afplay "{tmp_path}" 2>/dev/null')
-                os.unlink(tmp_path)
-                return
-        except Exception as e:
-            pass
-
-    # 回退到 edge-tts
-    if TTS_AVAILABLE:
-        try:
-            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
-                tmp_path = tmp.name
-
-            communicate = edge_tts.Communicate(word, voice, rate="-30%")
-            await communicate.save(tmp_path)
-
-            os.system(f'afplay "{tmp_path}" 2>/dev/null')
-            os.unlink(tmp_path)
-        except Exception as e:
-            pass
+    """同步播放单词（CLI 模式）"""
+    asyncio.run(_tts_synthesize_and_play(word, "normal"))
 
 
 def play_word_slow(word: str):
-    """同步慢速播放单词"""
-    if QWEN_TTS_AVAILABLE or TTS_AVAILABLE:
-        asyncio.run(speak_word_slow(word))
-
-
-async def speak_sentence(sentence: str, voice: str = "en-US-JennyNeural"):
-    """播放句子 - 优先使用 Qwen3-TTS（智能语调）"""
-    # 优先使用 Qwen3-TTS（智能语调）
-    if QWEN_TTS_AVAILABLE:
-        try:
-            from speech import Qwen3TTS
-            tts = Qwen3TTS()
-            # Qwen3-TTS 会根据文本内容（疑问句、感叹句等）自动调整语调
-            audio_data = await tts.synthesize(sentence, language="English")
-
-            if audio_data:
-                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-                    tmp_path = tmp.name
-                    tmp.write(audio_data)
-
-                os.system(f'afplay "{tmp_path}" 2>/dev/null')
-                os.unlink(tmp_path)
-                return
-        except Exception as e:
-            pass
-
-    # 回退到 edge-tts
-    if TTS_AVAILABLE:
-        try:
-            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
-                tmp_path = tmp.name
-
-            communicate = edge_tts.Communicate(sentence, voice, rate="-10%")
-            await communicate.save(tmp_path)
-
-            os.system(f'afplay "{tmp_path}" 2>/dev/null')
-            os.unlink(tmp_path)
-        except Exception as e:
-            pass
+    """同步慢速播放单词（CLI 模式）"""
+    asyncio.run(_tts_synthesize_and_play(word, "slow"))
 
 
 def play_sentence(sentence: str):
-    """同步播放句子"""
-    if QWEN_TTS_AVAILABLE or TTS_AVAILABLE:
-        asyncio.run(speak_sentence(sentence))
+    """同步播放句子（CLI 模式）"""
+    asyncio.run(_tts_synthesize_and_play(sentence, "moderate"))
 
 
 # ==================== 阿里云百炼 Qwen API ====================

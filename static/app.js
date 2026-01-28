@@ -42,46 +42,6 @@ async function apiPost(url, data) {
     });
 }
 
-// ==================== 音频播放 ====================
-
-// 全局音频播放器实例
-let globalAudioPlayer = null;
-
-/**
- * 播放音频
- */
-function playAudio(url) {
-    if (globalAudioPlayer) {
-        globalAudioPlayer.unload();
-    }
-
-    globalAudioPlayer = new Howl({
-        src: [url],
-        format: ['mp3'],
-        onloaderror: (id, err) => {
-            console.error('音频加载失败:', err);
-        }
-    });
-
-    globalAudioPlayer.play();
-}
-
-/**
- * 播放单词发音
- */
-function playWord(word, speed = 'normal') {
-    const url = `/api/tts/${speed}/${encodeURIComponent(word)}`;
-    playAudio(url);
-}
-
-/**
- * 播放句子
- */
-function playSentence(sentence) {
-    const url = `/api/tts/sentence?sentence=${encodeURIComponent(sentence)}`;
-    playAudio(url);
-}
-
 // ==================== 移动端适配 ====================
 
 /**
@@ -134,6 +94,35 @@ function loadLocal(key, defaultValue = null) {
     }
 }
 
+// ==================== 翻译分层显示 ====================
+
+/**
+ * 将翻译拆分为主要释义和扩展释义
+ * 扩展释义：包含 [法]、[医]、[化]、[计]、[网络]、[建]、[经] 等专业领域标注的部分
+ * 返回 { main: string, extended: string }
+ */
+function splitTranslation(translation) {
+    if (!translation) return { main: '', extended: '' };
+
+    const parts = translation.split('；');
+    const mainParts = [];
+    const extParts = [];
+
+    for (const part of parts) {
+        const trimmed = part.trim();
+        if (/^\[.+?\]/.test(trimmed)) {
+            extParts.push(trimmed);
+        } else {
+            mainParts.push(trimmed);
+        }
+    }
+
+    return {
+        main: mainParts.join('；'),
+        extended: extParts.join('；')
+    };
+}
+
 // ==================== 初始化 ====================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -145,9 +134,7 @@ window.app = {
     api,
     apiGet,
     apiPost,
-    playAudio,
-    playWord,
-    playSentence,
     saveLocal,
-    loadLocal
+    loadLocal,
+    splitTranslation
 };

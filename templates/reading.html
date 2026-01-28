@@ -20,7 +20,23 @@
                 <span class="font-medium text-slate-100">跟读练习</span>
                 <div class="text-xs text-slate-400" x-text="bookName"></div>
             </div>
-            <div class="w-6"></div>
+            <!-- 音色选择 -->
+            <div class="relative" x-data="{ open: false }">
+                <button @click="open = !open" class="text-slate-400 hover:text-slate-200 flex items-center gap-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707A1 1 0 0112 5.586v12.828a1 1 0 01-1.707.707L5.586 15z"/>
+                    </svg>
+                </button>
+                <div x-show="open" @click.away="open = false" x-cloak
+                     class="absolute right-0 mt-2 w-32 bg-slate-800 border border-slate-700 rounded-lg shadow-xl z-50 py-1">
+                    <template x-for="v in TTS.voices" :key="v.id">
+                        <button @click="TTS.setVoice(v.id); open = false"
+                                :class="TTS.getVoice() === v.id ? 'text-sky-400 bg-slate-700/50' : 'text-slate-300 hover:bg-slate-700/30'"
+                                class="w-full text-left px-3 py-1.5 text-sm"
+                                x-text="v.label"></button>
+                    </template>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -714,7 +730,6 @@ function readingPage() {
 
         // 录音相关
         recorder: null,
-        audioPlayer: null,
         recordingStartTime: null,
         recordingDuration: '0:00',
         recordingTimer: null,
@@ -801,32 +816,15 @@ function readingPage() {
             if (!text || this.isPlaying) return;
 
             this.isPlaying = true;
-
             try {
-                const url = lang === 'zh'
-                    ? `/api/tts/chinese?text=${encodeURIComponent(text)}`
-                    : `/api/tts/sentence?sentence=${encodeURIComponent(text)}`;
-
-                if (this.audioPlayer) {
-                    this.audioPlayer.unload();
+                if (lang === 'zh') {
+                    await TTS.playChinese(text);
+                } else {
+                    await TTS.playSentence(text);
                 }
-
-                this.audioPlayer = new Howl({
-                    src: [url],
-                    format: ['mp3'],
-                    onend: () => {
-                        this.isPlaying = false;
-                    },
-                    onloaderror: (id, err) => {
-                        console.error('TTS 加载失败:', err);
-                        this.isPlaying = false;
-                    }
-                });
-
-                this.audioPlayer.play();
-
             } catch (e) {
                 console.error('TTS 播放失败:', e);
+            } finally {
                 this.isPlaying = false;
             }
         },
@@ -859,22 +857,11 @@ function readingPage() {
             if (this.isPlaying || !this.passage) return;
 
             this.isPlaying = true;
-
             try {
-                // 使用句子 TTS API 播放整篇短文
-                const url = `/api/tts/sentence?sentence=${encodeURIComponent(this.passage)}`;
-                const howl = new Howl({
-                    src: [url],
-                    format: ['mp3'],
-                    onend: () => { this.isPlaying = false; },
-                    onloaderror: () => {
-                        console.error('音频加载失败');
-                        this.isPlaying = false;
-                    }
-                });
-                howl.play();
+                await TTS.playSentence(this.passage);
             } catch (e) {
                 console.error('播放失败:', e);
+            } finally {
                 this.isPlaying = false;
             }
         },
@@ -1291,21 +1278,17 @@ function readingPage() {
 
             this.isPlaying = true;
 
-            // 优先使用缓存的音频
+            // 优先使用预加载缓存的音频
             const cachedHowl = this.practiceWordAudioCache[word];
             if (cachedHowl && cachedHowl.state() === 'loaded') {
-                // 停止当前播放但不销毁缓存
-                if (this.audioPlayer && this.audioPlayer !== cachedHowl) {
-                    this.audioPlayer.stop();
-                }
+                TTS.stop();  // 停止统一 TTS 播放器
                 cachedHowl.off('end');
                 cachedHowl.on('end', () => {
                     this.isPlaying = false;
                 });
                 cachedHowl.play();
-                this.audioPlayer = cachedHowl;
             } else {
-                // 缓存未命中或未加载完成，使用原有方法
+                // 缓存未命中，使用统一 TTS 模块
                 await this.playTTS(word, 'en');
             }
         },
@@ -1422,9 +1405,7 @@ function readingPage() {
             if (this.recordingTimer) {
                 clearInterval(this.recordingTimer);
             }
-            if (this.audioPlayer) {
-                this.audioPlayer.unload();
-            }
+            TTS.stop();
 
             window.location.href = '/';
         }

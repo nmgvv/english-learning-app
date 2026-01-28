@@ -41,14 +41,30 @@ class ConversationManager:
         """检查服务是否可用"""
         return bool(self.api_key)
 
-    async def _call_qwen(self, system_prompt: str, user_prompt: str) -> dict:
-        """调用阿里云百炼 Qwen-Plus API"""
+    async def _call_qwen(self, system_prompt: str, user_prompt: str, history: List[Dict] = None) -> dict:
+        """调用阿里云百炼 Qwen-Plus API
+
+        Args:
+            system_prompt: 系统提示
+            user_prompt: 用户提示
+            history: 对话历史 [{"role": "user/assistant", "content": "..."}, ...]
+        """
         if not self.is_available():
             raise Exception("阿里云百炼 API 未配置")
 
         # 清除代理环境变量
         for key in ['http_proxy', 'https_proxy', 'HTTP_PROXY', 'HTTPS_PROXY', 'all_proxy', 'ALL_PROXY']:
             os.environ.pop(key, None)
+
+        # 构建消息列表
+        messages = [{"role": "system", "content": system_prompt}]
+
+        # 添加对话历史
+        if history:
+            messages.extend(history)
+
+        # 添加当前用户消息
+        messages.append({"role": "user", "content": user_prompt})
 
         async with httpx.AsyncClient(proxy=None, timeout=30.0) as client:
             response = await client.post(
@@ -59,10 +75,7 @@ class ConversationManager:
                 },
                 json={
                     "model": self.model,
-                    "messages": [
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt}
-                    ],
+                    "messages": messages,
                     "temperature": 0.7,
                     "max_tokens": 500
                 }
@@ -105,7 +118,8 @@ class ConversationManager:
                 "question": "英文问题",
                 "question_chinese": "问题中文翻译",
                 "target_words": ["单词1", "单词2"],
-                "total_rounds": 总轮数
+                "total_rounds": 总轮数,
+                "scenario": "场景描述"
             }
         """
         conversation_id = str(uuid.uuid4())
@@ -133,30 +147,52 @@ class ConversationManager:
             complexity = "稍有挑战"
             sentence_limit = "15词以内"
 
+        # 设计连贯的情景对话
         system_prompt = f"""你是一位友好的英语老师，正在和一位中国初中生进行英语对话练习。
-你需要用给定的单词设计一个{complexity}的对话场景（{total_rounds}轮），引导学生使用这些单词。
+
+重要要求：
+1. 你需要设计一个**连贯的情景对话**，而不是独立的问答
+2. 整个对话应该围绕一个具体场景展开（如：去图书馆、周末计划、介绍家人等）
+3. 每轮对话要自然衔接，像真实聊天一样
+4. 引导学生在对话中自然地使用目标单词
+5. 对话复杂度：{complexity}，句子长度：{sentence_limit}
+6. 总共 {total_rounds} 轮对话
+
 回复必须使用 JSON 格式。"""
 
         user_prompt = f"""学生刚学习了以下 {len(limited_words)} 个单词：
 {words_text}
 
-请开始对话。要求：
-1. 先用中文打招呼，鼓励学生（1-2句话）
-2. 然后用简单英语提出第一个问题（{sentence_limit}）
-3. 问题要贴近初中生生活
-4. 选择2-3个目标单词供本轮使用
+请开始一个连贯的情景对话。要求：
+1. 先设计一个贴近初中生生活的对话场景（如：讨论周末、介绍爱好、学校生活等）
+2. 用中文简短介绍场景和打招呼（2-3句话）
+3. 然后用简单英语开始对话的第一句（{sentence_limit}），自然地开启话题
+4. 选择2-3个本轮希望学生使用的目标单词
 
 返回 JSON：
-{{"greeting": "中文开场白", "question": "英文问题", "question_chinese": "问题中文翻译", "target_words": ["单词1", "单词2"]}}"""
+{{
+    "scenario": "场景描述（中文，如：你们正在讨论周末的计划）",
+    "greeting": "中文开场白（介绍场景并鼓励学生）",
+    "question": "英文开场对话（自然、口语化）",
+    "question_chinese": "对话的中文翻译",
+    "target_words": ["单词1", "单词2"]
+}}"""
 
         result = await self._call_qwen(system_prompt, user_prompt)
 
-        # 保存对话状态
+        # 保存对话状态，包括 LLM 消息历史用于连续对话
         self.conversations[conversation_id] = {
             "words": limited_words,
+            "words_text": words_text,
+            "complexity": complexity,
+            "sentence_limit": sentence_limit,
             "round": 1,
             "total_rounds": total_rounds,
-            "history": [],
+            "scenario": result.get("scenario", ""),
+            "history": [],  # 学生回复历史
+            "llm_history": [  # LLM 对话历史（用于保持上下文）
+                {"role": "assistant", "content": json.dumps(result, ensure_ascii=False)}
+            ],
             "words_used": set(),
             "all_target_words": result.get("target_words", [])
         }
@@ -172,7 +208,7 @@ class ConversationManager:
         target_words: List[str]
     ) -> Dict:
         """
-        评估学生回复
+        评估学生回复并继续对话
 
         Args:
             conversation_id: 对话 ID
@@ -182,11 +218,10 @@ class ConversationManager:
         Returns:
             {
                 "words_used": ["使用的单词"],
-                "feedback": "英文反馈",
-                "feedback_chinese": "中文反馈",
+                "feedback": "中文反馈",
                 "correction": "语法纠正（如有）",
-                "next_question": "下一个问题（如未完成）",
-                "next_question_chinese": "问题中文",
+                "response": "老师的英文回应（继续对话）",
+                "response_chinese": "回应的中文翻译",
                 "next_target_words": ["下轮单词"],
                 "round": 当前轮数,
                 "total_rounds": 总轮数,
@@ -199,12 +234,15 @@ class ConversationManager:
 
         current_round = conv["round"]
         total_rounds = conv["total_rounds"]
+        scenario = conv.get("scenario", "")
+        complexity = conv.get("complexity", "简单")
+        sentence_limit = conv.get("sentence_limit", "10词以内")
 
         # 检查哪些目标单词被使用
         words_used = [w for w in target_words if w.lower() in user_input.lower()]
         conv["words_used"].update(words_used)
 
-        # 记录历史
+        # 记录学生回复历史
         conv["history"].append({
             "round": current_round,
             "input": user_input,
@@ -212,55 +250,104 @@ class ConversationManager:
             "words_used": words_used
         })
 
-        is_complete = current_round >= total_rounds
+        # 添加学生回复到 LLM 历史
+        conv["llm_history"].append({
+            "role": "user",
+            "content": f"学生回复：{user_input}"
+        })
 
-        system_prompt = """你是一位友好的英语老师，正在评估中国初中生的英语口语回复。
-请用鼓励的语气给出反馈，指出用得好的地方，温和地纠正错误。
-重要：反馈内容使用中文为主，方便学生理解。如果有语法纠正，用中英对照的方式说明。
-回复必须使用 JSON 格式。"""
+        is_complete = current_round >= total_rounds
 
         # 获取剩余未使用的单词
         used_lower = {w.lower() for w in conv["words_used"]}
         remaining_words = [w["word"] for w in conv["words"]
                           if w["word"].lower() not in used_lower]
 
+        # 系统提示强调连贯对话和发音混淆检测
+        system_prompt = f"""你是一位友好的英语老师，正在和一位中国初中生进行连贯的情景对话练习。
+
+对话场景：{scenario}
+对话复杂度：{complexity}
+句子长度限制：{sentence_limit}
+
+重要要求：
+1. 你的回复要**自然衔接学生的话**，像真实聊天一样继续对话
+2. **绝对不能重复问同一个问题！** 即使学生没有正确使用目标单词，也要继续推进对话，问一个新的相关问题
+3. 反馈要简短、鼓励性的
+4. 如果学生语法有错误，在 correction 中指出，但回应中要继续新话题，不要纠缠同一个问题
+5. **发音混淆检测**：学生的回复来自语音识别，可能存在发音相近的词被错误识别的情况（如 sun/son, their/there, to/too/two 等）。如果你发现句子中某个词在语境下不合理，但换成发音相近的另一个词就合理了，请在 pronunciation_issue 中指出
+6. 回复必须使用 JSON 格式"""
+
         if is_complete:
-            user_prompt = f"""学生回复："{user_input}"
-目标单词：{target_words}
-当前第 {current_round}/{total_rounds} 轮
-这是最后一轮
+            user_prompt = f"""学生刚才说："{user_input}"
+本轮目标单词：{target_words}
+当前第 {current_round}/{total_rounds} 轮（最后一轮）
 
-请评估回复并总结对话。
+请：
+1. 对学生的回复做出自然的回应，结束这段对话
+2. 给出简短的中文反馈
+3. 检查是否有发音混淆（如学生说的某个词在语境下不合理，可能是识别错误）
 
 返回 JSON：
 {{
     "words_used": ["学生使用的目标单词"],
-    "feedback": "中文反馈（鼓励性的评价，如：说得很好！你正确使用了xxx单词）",
-    "feedback_chinese": "同上，保持一致",
-    "correction": "语法纠正（中英对照，如：'建议改成 xxx，因为...'）或 null",
+    "feedback": "简短中文反馈（如：很好！/说得不错！）",
+    "correction": "语法纠正（如有问题才填，否则为 null）",
+    "response": "英文回应（自然地结束对话，如：That sounds great! Have a nice weekend!）",
+    "response_chinese": "回应的中文翻译",
+    "pronunciation_issue": {{
+        "detected": false,
+        "original_word": "识别出的词",
+        "suggested_word": "可能想说的词",
+        "reason": "为什么认为是发音混淆"
+    }},
     "is_complete": true
-}}"""
+}}
+注意：pronunciation_issue.detected 为 false 时，其他字段可省略"""
         else:
-            user_prompt = f"""学生回复："{user_input}"
-目标单词：{target_words}
+            user_prompt = f"""学生刚才说："{user_input}"
+本轮目标单词：{target_words}
 当前第 {current_round}/{total_rounds} 轮
-剩余单词：{remaining_words[:6]}
+还可以引导使用的单词：{remaining_words[:6]}
 
-请评估回复并提出下一个问题。
+请：
+1. 对学生的回复做出自然的回应（不是评价，而是像朋友聊天一样接话）
+2. **必须问一个新问题**，绝对不能重复之前问过的问题！即使学生没有正确使用目标单词也要继续推进对话
+3. 选择2-3个下轮目标单词
+4. 检查是否有发音混淆（如学生说的某个词在语境下不合理，可能是识别错误）
 
 返回 JSON：
 {{
     "words_used": ["学生使用的目标单词"],
-    "feedback": "中文反馈（鼓励性的评价，如：说得很好！你正确使用了xxx单词）",
-    "feedback_chinese": "同上，保持一致",
-    "correction": "语法纠正（中英对照，如：'建议改成 xxx，因为...'）或 null",
-    "next_question": "下一个英文问题（简单，10词以内）",
-    "next_question_chinese": "问题的中文翻译",
+    "feedback": "简短中文反馈（如：很好！/说得不错！）",
+    "correction": "语法纠正（如有问题才填，否则为 null）",
+    "response": "英文回应（自然接话+新问题，不能重复之前的问题！）",
+    "response_chinese": "回应的中文翻译",
     "next_target_words": ["下轮目标单词"],
+    "pronunciation_issue": {{
+        "detected": false,
+        "original_word": "识别出的词",
+        "suggested_word": "可能想说的词",
+        "reason": "为什么认为是发音混淆"
+    }},
     "is_complete": false
-}}"""
+}}
+注意：pronunciation_issue.detected 为 false 时，其他字段可省略"""
 
-        result = await self._call_qwen(system_prompt, user_prompt)
+        # 调用 LLM，传递对话历史以保持上下文
+        result = await self._call_qwen(system_prompt, user_prompt, conv["llm_history"])
+
+        # 兼容处理：如果 LLM 返回旧格式 next_question，映射为新格式 response
+        if "next_question" in result and "response" not in result:
+            result["response"] = result["next_question"]
+            result["response_chinese"] = result.get("next_question_chinese", "")
+
+        # 保存 LLM 回复到历史
+        conv["llm_history"].append({
+            "role": "assistant",
+            "content": json.dumps(result, ensure_ascii=False)
+        })
+
         result["round"] = current_round + 1
         result["total_rounds"] = total_rounds
         result["is_complete"] = is_complete

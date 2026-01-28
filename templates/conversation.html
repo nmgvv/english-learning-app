@@ -22,7 +22,23 @@
                     第 <span x-text="currentRound"></span> / <span x-text="totalRounds"></span> 轮
                 </div>
             </div>
-            <div class="w-6"></div>
+            <!-- 音色选择 -->
+            <div class="relative" x-data="{ open: false }">
+                <button @click="open = !open" class="text-slate-400 hover:text-slate-200 flex items-center gap-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707A1 1 0 0112 5.586v12.828a1 1 0 01-1.707.707L5.586 15z"/>
+                    </svg>
+                </button>
+                <div x-show="open" @click.away="open = false" x-cloak
+                     class="absolute right-0 mt-2 w-32 bg-slate-800 border border-slate-700 rounded-lg shadow-xl z-50 py-1">
+                    <template x-for="v in TTS.voices" :key="v.id">
+                        <button @click="TTS.setVoice(v.id); open = false"
+                                :class="TTS.getVoice() === v.id ? 'text-sky-400 bg-slate-700/50' : 'text-slate-300 hover:bg-slate-700/30'"
+                                class="w-full text-left px-3 py-1.5 text-sm"
+                                x-text="v.label"></button>
+                    </template>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -139,6 +155,44 @@
         </div>
     </main>
 
+    <!-- 发音纠正对话框 -->
+    <div x-show="showPronunciationFix" x-cloak
+         class="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100">
+        <div class="bg-slate-800 rounded-2xl p-6 max-w-sm w-full border border-slate-700 transform"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="scale-95"
+             x-transition:enter-end="scale-100">
+            <div class="text-3xl text-center mb-3">🎤</div>
+            <h2 class="text-lg font-bold text-slate-100 text-center mb-2">发音确认</h2>
+            <p class="text-slate-400 text-sm text-center mb-4" x-text="pronunciationIssue.reason"></p>
+
+            <div class="bg-slate-700/50 rounded-xl p-4 mb-4">
+                <div class="text-slate-400 text-sm mb-2">语音识别结果：</div>
+                <div class="text-slate-200 font-medium" x-text="pronunciationIssue.originalText"></div>
+            </div>
+
+            <p class="text-slate-300 text-sm text-center mb-4">你想说的是哪个词？</p>
+
+            <div class="space-y-2">
+                <!-- 使用建议的词 -->
+                <button @click="useSuggestedWord()"
+                        class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition flex items-center justify-center gap-2">
+                    <span>✓</span>
+                    <span>我想说 "<span x-text="pronunciationIssue.suggestedWord"></span>"</span>
+                </button>
+
+                <!-- 保持原样 -->
+                <button @click="keepOriginalWord()"
+                        class="w-full py-3 px-4 bg-slate-600 hover:bg-slate-500 text-white rounded-xl font-medium transition flex items-center justify-center gap-2">
+                    <span>保持原样 "<span x-text="pronunciationIssue.originalWord"></span>"</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- 完成弹窗 -->
     <div x-show="isComplete" x-cloak
          class="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
@@ -207,9 +261,18 @@ function conversationPage() {
         isComplete: false,
         recorderReady: false,
 
+        // 发音纠正相关
+        showPronunciationFix: false,
+        pronunciationIssue: {
+            originalText: '',      // 原始识别文本
+            originalWord: '',      // 被识别的词
+            suggestedWord: '',     // 建议的词
+            reason: ''             // 原因说明
+        },
+        pendingApiResponse: null,  // 暂存的 API 响应，等待纠正后继续
+
         // 录音相关
         recorder: null,
-        audioPlayer: null,
         recordingStartTime: null,
         recordingDuration: '0:00',
         recordingTimer: null,
@@ -380,10 +443,12 @@ function conversationPage() {
             }
         },
 
-        async submitReply(text) {
-            // 添加用户消息
-            this.messages.push({ role: 'user', content: text });
-            this.scrollToBottom();
+        async submitReply(text, skipPronunciationCheck = false) {
+            // 添加用户消息（如果还没添加过）
+            if (!skipPronunciationCheck) {
+                this.messages.push({ role: 'user', content: text });
+                this.scrollToBottom();
+            }
 
             this.isLoading = true;
             try {
@@ -407,38 +472,24 @@ function conversationPage() {
                     throw new Error(data.error);
                 }
 
-                // 构建 AI 回复
-                let aiContent = data.feedback || 'Good job!';
-                let ttsText = data.feedback || '';
-
-                if (data.correction) {
-                    aiContent += '\n\n📝 ' + data.correction;
-                }
-                if (data.next_question) {
-                    aiContent += '\n\n' + data.next_question;
-                    ttsText = data.next_question;
-                }
-
-                this.messages.push({
-                    role: 'ai',
-                    content: aiContent,
-                    chinese: data.next_question_chinese || data.feedback_chinese,
-                    ttsText: ttsText
-                });
-
-                this.targetWords = data.next_target_words || [];
-                this.currentRound = data.round || this.currentRound + 1;
-                this.totalRounds = data.total_rounds || 5;
-
-                // 播放 AI 回复
-                if (ttsText) {
-                    await this.playTTS(ttsText);
+                // 检查是否有发音混淆问题（且不是在纠正后的重新提交）
+                const issue = data.pronunciation_issue;
+                if (!skipPronunciationCheck && issue && issue.detected) {
+                    // 暂存响应，弹出纠正对话框
+                    this.pendingApiResponse = data;
+                    this.pronunciationIssue = {
+                        originalText: text,
+                        originalWord: issue.original_word,
+                        suggestedWord: issue.suggested_word,
+                        reason: issue.reason || `语音识别可能将 "${issue.suggested_word}" 识别成了 "${issue.original_word}"`
+                    };
+                    this.showPronunciationFix = true;
+                    this.isLoading = false;
+                    return;  // 等待用户选择
                 }
 
-                // 检查是否完成
-                if (data.is_complete) {
-                    await this.loadSummary();
-                }
+                // 正常处理 AI 响应
+                this.processApiResponse(data);
 
             } catch (e) {
                 console.error('提交回复失败:', e);
@@ -453,26 +504,84 @@ function conversationPage() {
             this.scrollToBottom();
         },
 
+        // 处理 API 响应（提取出来复用）
+        async processApiResponse(data) {
+            // 构建 AI 回复
+            let aiContent = data.feedback || '';
+            let ttsText = '';
+
+            // 添加语法纠正（如果有）
+            if (data.correction) {
+                aiContent += (aiContent ? '\n\n' : '') + '📝 ' + data.correction;
+            }
+
+            // 添加老师的英文回应
+            const teacherResponse = data.response || data.next_question || '';
+            if (teacherResponse) {
+                aiContent += (aiContent ? '\n\n' : '') + teacherResponse;
+                ttsText = teacherResponse;
+            }
+
+            this.messages.push({
+                role: 'ai',
+                content: aiContent || 'Good job!',
+                chinese: data.response_chinese || data.next_question_chinese || '',
+                ttsText: ttsText
+            });
+
+            this.targetWords = data.next_target_words || [];
+            this.currentRound = data.round || this.currentRound + 1;
+            this.totalRounds = data.total_rounds || 5;
+
+            // 播放 AI 回复
+            if (ttsText) {
+                await this.playTTS(ttsText);
+            }
+
+            // 检查是否完成
+            if (data.is_complete) {
+                await this.loadSummary();
+            }
+
+            this.scrollToBottom();
+        },
+
+        // 使用建议的词（纠正发音）
+        async useSuggestedWord() {
+            this.showPronunciationFix = false;
+
+            // 替换原文中的错误词
+            const correctedText = this.pronunciationIssue.originalText.replace(
+                new RegExp(this.pronunciationIssue.originalWord, 'gi'),
+                this.pronunciationIssue.suggestedWord
+            );
+
+            // 更新用户消息显示
+            const lastUserMsgIndex = this.messages.findLastIndex(m => m.role === 'user');
+            if (lastUserMsgIndex >= 0) {
+                this.messages[lastUserMsgIndex].content = correctedText + ' ✓';
+            }
+
+            // 用纠正后的文本重新提交
+            this.pendingApiResponse = null;
+            await this.submitReply(correctedText, true);
+        },
+
+        // 保持原样（不纠正）
+        async keepOriginalWord() {
+            this.showPronunciationFix = false;
+
+            // 直接使用暂存的响应继续对话
+            if (this.pendingApiResponse) {
+                await this.processApiResponse(this.pendingApiResponse);
+                this.pendingApiResponse = null;
+            }
+        },
+
         async playTTS(text) {
             if (!text) return;
-
             try {
-                const url = `/api/tts/sentence?sentence=${encodeURIComponent(text)}`;
-
-                if (this.audioPlayer) {
-                    this.audioPlayer.unload();
-                }
-
-                this.audioPlayer = new Howl({
-                    src: [url],
-                    format: ['mp3'],
-                    onloaderror: (id, err) => {
-                        console.error('TTS 加载失败:', err);
-                    }
-                });
-
-                this.audioPlayer.play();
-
+                await TTS.playSentence(text);
             } catch (e) {
                 console.error('TTS 播放失败:', e);
             }

@@ -18,12 +18,7 @@
                     <span x-text="currentIndex + 1"></span> / <span x-text="cards.length"></span>
                 </div>
             </div>
-            <button @click="showSettings = true" class="text-slate-400 hover:text-slate-200">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-            </button>
+            <div class="w-6"></div>
         </div>
         <!-- 进度条 -->
         <div class="h-1 bg-slate-700/50">
@@ -88,8 +83,13 @@
         <div class="bg-slate-800/50 backdrop-blur rounded-2xl shadow-xl border border-slate-700/50 flex-1 flex flex-col p-6">
             <!-- 中文释义 -->
             <div class="text-center py-8">
-                <div class="text-3xl font-bold text-slate-100" x-text="currentCard?.translation || ''"></div>
+                <div class="text-3xl font-bold text-slate-100" x-text="splitTranslation(currentCard?.translation || '').main"></div>
+                <div class="text-sm text-slate-400 mt-2" x-show="splitTranslation(currentCard?.translation || '').extended" x-text="splitTranslation(currentCard?.translation || '').extended"></div>
                 <div class="text-slate-500 mt-2" x-show="showPhonetic" x-text="currentCard?.phonetic || ''"></div>
+                <!-- 复习模式下显示词书来源 -->
+                <div x-show="mode === 'review' && currentCard?.book_id" class="text-xs text-slate-500 mt-2">
+                    来自: <span x-text="getBookName(currentCard?.book_id)"></span>
+                </div>
             </div>
 
             <!-- 输入区域 -->
@@ -99,7 +99,6 @@
                     <input
                         type="text"
                         x-model="userInput"
-                        @keyup.enter="submitAnswer"
                         :disabled="inputDisabled"
                         x-ref="inputField"
                         class="w-full text-center text-2xl py-4 bg-slate-700/50 border-2 border-slate-600 text-slate-100 rounded-xl focus:border-sky-500 focus:ring-0 outline-none transition disabled:bg-slate-700/30 disabled:text-slate-500"
@@ -144,27 +143,35 @@
                 </div>
             </div>
 
-            <!-- 音频按钮 -->
-            <div x-show="!showPronunciationUI" class="flex justify-center space-x-4 py-4">
-                <button
-                    @click="playAudio('normal')"
-                    :disabled="attempt === 0 && !showResult"
-                    class="flex items-center space-x-2 px-4 py-2 bg-slate-700/50 text-slate-300 rounded-lg hover:bg-slate-600/50 transition disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-                    </svg>
-                    <span class="text-sm">听发音</span>
-                </button>
-                <button
-                    @click="playAudio('slow')"
-                    :disabled="attempt === 0 && !showResult"
-                    :class="canReplay ? 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300' : 'bg-slate-700/50 hover:bg-slate-600/50 text-slate-300'"
-                    class="flex items-center space-x-2 px-4 py-2 rounded-lg transition disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                    <span class="text-lg">🐢</span>
-                    <span class="text-sm">慢速</span>
-                </button>
+            <!-- 音色 + 语速选择 -->
+            <div x-show="!showPronunciationUI" class="py-4">
+                <!-- 四个音色按钮 -->
+                <div class="grid grid-cols-4 gap-2 mb-3">
+                    <template x-for="v in TTS.voices" :key="v.id">
+                        <button
+                            @click="playVoice(v.id)"
+                            :disabled="attempt === 0 && !showResult"
+                            :class="currentVoice === v.id
+                                ? 'bg-sky-500/30 border-sky-500/60 text-sky-300'
+                                : 'bg-slate-700/50 border-slate-600 text-slate-300 hover:bg-slate-600/50'"
+                            class="py-2 px-1 rounded-lg text-xs font-medium border transition disabled:opacity-40 disabled:cursor-not-allowed"
+                            x-text="v.label"
+                        ></button>
+                    </template>
+                </div>
+                <!-- 三个语速按钮 -->
+                <div class="flex justify-center gap-2">
+                    <template x-for="s in TTS.speeds" :key="s.id">
+                        <button
+                            @click="currentSpeed = s.id; TTS.setSpeed(s.id)"
+                            :class="currentSpeed === s.id
+                                ? 'bg-amber-500/30 border-amber-500/60 text-amber-300'
+                                : 'bg-slate-700/50 border-slate-600 text-slate-400 hover:bg-slate-600/50'"
+                            class="px-4 py-1.5 rounded-lg text-xs font-medium border transition"
+                            x-text="s.label"
+                        ></button>
+                    </template>
+                </div>
             </div>
 
             <!-- 跟读发音评估界面 -->
@@ -395,21 +402,55 @@
 {% block scripts %}
 <script src="/static/recorder.js"></script>
 <script>
-function dictationPage() {
+// 翻译分层显示函数
+function splitTranslation(translation) {
+    if (!translation) return { main: '', extended: '' };
+
+    const parts = translation.split('；');
+    const mainParts = [];
+    const extParts = [];
+
+    for (const part of parts) {
+        const trimmed = part.trim();
+        if (/^\[.+?\]/.test(trimmed)) {
+            extParts.push(trimmed);
+        } else {
+            mainParts.push(trimmed);
+        }
+    }
+
     return {
-        bookId: '{{ book_id }}',
+        main: mainParts.join('；') || extParts.shift() || '',
+        extended: extParts.join('；')
+    };
+}
+
+function dictationPage() {
+    // 词书 ID 映射表（从服务端获取）
+    const bookNames = {
+        {% for book in books %}
+        '{{ book.id }}': '{{ book.name }}',
+        {% endfor %}
+    };
+
+    return {
+        bookId: {% if book_id %}'{{ book_id }}'{% else %}null{% endif %},  // 全局复习时为 null
         urlParams: new URLSearchParams(window.location.search),
         mode: '',
         unit: '',
         limit: 20,
         loading: true,
         finished: false,
-        showSettings: false,
         showPhonetic: false,
 
         cards: [],
         currentIndex: 0,
         currentCard: null,
+
+        // 获取词书名称
+        getBookName(bookId) {
+            return bookNames[bookId] || bookId || '未知';
+        },
 
         userInput: '',
         inputs: [],  // 记录所有输入
@@ -421,8 +462,11 @@ function dictationPage() {
         showAnswer: false,
         isCorrect: false,
         inputDisabled: false,
-        canReplay: false,
         remainingAttempts: 3,
+
+        // 音色和语速（Alpine 响应式状态，同步到 TTS 模块）
+        currentVoice: TTS.getVoice(),
+        currentSpeed: TTS.getSpeed(),
 
         exampleSentence: '',
         exampleChinese: '',
@@ -476,15 +520,22 @@ function dictationPage() {
 
         async loadCards() {
             try {
+                // 构建请求体，全局复习时不传 book_id
+                const requestBody = {
+                    mode: this.mode,
+                    limit: this.limit
+                };
+                if (this.bookId) {
+                    requestBody.book_id = this.bookId;
+                }
+                if (this.unit) {
+                    requestBody.unit = this.unit;
+                }
+
                 const response = await fetch('/api/session/start', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        book_id: this.bookId,
-                        mode: this.mode,
-                        unit: this.unit || null,
-                        limit: this.limit
-                    })
+                    body: JSON.stringify(requestBody)
                 });
                 if (response.ok) {
                     const data = await response.json();
@@ -510,7 +561,6 @@ function dictationPage() {
             this.showAnswer = false;
             this.isCorrect = false;
             this.inputDisabled = false;
-            this.canReplay = false;
             this.remainingAttempts = this.maxAttempts;
             this.exampleSentence = '';
             this.exampleChinese = '';
@@ -539,14 +589,16 @@ function dictationPage() {
             this.attempt++;
             this.inputs.push(this.userInput.trim());
 
-            // 检查答案
-            const response = await fetch(`/api/session/submit?book_id=${this.bookId}`, {
+            // 检查答案（book_id 从 currentCard 获取，支持全局复习）
+            const cardBookId = this.currentCard.book_id || this.bookId;
+            const response = await fetch('/api/session/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     word: this.currentCard.word,
                     input: this.userInput.trim(),
-                    attempt: this.attempt
+                    attempt: this.attempt,
+                    book_id: cardBookId
                 })
             });
 
@@ -570,15 +622,14 @@ function dictationPage() {
             } else {
                 // 错误处理
                 if (this.attempt === 1) {
-                    // 第1次错误：显示提示，并自动播放一次单词发音
+                    // 第1次错误：显示提示，并自动播放一次单词发音（用当前语速）
                     this.hint = result.hint;
                     this.userInput = '';
-                    this.playAudio('normal');
+                    TTS.playWord(this.currentCard.word);
                 } else if (this.attempt === 2) {
                     // 第2次错误：播放慢速发音
                     this.hint = '错误，听一下发音';
-                    this.playAudio('slow');
-                    this.canReplay = true;
+                    TTS.playWord(this.currentCard.word, '0.5x');
                     this.userInput = '';
                 } else {
                     // 第3次错误：显示答案
@@ -619,10 +670,19 @@ function dictationPage() {
 
         async completeWord(correct, skipped) {
             try {
-                await fetch(`/api/session/complete?book_id=${this.bookId}&word=${this.currentCard.word}&correct=${correct}&attempts=${this.attempt}&skipped=${skipped}`, {
+                // book_id 从 currentCard 获取，支持全局复习
+                const cardBookId = this.currentCard.book_id || this.bookId;
+                await fetch('/api/session/complete', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(this.inputs)
+                    body: JSON.stringify({
+                        word: this.currentCard.word,
+                        book_id: cardBookId,
+                        correct: correct,
+                        attempts: this.attempt,
+                        inputs: this.inputs,
+                        skipped: skipped
+                    })
                 });
             } catch (e) {
                 console.error('保存失败:', e);
@@ -645,7 +705,7 @@ function dictationPage() {
                         this.exampleSentence = data.sentence;
                         this.exampleChinese = data.chinese || '';
                         // 播放例句，阻止下一步直到播放完毕
-                        this.playAudioUrl(`/api/tts/sentence?sentence=${encodeURIComponent(data.sentence)}`, true);
+                        this.playSentenceAudio(data.sentence);
                         return true;  // 成功获取例句
                     } else if (data.error) {
                         // API 返回错误（如 DeepSeek 未配置）
@@ -664,30 +724,21 @@ function dictationPage() {
 
         playAudio(speed) {
             if (!this.currentCard) return;
-            const url = `/api/tts/${speed}/${encodeURIComponent(this.currentCard.word)}`;
-            this.playAudioUrl(url);
+            TTS.playWord(this.currentCard.word, speed);
         },
 
-        playAudioUrl(url, blockNext = false) {
-            if (this.audioPlayer) {
-                this.audioPlayer.unload();
-            }
-            // 如果需要阻止下一步，设置播放状态
-            if (blockNext) {
-                this.audioPlaying = true;
-            }
-            this.audioPlayer = new Howl({
-                src: [url],
-                format: ['mp3'],
-                onend: () => {
-                    this.audioPlaying = false;
-                },
-                onloaderror: (id, err) => {
-                    console.error('音频加载失败:', err);
-                    this.audioPlaying = false;
-                }
+        playVoice(voiceId) {
+            if (!this.currentCard) return;
+            this.currentVoice = voiceId;
+            TTS.setVoice(voiceId);
+            TTS.playWord(this.currentCard.word);
+        },
+
+        playSentenceAudio(sentence) {
+            this.audioPlaying = true;
+            TTS.playSentence(sentence).finally(() => {
+                this.audioPlaying = false;
             });
-            this.audioPlayer.play();
         },
 
         goBack() {
@@ -707,32 +758,16 @@ function dictationPage() {
             this.pronunciationFeedback = '请跟读这个单词';
         },
 
-        playAudioAndWait(speed) {
-            return new Promise((resolve) => {
-                if (!this.currentCard) {
-                    resolve();
-                    return;
-                }
-                const url = `/api/tts/${speed}/${encodeURIComponent(this.currentCard.word)}`;
-                if (this.audioPlayer) {
-                    this.audioPlayer.unload();
-                }
-                this.audioPlaying = true;
-                this.audioPlayer = new Howl({
-                    src: [url],
-                    format: ['mp3'],
-                    onend: () => {
-                        this.audioPlaying = false;
-                        resolve();
-                    },
-                    onloaderror: (id, err) => {
-                        console.error('音频加载失败:', err);
-                        this.audioPlaying = false;
-                        resolve();
-                    }
-                });
-                this.audioPlayer.play();
-            });
+        async playAudioAndWait(speed) {
+            if (!this.currentCard) return;
+            this.audioPlaying = true;
+            try {
+                await TTS.playWord(this.currentCard.word, speed);
+            } catch (e) {
+                console.error('音频播放失败:', e);
+            } finally {
+                this.audioPlaying = false;
+            }
         },
 
         async togglePronunciationRecording() {
@@ -796,7 +831,8 @@ function dictationPage() {
                 const formData = new FormData();
                 formData.append('audio', audioBlob, 'recording.webm');
                 formData.append('word', this.currentCard.word);
-                formData.append('book_id', this.bookId);
+                // book_id 从 currentCard 获取，支持全局复习
+                formData.append('book_id', this.currentCard.book_id || this.bookId || '');
 
                 const response = await fetch('/api/pronunciation/assess', {
                     method: 'POST',
@@ -863,38 +899,24 @@ function dictationPage() {
 
             this.audioPlaying = true;
 
-            // 优先使用缓存的音频
+            // 优先使用预加载缓存的音频
             const cachedHowl = this.practiceWordAudioCache[word];
             if (cachedHowl && cachedHowl.state() === 'loaded') {
-                // 停止当前播放（如果有）但不销毁缓存
-                if (this.audioPlayer && this.audioPlayer !== cachedHowl) {
-                    this.audioPlayer.stop();
-                }
-                cachedHowl.off('end');  // 清除旧监听器
+                TTS.stop();  // 停止统一 TTS 播放器
+                cachedHowl.off('end');
                 cachedHowl.on('end', () => {
                     this.audioPlaying = false;
                 });
                 cachedHowl.play();
-                this.audioPlayer = cachedHowl;
             } else {
-                // 缓存未命中或未加载完成，实时加载
-                if (this.audioPlayer) {
-                    this.audioPlayer.stop();
+                // 缓存未命中，使用统一 TTS 模块
+                try {
+                    await TTS.playWord(word, 'normal');
+                } catch (e) {
+                    console.error('练习单词音频加载失败:', e);
+                } finally {
+                    this.audioPlaying = false;
                 }
-                const url = `/api/tts/normal/${encodeURIComponent(word)}`;
-                const newHowl = new Howl({
-                    src: [url],
-                    format: ['mp3'],
-                    onend: () => {
-                        this.audioPlaying = false;
-                    },
-                    onloaderror: (id, err) => {
-                        console.error('练习单词音频加载失败:', err);
-                        this.audioPlaying = false;
-                    }
-                });
-                newHowl.play();
-                this.audioPlayer = newHowl;
             }
         },
 
@@ -939,8 +961,14 @@ function dictationPage() {
                 console.error('保存 sessionStorage 失败:', e);
             }
 
-            // 跳转到对话练习页面
-            window.location.href = `/conversation/${this.bookId}`;
+            // 跳转到对话练习页面（使用第一个单词的词书或默认词书）
+            const targetBookId = this.cards[0]?.book_id || this.bookId;
+            if (targetBookId) {
+                window.location.href = `/conversation/${targetBookId}`;
+            } else {
+                // 全局复习没有固定词书，返回首页
+                window.location.href = '/';
+            }
         }
     }
 }
