@@ -67,7 +67,8 @@ from conversation import ConversationManager
 from speech import (
     SpeechRecognizer, PronunciationAssessor,
     generate_feedback_text, generate_ai_feedback, ACCURACY_THRESHOLD,
-    QwenChineseSpeechRecognizer, generate_translation_feedback, calculate_text_similarity
+    QwenChineseSpeechRecognizer, QwenEnglishSpeechRecognizer,
+    generate_translation_feedback, calculate_text_similarity
 )
 
 # Database models for pronunciation
@@ -85,6 +86,7 @@ conv_manager = ConversationManager()
 speech_recognizer = SpeechRecognizer()
 pronunciation_assessor = PronunciationAssessor()
 chinese_recognizer = QwenChineseSpeechRecognizer()  # 中文语音识别器（翻译练习用）
+english_recognizer = QwenEnglishSpeechRecognizer()  # 英文语音识别器（跟读练习用）
 
 # 项目路径
 PROJECT_ROOT = Path(__file__).parent
@@ -885,6 +887,68 @@ async def api_session_complete(
 
 # ==================== TTS API ====================
 
+# 注意：音节路由必须在通用 TTS 路由之前定义，否则会被 /api/tts/{speed}/{word} 匹配
+
+@app.get("/api/tts/syllables/{word}")
+async def api_tts_syllables(
+    word: str,
+    voice: Optional[str] = None,
+    user: dict = Depends(require_auth)
+):
+    """
+    获取单词音节分解
+
+    Args:
+        word: 英文单词
+        voice: 音色 ID（可选）
+
+    Returns:
+        {
+            "word": "personality",
+            "syllables": ["per", "son", "al", "i", "ty"],
+            "syllables_display": "per · son · al · i · ty"
+        }
+    """
+    safe_word = "".join(c for c in word if c.isalpha())
+    if not safe_word:
+        return {"error": "无效的单词"}
+
+    syllables = tts_service.split_syllables(safe_word)
+
+    return {
+        "word": safe_word,
+        "syllables": syllables,
+        "syllables_display": " · ".join(syllables)
+    }
+
+
+@app.get("/api/tts/syllables/audio/{word}")
+async def api_tts_syllables_audio(
+    word: str,
+    voice: Optional[str] = None,
+    user: dict = Depends(require_auth)
+):
+    """
+    获取单词音节拼读音频（逐音节朗读，带停顿）
+
+    Args:
+        word: 英文单词
+        voice: 音色 ID（可选）
+
+    Returns:
+        音频文件（MP3）
+    """
+    safe_word = "".join(c for c in word if c.isalpha())
+    if not safe_word:
+        raise HTTPException(status_code=400, detail="无效的单词")
+
+    result = await tts_service.synthesize_syllables(word=safe_word, voice_id=voice)
+    if not result:
+        raise HTTPException(status_code=500, detail="音频合成失败")
+
+    return FileResponse(str(result), media_type="audio/mpeg", filename=f"{safe_word}_syllables.mp3")
+
+
 @app.get("/api/tts/{speed}/{word}")
 async def api_tts(speed: str, word: str, voice: Optional[str] = None, user: dict = Depends(require_auth)):
     """获取单词发音（需要认证）- 统一 TTS 服务"""
@@ -1070,6 +1134,44 @@ async def api_speech_recognize(
 
     # 调用识别
     result = await speech_recognizer.recognize_from_bytes(audio_data, ext)
+    return result
+
+
+@app.post("/api/speech/recognize-english")
+async def api_speech_recognize_english(
+    audio: UploadFile = File(...),
+    target_word: str = Form(None),
+    user: dict = Depends(require_auth)
+):
+    """
+    英文跟读识别 API（Qwen3-ASR）
+
+    接收音频文件，识别英文并判断是否与目标单词匹配
+
+    参数：
+        audio: 音频文件
+        target_word: 目标单词（可选，用于判断是否正确）
+
+    返回：
+        {
+            "success": true,
+            "text": "识别的英文文本",
+            "is_correct": true/false,
+            "error": null
+        }
+    """
+    if not english_recognizer.is_available():
+        return {"success": False, "text": "", "is_correct": False, "error": "阿里云百炼 API 未配置"}
+
+    # 读取音频数据
+    audio_data = await audio.read()
+
+    # 获取文件扩展名
+    filename = audio.filename or "recording.webm"
+    ext = "." + filename.rsplit(".", 1)[-1] if "." in filename else ".webm"
+
+    # 调用识别
+    result = await english_recognizer.recognize_from_bytes(audio_data, ext, target_word)
     return result
 
 

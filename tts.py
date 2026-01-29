@@ -32,7 +32,9 @@ import hashlib
 import tempfile
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import Optional, List
+
+import pyphen  # 音节分割库
 
 logger = logging.getLogger(__name__)
 
@@ -79,6 +81,7 @@ class EdgeTTSEngine:
 
     def __init__(self):
         self._available = None
+        self._hyphenator = pyphen.Pyphen(lang='en_US')
 
     @property
     def name(self) -> str:
@@ -152,6 +155,119 @@ class EdgeTTSEngine:
 
         except Exception as e:
             logger.warning("[Edge-TTS] 合成异常: %s: %s", type(e).__name__, e)
+            try:
+                if tmp_path and os.path.exists(tmp_path):
+                    os.unlink(tmp_path)
+            except Exception:
+                pass
+            return None
+
+    def split_syllables(self, word: str) -> List[str]:
+        """
+        将单词分割为音节
+
+        Args:
+            word: 英文单词
+
+        Returns:
+            音节列表，如 ["per", "son", "al", "i", "ty"]
+        """
+        if not word or not word.strip():
+            return []
+
+        # 只处理纯字母
+        clean_word = "".join(c for c in word if c.isalpha())
+        if not clean_word:
+            return [word]
+
+        lower_word = clean_word.lower()
+
+        # 使用 pyphen 分割
+        hyphenated = self._hyphenator.inserted(lower_word)
+        syllables = hyphenated.split('-')
+
+        # 如果 pyphen 只返回一个音节但单词较长（>4字母），尝试使用后备方法
+        if len(syllables) == 1 and len(lower_word) > 4:
+            syllables = self._fallback_split(lower_word)
+
+        return syllables
+
+    def _fallback_split(self, word: str) -> List[str]:
+        """
+        后备音节分割方法：基于常见后缀规则
+
+        用于处理 pyphen 无法正确分割的情况
+        """
+        # 常见后缀及其分割点
+        suffixes = [
+            ('tion', 1),    # na-tion
+            ('sion', 1),    # vi-sion
+            ('ing', 0),     # sing-ing
+            ('er', 0),      # sing-er
+            ('ed', 0),      # wait-ed (only if pronounced)
+            ('ly', 0),      # quick-ly
+            ('ful', 0),     # beau-ti-ful
+            ('less', 0),    # care-less
+            ('ness', 0),    # kind-ness
+            ('ment', 0),    # move-ment
+            ('able', 1),    # lov-able
+            ('ible', 1),    # vis-ible
+        ]
+
+        for suffix, offset in suffixes:
+            if word.endswith(suffix) and len(word) > len(suffix) + 1:
+                base = word[:-len(suffix)]
+                # 简单检查：如果 base 至少有2个字母
+                if len(base) >= 2:
+                    return [base, suffix]
+
+        # 如果没有匹配的后缀，返回原单词
+        return [word]
+
+    async def synthesize_syllables(
+        self,
+        word: str,
+        voice_id: Optional[str] = None,
+    ) -> Optional[bytes]:
+        """
+        音节拼读合成：逐音节朗读，每个音节之间有停顿
+
+        Args:
+            word: 英文单词
+            voice_id: 英文音色 ID
+
+        Returns:
+            MP3 音频字节数据，失败返回 None
+        """
+        if not self.is_available():
+            return None
+
+        syllables = self.split_syllables(word)
+        if not syllables:
+            return None
+
+        import edge_tts
+
+        voice = self.resolve_voice("en", voice_id)
+
+        # 用句号分隔音节，产生自然停顿
+        # 例如: "per. son. al. i. ty"
+        text = ". ".join(syllables) + "."
+
+        try:
+            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+                tmp_path = tmp.name
+
+            # 使用较慢的语速让音节更清晰
+            communicate = edge_tts.Communicate(text, voice, rate="-25%")
+            await communicate.save(tmp_path)
+
+            audio_data = Path(tmp_path).read_bytes()
+            os.unlink(tmp_path)
+            return audio_data
+
+        except Exception as e:
+            logger.warning("[Edge-TTS] 音节合成异常: %s: %s", type(e).__name__, e)
             try:
                 if tmp_path and os.path.exists(tmp_path):
                     os.unlink(tmp_path)
@@ -287,6 +403,66 @@ class TTSService:
         return [
             {"name": self.engine.name, "available": self.engine.is_available()}
         ]
+
+    def split_syllables(self, word: str) -> List[str]:
+        """
+        将单词分割为音节
+
+        Args:
+            word: 英文单词
+
+        Returns:
+            音节列表，如 ["per", "son", "al", "i", "ty"]
+        """
+        return self.engine.split_syllables(word)
+
+    async def synthesize_syllables(
+        self,
+        word: str,
+        voice_id: Optional[str] = None,
+    ) -> Optional[Path]:
+        """
+        音节拼读合成：逐音节朗读，每个音节之间有停顿
+
+        自动查缓存 → 合成 → 写入缓存
+
+        Args:
+            word: 英文单词
+            voice_id: 英文音色 ID
+
+        Returns:
+            音频文件 Path，失败时返回 None
+        """
+        if not word or not word.strip():
+            return None
+
+        # 确定实际 voice_id
+        effective_voice_id = voice_id or self.engine.DEFAULT_ENGLISH_VOICE_ID
+
+        # 1. 查缓存（使用 syllables 前缀区分）
+        cache_key = f"syllables_{effective_voice_id}_{word.lower()}"
+        cached = self.cache.get(cache_key)
+        if cached:
+            return cached
+
+        # 2. 合成
+        if not self.engine.is_available():
+            logger.error("[TTS] Edge-TTS 不可用")
+            return None
+
+        try:
+            audio_data = await self.engine.synthesize_syllables(
+                word=word,
+                voice_id=voice_id,
+            )
+            if audio_data:
+                path = await self.cache.put(cache_key, audio_data)
+                logger.info("[TTS] 音节合成成功: %s", word)
+                return path
+        except Exception as e:
+            logger.warning("[TTS] 音节合成失败: %s", e)
+
+        return None
 
 
 # ==================== 全局单例 ====================

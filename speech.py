@@ -950,6 +950,203 @@ class QwenChineseSpeechRecognizer:
                 pass
 
 
+# ==================== 阿里云百炼 Qwen3-ASR 英文语音识别 ====================
+
+class QwenEnglishSpeechRecognizer:
+    """
+    阿里云百炼 Qwen3-ASR-Flash 英文语音识别器
+
+    用于跟读练习中识别学生说的英文单词
+
+    使用方法：
+        recognizer = QwenEnglishSpeechRecognizer()
+        result = await recognizer.recognize_from_bytes(audio_data, ".webm")
+        print(result["text"])  # 识别的英文文本
+    """
+
+    def __init__(self):
+        self.api_key = os.getenv("DASHSCOPE_API_KEY")
+
+    def is_available(self) -> bool:
+        """检查服务是否可用"""
+        return bool(self.api_key)
+
+    async def recognize_from_bytes(
+        self,
+        audio_data: bytes,
+        file_ext: str = ".wav",
+        target_word: str = None
+    ) -> dict:
+        """
+        从音频字节流识别英文
+
+        Args:
+            audio_data: 音频数据字节
+            file_ext: 文件扩展名（.wav, .webm, .ogg, .mp3）
+            target_word: 目标单词，用于提高识别准确率（可选）
+
+        Returns:
+            {
+                "success": True,
+                "text": "recognized english text",
+                "is_correct": True/False,  # 是否与目标单词匹配
+                "error": None
+            }
+        """
+        if not self.is_available():
+            return {"success": False, "text": "", "is_correct": False, "error": "阿里云百炼 API 未配置"}
+
+        try:
+            import dashscope
+            from dashscope import MultiModalConversation
+
+            # 设置 API 配置
+            dashscope.api_key = self.api_key
+            dashscope.base_http_api_url = 'https://dashscope.aliyuncs.com/api/v1'
+
+            # 需要将音频转换为 WAV 格式
+            if file_ext in [".webm", ".ogg"]:
+                converted_data = await self._convert_to_wav(audio_data, file_ext)
+                if converted_data is None:
+                    return {"success": False, "text": "", "is_correct": False, "error": "音频格式转换失败"}
+                audio_data = converted_data
+                file_ext = ".wav"
+
+            # 保存到临时文件（SDK 需要文件路径）
+            with tempfile.NamedTemporaryFile(suffix=file_ext, delete=False) as f:
+                f.write(audio_data)
+                temp_path = f.name
+
+            try:
+                # 构建消息
+                messages = []
+
+                # 上下文增强（可选）
+                if target_word:
+                    messages.append({
+                        "role": "system",
+                        "content": [{"text": f"The expected word is: {target_word}"}]
+                    })
+                else:
+                    messages.append({
+                        "role": "system",
+                        "content": [{"text": ""}]
+                    })
+
+                # 添加音频
+                messages.append({
+                    "role": "user",
+                    "content": [{"audio": f"file://{temp_path}"}]
+                })
+
+                # 在线程池中运行同步调用
+                loop = asyncio.get_event_loop()
+                response = await loop.run_in_executor(
+                    None,
+                    lambda: MultiModalConversation.call(
+                        model="qwen3-asr-flash",
+                        messages=messages,
+                        result_format="message",
+                        asr_options={
+                            "language": "en",  # 指定英文
+                            "enable_itn": True
+                        }
+                    )
+                )
+
+                if response.status_code == 200:
+                    # 提取识别结果
+                    output = response.output
+                    choices = output.get("choices", [])
+                    if choices:
+                        content = choices[0].get("message", {}).get("content", [])
+                        if content and len(content) > 0:
+                            recognized_text = content[0].get("text", "").strip()
+
+                            # 判断是否与目标单词匹配
+                            is_correct = False
+                            if target_word and recognized_text:
+                                # 忽略大小写比较
+                                is_correct = recognized_text.lower() == target_word.lower()
+
+                            return {
+                                "success": True,
+                                "text": recognized_text,
+                                "is_correct": is_correct,
+                                "error": None
+                            }
+
+                    return {"success": False, "text": "", "is_correct": False, "error": "响应中无识别内容"}
+                else:
+                    return {
+                        "success": False,
+                        "text": "",
+                        "is_correct": False,
+                        "error": f"API 错误: {response.code} - {response.message}"
+                    }
+
+            finally:
+                try:
+                    os.unlink(temp_path)
+                except:
+                    pass
+
+        except ImportError:
+            return {"success": False, "text": "", "is_correct": False, "error": "dashscope SDK 未安装"}
+        except Exception as e:
+            return {"success": False, "text": "", "is_correct": False, "error": str(e)}
+
+    async def _convert_to_wav(self, audio_data: bytes, source_ext: str) -> Optional[bytes]:
+        """将音频转换为 WAV 格式"""
+        if len(audio_data) < 1000:
+            print(f"[Qwen-ASR-EN] 音频数据太小: {len(audio_data)} bytes")
+            return None
+
+        with tempfile.NamedTemporaryFile(suffix=source_ext, delete=False) as src_file:
+            src_file.write(audio_data)
+            src_path = src_file.name
+
+        dst_path = tempfile.mktemp(suffix=".wav")
+
+        try:
+            process = await asyncio.create_subprocess_exec(
+                "ffmpeg",
+                "-y",
+                "-i", src_path,
+                "-acodec", "pcm_s16le",
+                "-ar", "16000",
+                "-ac", "1",
+                "-f", "wav",
+                dst_path,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE
+            )
+            stdout, stderr = await process.communicate()
+
+            if process.returncode != 0:
+                print(f"[Qwen-ASR-EN] FFmpeg 转换失败: {stderr.decode()}")
+                return None
+
+            if os.path.exists(dst_path):
+                with open(dst_path, "rb") as f:
+                    return f.read()
+            return None
+
+        except Exception as e:
+            print(f"[Qwen-ASR-EN] 音频转换异常: {e}")
+            return None
+
+        finally:
+            try:
+                os.unlink(src_path)
+            except:
+                pass
+            try:
+                os.unlink(dst_path)
+            except:
+                pass
+
+
 # ==================== 阿里云百炼 Qwen-Plus 翻译评价 ====================
 
 async def generate_translation_feedback(

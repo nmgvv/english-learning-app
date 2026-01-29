@@ -83,6 +83,11 @@
         <div class="bg-slate-800/50 backdrop-blur rounded-2xl shadow-xl border border-slate-700/50 flex-1 flex flex-col p-6">
             <!-- 中文释义 -->
             <div class="text-center py-8">
+                <!-- 强化记忆：彩色音节显示在中文上方 -->
+                <div x-show="reinforceMode" x-cloak class="mb-4">
+                    <div class="text-xs text-amber-400 mb-1">强化记忆 (<span x-text="reinforceCount"></span>/2)</div>
+                    <div class="text-3xl font-bold tracking-wider" x-html="reinforceSyllablesHtml"></div>
+                </div>
                 <div class="text-3xl font-bold text-slate-100" x-text="splitTranslation(currentCard?.translation || '').main"></div>
                 <div class="text-sm text-slate-400 mt-2" x-show="splitTranslation(currentCard?.translation || '').extended" x-text="splitTranslation(currentCard?.translation || '').extended"></div>
                 <div class="text-slate-500 mt-2" x-show="showPhonetic" x-text="currentCard?.phonetic || ''"></div>
@@ -396,6 +401,7 @@
                     </button>
                 </div>
             </div>
+
         </div>
 
         <!-- 操作按钮（跟读练习时隐藏） -->
@@ -509,6 +515,12 @@ function dictationPage() {
         pronunciationSubmitting: false,   // 正在提交评估
         practiceWordAudioCache: {},       // 练习单词音频缓存
 
+        // 强化学习模式（答错3次或跳过后）
+        reinforceMode: false,             // 是否处于强化学习模式
+        reinforceCount: 0,                // 当前正确轮数（需达到2次）
+        reinforceSyllables: [],           // 音节列表
+        reinforceSyllablesHtml: '',       // 彩色音节 HTML
+
         async init() {
             // 从 URL 读取参数
             this.mode = this.urlParams.get('mode') || 'review';
@@ -593,6 +605,12 @@ function dictationPage() {
             this.pronunciationAttempt = 0;
             this.pronunciationSubmitting = false;
 
+            // 重置强化学习状态
+            this.reinforceMode = false;
+            this.reinforceCount = 0;
+            this.reinforceSyllables = [];
+            this.reinforceSyllablesHtml = '';
+
             // 清除练习单词音频缓存
             Object.values(this.practiceWordAudioCache).forEach(howl => howl.unload());
             this.practiceWordAudioCache = {};
@@ -605,6 +623,12 @@ function dictationPage() {
 
         async submitAnswer() {
             if (!this.userInput.trim() || this.inputDisabled) return;
+
+            // 强化学习模式下使用专用逻辑
+            if (this.reinforceMode) {
+                await this.submitReinforceAnswer();
+                return;
+            }
 
             this.attempt++;
             this.inputs.push(this.userInput.trim());
@@ -647,12 +671,12 @@ function dictationPage() {
                     this.userInput = '';
                     TTS.playWord(this.currentCard.word);
                 } else if (this.attempt === 2) {
-                    // 第2次错误：播放慢速发音
+                    // 第2次错误：播放正常发音
                     this.hint = '错误，听一下发音';
-                    TTS.playWord(this.currentCard.word, '0.5x');
+                    TTS.playWord(this.currentCard.word);
                     this.userInput = '';
                 } else {
-                    // 第3次错误：显示答案
+                    // 第3次错误：显示答案，进入强化学习
                     this.showResult = true;
                     this.showAnswer = true;
                     this.inputDisabled = true;
@@ -662,13 +686,20 @@ function dictationPage() {
                     // 异步保存，不阻塞 UI
                     this.completeWord(false, false);
 
-                    // 触发跟读练习
-                    await this.startPronunciationPractice();
+                    // 触发强化学习（答错3次）
+                    await this.startReinforcementLearning();
                 }
             }
         },
 
         async skipWord() {
+            // 强化学习模式下跳过：直接进入下一个单词
+            if (this.reinforceMode) {
+                this.reinforceMode = false;
+                this.nextWord();
+                return;
+            }
+
             if (this.showResult) {
                 this.nextWord();
                 return;
@@ -684,8 +715,8 @@ function dictationPage() {
             // 异步保存，不阻塞 UI
             this.completeWord(false, true);
 
-            // 触发跟读练习
-            await this.startPronunciationPractice();
+            // 触发强化学习（跳过）
+            await this.startReinforcementLearning();
         },
 
         async completeWord(correct, skipped) {
@@ -955,6 +986,88 @@ function dictationPage() {
         continuePronunciation() {
             this.showPronunciationUI = false;
             this.nextWord();
+        },
+
+        // ========== 强化学习相关方法 ==========
+
+        // 音节颜色（交替使用）
+        SYLLABLE_COLORS: ['text-sky-400', 'text-amber-400', 'text-emerald-400', 'text-rose-400', 'text-purple-400'],
+
+        async startReinforcementLearning() {
+            // 进入强化学习模式
+            this.reinforceMode = true;
+            this.reinforceCount = 0;
+            this.reinforceSyllables = [];
+            this.reinforceSyllablesHtml = '';
+
+            // 获取音节分解
+            try {
+                const resp = await fetch(`/api/tts/syllables/${encodeURIComponent(this.currentCard.word)}`);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    this.reinforceSyllables = data.syllables || [];
+                    // 生成彩色音节 HTML
+                    this.reinforceSyllablesHtml = this.reinforceSyllables.map((syl, i) => {
+                        const color = this.SYLLABLE_COLORS[i % this.SYLLABLE_COLORS.length];
+                        return `<span class="${color}">${syl}</span>`;
+                    }).join('');
+                } else {
+                    this.reinforceSyllablesHtml = `<span class="text-sky-400">${this.currentCard.word}</span>`;
+                }
+            } catch (e) {
+                console.error('获取音节失败:', e);
+                this.reinforceSyllablesHtml = `<span class="text-sky-400">${this.currentCard.word}</span>`;
+            }
+
+            // 重置输入状态，启用输入框
+            this.userInput = '';
+            this.inputDisabled = false;
+            this.showResult = false;
+            this.showAnswer = false;
+            this.hint = '';
+            this.attempt = 0;
+
+            // 播放单词发音
+            await this.playAudioAndWait('normal');
+
+            // 聚焦输入框
+            this.$nextTick(() => {
+                this.$refs.inputField?.focus();
+            });
+        },
+
+        async submitReinforceAnswer() {
+            // 强化学习模式下的答案提交
+            const input = this.userInput.trim();
+            if (!input) return;
+
+            const isCorrect = input.toLowerCase() === this.currentCard.word.toLowerCase();
+
+            if (isCorrect) {
+                this.reinforceCount++;
+
+                if (this.reinforceCount >= 2) {
+                    // 完成强化学习
+                    this.reinforceMode = false;
+                    this.nextWord();
+                } else {
+                    // 继续下一轮
+                    this.userInput = '';
+                    this.hint = `正确！再来一次 (${this.reinforceCount}/2)`;
+                    await this.playAudioAndWait('normal');
+                    this.$nextTick(() => {
+                        this.$refs.inputField?.focus();
+                    });
+                }
+            } else {
+                // 错误，重试
+                this.userInput = '';
+                this.hint = '再试一次';
+                TTS.playWord(this.currentCard.word);
+                this.$nextTick(() => {
+                    this.$refs.inputField?.focus();
+                });
+            }
         },
 
         // ========== 结束跟读相关方法 ==========
