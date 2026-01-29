@@ -27,10 +27,10 @@ const TTS = {
      * 可用英文音色
      */
     voices: [
-        { id: 'us-male',   label: '美式男声', accent: 'US', gender: 'male' },
-        { id: 'us-female', label: '美式女声', accent: 'US', gender: 'female' },
         { id: 'gb-male',   label: '英式男声', accent: 'GB', gender: 'male' },
         { id: 'gb-female', label: '英式女声', accent: 'GB', gender: 'female' },
+        { id: 'us-male',   label: '美式男声', accent: 'US', gender: 'male' },
+        { id: 'us-female', label: '美式女声', accent: 'US', gender: 'female' },
     ],
 
     /**
@@ -50,9 +50,9 @@ const TTS = {
      */
     getVoice() {
         try {
-            return localStorage.getItem('tts_voice') || 'us-male';
+            return localStorage.getItem('tts_voice') || 'gb-male';
         } catch {
-            return 'us-male';
+            return 'gb-male';
         }
     },
 

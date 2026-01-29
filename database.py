@@ -51,6 +51,19 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     last_login = Column(DateTime, nullable=True)
 
+    # ========== 扩展字段（注册信息） ==========
+    # 学习信息
+    grade = Column(String(20), nullable=True)  # 年级: grade7/grade8/grade9/senior1/senior2/senior3
+    school = Column(String(100), nullable=True)  # 学校名称
+
+    # 个人信息
+    age = Column(Integer, nullable=True)  # 年龄
+    province = Column(String(50), nullable=True)  # 省份
+    city = Column(String(50), nullable=True)  # 城市
+    phone = Column(String(20), nullable=True)  # 手机号
+    parent_phone = Column(String(20), nullable=True)  # 家长联系方式
+    weak_areas = Column(String(100), nullable=True)  # 薄弱项 JSON: ["listening","speaking","reading","writing"]
+
     # 关系
     progress = relationship("Progress", back_populates="user")
     history = relationship("History", back_populates="user")
@@ -170,6 +183,37 @@ def init_db():
     # 确保 data 目录存在
     DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
     Base.metadata.create_all(bind=engine)
+    # 执行迁移，添加新字段
+    migrate_user_table()
+
+
+def migrate_user_table():
+    """
+    迁移 users 表，添加新字段（如果不存在）
+
+    用于兼容已有用户数据，新字段全部为 nullable
+    """
+    from sqlalchemy import text
+
+    new_columns = [
+        ("grade", "VARCHAR(20)"),
+        ("school", "VARCHAR(100)"),
+        ("age", "INTEGER"),
+        ("province", "VARCHAR(50)"),
+        ("city", "VARCHAR(50)"),
+        ("phone", "VARCHAR(20)"),
+        ("parent_phone", "VARCHAR(20)"),
+        ("weak_areas", "VARCHAR(100)"),
+    ]
+
+    with engine.connect() as conn:
+        for col_name, col_type in new_columns:
+            try:
+                conn.execute(text(f"ALTER TABLE users ADD COLUMN {col_name} {col_type}"))
+                conn.commit()
+            except Exception:
+                # 列已存在，忽略错误
+                pass
 
 
 def get_db():
@@ -294,7 +338,19 @@ def verify_token(token: str) -> Optional[dict]:
 
 # ==================== 用户操作 ====================
 
-def create_user(db: Session, username: str, password: str, email: str = None) -> Optional[User]:
+def create_user(
+    db: Session,
+    username: str,
+    password: str,
+    email: str = None,
+    grade: str = None,
+    school: str = None,
+    age: int = None,
+    province: str = None,
+    city: str = None,
+    phone: str = None,
+    parent_phone: str = None
+) -> Optional[User]:
     """
     创建新用户
 
@@ -302,7 +358,14 @@ def create_user(db: Session, username: str, password: str, email: str = None) ->
         db: 数据库会话
         username: 用户名
         password: 明文密码
-        email: 邮箱（可选）
+        email: 邮箱（必填）
+        grade: 年级（必填）
+        school: 学校名称（必填）
+        age: 年龄（可选）
+        province: 省份（可选）
+        city: 城市（可选）
+        phone: 手机号（可选）
+        parent_phone: 家长联系方式（可选）
 
     Returns:
         创建的用户对象，失败返回 None
@@ -315,7 +378,14 @@ def create_user(db: Session, username: str, password: str, email: str = None) ->
     user = User(
         username=username,
         password_hash=hash_password(password),
-        email=email
+        email=email,
+        grade=grade,
+        school=school,
+        age=age,
+        province=province,
+        city=city,
+        phone=phone,
+        parent_phone=parent_phone
     )
     db.add(user)
     db.commit()
@@ -465,6 +535,46 @@ def get_word_history(db: Session, user_id: int, book_id: str, word: str) -> List
         History.book_id == book_id,
         History.word == word
     ).order_by(History.time.desc()).all()
+
+
+def get_words_history_stats(db: Session, user_id: int, words_with_books: List[tuple]) -> dict:
+    """批量获取多个单词的学习历史统计
+
+    Args:
+        db: 数据库会话
+        user_id: 用户ID
+        words_with_books: [(book_id, word), ...] 单词和词书ID对的列表
+
+    Returns:
+        {(book_id, word): {"total": N, "correct": M, "wrong": Y}, ...}
+    """
+    if not words_with_books:
+        return {}
+
+    # 使用 SQL 聚合一次性查询所有单词的统计
+    query = db.query(
+        History.book_id,
+        History.word,
+        func.count(History.id).label("total"),
+        func.sum(case((History.result == "correct", 1), else_=0)).label("correct"),
+        func.sum(case((History.result == "wrong", 1), else_=0)).label("wrong")
+    ).filter(
+        History.user_id == user_id
+    ).group_by(History.book_id, History.word)
+
+    # 构建结果字典
+    result = {}
+    words_set = set(words_with_books)
+    for row in query.all():
+        key = (row.book_id, row.word)
+        if key in words_set:
+            result[key] = {
+                "total": row.total or 0,
+                "correct": int(row.correct or 0),
+                "wrong": int(row.wrong or 0)
+            }
+
+    return result
 
 
 def get_user_stats(db: Session, user_id: int, book_id: str = None) -> dict:

@@ -94,6 +94,26 @@
 
             <!-- 输入区域 -->
             <div class="flex-1 flex flex-col justify-center">
+                <!-- 单词历史统计 (仅复习模式且有历史记录时显示) -->
+                <div
+                    x-show="mode === 'review' && currentCard?.history_stats"
+                    x-cloak
+                    class="mb-3 text-center"
+                >
+                    <div class="inline-flex items-center gap-4 px-4 py-2 bg-slate-700/30 rounded-lg text-sm">
+                        <span class="text-slate-400">
+                            复习 <span class="text-sky-400 font-medium" x-text="currentCard?.history_stats?.total || 0"></span> 次
+                        </span>
+                        <span class="text-slate-600">|</span>
+                        <span class="text-slate-400">
+                            答对 <span class="text-emerald-400 font-medium" x-text="currentCard?.history_stats?.correct || 0"></span> 次
+                        </span>
+                        <span class="text-slate-600">|</span>
+                        <span class="text-slate-400">
+                            错误 <span class="text-rose-400 font-medium" x-text="currentCard?.history_stats?.wrong || 0"></span> 次
+                        </span>
+                    </div>
+                </div>
                 <!-- 输入框 -->
                 <div class="relative">
                     <input

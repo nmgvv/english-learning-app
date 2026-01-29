@@ -39,7 +39,7 @@ from database import (
     create_user, authenticate_user, get_user_by_id,
     create_token, verify_token,
     get_user_progress, update_progress, get_due_cards,
-    add_history, get_user_stats
+    add_history, get_user_stats, get_words_history_stats
 )
 from bookmanager import BookManager, BOOK_NAMES, get_book_display_name
 
@@ -121,9 +121,22 @@ init_db()
 # ==================== Pydantic 模型 ====================
 
 class UserCreate(BaseModel):
+    """用户注册请求模型"""
+    # 必填（步骤1）
     username: str
     password: str
-    email: Optional[str] = None
+    email: str  # 邮箱必填
+
+    # 学习信息（步骤2）- 必填
+    grade: str  # grade7/grade8/grade9/senior1/senior2/senior3
+    school: str  # 学校名称必填
+
+    # 个人信息（步骤3）- 必填
+    age: int
+    province: str
+    city: str
+    phone: str
+    parent_phone: str
 
 
 class UserLogin(BaseModel):
@@ -243,14 +256,13 @@ async def login_page(request: Request, db: Session = Depends(get_db)):
 
 @app.get("/register", response_class=HTMLResponse)
 async def register_page(request: Request, db: Session = Depends(get_db)):
-    """注册页面"""
+    """注册页面（独立分步表单）"""
     user = get_current_user(request, db)
     if user:
         return RedirectResponse(url="/", status_code=302)
 
-    return templates.TemplateResponse("login.html", {
+    return templates.TemplateResponse("register.html", {
         "request": request,
-        "is_register": True,
         "error": None
     })
 
@@ -351,20 +363,61 @@ async def reading_page(request: Request, book_id: str, unit: Optional[str] = Non
 
 @app.post("/api/auth/register")
 async def api_register(data: UserCreate, db: Session = Depends(get_db)):
-    """用户注册"""
+    """用户注册（支持扩展信息）"""
+    # 验证必填字段
     if len(data.username) < 2:
         raise HTTPException(status_code=400, detail="用户名至少2个字符")
     if len(data.password) < 4:
         raise HTTPException(status_code=400, detail="密码至少4个字符")
+    if not data.email or "@" not in data.email:
+        raise HTTPException(status_code=400, detail="请输入有效的邮箱地址")
+    if not data.school or len(data.school) < 2:
+        raise HTTPException(status_code=400, detail="学校名称至少2个字符")
 
-    user = create_user(db, data.username, data.password, data.email)
+    # 验证年级（必填）
+    valid_grades = ["grade7", "grade8", "grade9", "senior1", "senior2", "senior3"]
+    if data.grade not in valid_grades:
+        raise HTTPException(status_code=400, detail="请选择有效的年级")
+
+    # 验证年龄（必填）
+    if data.age < 6 or data.age > 25:
+        raise HTTPException(status_code=400, detail="年龄范围 6-25 岁")
+
+    # 验证省市（必填）
+    if not data.province or len(data.province) < 2:
+        raise HTTPException(status_code=400, detail="请选择省份")
+    if not data.city or len(data.city) < 2:
+        raise HTTPException(status_code=400, detail="请选择城市")
+
+    # 验证手机号（必填）
+    import re
+    phone_pattern = r'^1[3-9]\d{9}$'
+    if not data.phone or not re.match(phone_pattern, data.phone):
+        raise HTTPException(status_code=400, detail="请输入有效的手机号")
+    if not data.parent_phone or not re.match(phone_pattern, data.parent_phone):
+        raise HTTPException(status_code=400, detail="请输入有效的家长联系方式")
+
+    # 创建用户
+    user = create_user(
+        db,
+        username=data.username,
+        password=data.password,
+        email=data.email,
+        grade=data.grade,
+        school=data.school,
+        age=data.age,
+        province=data.province,
+        city=data.city,
+        phone=data.phone,
+        parent_phone=data.parent_phone
+    )
     if not user:
         raise HTTPException(status_code=400, detail="用户名已存在")
 
     token = create_token(user.id, user.username)
     response = JSONResponse(content={
         "success": True,
-        "user": {"id": user.id, "username": user.username}
+        "user": {"id": user.id, "username": user.username, "grade": user.grade}
     })
     response.set_cookie(
         key="token",
@@ -410,6 +463,46 @@ async def api_logout():
 async def api_me(user: dict = Depends(require_auth)):
     """获取当前用户信息"""
     return {"user": user}
+
+
+# ==================== 注册辅助 API ====================
+
+@app.get("/api/regions")
+async def api_regions():
+    """获取省市数据"""
+    regions_file = STATIC_DIR / "data" / "regions.json"
+    if regions_file.exists():
+        with open(regions_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {"provinces": []}
+
+
+@app.get("/api/grades")
+async def api_grades():
+    """获取年级选项列表"""
+    return {
+        "grades": [
+            {"id": "grade7", "name": "七年级（初一）"},
+            {"id": "grade8", "name": "八年级（初二）"},
+            {"id": "grade9", "name": "九年级（初三）"},
+            {"id": "senior1", "name": "高一"},
+            {"id": "senior2", "name": "高二"},
+            {"id": "senior3", "name": "高三"},
+        ]
+    }
+
+
+@app.get("/api/weak-areas")
+async def api_weak_areas():
+    """获取薄弱项选项列表"""
+    return {
+        "weak_areas": [
+            {"id": "listening", "name": "听力"},
+            {"id": "speaking", "name": "口语"},
+            {"id": "reading", "name": "阅读"},
+            {"id": "writing", "name": "写作"},
+        ]
+    }
 
 
 # ==================== 词书 API ====================
@@ -587,6 +680,10 @@ async def api_session_start(
         # 获取所有待复习的单词（来自所有词书）
         due_cards = get_due_cards(db, user["id"])  # 全局，已随机化
 
+        # 批量获取历史统计
+        words_with_books = [(p.book_id, p.word) for p in due_cards[:data.limit]]
+        history_stats = get_words_history_stats(db, user["id"], words_with_books)
+
         for p in due_cards[:data.limit]:
             # 从词书获取单词详情
             word_obj = book_manager.get_word(p.book_id, p.word)
@@ -597,7 +694,8 @@ async def api_session_start(
                     "translation": word_obj.translation,
                     "unit": word_obj.unit,
                     "book_id": p.book_id,  # 记录词书来源
-                    "is_new": False
+                    "is_new": False,
+                    "history_stats": history_stats.get((p.book_id, p.word))
                 })
 
         return {
@@ -617,6 +715,12 @@ async def api_session_start(
     # 获取用户进度
     progress_list = get_user_progress(db, user["id"], data.book_id)
     progress_map = {p.word: p for p in progress_list}
+
+    # 复习模式时，批量获取历史统计
+    history_stats = {}
+    if data.mode == "review":
+        words_with_books = [(data.book_id, w.word) for w in words]
+        history_stats = get_words_history_stats(db, user["id"], words_with_books)
 
     for word in words:
         p = progress_map.get(word.word)
@@ -641,7 +745,8 @@ async def api_session_start(
                     "translation": word.translation,
                     "unit": word.unit,
                     "book_id": data.book_id,
-                    "is_new": False
+                    "is_new": False,
+                    "history_stats": history_stats.get((data.book_id, word.word))
                 })
         else:
             # all: 所有词
