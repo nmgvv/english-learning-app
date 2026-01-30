@@ -1007,8 +1007,13 @@ function dictationPage() {
                     const data = await resp.json();
                     this.reinforceSyllables = data.syllables || [];
                     // 生成彩色音节 HTML
-                    this.reinforceSyllablesHtml = this.reinforceSyllables.map((syl, i) => {
-                        const color = this.SYLLABLE_COLORS[i % this.SYLLABLE_COLORS.length];
+                    let colorIdx = 0;
+                    this.reinforceSyllablesHtml = this.reinforceSyllables.map((syl) => {
+                        if (syl === ' ') {
+                            return '<span class="inline-block w-4"></span>';
+                        }
+                        const color = this.SYLLABLE_COLORS[colorIdx % this.SYLLABLE_COLORS.length];
+                        colorIdx++;
                         return `<span class="${color}">${syl}</span>`;
                     }).join('');
                 } else {

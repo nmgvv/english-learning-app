@@ -787,7 +787,7 @@ async def api_session_submit(
     if not word_obj:
         raise HTTPException(status_code=404, detail="单词不存在")
 
-    correct = data.input.strip().lower() == data.word.lower()
+    correct = data.input.strip().strip('.,!?;:').lower() == data.word.strip('.,!?;:').lower()
 
     # 使用 dictation.py 的相似度计算和提示
     similarity = 0.0
@@ -909,6 +909,22 @@ async def api_tts_syllables(
             "syllables_display": "per · son · al · i · ty"
         }
     """
+    # 多词短语：按单词分别拆音节，用 " " 标记词间空格
+    words = word.strip().split()
+    if len(words) > 1:
+        all_syllables = []
+        for idx, w in enumerate(words):
+            safe_w = "".join(c for c in w if c.isalpha())
+            if safe_w:
+                all_syllables.extend(tts_service.split_syllables(safe_w))
+                if idx < len(words) - 1:
+                    all_syllables.append(" ")
+        return {
+            "word": word,
+            "syllables": all_syllables,
+            "syllables_display": " · ".join(s if s != " " else " " for s in all_syllables)
+        }
+
     safe_word = "".join(c for c in word if c.isalpha())
     if not safe_word:
         return {"error": "无效的单词"}
