@@ -29,6 +29,90 @@
         </div>
     </header>
 
+    <!-- 实时学习统计面板 -->
+    <div
+        x-show="!loading && cards.length > 0 && !finished"
+        x-cloak
+        class="max-w-2xl mx-auto w-full px-4 pt-2"
+    >
+        <div
+            @click="statsCollapsed = !statsCollapsed"
+            class="bg-slate-800/40 backdrop-blur-sm border border-slate-700/30 rounded-xl cursor-pointer select-none overflow-hidden"
+        >
+            <!-- 收起状态：单行摘要 -->
+            <div class="flex items-center justify-between py-2 px-3">
+                <div class="flex items-center gap-3 text-xs">
+                    <span class="flex items-center gap-1"
+                          :class="isIdle ? 'text-amber-400' : 'text-slate-400'">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span x-text="formatTime()"></span>
+                        <span x-show="isIdle" class="text-[10px]">(暂停)</span>
+                    </span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-slate-400">
+                        完成 <span class="text-sky-300 font-medium" x-text="totalCompleted"></span>
+                    </span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-slate-400">
+                        首次 <span class="text-emerald-300 font-medium"
+                                  x-text="totalCompleted > 0 ? Math.round(firstAttemptCorrect / totalCompleted * 100) + '%' : '-'"></span>
+                    </span>
+                </div>
+                <svg class="w-4 h-4 text-slate-500 transition-transform duration-200 flex-shrink-0"
+                     :class="{ 'rotate-180': !statsCollapsed }"
+                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+
+            <!-- 展开状态：详细统计 -->
+            <div x-show="!statsCollapsed"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="pb-3 px-3">
+                <div class="grid grid-cols-5 gap-1.5 text-center">
+                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
+                        <div class="text-sm font-bold text-slate-200" x-text="formatTime()"></div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">学习时长</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
+                        <div class="text-sm font-bold text-sky-400" x-text="totalCompleted"></div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">已完成</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
+                        <div class="text-sm font-bold text-emerald-400"
+                             x-text="totalCompleted > 0 ? Math.round(firstAttemptCorrect / totalCompleted * 100) + '%' : '-'"></div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">首次正确</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
+                        <div class="text-sm font-bold text-amber-400"
+                             x-text="totalCompleted > 0 ? Math.round(secondAttemptCorrect / totalCompleted * 100) + '%' : '-'"></div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">二次正确</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
+                        <div class="text-sm font-bold text-rose-400"
+                             x-text="totalCompleted > 0 ? Math.round(thirdAttemptCorrect / totalCompleted * 100) + '%' : '-'"></div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">三次正确</div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 mt-2 text-[11px] text-slate-400">
+                    <span>连续 <span class="text-emerald-300" x-text="currentStreak"></span></span>
+                    <span>最佳 <span class="text-amber-300" x-text="bestStreak"></span></span>
+                    <span>跳过 <span class="text-rose-300" x-text="skippedCount"></span></span>
+                    <span>均次 <span class="text-sky-300" x-text="totalCompleted > 0 ? (totalAttempts / totalCompleted).toFixed(1) : '-'"></span></span>
+                    <span>速度 <span class="text-purple-300" x-text="elapsedActiveMs >= 60000 ? (totalCompleted / (elapsedActiveMs / 60000)).toFixed(1) + '词/分' : '-'"></span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 加载中 -->
     <div x-show="loading" class="flex-1 flex items-center justify-center">
         <div class="text-center">
@@ -62,9 +146,33 @@
                     <div class="text-sm text-slate-400">错误</div>
                 </div>
             </div>
-            <p class="text-slate-300 mb-6">
+            <p class="text-slate-300 mb-4">
                 正确率: <span class="font-bold" x-text="Math.round(correctCount / (correctCount + wrongCount) * 100) || 0"></span>%
             </p>
+            <!-- 详细学习统计 -->
+            <div class="border-t border-slate-700/50 pt-4 mb-6">
+                <div class="grid grid-cols-3 gap-2 text-center mb-3">
+                    <div class="bg-slate-700/30 rounded-lg p-2">
+                        <div class="text-lg font-bold text-slate-200" x-text="formatTime()"></div>
+                        <div class="text-[10px] text-slate-500">学习时长</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg p-2">
+                        <div class="text-lg font-bold text-amber-400" x-text="bestStreak"></div>
+                        <div class="text-[10px] text-slate-500">最佳连续</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg p-2">
+                        <div class="text-lg font-bold text-purple-400" x-text="elapsedActiveMs >= 60000 ? (totalCompleted / (elapsedActiveMs / 60000)).toFixed(1) : '-'"></div>
+                        <div class="text-[10px] text-slate-500">词/分钟</div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-slate-400">
+                    <span>首次 <span class="text-emerald-300 font-medium" x-text="firstAttemptCorrect"></span></span>
+                    <span>二次 <span class="text-amber-300 font-medium" x-text="secondAttemptCorrect"></span></span>
+                    <span>三次 <span class="text-rose-300 font-medium" x-text="thirdAttemptCorrect"></span></span>
+                    <span>跳过 <span class="text-slate-300 font-medium" x-text="skippedCount"></span></span>
+                    <span>均次 <span class="text-sky-300 font-medium" x-text="totalCompleted > 0 ? (totalAttempts / totalCompleted).toFixed(1) : '-'"></span></span>
+                </div>
+            </div>
             <!-- 对话练习按钮（仅学新词模式显示） -->
             <button
                 x-show="mode === 'new' && cards.length >= 5"
@@ -551,6 +659,24 @@ function dictationPage() {
         correctCount: 0,
         wrongCount: 0,
 
+        // 学习统计
+        statsCollapsed: true,
+        totalCompleted: 0,
+        firstAttemptCorrect: 0,
+        secondAttemptCorrect: 0,
+        thirdAttemptCorrect: 0,
+        skippedCount: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        totalAttempts: 0,
+
+        // 学习计时（键盘空闲超1分钟暂停计时）
+        sessionStartTime: null,
+        elapsedActiveMs: 0,
+        timerInterval: null,
+        lastActivityTime: null,
+        isIdle: false,
+
         // 音频播放器
         audioPlayer: null,
         audioPlaying: false,  // 音频是否正在播放
@@ -572,6 +698,28 @@ function dictationPage() {
         reinforceSyllables: [],           // 音节列表
         reinforceSyllablesHtml: '',       // 彩色音节 HTML
 
+        formatTime() {
+            const totalSec = Math.floor(this.elapsedActiveMs / 1000);
+            const hours = Math.floor(totalSec / 3600);
+            const mins = Math.floor((totalSec % 3600) / 60);
+            const secs = totalSec % 60;
+            if (hours > 0) {
+                return `${hours}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+            return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        },
+
+        cleanupTimer() {
+            if (this.timerInterval) { clearInterval(this.timerInterval); this.timerInterval = null; }
+            if (this._idleChecker) { clearInterval(this._idleChecker); this._idleChecker = null; }
+            if (this._activityHandler) {
+                document.removeEventListener('keydown', this._activityHandler);
+                document.removeEventListener('mousedown', this._activityHandler);
+                document.removeEventListener('touchstart', this._activityHandler);
+                this._activityHandler = null;
+            }
+        },
+
         async init() {
             // 从 URL 读取参数
             this.mode = this.urlParams.get('mode') || 'review';
@@ -585,6 +733,32 @@ function dictationPage() {
             this.loading = false;
             if (this.cards.length > 0) {
                 this.showCard(0);
+
+                // 启动学习计时器
+                this.sessionStartTime = Date.now();
+                this.lastActivityTime = Date.now();
+                this.isIdle = false;
+                this.timerInterval = setInterval(() => {
+                    if (!this.isIdle && !this.finished) {
+                        this.elapsedActiveMs += 1000;
+                    }
+                }, 1000);
+
+                // 空闲检测：键盘/鼠标/触摸事件
+                this._activityHandler = () => {
+                    this.lastActivityTime = Date.now();
+                    if (this.isIdle) this.isIdle = false;
+                };
+                document.addEventListener('keydown', this._activityHandler);
+                document.addEventListener('mousedown', this._activityHandler);
+                document.addEventListener('touchstart', this._activityHandler);
+
+                // 每5秒检查是否空闲超过60秒
+                this._idleChecker = setInterval(() => {
+                    if (!this.finished && Date.now() - this.lastActivityTime > 60000) {
+                        this.isIdle = true;
+                    }
+                }, 5000);
             }
 
             // 全局键盘监听：回车键
@@ -632,6 +806,7 @@ function dictationPage() {
         showCard(index) {
             if (index >= this.cards.length) {
                 this.finished = true;
+                this.cleanupTimer();
                 return;
             }
             this.currentIndex = index;
@@ -708,6 +883,13 @@ function dictationPage() {
                 this.showResult = true;
                 this.inputDisabled = true;
                 this.correctCount++;
+                this.totalCompleted++;
+                this.totalAttempts += this.attempt;
+                if (this.attempt === 1) this.firstAttemptCorrect++;
+                else if (this.attempt === 2) this.secondAttemptCorrect++;
+                else if (this.attempt === 3) this.thirdAttemptCorrect++;
+                this.currentStreak++;
+                if (this.currentStreak > this.bestStreak) this.bestStreak = this.currentStreak;
 
                 // 异步保存，不阻塞 UI
                 this.completeWord(true, false);
@@ -732,6 +914,9 @@ function dictationPage() {
                     this.showAnswer = true;
                     this.inputDisabled = true;
                     this.wrongCount++;
+                    this.totalCompleted++;
+                    this.totalAttempts += 3;
+                    this.currentStreak = 0;
                     this.hint = '';
 
                     // 异步保存，不阻塞 UI
@@ -761,6 +946,9 @@ function dictationPage() {
             this.showAnswer = true;
             this.inputDisabled = true;
             this.wrongCount++;
+            this.totalCompleted++;
+            this.skippedCount++;
+            this.currentStreak = 0;
             this.hint = '';
 
             // 异步保存，不阻塞 UI
@@ -844,6 +1032,7 @@ function dictationPage() {
         },
 
         goBack() {
+            this.cleanupTimer();
             window.location.href = '/';
         },
 
