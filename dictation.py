@@ -254,7 +254,9 @@ def next_interval(s: float, desired_r: float = 0.9) -> int:
     """
     if s <= 0:
         return 1
-    interval = s * (pow(desired_r, 1 / -0.5) - 1)
+    FACTOR = 19.0 / 81.0  # FSRS-4.5 标准常量
+    DECAY = -0.5
+    interval = (s / FACTOR) * (pow(desired_r, 1.0 / DECAY) - 1)
     return max(1, min(365, round(interval)))  # 最小间隔 1 天
 
 
