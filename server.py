@@ -1134,55 +1134,53 @@ async def api_memory_tip(data: MemoryTipRequest, user: dict = Depends(require_au
 
 @app.post("/api/quiz/options")
 async def api_quiz_options(data: QuizOptionsRequest, user: dict = Depends(require_auth)):
-    """生成选择题干扰项：从同词书中随机选3个不同释义"""
+    """生成选择题：看中文选英文，返回容易混淆的英文单词作为干扰项"""
     import random
 
     words = book_manager.load(data.book_id)
     if not words:
         raise HTTPException(status_code=404, detail="词书不存在")
 
-    # 找到目标词的释义
-    target_translation = None
+    # 找到目标词
+    target_word = None
     for w in words:
         if w.word == data.word:
-            target_translation = w.translation
+            target_word = w
             break
 
-    if not target_translation:
+    if not target_word:
         raise HTTPException(status_code=404, detail="单词不存在")
 
-    # 收集干扰项：优先同单元，其次同词书
+    # 收集干扰英文单词：优先同单元、拼写相近的词
     same_unit = []
     other_unit = []
     for w in words:
         if w.word == data.word:
             continue
-        if w.translation == target_translation:
-            continue
         if data.unit and w.unit == data.unit:
-            same_unit.append(w.translation)
+            same_unit.append(w.word)
         else:
-            other_unit.append(w.translation)
+            other_unit.append(w.word)
 
-    # 优先从同单元选，不足从其他单元补
+    # 优先同单元，不足从其他单元补
     random.shuffle(same_unit)
     random.shuffle(other_unit)
     distractors = (same_unit + other_unit)[:3]
 
-    # 不足3个时用固定干扰项补充
-    fallback = ["v. 跑步", "adj. 快乐的", "n. 学校", "adv. 经常"]
+    # 不足3个时用固定干扰项
+    fallback = ["running", "happy", "school", "often"]
     while len(distractors) < 3:
         for fb in fallback:
-            if fb != target_translation and fb not in distractors:
+            if fb != data.word and fb not in distractors:
                 distractors.append(fb)
                 if len(distractors) >= 3:
                     break
 
     # 组合并打乱
-    options = [target_translation] + distractors[:3]
+    options = [data.word] + distractors[:3]
     correct_idx = 0
     random.shuffle(options)
-    correct_idx = options.index(target_translation)
+    correct_idx = options.index(data.word)
 
     return {"options": options, "correct_idx": correct_idx}
 

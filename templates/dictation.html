@@ -221,14 +221,31 @@
                 </template>
             </div>
 
+            <!-- 练习输入：对照单词输入一遍 -->
+            <div class="py-3">
+                <div class="relative">
+                    <input
+                        type="text"
+                        x-model="learnPracticeInput"
+                        @input="checkLearnPractice()"
+                        :placeholder="'输入 ' + (currentCard?.word || '') + ' 试试'"
+                        class="w-full bg-slate-700/50 border rounded-lg px-4 py-3 text-center text-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 transition"
+                        :class="learnPracticeCorrect ? 'border-emerald-500/50 focus:ring-emerald-500/30' : 'border-slate-600 focus:ring-sky-500/30'"
+                        autocomplete="off"
+                        autocapitalize="off"
+                    >
+                    <span x-show="learnPracticeCorrect" x-cloak class="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-400 text-xl">✓</span>
+                </div>
+            </div>
+
             <!-- AI 例句 -->
             <div class="py-3">
                 <div x-show="learnExampleLoading" class="text-center text-slate-500 text-sm">
                     <span class="inline-block animate-pulse">例句生成中...</span>
                 </div>
-                <div x-show="learnExampleSentence && !learnExampleLoading" x-cloak class="bg-sky-500/10 border border-sky-500/30 rounded-lg p-3">
-                    <div class="text-sky-200 text-sm" x-text="learnExampleSentence"></div>
-                    <div class="text-slate-400 text-xs mt-1" x-text="learnExampleChinese"></div>
+                <div x-show="learnExampleSentence && !learnExampleLoading" x-cloak class="bg-sky-500/10 border border-sky-500/30 rounded-lg p-4 text-center">
+                    <div class="text-sky-200 text-lg" x-text="learnExampleSentence"></div>
+                    <div class="text-slate-400 text-base mt-1" x-text="learnExampleChinese"></div>
                 </div>
             </div>
 
@@ -266,74 +283,107 @@
             </div>
         </div>
 
-        <!-- ==================== 阶段2: 理解（选择题） ==================== -->
+        <!-- ==================== 阶段测试（看中文选英文） ==================== -->
         <div x-show="learnPhase === 2" x-cloak class="bg-slate-800/50 backdrop-blur rounded-2xl shadow-xl border border-slate-700/50 flex-1 flex flex-col p-6">
-            <!-- 阶段标签 -->
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs rounded-full border border-emerald-500/30">
-                    第2步 · <span x-text="quizType === 'listen' ? '听音选义' : '看词选义'"></span>
-                </span>
-                <span class="text-xs text-slate-500" x-show="quizListenDone">
-                    听音 <span :class="quizListenCorrect ? 'text-emerald-400' : 'text-rose-400'" x-text="quizListenCorrect ? '✓' : '✗'"></span>
-                </span>
-            </div>
 
-            <!-- 听音选义：显示喇叭图标 -->
-            <div x-show="quizType === 'listen'" class="text-center py-8">
-                <button
-                    @click="TTS.playWord(currentCard?.word)"
-                    :disabled="audioPlaying"
-                    class="w-20 h-20 mx-auto bg-sky-500/20 border-2 border-sky-500/40 rounded-full flex items-center justify-center hover:bg-sky-500/30 transition disabled:opacity-50"
-                >
-                    <svg class="w-10 h-10 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-                    </svg>
-                </button>
-                <div class="text-slate-500 text-sm mt-3">点击播放发音，选择正确的含义</div>
-            </div>
-
-            <!-- 看词选义：显示英文单词 -->
-            <div x-show="quizType === 'read'" class="text-center py-8">
-                <div class="text-4xl font-bold text-slate-100 tracking-wide" x-text="currentCard?.word || ''"></div>
-                <div class="text-lg text-slate-400 mt-2" x-text="currentCard?.phonetic || ''"></div>
-                <div class="text-slate-500 text-sm mt-3">选择正确的含义</div>
-            </div>
-
-            <!-- 四个选项 -->
-            <div class="flex-1 flex flex-col justify-center gap-3 py-4">
-                <template x-for="(opt, idx) in quizOptions" :key="'quiz-'+idx">
+            <!-- 测试结果摘要 -->
+            <template x-if="batchTestShowResult">
+                <div class="flex-1 flex flex-col items-center justify-center">
+                    <div class="text-emerald-400 text-6xl mb-6">
+                        <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-xl font-bold text-slate-200 mb-2">阶段测试完成</div>
+                    <div class="text-3xl font-bold mb-4">
+                        <span class="text-emerald-400" x-text="batchTestResults.filter(r => r.correct).length"></span>
+                        <span class="text-slate-500"> / </span>
+                        <span class="text-slate-300" x-text="batchTestResults.length"></span>
+                    </div>
+                    <div class="text-slate-400 text-sm mb-6" x-text="batchTestResults.filter(r => r.correct).length === batchTestResults.length ? '全部正确，太棒了！' : '继续加油！'"></div>
+                    <!-- 错误词列表 -->
+                    <div x-show="batchTestResults.filter(r => !r.correct).length > 0" class="w-full mb-6">
+                        <div class="text-xs text-rose-400 mb-2 text-center">需要加强</div>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <template x-for="r in batchTestResults.filter(r => !r.correct)" :key="'wrong-'+r.word">
+                                <span class="px-3 py-1 bg-rose-500/15 text-rose-300 text-sm rounded-lg" x-text="r.word"></span>
+                            </template>
+                        </div>
+                    </div>
                     <button
-                        @click="selectQuizOption(idx)"
-                        :disabled="quizAnswered"
-                        class="w-full py-4 px-6 rounded-xl text-left text-lg font-medium border-2 transition-all"
-                        :class="{
-                            'bg-slate-700/50 border-slate-600 text-slate-200 hover:bg-slate-600/50 hover:border-slate-500': !quizAnswered,
-                            'bg-emerald-500/20 border-emerald-500 text-emerald-300': quizAnswered && idx === quizCorrectIdx,
-                            'bg-rose-500/20 border-rose-500 text-rose-300': quizAnswered && idx === quizSelected && idx !== quizCorrectIdx,
-                            'bg-slate-700/30 border-slate-700 text-slate-500': quizAnswered && idx !== quizCorrectIdx && idx !== quizSelected
-                        }"
+                        @click="batchTestContinue()"
+                        class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-medium hover:from-emerald-600 hover:to-teal-600 transition shadow-lg shadow-emerald-500/20 text-lg"
                     >
-                        <span class="mr-3 text-slate-500" x-text="['A','B','C','D'][idx]"></span>
-                        <span x-text="opt"></span>
+                        继续学习
                     </button>
-                </template>
-            </div>
-
-            <!-- 答题结果反馈 + 继续按钮 -->
-            <div x-show="quizAnswered" x-cloak class="pt-4">
-                <div class="text-center mb-3">
-                    <span x-show="quizIsCorrect" class="text-emerald-400 font-medium">正确！</span>
-                    <span x-show="!quizIsCorrect" class="text-rose-400 font-medium">
-                        答错了，正确答案是 <span class="text-emerald-300" x-text="['A','B','C','D'][quizCorrectIdx]"></span>
-                    </span>
                 </div>
-                <button
-                    @click="quizNext()"
-                    class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-medium hover:from-emerald-600 hover:to-teal-600 transition shadow-lg shadow-emerald-500/20"
-                >
-                    <span x-text="quizIsCorrect ? '继续' : (quizRetryCount >= 2 ? '继续' : '再看一遍')"></span>
-                </button>
-            </div>
+            </template>
+
+            <!-- 测试答题界面 -->
+            <template x-if="!batchTestShowResult">
+                <div class="flex-1 flex flex-col">
+                    <!-- 阶段标签 -->
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs rounded-full border border-emerald-500/30">
+                            阶段测试 <span x-text="batchTestIndex + 1"></span>/<span x-text="batchTestWords.length"></span>
+                        </span>
+                    </div>
+
+                    <!-- 显示中文释义 -->
+                    <div class="text-center py-6">
+                        <div class="text-3xl font-bold text-amber-300" x-text="splitTranslation(currentBatchWord?.translation || '').main"></div>
+                        <div class="text-sm text-slate-400 mt-2" x-show="splitTranslation(currentBatchWord?.translation || '').extended" x-text="splitTranslation(currentBatchWord?.translation || '').extended"></div>
+                        <div class="text-slate-500 text-sm mt-3">选择正确的英文单词，点击喇叭可听发音</div>
+                    </div>
+
+                    <!-- 四个英文单词选项（带发音按钮） -->
+                    <div class="flex-1 flex flex-col justify-center gap-3 py-4">
+                        <template x-for="(opt, idx) in quizOptions" :key="'quiz-'+idx">
+                            <div class="flex items-center gap-2">
+                                <button
+                                    @click.stop="playQuizOption(opt)"
+                                    :disabled="audioPlaying"
+                                    class="flex-shrink-0 w-10 h-10 rounded-full bg-sky-500/20 border border-sky-500/40 flex items-center justify-center hover:bg-sky-500/30 transition disabled:opacity-40"
+                                >
+                                    <svg class="w-5 h-5 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                                    </svg>
+                                </button>
+                                <button
+                                    @click="selectQuizOption(idx)"
+                                    :disabled="quizAnswered"
+                                    class="flex-1 py-4 px-5 rounded-xl text-left text-lg font-medium border-2 transition-all tracking-wide"
+                                    :class="{
+                                        'bg-slate-700/50 border-slate-600 text-slate-200 hover:bg-slate-600/50 hover:border-slate-500': !quizAnswered,
+                                        'bg-emerald-500/20 border-emerald-500 text-emerald-300': quizAnswered && idx === quizCorrectIdx,
+                                        'bg-rose-500/20 border-rose-500 text-rose-300': quizAnswered && idx === quizSelected && idx !== quizCorrectIdx,
+                                        'bg-slate-700/30 border-slate-700 text-slate-500': quizAnswered && idx !== quizCorrectIdx && idx !== quizSelected
+                                    }"
+                                >
+                                    <span class="mr-3 text-slate-500" x-text="['A','B','C','D'][idx]"></span>
+                                    <span x-text="opt"></span>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- 答题反馈 + 继续 -->
+                    <div x-show="quizAnswered" x-cloak class="pt-4">
+                        <div class="text-center mb-3">
+                            <span x-show="quizIsCorrect" class="text-emerald-400 font-medium">正确！</span>
+                            <span x-show="!quizIsCorrect" class="text-rose-400 font-medium">
+                                答错了，正确答案是 <span class="text-emerald-300" x-text="quizOptions[quizCorrectIdx]"></span>
+                            </span>
+                        </div>
+                        <button
+                            @click="quizNext()"
+                            class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-medium hover:from-emerald-600 hover:to-teal-600 transition shadow-lg shadow-emerald-500/20"
+                        >
+                            <span x-text="batchTestIndex < batchTestWords.length - 1 ? '下一题' : '查看结果'"></span>
+                        </button>
+                    </div>
+                </div>
+            </template>
         </div>
 
         <!-- ==================== 阶段3: 产出 / 复习模式 ==================== -->
@@ -860,6 +910,8 @@ function dictationPage() {
         learnExampleSentence: '',         // 阶段1的例句
         learnExampleChinese: '',          // 阶段1的例句翻译
         learnExampleLoading: false,       // 例句加载中
+        learnPracticeInput: '',           // 阶段1练习输入
+        learnPracticeCorrect: false,      // 练习输入是否正确
         // 选择题
         quizType: '',                     // 'listen' 或 'read'
         quizOptions: [],                  // 4个选项
@@ -872,6 +924,15 @@ function dictationPage() {
         quizReadDone: false,             // 看词选义是否完成
         quizReadCorrect: null,           // 看词选义结果
         quizRetryCount: 0,              // 当前题重试次数
+        // 阶段测试（批量选择题）
+        batchTestMode: false,             // 是否在阶段测试中
+        batchTestWords: [],               // 待测单词列表
+        batchTestIndex: 0,                // 当前测试第几个
+        batchTestResults: [],             // [{word, correct}]
+        batchTestShowResult: false,       // 是否显示测试结果
+        currentBatchWord: null,           // 当前测试的单词对象
+        learnedSinceLastTest: 0,          // 上次测试后已学单词数
+        batchTestTriggerCount: 0,         // 本轮触发阈值（随机3-6，init时设置）
 
         formatTime() {
             const totalSec = Math.floor(this.elapsedActiveMs / 1000);
@@ -906,6 +967,8 @@ function dictationPage() {
 
             await this.loadCards();
             this.loading = false;
+            // 初始化阶段测试随机阈值
+            this.batchTestTriggerCount = this.randomTriggerCount();
             if (this.cards.length > 0) {
                 this.showCard(0);
 
@@ -944,7 +1007,12 @@ function dictationPage() {
                         this.learnPhase1Continue();
                         return;
                     }
-                    // 阶段2：回车在已答题后等于「继续」
+                    // 阶段测试结果页：回车继续
+                    if (this.learnPhase === 2 && this.batchTestShowResult) {
+                        this.batchTestContinue();
+                        return;
+                    }
+                    // 阶段测试：回车在已答题后等于「继续/下一题」
                     if (this.learnPhase === 2 && this.quizAnswered) {
                         this.quizNext();
                         return;
@@ -1064,19 +1132,18 @@ function dictationPage() {
             // 阶段1：认知 — 展示单词全貌
             this.learnPhase = 1;
 
-            // 自动播放慢速发音
-            this.$nextTick(() => {
-                TTS.playWord(this.currentCard.word, 'slow');
-            });
+            // 重置练习输入
+            this.learnPracticeInput = '';
+            this.learnPracticeCorrect = false;
 
-            // 并行请求例句和记忆技巧
+            // 并行请求例句和记忆技巧（不等播放）
             this.learnExampleLoading = true;
             this.memoryTipLoading = true;
 
             const cardBookId = this.currentCard.book_id || this.bookId;
 
             // 请求例句
-            fetch('/api/example-sentence', {
+            const sentencePromise = fetch('/api/example-sentence', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -1086,8 +1153,21 @@ function dictationPage() {
             }).then(r => r.json()).then(data => {
                 this.learnExampleSentence = data.sentence || '';
                 this.learnExampleChinese = data.chinese || '';
-            }).catch(() => {}).finally(() => {
+                return data.sentence || '';
+            }).catch(() => '').finally(() => {
                 this.learnExampleLoading = false;
+            });
+
+            // 先播放慢速单词发音，等播放完成后再播放例句
+            this.$nextTick(async () => {
+                try {
+                    await TTS.playWord(this.currentCard.word, 'slow');
+                } catch(e) {}
+                // 等例句加载完毕
+                const sentence = await sentencePromise;
+                if (sentence) {
+                    this.playSentenceAudio(sentence);
+                }
             });
 
             // 请求记忆技巧（拆解+同类词）
@@ -1108,25 +1188,13 @@ function dictationPage() {
         },
 
         async startLearnPhase2() {
-            // 阶段2：理解 — 选择题
+            // 阶段2：理解 — 看中文选英文
             this.learnPhase = 2;
-            this.quizListenDone = false;
-            this.quizListenCorrect = null;
-            this.quizReadDone = false;
-            this.quizReadCorrect = null;
-
-            // 先做听音选义
-            await this.startQuiz('listen');
-        },
-
-        async startQuiz(type) {
-            this.quizType = type;
             this.quizSelected = -1;
             this.quizAnswered = false;
             this.quizIsCorrect = false;
-            this.quizRetryCount = 0;
 
-            // 获取选项
+            // 获取英文单词选项
             const cardBookId = this.currentCard.book_id || this.bookId;
             try {
                 const response = await fetch('/api/quiz/options', {
@@ -1145,16 +1213,8 @@ function dictationPage() {
                 }
             } catch (e) {
                 console.error('获取选项失败:', e);
-                // 失败则跳过阶段2直接进入阶段3
                 this.startLearnPhase3();
                 return;
-            }
-
-            // 听音选义：自动播放发音
-            if (type === 'listen') {
-                this.$nextTick(() => {
-                    TTS.playWord(this.currentCard.word);
-                });
             }
         },
 
@@ -1164,55 +1224,127 @@ function dictationPage() {
             this.quizAnswered = true;
             this.quizIsCorrect = (idx === this.quizCorrectIdx);
 
-            if (this.quizIsCorrect) {
-                // 正确
-                if (this.quizType === 'listen') {
-                    this.quizListenDone = true;
-                    this.quizListenCorrect = true;
-                } else {
-                    this.quizReadDone = true;
-                    this.quizReadCorrect = true;
-                }
-            } else {
-                // 错误
+            if (!this.quizIsCorrect) {
                 this.quizRetryCount++;
-                if (this.quizType === 'listen') {
-                    if (this.quizRetryCount >= 2) {
-                        this.quizListenDone = true;
-                        this.quizListenCorrect = false;
-                    }
-                } else {
-                    if (this.quizRetryCount >= 2) {
-                        this.quizReadDone = true;
-                        this.quizReadCorrect = false;
-                    }
-                }
             }
         },
 
+        // 阶段1练习输入检查
+        checkLearnPractice() {
+            const target = (this.currentCard?.word || '').trim().toLowerCase();
+            this.learnPracticeCorrect = this.learnPracticeInput.trim().toLowerCase() === target;
+        },
+
+        // 播放选项单词的发音
+        playQuizOption(word) {
+            TTS.playWord(word);
+        },
+
         async quizNext() {
-            if (this.quizType === 'listen' && !this.quizListenDone) {
-                // 听音选义答错且未超限，回到阶段1简要展示后重试
+            // 阶段测试模式
+            if (this.batchTestMode) {
+                this.batchQuizNext();
+                return;
+            }
+            // 原逻辑（保留以防需要）
+            if (!this.quizIsCorrect && this.quizRetryCount < 2) {
                 this.learnPhase = 1;
                 TTS.playWord(this.currentCard.word, 'slow');
                 return;
             }
-
-            if (this.quizType === 'listen' && !this.quizReadDone) {
-                // 听音选义完成，进入看词选义
-                await this.startQuiz('read');
-                return;
-            }
-
-            if (this.quizType === 'read' && !this.quizReadDone) {
-                // 看词选义答错且未超限，回到阶段1简要展示后重试
-                this.learnPhase = 1;
-                TTS.playWord(this.currentCard.word, 'slow');
-                return;
-            }
-
-            // 两题都完成，进入阶段3
             this.startLearnPhase3();
+        },
+
+        // ==================== 阶段测试（批量选择题） ====================
+
+        randomTriggerCount() {
+            return Math.floor(Math.random() * 4) + 3; // 3-6
+        },
+
+        startBatchTest() {
+            // 收集最近学的词
+            const start = Math.max(0, this.currentIndex - this.learnedSinceLastTest + 1);
+            const end = this.currentIndex + 1;
+            this.batchTestWords = this.cards.slice(start, end).map(c => ({
+                word: c.word,
+                translation: c.translation,
+                unit: c.unit,
+                book_id: c.book_id || this.bookId
+            }));
+            // 打乱顺序
+            for (let i = this.batchTestWords.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [this.batchTestWords[i], this.batchTestWords[j]] = [this.batchTestWords[j], this.batchTestWords[i]];
+            }
+            // 重置状态
+            this.batchTestIndex = 0;
+            this.batchTestResults = [];
+            this.batchTestShowResult = false;
+            this.learnedSinceLastTest = 0;
+            this.batchTestTriggerCount = this.randomTriggerCount();
+            // 加载第一题
+            this.loadBatchTestWord(0);
+        },
+
+        async loadBatchTestWord(index) {
+            if (index >= this.batchTestWords.length) {
+                this.completeBatchTest();
+                return;
+            }
+            this.batchTestIndex = index;
+            this.currentBatchWord = this.batchTestWords[index];
+            this.batchTestMode = true;
+            this.learnPhase = 2;
+            // 重置选择题状态
+            this.quizSelected = -1;
+            this.quizAnswered = false;
+            this.quizIsCorrect = false;
+            this.quizOptions = [];
+            this.quizCorrectIdx = -1;
+            // 获取选项
+            try {
+                const response = await fetch('/api/quiz/options', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        word: this.currentBatchWord.word,
+                        book_id: this.currentBatchWord.book_id,
+                        unit: this.currentBatchWord.unit || ''
+                    })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    this.quizOptions = data.options;
+                    this.quizCorrectIdx = data.correct_idx;
+                }
+            } catch (e) {
+                console.error('阶段测试加载失败:', e);
+                this.completeBatchTest();
+            }
+        },
+
+        batchQuizNext() {
+            // 记录结果
+            this.batchTestResults.push({
+                word: this.currentBatchWord.word,
+                correct: this.quizIsCorrect
+            });
+            // 下一题
+            this.loadBatchTestWord(this.batchTestIndex + 1);
+        },
+
+        completeBatchTest() {
+            // 显示结果摘要
+            this.batchTestMode = true;
+            this.batchTestShowResult = true;
+            this.learnPhase = 2; // 保持在phase 2 UI区域
+        },
+
+        batchTestContinue() {
+            // 结果页点击继续
+            this.batchTestMode = false;
+            this.batchTestShowResult = false;
+            this.showCard(this.currentIndex + 1);
         },
 
         startLearnPhase3() {
@@ -1223,21 +1355,9 @@ function dictationPage() {
             });
         },
 
-        // 阶段1点击「我记住了」
+        // 阶段1点击「我记住了」→ 直接进入阶段3拼写
         learnPhase1Continue() {
-            // 如果是从阶段2错误回来复习的，直接回到阶段2重试
-            if (this.quizType === 'listen' && !this.quizListenDone) {
-                this.startQuiz('listen');
-                this.learnPhase = 2;
-                return;
-            }
-            if (this.quizType === 'read' && !this.quizReadDone) {
-                this.startQuiz('read');
-                this.learnPhase = 2;
-                return;
-            }
-            // 首次从阶段1进入阶段2
-            this.startLearnPhase2();
+            this.startLearnPhase3();
         },
 
         // ==================== 学新词三阶段结束 ====================
@@ -1404,6 +1524,16 @@ function dictationPage() {
         },
 
         nextWord() {
+            // 新词模式：检查是否该触发阶段测试
+            if (this.mode === 'new') {
+                this.learnedSinceLastTest++;
+                const isLastWord = this.currentIndex >= this.cards.length - 1;
+                if (this.learnedSinceLastTest >= this.batchTestTriggerCount ||
+                    (isLastWord && this.learnedSinceLastTest > 0)) {
+                    this.startBatchTest();
+                    return;
+                }
+            }
             this.showCard(this.currentIndex + 1);
         },
 
