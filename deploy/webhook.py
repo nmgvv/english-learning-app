@@ -41,7 +41,7 @@ app = Flask(__name__)
 
 # 从环境变量读取配置
 WEBHOOK_SECRET = os.getenv("GITHUB_WEBHOOK_SECRET", "")
-DEPLOY_SCRIPT = os.getenv("DEPLOY_SCRIPT", "/opt/english-learning-app/deploy/deploy.sh")
+DEPLOY_SCRIPT = os.getenv("DEPLOY_SCRIPT", "/var/www/english-app/deploy/deploy.sh")
 ALLOWED_BRANCH = os.getenv("ALLOWED_BRANCH", "refs/heads/main")
 
 
