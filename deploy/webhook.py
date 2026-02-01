@@ -121,7 +121,7 @@ def webhook():
             capture_output=True,
             text=True,
             timeout=300,  # 5分钟超时
-            cwd="/opt/english-learning-app"
+            cwd="/var/www/english-app"
         )
 
         if result.returncode == 0:
