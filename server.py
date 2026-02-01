@@ -172,6 +172,18 @@ class ExampleRequest(BaseModel):
     translation: str
 
 
+class MemoryTipRequest(BaseModel):
+    word: str
+    translation: str
+    phonetic: str = ""
+
+
+class QuizOptionsRequest(BaseModel):
+    word: str
+    book_id: str
+    unit: Optional[str] = None
+
+
 class ConversationStartRequest(BaseModel):
     words: List[dict]  # [{"word": "...", "translation": "..."}]
     mode: str = "guided"
@@ -1054,6 +1066,125 @@ async def api_example_sentence(data: ExampleRequest, user: dict = Depends(requir
                 return {"sentence": None, "chinese": None, "error": f"API 返回 {response.status_code}"}
     except Exception as e:
         return {"sentence": None, "chinese": None, "error": str(e)}
+
+
+@app.post("/api/memory-tip")
+async def api_memory_tip(data: MemoryTipRequest, user: dict = Depends(require_auth)):
+    """生成记忆技巧（词根拆解、联想、口诀）"""
+    if not QWEN_AVAILABLE:
+        return {"tip": None, "error": "Qwen 服务不可用"}
+
+    api_key = os.getenv("DASHSCOPE_API_KEY")
+    if not api_key:
+        return {"tip": None, "error": "未配置 DASHSCOPE_API_KEY"}
+
+    prompt = f"""单词: {data.word}
+音标: {data.phonetic}
+释义: {data.translation}
+
+请帮助初中生记忆这个单词。严格按以下规则：
+
+1. 拆解单词构成：将单词拆成有意义的部分
+   - 复合词拆成子词，如 basketball → basket(篮子) + ball(球)
+   - 有词根词缀的拆解词根，如 unhappy → un(不) + happy(开心)
+   - 有词形变化的标出原形，如 cleaning → clean(干净的) + ing
+   - 简单词无法拆解则跳过此项
+
+2. 列举同类构词的单词（2-4个），帮助举一反三
+   - 如 basketball → 同类: football(足球), baseball(棒球), volleyball(排球)
+   - 如 unhappy → 同类: unlucky(不幸的), unkind(不友善的), unable(不能的)
+
+不要使用谐音、口诀、故事联想等方法，只做拆解和同类词列举。
+
+返回JSON：{{"breakdown": "拆解说明（一句话）", "similar": ["同类词1(中文)", "同类词2(中文)"]}}
+如果单词无法拆解，breakdown 返回空字符串，similar 也返回空数组。"""
+
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.post(
+                "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": "qwen-plus",
+                    "messages": [
+                        {"role": "system", "content": "你是一位英语教师助手，擅长用构词法帮助中国初中生拆解记忆英语单词。回复使用JSON格式。"},
+                        {"role": "user", "content": prompt}
+                    ],
+                    "temperature": 0.3,
+                    "max_tokens": 250
+                }
+            )
+
+            if response.status_code == 200:
+                result = response.json()
+                content = result["choices"][0]["message"]["content"]
+                if "```json" in content:
+                    content = content.split("```json")[1].split("```")[0].strip()
+                elif "```" in content:
+                    content = content.split("```")[1].split("```")[0].strip()
+                return json.loads(content)
+            else:
+                return {"tip": None, "error": f"API 返回 {response.status_code}"}
+    except Exception as e:
+        return {"tip": None, "error": str(e)}
+
+
+@app.post("/api/quiz/options")
+async def api_quiz_options(data: QuizOptionsRequest, user: dict = Depends(require_auth)):
+    """生成选择题干扰项：从同词书中随机选3个不同释义"""
+    import random
+
+    words = book_manager.load(data.book_id)
+    if not words:
+        raise HTTPException(status_code=404, detail="词书不存在")
+
+    # 找到目标词的释义
+    target_translation = None
+    for w in words:
+        if w.word == data.word:
+            target_translation = w.translation
+            break
+
+    if not target_translation:
+        raise HTTPException(status_code=404, detail="单词不存在")
+
+    # 收集干扰项：优先同单元，其次同词书
+    same_unit = []
+    other_unit = []
+    for w in words:
+        if w.word == data.word:
+            continue
+        if w.translation == target_translation:
+            continue
+        if data.unit and w.unit == data.unit:
+            same_unit.append(w.translation)
+        else:
+            other_unit.append(w.translation)
+
+    # 优先从同单元选，不足从其他单元补
+    random.shuffle(same_unit)
+    random.shuffle(other_unit)
+    distractors = (same_unit + other_unit)[:3]
+
+    # 不足3个时用固定干扰项补充
+    fallback = ["v. 跑步", "adj. 快乐的", "n. 学校", "adv. 经常"]
+    while len(distractors) < 3:
+        for fb in fallback:
+            if fb != target_translation and fb not in distractors:
+                distractors.append(fb)
+                if len(distractors) >= 3:
+                    break
+
+    # 组合并打乱
+    options = [target_translation] + distractors[:3]
+    correct_idx = 0
+    random.shuffle(options)
+    correct_idx = options.index(target_translation)
+
+    return {"options": options, "correct_idx": correct_idx}
 
 
 # ==================== 统计 API ====================
