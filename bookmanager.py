@@ -37,8 +37,9 @@ BOOK_NAMES = {
     "bsd_grade8_down": "北师大八年级下册",
     "bsd_grade9_up": "北师大九年级上册",
     "bsd_grade9_down": "北师大九年级下册",
-    "pep_grade7_up": "人教版七年级上册",
-    "pep_grade7_down": "人教版七年级下册",
+    "pep_grade7": "人教版七年级",
+    "pep_grade8": "人教版八年级",
+    "pep_grade9": "人教版九年级",
     "zhongkao": "中考词汇",
     # 高中词书
     "bsd_senior_compulsory1": "北师大高中必修一",

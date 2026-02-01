@@ -1,0 +1,5000 @@
+[
+  {
+    "word": "what",
+    "phonetic": "/hwɔt/",
+    "translation": "pron 什么",
+    "unit": "第一册"
+  },
+  {
+    "word": "is",
+    "phonetic": "/iz/",
+    "translation": "v 是",
+    "unit": "第一册"
+  },
+  {
+    "word": "what's",
+    "phonetic": "/hwɔts/",
+    "translation": "what is 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "your",
+    "phonetic": "/juə/",
+    "translation": "pron 你的,你们的",
+    "unit": "第一册"
+  },
+  {
+    "word": "name",
+    "phonetic": "/neim/",
+    "translation": "n 名字",
+    "unit": "第一册"
+  },
+  {
+    "word": "my",
+    "phonetic": "/mai/",
+    "translation": "pron 我的",
+    "unit": "第一册"
+  },
+  {
+    "word": "I",
+    "phonetic": "/ai/",
+    "translation": "pron 我",
+    "unit": "第一册"
+  },
+  {
+    "word": "am",
+    "phonetic": "/æm/",
+    "translation": "v 是",
+    "unit": "第一册"
+  },
+  {
+    "word": "I'm",
+    "phonetic": "/aim/",
+    "translation": "I am 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "in",
+    "phonetic": "/in/",
+    "translation": "prep 在...里(内,上)",
+    "unit": "第一册"
+  },
+  {
+    "word": "row",
+    "phonetic": "/rəu/",
+    "translation": "n (一)排,(一)行",
+    "unit": "第一册"
+  },
+  {
+    "word": "one",
+    "phonetic": "/wʌn/",
+    "translation": "n um 一",
+    "unit": "第一册"
+  },
+  {
+    "word": "number",
+    "phonetic": "/'nʌmbə/",
+    "translation": "n 数字,号码",
+    "unit": "第一册"
+  },
+  {
+    "word": "two",
+    "phonetic": "/tu:/",
+    "translation": "n um 二",
+    "unit": "第一册"
+  },
+  {
+    "word": "too",
+    "phonetic": "/tu:/",
+    "translation": "adv 也",
+    "unit": "第一册"
+  },
+  {
+    "word": "three",
+    "phonetic": "/θri:/",
+    "translation": "n um 三",
+    "unit": "第一册"
+  },
+  {
+    "word": "are",
+    "phonetic": "/ɑ:/",
+    "translation": "v 是",
+    "unit": "第一册"
+  },
+  {
+    "word": "you",
+    "phonetic": "/ju:/",
+    "translation": "pron 你,你们",
+    "unit": "第一册"
+  },
+  {
+    "word": "yes",
+    "phonetic": "/jes/",
+    "translation": "adv 是",
+    "unit": "第一册"
+  },
+  {
+    "word": "four",
+    "phonetic": "/fɔ:/",
+    "translation": "n um 四",
+    "unit": "第一册"
+  },
+  {
+    "word": "five",
+    "phonetic": "/faiv/",
+    "translation": "n um 五",
+    "unit": "第一册"
+  },
+  {
+    "word": "no",
+    "phonetic": "/nəu/",
+    "translation": "adv & adj 不,不是",
+    "unit": "第一册"
+  },
+  {
+    "word": "not",
+    "phonetic": "/nɔt/",
+    "translation": "adv 不",
+    "unit": "第一册"
+  },
+  {
+    "word": "hi",
+    "phonetic": "/hai/",
+    "translation": "int 喂(问候或唤起注意)",
+    "unit": "第一册"
+  },
+  {
+    "word": "class",
+    "phonetic": "/klɑ:s/",
+    "translation": "n (学校里的)班级,年级",
+    "unit": "第一册"
+  },
+  {
+    "word": "grade",
+    "phonetic": "/greid/",
+    "translation": "n 年级",
+    "unit": "第一册"
+  },
+  {
+    "word": "six",
+    "phonetic": "/siks/",
+    "translation": "n um 六",
+    "unit": "第一册"
+  },
+  {
+    "word": "seven",
+    "phonetic": "/'sevn/",
+    "translation": "n um 七",
+    "unit": "第一册"
+  },
+  {
+    "word": "eight",
+    "phonetic": "/eit/",
+    "translation": "n um 八",
+    "unit": "第一册"
+  },
+  {
+    "word": "nine",
+    "phonetic": "/nain/",
+    "translation": "n um 九",
+    "unit": "第一册"
+  },
+  {
+    "word": "ten",
+    "phonetic": "/ten/",
+    "translation": "n um 十",
+    "unit": "第一册"
+  },
+  {
+    "word": "zero",
+    "phonetic": "/'ziərəu/",
+    "translation": "n um & n 零",
+    "unit": "第一册"
+  },
+  {
+    "word": "plus",
+    "phonetic": "/plʌs/",
+    "translation": "prep  加,加上",
+    "unit": "第一册"
+  },
+  {
+    "word": "it",
+    "phonetic": "/it/",
+    "translation": "pron 它",
+    "unit": "第一册"
+  },
+  {
+    "word": "It's",
+    "phonetic": "/its/",
+    "translation": "it is 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "how",
+    "phonetic": "/hau/",
+    "translation": "adv (指程度)多少,怎样",
+    "unit": "第一册"
+  },
+  {
+    "word": "old",
+    "phonetic": "/əuld/",
+    "translation": "adj ...岁的,老的",
+    "unit": "第一册"
+  },
+  {
+    "word": "eleven",
+    "phonetic": "/i'levn/",
+    "translation": "n um 十一",
+    "unit": "第一册"
+  },
+  {
+    "word": "twelve",
+    "phonetic": "/twelv/",
+    "translation": "n um 十二",
+    "unit": "第一册"
+  },
+  {
+    "word": "minus",
+    "phonetic": "/'mainəs/",
+    "translation": "prep 减,减去",
+    "unit": "第一册"
+  },
+  {
+    "word": "thirteen",
+    "phonetic": "/'θə:ti:n/",
+    "translation": "n um 十三",
+    "unit": "第一册"
+  },
+  {
+    "word": "fourteen",
+    "phonetic": "/'fɔ:'ti:n/",
+    "translation": "n um 十四",
+    "unit": "第一册"
+  },
+  {
+    "word": "fifteen",
+    "phonetic": "/'fif'ti:n/",
+    "translation": "n um 十五",
+    "unit": "第一册"
+  },
+  {
+    "word": "hello",
+    "phonetic": "/hə'ləu/",
+    "translation": "int 喂(问候或唤起注意)",
+    "unit": "第一册"
+  },
+  {
+    "word": "please",
+    "phonetic": "/pli:z/",
+    "translation": "int 请",
+    "unit": "第一册"
+  },
+  {
+    "word": "can",
+    "phonetic": "/kæn/",
+    "translation": "v.aux 能,可以,会",
+    "unit": "第一册"
+  },
+  {
+    "word": "spell",
+    "phonetic": "/spel/",
+    "translation": "v  拼写",
+    "unit": "第一册"
+  },
+  {
+    "word": "that",
+    "phonetic": "/ðæt/",
+    "translation": "pron 那,那个",
+    "unit": "第一册"
+  },
+  {
+    "word": "secret",
+    "phonetic": "/'si:krit/",
+    "translation": "n 秘密",
+    "unit": "第一册"
+  },
+  {
+    "word": "this",
+    "phonetic": "/ðis/",
+    "translation": "pron 这,这个",
+    "unit": "第一册"
+  },
+  {
+    "word": "in",
+    "phonetic": "/in/",
+    "translation": "prep  用...(表达)",
+    "unit": "第一册"
+  },
+  {
+    "word": "English",
+    "phonetic": "/'iŋgliʃ/",
+    "translation": "n & adj 英语,英国人",
+    "unit": "第一册"
+  },
+  {
+    "word": "in English",
+    "phonetic": "/in'iŋgliʃ/",
+    "translation": "phr. 用英语(表达)",
+    "unit": "第一册"
+  },
+  {
+    "word": "a",
+    "phonetic": "/ei/",
+    "translation": "art  一(个,件...)",
+    "unit": "第一册"
+  },
+  {
+    "word": "clock",
+    "phonetic": "/klɔk/",
+    "translation": "n 钟",
+    "unit": "第一册"
+  },
+  {
+    "word": "and",
+    "phonetic": "/ænd/",
+    "translation": "conj 和,又,而",
+    "unit": "第一册"
+  },
+  {
+    "word": "pencil-box",
+    "phonetic": "/'penslbɔks/",
+    "translation": "n 铅笔盒",
+    "unit": "第一册"
+  },
+  {
+    "word": "an",
+    "phonetic": "/æn/",
+    "translation": "art  一(个;件.)",
+    "unit": "第一册"
+  },
+  {
+    "word": "pencil",
+    "phonetic": "/'pensl/",
+    "translation": "n 铅笔",
+    "unit": "第一册"
+  },
+  {
+    "word": "ruler",
+    "phonetic": "/'ru:lə/",
+    "translation": "n 尺子",
+    "unit": "第一册"
+  },
+  {
+    "word": "pen",
+    "phonetic": "/pen/",
+    "translation": "n 钢笔",
+    "unit": "第一册"
+  },
+  {
+    "word": "sharpener",
+    "phonetic": "/'ʃɑ:pənə/",
+    "translation": "n 卷笔刀",
+    "unit": "第一册"
+  },
+  {
+    "word": "eraser",
+    "phonetic": "/i'reisə/",
+    "translation": "n 橡皮擦",
+    "unit": "第一册"
+  },
+  {
+    "word": "room",
+    "phonetic": "/ru:m/",
+    "translation": "n 房间",
+    "unit": "第一册"
+  },
+  {
+    "word": "book",
+    "phonetic": "/buk/",
+    "translation": "n 书",
+    "unit": "第一册"
+  },
+  {
+    "word": "map",
+    "phonetic": "/mæp/",
+    "translation": "n 地图",
+    "unit": "第一册"
+  },
+  {
+    "word": "desk",
+    "phonetic": "/desk/",
+    "translation": "n 书桌",
+    "unit": "第一册"
+  },
+  {
+    "word": "cup",
+    "phonetic": "/kʌp/",
+    "translation": "n 杯子",
+    "unit": "第一册"
+  },
+  {
+    "word": "bag",
+    "phonetic": "/bæg/",
+    "translation": "n 书包",
+    "unit": "第一册"
+  },
+  {
+    "word": "computer",
+    "phonetic": "/kəm'pju:tə/",
+    "translation": "n 电脑,电子计算机",
+    "unit": "第一册"
+  },
+  {
+    "word": "mouse",
+    "phonetic": "/maus/",
+    "translation": "n 鼠,耗子,鼠标",
+    "unit": "第一册"
+  },
+  {
+    "word": "bed",
+    "phonetic": "/bed/",
+    "translation": "n 床",
+    "unit": "第一册"
+  },
+  {
+    "word": "keyboard",
+    "phonetic": "/'ki:bɔ:d/",
+    "translation": "n 键盘",
+    "unit": "第一册"
+  },
+  {
+    "word": "isn't",
+    "phonetic": "/'iznt/",
+    "translation": "is not 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "pear",
+    "phonetic": "/pɛə/",
+    "translation": "n 梨",
+    "unit": "第一册"
+  },
+  {
+    "word": "cake",
+    "phonetic": "/keik/",
+    "translation": "n 蛋糕,饼,糕",
+    "unit": "第一册"
+  },
+  {
+    "word": "banana",
+    "phonetic": "/bə'nɑ:nə/",
+    "translation": "n 香蕉",
+    "unit": "第一册"
+  },
+  {
+    "word": "apple",
+    "phonetic": "/'æpl/",
+    "translation": "n 苹果",
+    "unit": "第一册"
+  },
+  {
+    "word": "orange",
+    "phonetic": "/'ɔ:rindʒ/",
+    "translation": "n 橙子,橘子",
+    "unit": "第一册"
+  },
+  {
+    "word": "egg",
+    "phonetic": "/eg/",
+    "translation": "n 蛋",
+    "unit": "第一册"
+  },
+  {
+    "word": "bike",
+    "phonetic": "/baik/",
+    "translation": "n 自行车",
+    "unit": "第一册"
+  },
+  {
+    "word": "bus",
+    "phonetic": "/bʌs/",
+    "translation": "n 公共汽车",
+    "unit": "第一册"
+  },
+  {
+    "word": "car",
+    "phonetic": "/kɑ:/",
+    "translation": "n 汽车,小汽车",
+    "unit": "第一册"
+  },
+  {
+    "word": "jeep",
+    "phonetic": "/dʒi:p/",
+    "translation": "n 吉普车",
+    "unit": "第一册"
+  },
+  {
+    "word": "Chinese",
+    "phonetic": "/'tʃai'ni:z/",
+    "translation": "adj 中国的,中国人的；n  中国人,汉语",
+    "unit": "第一册"
+  },
+  {
+    "word": "Japanese",
+    "phonetic": "/,dʒæpə'ni:z/",
+    "translation": "adj 日本的,日本人",
+    "unit": "第一册"
+  },
+  {
+    "word": "look",
+    "phonetic": "/luk/",
+    "translation": "v  瞧,看",
+    "unit": "第一册"
+  },
+  {
+    "word": "who",
+    "phonetic": "/hu:/",
+    "translation": "pron 谁",
+    "unit": "第一册"
+  },
+  {
+    "word": "she",
+    "phonetic": "/ʃi:/",
+    "translation": "pron 她",
+    "unit": "第一册"
+  },
+  {
+    "word": "he",
+    "phonetic": "/hi:/",
+    "translation": "pron 他",
+    "unit": "第一册"
+  },
+  {
+    "word": "bird",
+    "phonetic": "/bə:d/",
+    "translation": "n 鸟",
+    "unit": "第一册"
+  },
+  {
+    "word": "Its",
+    "phonetic": "/its/",
+    "translation": "pron 它的",
+    "unit": "第一册"
+  },
+  {
+    "word": "do",
+    "phonetic": "/du:/",
+    "translation": "v.aux (构成否定句,疑问句的助动词)",
+    "unit": "第一册"
+  },
+  {
+    "word": "don't",
+    "phonetic": "/dəunt/",
+    "translation": "do not 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "know",
+    "phonetic": "/nəu/",
+    "translation": "v  知道,懂得",
+    "unit": "第一册"
+  },
+  {
+    "word": "think",
+    "phonetic": "/θiŋk/",
+    "translation": "v  想,认为",
+    "unit": "第一册"
+  },
+  {
+    "word": "Mr=mister",
+    "phonetic": "/'mistə/",
+    "translation": "n 先生(用于姓名前)",
+    "unit": "第一册"
+  },
+  {
+    "word": "very",
+    "phonetic": "/'veri/",
+    "translation": "adv 很,非常",
+    "unit": "第一册"
+  },
+  {
+    "word": "picture",
+    "phonetic": "/'piktʃə/",
+    "translation": "n 图画,照片",
+    "unit": "第一册"
+  },
+  {
+    "word": "Mrs",
+    "phonetic": "/'mɪsɪz/",
+    "translation": "n 夫人",
+    "unit": "第一册"
+  },
+  {
+    "word": "boy",
+    "phonetic": "/bɔi/",
+    "translation": "n 男孩",
+    "unit": "第一册"
+  },
+  {
+    "word": "girl",
+    "phonetic": "/gə:l/",
+    "translation": "n 女孩",
+    "unit": "第一册"
+  },
+  {
+    "word": "woman",
+    "phonetic": "/'wumən/",
+    "translation": "n 妇女,女人",
+    "unit": "第一册"
+  },
+  {
+    "word": "man",
+    "phonetic": "/mæn/",
+    "translation": "n 男人,人",
+    "unit": "第一册"
+  },
+  {
+    "word": "cat",
+    "phonetic": "/kæt/",
+    "translation": "n 猫",
+    "unit": "第一册"
+  },
+  {
+    "word": "his",
+    "phonetic": "/hiz/",
+    "translation": "pron 他的",
+    "unit": "第一册"
+  },
+  {
+    "word": "teacher",
+    "phonetic": "/'ti:tʃə/",
+    "translation": "n 教师",
+    "unit": "第一册"
+  },
+  {
+    "word": "her",
+    "phonetic": "/hə:/",
+    "translation": "pron 她的",
+    "unit": "第一册"
+  },
+  {
+    "word": "everyone",
+    "phonetic": "/'evriwʌn/",
+    "translation": "pron 每人,人人",
+    "unit": "第一册"
+  },
+  {
+    "word": "here",
+    "phonetic": "/hiə/",
+    "translation": "adv 这里,这儿",
+    "unit": "第一册"
+  },
+  {
+    "word": "today",
+    "phonetic": "/tə'dei/",
+    "translation": "adv & n 今天",
+    "unit": "第一册"
+  },
+  {
+    "word": "at",
+    "phonetic": "/æt/",
+    "translation": "prep  在",
+    "unit": "第一册"
+  },
+  {
+    "word": "school",
+    "phonetic": "/sku:l/",
+    "translation": "n 学校",
+    "unit": "第一册"
+  },
+  {
+    "word": "at school   phr. 在学校",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "sorry",
+    "phonetic": "/'sɔri/",
+    "translation": "adj 对不起,抱歉的",
+    "unit": "第一册"
+  },
+  {
+    "word": "where",
+    "phonetic": "/hwɛə/",
+    "translation": "adv 在哪里",
+    "unit": "第一册"
+  },
+  {
+    "word": "home",
+    "phonetic": "/həum/",
+    "translation": "n 家",
+    "unit": "第一册"
+  },
+  {
+    "word": "at home   phr. 在家",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "How are you？   你(身体)好吗?",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "fine",
+    "phonetic": "/fain/",
+    "translation": "adj (身体)好的",
+    "unit": "第一册"
+  },
+  {
+    "word": "thanks",
+    "phonetic": "/θæŋks/",
+    "translation": "n 谢谢(只用复数)",
+    "unit": "第一册"
+  },
+  {
+    "word": "OK",
+    "phonetic": "",
+    "translation": "adv (口语)好,对,不错,可以",
+    "unit": "第一册"
+  },
+  {
+    "word": "thank",
+    "phonetic": "/θæŋk/",
+    "translation": "v  谢谢",
+    "unit": "第一册"
+  },
+  {
+    "word": "goodbye",
+    "phonetic": "/,gud'bai/",
+    "translation": "int 再见,再会",
+    "unit": "第一册"
+  },
+  {
+    "word": "bye",
+    "phonetic": "/bai/",
+    "translation": "int 再见",
+    "unit": "第一册"
+  },
+  {
+    "word": "parrot",
+    "phonetic": "/'pærət/",
+    "translation": "n 鹦鹉",
+    "unit": "第一册"
+  },
+  {
+    "word": "sister",
+    "phonetic": "/'sistə/",
+    "translation": "n 姐,妹",
+    "unit": "第一册"
+  },
+  {
+    "word": "father",
+    "phonetic": "/'fɑ:ðə/",
+    "translation": "n 父亲",
+    "unit": "第一册"
+  },
+  {
+    "word": "mother",
+    "phonetic": "/'mʌðə/",
+    "translation": "n 母亲",
+    "unit": "第一册"
+  },
+  {
+    "word": "box",
+    "phonetic": "/bɔks/",
+    "translation": "n 盒子,箱子",
+    "unit": "第一册"
+  },
+  {
+    "word": "excuse",
+    "phonetic": "/iks'kju:z/",
+    "translation": "v  原谅",
+    "unit": "第一册"
+  },
+  {
+    "word": "me",
+    "phonetic": "/mi:/",
+    "translation": "pron 我",
+    "unit": "第一册"
+  },
+  {
+    "word": "Here you are    给你",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "but",
+    "phonetic": "/bʌt/",
+    "translation": "conj 但是",
+    "unit": "第一册"
+  },
+  {
+    "word": "these",
+    "phonetic": "/ði:z/",
+    "translation": "pron 这些",
+    "unit": "第一册"
+  },
+  {
+    "word": "they",
+    "phonetic": "/ðei/",
+    "translation": "pron 他(她,它)们",
+    "unit": "第一册"
+  },
+  {
+    "word": "good",
+    "phonetic": "/gud/",
+    "translation": "adj 好的",
+    "unit": "第一册"
+  },
+  {
+    "word": "those",
+    "phonetic": "/ðəuz/",
+    "translation": "pron 那些",
+    "unit": "第一册"
+  },
+  {
+    "word": "boat",
+    "phonetic": "/bəut/",
+    "translation": "n 船",
+    "unit": "第一册"
+  },
+  {
+    "word": "hill",
+    "phonetic": "/hil/",
+    "translation": "n 小山",
+    "unit": "第一册"
+  },
+  {
+    "word": "tree",
+    "phonetic": "/tri:/",
+    "translation": "n 树",
+    "unit": "第一册"
+  },
+  {
+    "word": "their",
+    "phonetic": "/ðɛə/",
+    "translation": "pron 他们(她们,它们)的",
+    "unit": "第一册"
+  },
+  {
+    "word": "much",
+    "phonetic": "/mʌtʃ/",
+    "translation": "adv 多,很,非常",
+    "unit": "第一册"
+  },
+  {
+    "word": "very much   phr. 很,非常",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "all",
+    "phonetic": "/ɔ:l/",
+    "translation": "adv 都,完全",
+    "unit": "第一册"
+  },
+  {
+    "word": "right",
+    "phonetic": "/rait/",
+    "translation": "adv & adj 对的,正确的",
+    "unit": "第一册"
+  },
+  {
+    "word": "all right   phr. 好,行,不错",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "mum",
+    "phonetic": "/mʌm/",
+    "translation": "n (口语)妈妈",
+    "unit": "第一册"
+  },
+  {
+    "word": "friend",
+    "phonetic": "/frend/",
+    "translation": "n 朋友",
+    "unit": "第一册"
+  },
+  {
+    "word": "brother",
+    "phonetic": "/'brʌðə/",
+    "translation": "n 兄,弟",
+    "unit": "第一册"
+  },
+  {
+    "word": "nice",
+    "phonetic": "/nais/",
+    "translation": "adj 令人愉快的",
+    "unit": "第一册"
+  },
+  {
+    "word": "to",
+    "phonetic": "/tu:/",
+    "translation": "prep  (表示方向)到,向 动词不定式符号",
+    "unit": "第一册"
+  },
+  {
+    "word": "meet",
+    "phonetic": "/mi:t/",
+    "translation": "v  见面,会面,遇见",
+    "unit": "第一册"
+  },
+  {
+    "word": "child",
+    "phonetic": "/tʃaild/",
+    "translation": "n 小孩",
+    "unit": "第一册"
+  },
+  {
+    "word": "children",
+    "phonetic": "/'tʃildrən/",
+    "translation": "n child的复数形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "welcome",
+    "phonetic": "/'welkəm/",
+    "translation": "v  欢迎",
+    "unit": "第一册"
+  },
+  {
+    "word": "our",
+    "phonetic": "/'auə/",
+    "translation": "pron 我们的",
+    "unit": "第一册"
+  },
+  {
+    "word": "come",
+    "phonetic": "/kʌm/",
+    "translation": "v  来",
+    "unit": "第一册"
+  },
+  {
+    "word": "come in   phr. 进来,进入",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "morning",
+    "phonetic": "/'mɔ:niŋ/",
+    "translation": "n 早晨,上午",
+    "unit": "第一册"
+  },
+  {
+    "word": "class",
+    "phonetic": "/klɑ:s/",
+    "translation": "n 同一个班的学生",
+    "unit": "第一册"
+  },
+  {
+    "word": "on",
+    "phonetic": "/ɔn/",
+    "translation": "prep  在,在...上",
+    "unit": "第一册"
+  },
+  {
+    "word": "duty",
+    "phonetic": "/'dju:ti/",
+    "translation": "n 职责,责任",
+    "unit": "第一册"
+  },
+  {
+    "word": "on duty   phr. 值日",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "we",
+    "phonetic": "/wi:/",
+    "translation": "pron 我们",
+    "unit": "第一册"
+  },
+  {
+    "word": "aren't",
+    "phonetic": "/ɑ:nt/",
+    "translation": "are not 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "have",
+    "phonetic": "/hæv/",
+    "translation": "v  有",
+    "unit": "第一册"
+  },
+  {
+    "word": "new",
+    "phonetic": "/nju:/",
+    "translation": "adj 新的",
+    "unit": "第一册"
+  },
+  {
+    "word": "student",
+    "phonetic": "/'stju:dənt/",
+    "translation": "n 学生",
+    "unit": "第一册"
+  },
+  {
+    "word": "twin",
+    "phonetic": "/twin/",
+    "translation": "n 双胞胎之一",
+    "unit": "第一册"
+  },
+  {
+    "word": "look",
+    "phonetic": "/luk/",
+    "translation": "v  看上去,显得",
+    "unit": "第一册"
+  },
+  {
+    "word": "the",
+    "phonetic": "/ðə/",
+    "translation": "art  这(那)个,这(那)些",
+    "unit": "第一册"
+  },
+  {
+    "word": "same",
+    "phonetic": "/seim/",
+    "translation": "adj 同样的,同一的",
+    "unit": "第一册"
+  },
+  {
+    "word": "look the same   phr. 看起来很像",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "America",
+    "phonetic": "/ə'merikən/",
+    "translation": "n & adj美国人(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "sit",
+    "phonetic": "/sit/",
+    "translation": "v  坐",
+    "unit": "第一册"
+  },
+  {
+    "word": "down",
+    "phonetic": "/daun/",
+    "translation": "adv 向下",
+    "unit": "第一册"
+  },
+  {
+    "word": "sit down   phr. 坐下",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "over",
+    "phonetic": "/'əuvə/",
+    "translation": "adv 在那边,在另一边",
+    "unit": "第一册"
+  },
+  {
+    "word": "there",
+    "phonetic": "/ðɛə/",
+    "translation": "adv 那里,那儿",
+    "unit": "第一册"
+  },
+  {
+    "word": "over there   phr. 在那边",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "after",
+    "phonetic": "/'ɑ:ftə/",
+    "translation": "prep 在...以后,在...后面",
+    "unit": "第一册"
+  },
+  {
+    "word": "look after   phr. 照顾,照看",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "Miss",
+    "phonetic": "/mis/",
+    "translation": "n 女士,小姐(对未婚妇女的称呼)",
+    "unit": "第一册"
+  },
+  {
+    "word": "way",
+    "phonetic": "/wei/",
+    "translation": "n 路,道路",
+    "unit": "第一册"
+  },
+  {
+    "word": "This way,please.   请走这边",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "put",
+    "phonetic": "/put/",
+    "translation": "v  放",
+    "unit": "第一册"
+  },
+  {
+    "word": "coat",
+    "phonetic": "/kəut/",
+    "translation": "n 外套,上衣",
+    "unit": "第一册"
+  },
+  {
+    "word": "them",
+    "phonetic": "/ðem/",
+    "translation": "pron 他(她,它)们",
+    "unit": "第一册"
+  },
+  {
+    "word": "washroom",
+    "phonetic": "/'wɔʃrum/",
+    "translation": "n 盥洗室,厕所",
+    "unit": "第一册"
+  },
+  {
+    "word": "let",
+    "phonetic": "/let/",
+    "translation": "v  让",
+    "unit": "第一册"
+  },
+  {
+    "word": "us",
+    "phonetic": "/ʌs/",
+    "translation": "pron 我们",
+    "unit": "第一册"
+  },
+  {
+    "word": "let's",
+    "phonetic": "/lets/",
+    "translation": "let us 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "go",
+    "phonetic": "/gəu/",
+    "translation": "v  去",
+    "unit": "第一册"
+  },
+  {
+    "word": "Let's go    我们一起去",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "classmate",
+    "phonetic": "/'klɑ:smeit/",
+    "translation": "n 同班同学",
+    "unit": "第一册"
+  },
+  {
+    "word": "nice",
+    "phonetic": "/nais/",
+    "translation": "adj 好的,漂亮的",
+    "unit": "第一册"
+  },
+  {
+    "word": "love",
+    "phonetic": "/lʌv/",
+    "translation": "v  爱,喜爱",
+    "unit": "第一册"
+  },
+  {
+    "word": "No",
+    "phonetic": "/'nʌmbə/",
+    "translation": "n number 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "middle",
+    "phonetic": "/'midl/",
+    "translation": "adj 中间的,中级的",
+    "unit": "第一册"
+  },
+  {
+    "word": "middle school",
+    "phonetic": "",
+    "translation": "n 中学",
+    "unit": "第一册"
+  },
+  {
+    "word": "well",
+    "phonetic": "/wel/",
+    "translation": "int 喔,那么,好吧",
+    "unit": "第一册"
+  },
+  {
+    "word": "fax",
+    "phonetic": "/fæks/",
+    "translation": "n 传真",
+    "unit": "第一册"
+  },
+  {
+    "word": "phone",
+    "phonetic": "/fəun/",
+    "translation": "n 电话,电话机",
+    "unit": "第一册"
+  },
+  {
+    "word": "ID",
+    "phonetic": "",
+    "translation": "n 身份征",
+    "unit": "第一册"
+  },
+  {
+    "word": "policeman",
+    "phonetic": "/pə'li:smən/",
+    "translation": "n 警察",
+    "unit": "第一册"
+  },
+  {
+    "word": "ask",
+    "phonetic": "/ɑ:sk/",
+    "translation": "v  问",
+    "unit": "第一册"
+  },
+  {
+    "word": "sir",
+    "phonetic": "/sə:/",
+    "translation": "n (用于尊称)先生,阁下",
+    "unit": "第一册"
+  },
+  {
+    "word": "yes",
+    "phonetic": "/jes/",
+    "translation": "adv (用于疑问,征询等)什么,是吗",
+    "unit": "第一册"
+  },
+  {
+    "word": "licence",
+    "phonetic": "/'laisəns/",
+    "translation": "n 执照,许可证",
+    "unit": "第一册"
+  },
+  {
+    "word": "look at   phr. 看,观看",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "dear",
+    "phonetic": "/diə/",
+    "translation": "int (表示惊讶等)哎呀",
+    "unit": "第一册"
+  },
+  {
+    "word": "see",
+    "phonetic": "/si:/",
+    "translation": "v  看见,看到",
+    "unit": "第一册"
+  },
+  {
+    "word": "I'll",
+    "phonetic": "/ail/",
+    "translation": "I will 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "will",
+    "phonetic": "/wil/",
+    "translation": "v.aux 将,会,要",
+    "unit": "第一册"
+  },
+  {
+    "word": "take",
+    "phonetic": "/teik/",
+    "translation": "v  拿到,带到",
+    "unit": "第一册"
+  },
+  {
+    "word": "address",
+    "phonetic": "/ə'dres/",
+    "translation": "n 地址",
+    "unit": "第一册"
+  },
+  {
+    "word": "age",
+    "phonetic": "/eidʒ/",
+    "translation": "n 年龄",
+    "unit": "第一册"
+  },
+  {
+    "word": "glad",
+    "phonetic": "/glæd/",
+    "translation": "adj 高兴的,乐意的",
+    "unit": "第一册"
+  },
+  {
+    "word": "why",
+    "phonetic": "/hwai/",
+    "translation": "int (表示惊讶,不耐烦,恼怒等) 嗨",
+    "unit": "第一册"
+  },
+  {
+    "word": "forgot",
+    "phonetic": "/fə'gɔt/",
+    "translation": "v  (forget 的过去时)忘记",
+    "unit": "第一册"
+  },
+  {
+    "word": "now",
+    "phonetic": "/nau/",
+    "translation": "adv 现在",
+    "unit": "第一册"
+  },
+  {
+    "word": "China",
+    "phonetic": "/'tʃainə/",
+    "translation": "n 中国",
+    "unit": "第一册"
+  },
+  {
+    "word": "or",
+    "phonetic": "/ɔ:/",
+    "translation": "conj 或者,还是",
+    "unit": "第一册"
+  },
+  {
+    "word": "work",
+    "phonetic": "/wə:k/",
+    "translation": "v & n 工作",
+    "unit": "第一册"
+  },
+  {
+    "word": "goes",
+    "phonetic": "/gəuz/",
+    "translation": "go的单数第三人称现在时",
+    "unit": "第一册"
+  },
+  {
+    "word": "family",
+    "phonetic": "/'fæmili/",
+    "translation": "n 家,家庭",
+    "unit": "第一册"
+  },
+  {
+    "word": "family tree",
+    "phonetic": "",
+    "translation": "n 家谱",
+    "unit": "第一册"
+  },
+  {
+    "word": "grandmother",
+    "phonetic": "/'grænd,mʌðə/",
+    "translation": "n (外)祖母",
+    "unit": "第一册"
+  },
+  {
+    "word": "grandma",
+    "phonetic": "/'grændmɑ:/",
+    "translation": "n (口语)奶奶,外婆",
+    "unit": "第一册"
+  },
+  {
+    "word": "grandfather",
+    "phonetic": "/'grænd,fɑ:ðə/",
+    "translation": "n (外)祖父",
+    "unit": "第一册"
+  },
+  {
+    "word": "grandpa",
+    "phonetic": "/'grændpɑ:/",
+    "translation": "n (口语)爷爷,外公",
+    "unit": "第一册"
+  },
+  {
+    "word": "dad",
+    "phonetic": "/dæd/",
+    "translation": "n (口语)爸爸,爹爹",
+    "unit": "第一册"
+  },
+  {
+    "word": "wife",
+    "phonetic": "/waif/",
+    "translation": "n 妻子",
+    "unit": "第一册"
+  },
+  {
+    "word": "husband",
+    "phonetic": "/'hʌzbənd/",
+    "translation": "n 丈夫",
+    "unit": "第一册"
+  },
+  {
+    "word": "daughter",
+    "phonetic": "/'dɔ:tə/",
+    "translation": "n 女儿",
+    "unit": "第一册"
+  },
+  {
+    "word": "son",
+    "phonetic": "/sʌn/",
+    "translation": "n 儿子",
+    "unit": "第一册"
+  },
+  {
+    "word": "parent",
+    "phonetic": "/'pɛərənt/",
+    "translation": "n 父(母)亲",
+    "unit": "第一册"
+  },
+  {
+    "word": "parents",
+    "phonetic": "/'pɛərənts/",
+    "translation": "n 父母亲,双亲",
+    "unit": "第一册"
+  },
+  {
+    "word": "big",
+    "phonetic": "/big/",
+    "translation": "adj 大的",
+    "unit": "第一册"
+  },
+  {
+    "word": "England",
+    "phonetic": "/'iŋglənd/",
+    "translation": "n 英格兰",
+    "unit": "第一册"
+  },
+  {
+    "word": "aunt",
+    "phonetic": "/ɑ:nt/",
+    "translation": "n 姨母,舅母,姑母,伯母,婶母",
+    "unit": "第一册"
+  },
+  {
+    "word": "uncle",
+    "phonetic": "/'ʌŋkl/",
+    "translation": "n 叔,伯,舅,姨父,姑父",
+    "unit": "第一册"
+  },
+  {
+    "word": "afternoon",
+    "phonetic": "/'ɑ:ftə'nu:n/",
+    "translation": "n 下午,午后",
+    "unit": "第一册"
+  },
+  {
+    "word": "do",
+    "phonetic": "/du:/",
+    "translation": "v  做,干,行动",
+    "unit": "第一册"
+  },
+  {
+    "word": "How do you do ?   你好!",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "seat",
+    "phonetic": "/si:t/",
+    "translation": "n 座位",
+    "unit": "第一册"
+  },
+  {
+    "word": "have a seat    坐下,就坐",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "like",
+    "phonetic": "/laik/",
+    "translation": "prep  像,跟...一样",
+    "unit": "第一册"
+  },
+  {
+    "word": "look like  phr. 看起来像",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "hat",
+    "phonetic": "/hæt/",
+    "translation": "n 帽子(一般指有边的帽子)",
+    "unit": "第一册"
+  },
+  {
+    "word": "doctor",
+    "phonetic": "/'dɔktə/",
+    "translation": "n 医生",
+    "unit": "第一册"
+  },
+  {
+    "word": "worker",
+    "phonetic": "/'wə:kə/",
+    "translation": "n 工人",
+    "unit": "第一册"
+  },
+  {
+    "word": "guess",
+    "phonetic": "/ges/",
+    "translation": "v  猜",
+    "unit": "第一册"
+  },
+  {
+    "word": "behind",
+    "phonetic": "/bi'haind/",
+    "translation": "prep 在...后面",
+    "unit": "第一册"
+  },
+  {
+    "word": "chair",
+    "phonetic": "/tʃɛə/",
+    "translation": "n  椅子",
+    "unit": "第一册"
+  },
+  {
+    "word": "ball",
+    "phonetic": "/bɔ:l/",
+    "translation": "n 球",
+    "unit": "第一册"
+  },
+  {
+    "word": "under",
+    "phonetic": "/'ʌndə/",
+    "translation": "prep  在...下面",
+    "unit": "第一册"
+  },
+  {
+    "word": "floor",
+    "phonetic": "/flɔ:/",
+    "translation": "n (室内)地,地板",
+    "unit": "第一册"
+  },
+  {
+    "word": "can't",
+    "phonetic": "/kænt/",
+    "translation": "can not 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "photo",
+    "phonetic": "/'fəutəu/",
+    "translation": "n 照片",
+    "unit": "第一册"
+  },
+  {
+    "word": "wall",
+    "phonetic": "/wɔ:l/",
+    "translation": "n 墙",
+    "unit": "第一册"
+  },
+  {
+    "word": "shoe",
+    "phonetic": "/ʃu:/",
+    "translation": "n 鞋",
+    "unit": "第一册"
+  },
+  {
+    "word": "near",
+    "phonetic": "/niə/",
+    "translation": "prep 在...附近",
+    "unit": "第一册"
+  },
+  {
+    "word": "door",
+    "phonetic": "/dɔ:/",
+    "translation": "n 门",
+    "unit": "第一册"
+  },
+  {
+    "word": "of",
+    "phonetic": "/ɔv/",
+    "translation": "prep  ...的",
+    "unit": "第一册"
+  },
+  {
+    "word": "classroom",
+    "phonetic": "/'klɑ:srum/",
+    "translation": "n 教室",
+    "unit": "第一册"
+  },
+  {
+    "word": "answer",
+    "phonetic": "/'ɑ:nsə/",
+    "translation": "v  回答",
+    "unit": "第一册"
+  },
+  {
+    "word": "blackboard",
+    "phonetic": "/'blækbɔ:d/",
+    "translation": "n 黑板",
+    "unit": "第一册"
+  },
+  {
+    "word": "some",
+    "phonetic": "/sʌm/",
+    "translation": "pron 一些,若干",
+    "unit": "第一册"
+  },
+  {
+    "word": "schoolbag",
+    "phonetic": "/'sku:l,bæg/",
+    "translation": "n 书包",
+    "unit": "第一册"
+  },
+  {
+    "word": "flower",
+    "phonetic": "/'flauə/",
+    "translation": "n 花",
+    "unit": "第一册"
+  },
+  {
+    "word": "find",
+    "phonetic": "/faind/",
+    "translation": "v  找到,发现",
+    "unit": "第一册"
+  },
+  {
+    "word": "broom",
+    "phonetic": "/bru:m/",
+    "translation": "n 扫帚",
+    "unit": "第一册"
+  },
+  {
+    "word": "window",
+    "phonetic": "/'windəu/",
+    "translation": "n 窗",
+    "unit": "第一册"
+  },
+  {
+    "word": "raincoat",
+    "phonetic": "/'reinkəut/",
+    "translation": "n 雨衣",
+    "unit": "第一册"
+  },
+  {
+    "word": "cap",
+    "phonetic": "/kæp/",
+    "translation": "n 便帽,军帽",
+    "unit": "第一册"
+  },
+  {
+    "word": "football",
+    "phonetic": "/'futbɔ:l/",
+    "translation": "n 足球",
+    "unit": "第一册"
+  },
+  {
+    "word": "table",
+    "phonetic": "/'teibl/",
+    "translation": "n 桌子",
+    "unit": "第一册"
+  },
+  {
+    "word": "Hong Kong",
+    "phonetic": "/'hɔŋ'kɔŋ/",
+    "translation": "n 香港",
+    "unit": "第一册"
+  },
+  {
+    "word": "Macao",
+    "phonetic": "/mə'kau/",
+    "translation": "n 澳门",
+    "unit": "第一册"
+  },
+  {
+    "word": "SAR",
+    "phonetic": "",
+    "translation": "n 特别行政区",
+    "unit": "第一册"
+  },
+  {
+    "word": "there",
+    "phonetic": "/ðɛə/",
+    "translation": "表示存在,有..,作引导词",
+    "unit": "第一册"
+  },
+  {
+    "word": "there's",
+    "phonetic": "/ðɛəz/",
+    "translation": "there is 的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "lock",
+    "phonetic": "/lɔk/",
+    "translation": "v & n 锁",
+    "unit": "第一册"
+  },
+  {
+    "word": "many",
+    "phonetic": "/'meni/",
+    "translation": "adj 许多的,多的",
+    "unit": "第一册"
+  },
+  {
+    "word": "thing",
+    "phonetic": "/θiŋ/",
+    "translation": "n 东西,事情",
+    "unit": "第一册"
+  },
+  {
+    "word": "must",
+    "phonetic": "/mʌst/",
+    "translation": "v.aux 必须,应当",
+    "unit": "第一册"
+  },
+  {
+    "word": "open",
+    "phonetic": "/'əupən/",
+    "translation": "v  打开",
+    "unit": "第一册"
+  },
+  {
+    "word": "get",
+    "phonetic": "/get/",
+    "translation": "v  得到,获得",
+    "unit": "第一册"
+  },
+  {
+    "word": "help",
+    "phonetic": "/help/",
+    "translation": "v  帮助",
+    "unit": "第一册"
+  },
+  {
+    "word": "purse",
+    "phonetic": "/pə:s/",
+    "translation": "n 钱包",
+    "unit": "第一册"
+  },
+  {
+    "word": "money",
+    "phonetic": "/'mʌni/",
+    "translation": "n 钱,货币",
+    "unit": "第一册"
+  },
+  {
+    "word": "worry",
+    "phonetic": "/'wʌri/",
+    "translation": "v  (使)担忧",
+    "unit": "第一册"
+  },
+  {
+    "word": "Let me see    让我想想",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "fifty",
+    "phonetic": "/'fifti/",
+    "translation": "n um 五十",
+    "unit": "第一册"
+  },
+  {
+    "word": "colour",
+    "phonetic": "/'kʌlə/",
+    "translation": "n 颜色",
+    "unit": "第一册"
+  },
+  {
+    "word": "black",
+    "phonetic": "/blæk/",
+    "translation": "adj 黑色的",
+    "unit": "第一册"
+  },
+  {
+    "word": "house",
+    "phonetic": "/haus/",
+    "translation": "n 房子",
+    "unit": "第一册"
+  },
+  {
+    "word": "small",
+    "phonetic": "/smɔ:l/",
+    "translation": "adj 小的",
+    "unit": "第一册"
+  },
+  {
+    "word": "playhouse",
+    "phonetic": "/'pleihaus/",
+    "translation": "n 儿童游戏房",
+    "unit": "第一册"
+  },
+  {
+    "word": "like",
+    "phonetic": "/laik/",
+    "translation": "v  喜欢",
+    "unit": "第一册"
+  },
+  {
+    "word": "play",
+    "phonetic": "/plei/",
+    "translation": "v  玩,打(球)",
+    "unit": "第一册"
+  },
+  {
+    "word": "up",
+    "phonetic": "/ʌp/",
+    "translation": "adv 在上面,在高处,向上,起来",
+    "unit": "第一册"
+  },
+  {
+    "word": "with",
+    "phonetic": "/wið/",
+    "translation": "prep  和",
+    "unit": "第一册"
+  },
+  {
+    "word": "great",
+    "phonetic": "/greit/",
+    "translation": "adv (口语)好极了,很好",
+    "unit": "第一册"
+  },
+  {
+    "word": "look",
+    "phonetic": "/luk/",
+    "translation": "n 瞧,看",
+    "unit": "第一册"
+  },
+  {
+    "word": "have a look   phr. 看一看",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "ping-pong",
+    "phonetic": "/' piŋpɔŋ/",
+    "translation": "n 乒乓球",
+    "unit": "第一册"
+  },
+  {
+    "word": "how many   phr. 多少",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "kite",
+    "phonetic": "/kait/",
+    "translation": "n 风筝",
+    "unit": "第一册"
+  },
+  {
+    "word": "young",
+    "phonetic": "/jʌŋ/",
+    "translation": "adj 年轻的,幼小的",
+    "unit": "第一册"
+  },
+  {
+    "word": "pioneer",
+    "phonetic": "/,paiə'niə/",
+    "translation": "n 先锋",
+    "unit": "第一册"
+  },
+  {
+    "word": "Young Pioneer",
+    "phonetic": "",
+    "translation": "n 少先队员",
+    "unit": "第一册"
+  },
+  {
+    "word": "men",
+    "phonetic": "/men/",
+    "translation": "n   man的缩写形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "women",
+    "phonetic": "/'wimin/",
+    "translation": "n   woman的复数形式",
+    "unit": "第一册"
+  },
+  {
+    "word": "only",
+    "phonetic": "/'əunli/",
+    "translation": "adv 仅仅,只",
+    "unit": "第一册"
+  },
+  {
+    "word": "work",
+    "phonetic": "/wə:k/",
+    "translation": "n 工作",
+    "unit": "第一册"
+  },
+  {
+    "word": "at work   phr. 在工作",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "sky",
+    "phonetic": "/skai/",
+    "translation": "n 天空",
+    "unit": "第一册"
+  },
+  {
+    "word": "count",
+    "phonetic": "/kaunt/",
+    "translation": "v  数,点数",
+    "unit": "第一册"
+  },
+  {
+    "word": "river",
+    "phonetic": "/'rivə/",
+    "translation": "n 江,河",
+    "unit": "第一册"
+  },
+  {
+    "word": "dog",
+    "phonetic": "/dɔg/",
+    "translation": "n 狗",
+    "unit": "第一册"
+  },
+  {
+    "word": "light",
+    "phonetic": "/lait/",
+    "translation": "n 灯",
+    "unit": "第一册"
+  },
+  {
+    "word": "any",
+    "phonetic": "/'eni/",
+    "translation": "adj (用于否定句,疑问句等)什么,任何",
+    "unit": "第一册"
+  },
+  {
+    "word": "animal",
+    "phonetic": "/'æniməl/",
+    "translation": "n 动物",
+    "unit": "第一册"
+  },
+  {
+    "word": "people",
+    "phonetic": "/'pi:pl/",
+    "translation": "n 人,人们",
+    "unit": "第一册"
+  },
+  {
+    "word": "little",
+    "phonetic": "/'litl/",
+    "translation": "adj & adv 小的,一点儿,稍许",
+    "unit": "第一册"
+  },
+  {
+    "word": "sheep",
+    "phonetic": "/ʃi:p/",
+    "translation": "n 绵羊",
+    "unit": "第一册"
+  },
+  {
+    "word": "come on",
+    "phonetic": "/'kʌm ɔn/",
+    "translation": "phr. 来吧,跟着来,赶快",
+    "unit": "第一册"
+  },
+  {
+    "word": "red",
+    "phonetic": "/red/",
+    "translation": "adj & n 红色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "colour",
+    "phonetic": "/'kʌlə/",
+    "translation": "n 颜色；v 给...着色",
+    "unit": "第一册"
+  },
+  {
+    "word": "yellow",
+    "phonetic": "/'jeləu/",
+    "translation": "adj & n 黄色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "blue",
+    "phonetic": "/blu:/",
+    "translation": "adj & n 蓝色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "white",
+    "phonetic": "/hwait/",
+    "translation": "adj & n 白色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "green",
+    "phonetic": "/gri:n/",
+    "translation": "adj & n 绿色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "purple",
+    "phonetic": "/'pə:pl/",
+    "translation": "adj & n 紫色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "brown",
+    "phonetic": "/braun/",
+    "translation": "adj &n棕色(的),褐色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "orange",
+    "phonetic": "/'ɔ:rindʒ/",
+    "translation": "adj & n 橙色(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "grey",
+    "phonetic": "/grei/",
+    "translation": "adj & n 灰色(的),灰白(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "sweater",
+    "phonetic": "/'swetə/",
+    "translation": "n 毛衣,厚运动衫",
+    "unit": "第一册"
+  },
+  {
+    "word": "light",
+    "phonetic": "/lait/",
+    "translation": "adj 淡(浅)色的,轻的",
+    "unit": "第一册"
+  },
+  {
+    "word": "want",
+    "phonetic": "/wɔnt/",
+    "translation": "v  要,想要",
+    "unit": "第一册"
+  },
+  {
+    "word": "which",
+    "phonetic": "/hwitʃ/",
+    "translation": "pron & adj 哪一个,哪些",
+    "unit": "第一册"
+  },
+  {
+    "word": "one",
+    "phonetic": "/wʌn/",
+    "translation": "pron 用来代替单数的人或物",
+    "unit": "第一册"
+  },
+  {
+    "word": "clothes",
+    "phonetic": "/kləuðz/",
+    "translation": "n 衣服",
+    "unit": "第一册"
+  },
+  {
+    "word": "line",
+    "phonetic": "/lain/",
+    "translation": "n 线,绳索",
+    "unit": "第一册"
+  },
+  {
+    "word": "whose",
+    "phonetic": "/hu:z/",
+    "translation": "pron 谁的",
+    "unit": "第一册"
+  },
+  {
+    "word": "blouse",
+    "phonetic": "/blauz/",
+    "translation": "n 女衬衫",
+    "unit": "第一册"
+  },
+  {
+    "word": "dress",
+    "phonetic": "/dres/",
+    "translation": "n 女服,(统称)衣服",
+    "unit": "第一册"
+  },
+  {
+    "word": "shirt",
+    "phonetic": "/ʃə:t/",
+    "translation": "n (男式)衬衫",
+    "unit": "第一册"
+  },
+  {
+    "word": "trousers",
+    "phonetic": "/'trauzəz/",
+    "translation": "n 裤子",
+    "unit": "第一册"
+  },
+  {
+    "word": "skirt",
+    "phonetic": "/skə:t/",
+    "translation": "n 女裙",
+    "unit": "第一册"
+  },
+  {
+    "word": "dark",
+    "phonetic": "/dɑ:k/",
+    "translation": "adj 深(浓)色的,黑暗的",
+    "unit": "第一册"
+  },
+  {
+    "word": "yours",
+    "phonetic": "/juəz/",
+    "translation": "pron 你的,你们的",
+    "unit": "第一册"
+  },
+  {
+    "word": "mine",
+    "phonetic": "/main/",
+    "translation": "pron 我的",
+    "unit": "第一册"
+  },
+  {
+    "word": "hers",
+    "phonetic": "/hə:z/",
+    "translation": "pron 她的",
+    "unit": "第一册"
+  },
+  {
+    "word": "put on",
+    "phonetic": "",
+    "translation": "phr.穿上(衣服等),戴上(帽子等)",
+    "unit": "第一册"
+  },
+  {
+    "word": "theirs",
+    "phonetic": "/ðɛəz/",
+    "translation": "pron 他们(她们,它们)的",
+    "unit": "第一册"
+  },
+  {
+    "word": "ours",
+    "phonetic": "/'auəz/",
+    "translation": "pron 我们的",
+    "unit": "第一册"
+  },
+  {
+    "word": "glove",
+    "phonetic": "/glʌv/",
+    "translation": "n 手套",
+    "unit": "第一册"
+  },
+  {
+    "word": "about",
+    "phonetic": "/ə'baut/",
+    "translation": "prep  关于,对于",
+    "unit": "第一册"
+  },
+  {
+    "word": "What about...?  phr. (询问消息,征求意 见)…怎么样?",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "beside",
+    "phonetic": "/bi'said/",
+    "translation": "prep 在...旁边",
+    "unit": "第一册"
+  },
+  {
+    "word": "watch",
+    "phonetic": "/wɔtʃ/",
+    "translation": "n & v  手表、观看,注视",
+    "unit": "第一册"
+  },
+  {
+    "word": "give",
+    "phonetic": "/giv/",
+    "translation": "v  给",
+    "unit": "第一册"
+  },
+  {
+    "word": "time",
+    "phonetic": "/taim/",
+    "translation": "n 时间",
+    "unit": "第一册"
+  },
+  {
+    "word": "about",
+    "phonetic": "/ə'baut/",
+    "translation": "adv 大约",
+    "unit": "第一册"
+  },
+  {
+    "word": "thirty",
+    "phonetic": "/'θə:ti/",
+    "translation": "n um 三十",
+    "unit": "第一册"
+  },
+  {
+    "word": "get up",
+    "phonetic": "/'get ʌp/",
+    "translation": "phr. 起床",
+    "unit": "第一册"
+  },
+  {
+    "word": "late",
+    "phonetic": "/leit/",
+    "translation": "adj & adv 迟的(地),晚的(地)",
+    "unit": "第一册"
+  },
+  {
+    "word": "o'clock",
+    "phonetic": "/ə'klɔk/",
+    "translation": "…点钟",
+    "unit": "第一册"
+  },
+  {
+    "word": "midnight",
+    "phonetic": "/'midnait/",
+    "translation": "n 午夜",
+    "unit": "第一册"
+  },
+  {
+    "word": "noon",
+    "phonetic": "/nu:n/",
+    "translation": "n 中午,正午",
+    "unit": "第一册"
+  },
+  {
+    "word": "past",
+    "phonetic": "/pɑ:st/",
+    "translation": "prep  (超)过,经过",
+    "unit": "第一册"
+  },
+  {
+    "word": "half",
+    "phonetic": "/hɑ:f/",
+    "translation": "n 半,一半",
+    "unit": "第一册"
+  },
+  {
+    "word": "quarter",
+    "phonetic": "/'kwɔ:tə/",
+    "translation": "n 一刻钟,四分之一",
+    "unit": "第一册"
+  },
+  {
+    "word": "for",
+    "phonetic": "/fɔ:/",
+    "translation": "prep  为,给",
+    "unit": "第一册"
+  },
+  {
+    "word": "break",
+    "phonetic": "/breik/",
+    "translation": "n (课间)休息,中断",
+    "unit": "第一册"
+  },
+  {
+    "word": "lunch",
+    "phonetic": "/lʌntʃ/",
+    "translation": "n 午餐",
+    "unit": "第一册"
+  },
+  {
+    "word": "breakfast",
+    "phonetic": "/'brekfəst/",
+    "translation": "n 早餐",
+    "unit": "第一册"
+  },
+  {
+    "word": "clean",
+    "phonetic": "/kli:n/",
+    "translation": "v  把...弄干净,擦干净",
+    "unit": "第一册"
+  },
+  {
+    "word": "supper",
+    "phonetic": "/'sʌpə/",
+    "translation": "n 晚餐",
+    "unit": "第一册"
+  },
+  {
+    "word": "have supper   phr. 吃晚餐",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "TV",
+    "phonetic": "",
+    "translation": "n 电视,电视机",
+    "unit": "第一册"
+  },
+  {
+    "word": "watch TV  phr. 看电视",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "game",
+    "phonetic": "/geim/",
+    "translation": "n 游戏,运动",
+    "unit": "第一册"
+  },
+  {
+    "word": "go home   phr. 回家",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "p.m.   下午,午后",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "London",
+    "phonetic": "/'lʌndən/",
+    "translation": "n 伦敦",
+    "unit": "第一册"
+  },
+  {
+    "word": "Tokyo",
+    "phonetic": "/'təukiəu/",
+    "translation": "n 东京",
+    "unit": "第一册"
+  },
+  {
+    "word": "Sydney",
+    "phonetic": "/'sidni/",
+    "translation": "n 悉尼",
+    "unit": "第一册"
+  },
+  {
+    "word": "hour",
+    "phonetic": "/auə/",
+    "translation": "n 小时",
+    "unit": "第一册"
+  },
+  {
+    "word": "a.m.   午前,上午",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "hundred",
+    "phonetic": "/'hʌndrəd/",
+    "translation": "n um 百",
+    "unit": "第一册"
+  },
+  {
+    "word": "yourself",
+    "phonetic": "/juə'self/",
+    "translation": "pron 你自己",
+    "unit": "第一册"
+  },
+  {
+    "word": "bedroom",
+    "phonetic": "/'bedrum/",
+    "translation": "n 卧室",
+    "unit": "第一册"
+  },
+  {
+    "word": "doll",
+    "phonetic": "/dɔl/",
+    "translation": "n 玩具娃娃",
+    "unit": "第一册"
+  },
+  {
+    "word": "else",
+    "phonetic": "/els/",
+    "translation": "adv & adj 别(的),其他(的)",
+    "unit": "第一册"
+  },
+  {
+    "word": "sure",
+    "phonetic": "/ʃuə/",
+    "translation": "adv &adj的确,一定 确信的,肯定的",
+    "unit": "第一册"
+  },
+  {
+    "word": "between",
+    "phonetic": "/bi'twi:n/",
+    "translation": "prep 在(两者)之间",
+    "unit": "第一册"
+  },
+  {
+    "word": "tall",
+    "phonetic": "/tɔ:l/",
+    "translation": "adj 高的",
+    "unit": "第一册"
+  },
+  {
+    "word": "funny",
+    "phonetic": "/'fʌni/",
+    "translation": "adj 滑稽的,有趣的",
+    "unit": "第一册"
+  },
+  {
+    "word": "favourite",
+    "phonetic": "/'feivərit/",
+    "translation": "adj 特别喜爱的",
+    "unit": "第一册"
+  },
+  {
+    "word": "e-mail",
+    "phonetic": "/i:'meil/",
+    "translation": "n 电子邮件",
+    "unit": "第一册"
+  },
+  {
+    "word": "speak",
+    "phonetic": "/spi:k/",
+    "translation": "v  讲,说",
+    "unit": "第一册"
+  },
+  {
+    "word": "next",
+    "phonetic": "/'nekst/",
+    "translation": "adj 下一个",
+    "unit": "第一册"
+  },
+  {
+    "word": "term",
+    "phonetic": "/tə:m/",
+    "translation": "n 学期",
+    "unit": "第一册"
+  },
+  {
+    "word": "could",
+    "phonetic": "/kud/",
+    "translation": "v.aux (口语,表示许可或请求)可以,行",
+    "unit": "第一册"
+  },
+  {
+    "word": "minute",
+    "phonetic": "/'minit/",
+    "translation": "n 分钟,一会儿",
+    "unit": "第一册"
+  },
+  {
+    "word": "Tuesday",
+    "phonetic": "/'tju:zdi/",
+    "translation": "n 星期二",
+    "unit": "第一册"
+  },
+  {
+    "word": "February",
+    "phonetic": "/'februəri/",
+    "translation": "n 二月",
+    "unit": "第一册"
+  },
+  {
+    "word": "eighteenth",
+    "phonetic": "/'ei'ti:nθ/",
+    "translation": "n um 第十八",
+    "unit": "第一册"
+  },
+  {
+    "word": "listen",
+    "phonetic": "/'lisn/",
+    "translation": "v  听",
+    "unit": "第一册"
+  },
+  {
+    "word": "careful",
+    "phonetic": "/'kɛəfəl/",
+    "translation": "adj 小心的;仔细的",
+    "unit": "第一册"
+  },
+  {
+    "word": "carefully",
+    "phonetic": "/'kɛəfəli/",
+    "translation": "adv 小心地;仔细地",
+    "unit": "第一册"
+  },
+  {
+    "word": "draw",
+    "phonetic": "/drɔ:/",
+    "translation": "v  画;绘制",
+    "unit": "第一册"
+  },
+  {
+    "word": "has",
+    "phonetic": "/hæz/",
+    "translation": "v (动词have的单数第三人称)有",
+    "unit": "第一册"
+  },
+  {
+    "word": "face",
+    "phonetic": "/feis/",
+    "translation": "n 脸;面孔",
+    "unit": "第一册"
+  },
+  {
+    "word": "eye",
+    "phonetic": "/ai/",
+    "translation": "n 眼睛",
+    "unit": "第一册"
+  },
+  {
+    "word": "ear",
+    "phonetic": "/iə/",
+    "translation": "n 耳朵",
+    "unit": "第一册"
+  },
+  {
+    "word": "leg",
+    "phonetic": "/leg/",
+    "translation": "n 腿",
+    "unit": "第一册"
+  },
+  {
+    "word": "hand",
+    "phonetic": "/hænd/",
+    "translation": "n 手",
+    "unit": "第一册"
+  },
+  {
+    "word": "long",
+    "phonetic": "/lɔŋ/",
+    "translation": "adj 长的",
+    "unit": "第一册"
+  },
+  {
+    "word": "short",
+    "phonetic": "/ʃɔ:t/",
+    "translation": "adj 短的;矮的",
+    "unit": "第一册"
+  },
+  {
+    "word": "mouth",
+    "phonetic": "/mauθ/",
+    "translation": "n 嘴",
+    "unit": "第一册"
+  },
+  {
+    "word": "say",
+    "phonetic": "/sei/",
+    "translation": "v  说;讲",
+    "unit": "第一册"
+  },
+  {
+    "word": "tick",
+    "phonetic": "/tik/",
+    "translation": "n (钟表等滴嗒的)声音",
+    "unit": "第一册"
+  },
+  {
+    "word": "heavy",
+    "phonetic": "/'hevi/",
+    "translation": "adj 重的",
+    "unit": "第一册"
+  },
+  {
+    "word": "empty",
+    "phonetic": "/'empti/",
+    "translation": "adj 空的",
+    "unit": "第一册"
+  },
+  {
+    "word": "certainly",
+    "phonetic": "/'sə:tənli/",
+    "translation": "adv 当然",
+    "unit": "第一册"
+  },
+  {
+    "word": "full",
+    "phonetic": "/ful/",
+    "translation": "adj 满的",
+    "unit": "第一册"
+  },
+  {
+    "word": "be full (of)  phr. 充满....的",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "carry",
+    "phonetic": "/'kæri/",
+    "translation": "v  携带;搬运;运送",
+    "unit": "第一册"
+  },
+  {
+    "word": "too",
+    "phonetic": "/tu:/",
+    "translation": "adv 太",
+    "unit": "第一册"
+  },
+  {
+    "word": "so",
+    "phonetic": "/səu/",
+    "translation": "adv 这么;那么",
+    "unit": "第一册"
+  },
+  {
+    "word": "listen to   phr. 听",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "tape",
+    "phonetic": "/teip/",
+    "translation": "n 磁带",
+    "unit": "第一册"
+  },
+  {
+    "word": "there",
+    "phonetic": "/ðɛə/",
+    "translation": "int 好啦(表示安慰)",
+    "unit": "第一册"
+  },
+  {
+    "word": "all",
+    "phonetic": "/ɔ:l/",
+    "translation": "adj 整个;所有的",
+    "unit": "第一册"
+  },
+  {
+    "word": "basket",
+    "phonetic": "/'bɑ:skit/",
+    "translation": "n 篮子",
+    "unit": "第一册"
+  },
+  {
+    "word": "bottle",
+    "phonetic": "/'bɔtl/",
+    "translation": "n 瓶",
+    "unit": "第一册"
+  },
+  {
+    "word": "a bottle of   phr. 一瓶...",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "juice",
+    "phonetic": "/dʒu:s/",
+    "translation": "n (水果;蔬菜;肉等的)汁;水汁",
+    "unit": "第一册"
+  },
+  {
+    "word": "head",
+    "phonetic": "/hed/",
+    "translation": "n 头;头部",
+    "unit": "第一册"
+  },
+  {
+    "word": "nose",
+    "phonetic": "/nəuz/",
+    "translation": "n 鼻子",
+    "unit": "第一册"
+  },
+  {
+    "word": "hair",
+    "phonetic": "/hɛə/",
+    "translation": "n 头发",
+    "unit": "第一册"
+  },
+  {
+    "word": "arm",
+    "phonetic": "/ɑ:m/",
+    "translation": "n 手臂;胳膊",
+    "unit": "第一册"
+  },
+  {
+    "word": "foot",
+    "phonetic": "/fut/",
+    "translation": "n 脚(pl.feet)",
+    "unit": "第一册"
+  },
+  {
+    "word": "wardrobe",
+    "phonetic": "/'wɔ:drəub/",
+    "translation": "n 衣柜",
+    "unit": "第一册"
+  },
+  {
+    "word": "day",
+    "phonetic": "/dei/",
+    "translation": "n 日;天",
+    "unit": "第一册"
+  },
+  {
+    "word": "from",
+    "phonetic": "/frɔm/",
+    "translation": "prep  从.....起",
+    "unit": "第一册"
+  },
+  {
+    "word": "America",
+    "phonetic": "/ə'merikən/",
+    "translation": "n 美国",
+    "unit": "第一册"
+  },
+  {
+    "word": "zoo",
+    "phonetic": "/zu:/",
+    "translation": "n 动物园",
+    "unit": "第一册"
+  },
+  {
+    "word": "away",
+    "phonetic": "/ə'wei/",
+    "translation": "adv 离开",
+    "unit": "第一册"
+  },
+  {
+    "word": "put away  phr. 把.....什么收起来(放好)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "out",
+    "phonetic": "/aut/",
+    "translation": "adv 在外",
+    "unit": "第一册"
+  },
+  {
+    "word": "come out   phr. 出来",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "sock",
+    "phonetic": "/sɔk/",
+    "translation": "n 短袜",
+    "unit": "第一册"
+  },
+  {
+    "word": "other",
+    "phonetic": "/'ʌðə/",
+    "translation": "adj 别的;其他的",
+    "unit": "第一册"
+  },
+  {
+    "word": "wrong",
+    "phonetic": "/rɔ:ŋ/",
+    "translation": "adj 不正确的;错误的",
+    "unit": "第一册"
+  },
+  {
+    "word": "broken",
+    "phonetic": "/'brəukən/",
+    "translation": "adj 弄坏了的",
+    "unit": "第一册"
+  },
+  {
+    "word": "so",
+    "phonetic": "/səu/",
+    "translation": "pron 这样;如此",
+    "unit": "第一册"
+  },
+  {
+    "word": "catch",
+    "phonetic": "/kætʃ/",
+    "translation": "v  捉;抓住",
+    "unit": "第一册"
+  },
+  {
+    "word": "get down   phr. 下来;落下",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "him",
+    "phonetic": "/him/",
+    "translation": "pron 他(宾格)",
+    "unit": "第一册"
+  },
+  {
+    "word": "right",
+    "phonetic": "/rait/",
+    "translation": "adv 正好;恰好;正确",
+    "unit": "第一册"
+  },
+  {
+    "word": "goodness",
+    "phonetic": "/'gudnis/",
+    "translation": "n 善良;美德",
+    "unit": "第一册"
+  },
+  {
+    "word": "plane",
+    "phonetic": "/plein/",
+    "translation": "n 飞机",
+    "unit": "第一册"
+  },
+  {
+    "word": "with",
+    "phonetic": "/wið/",
+    "translation": "prep  对....;关于",
+    "unit": "第一册"
+  },
+  {
+    "word": "mend",
+    "phonetic": "/mend/",
+    "translation": "v  修补;修理",
+    "unit": "第一册"
+  },
+  {
+    "word": "knife",
+    "phonetic": "/naif/",
+    "translation": "n (pl.knives) 小刀",
+    "unit": "第一册"
+  },
+  {
+    "word": "robot",
+    "phonetic": "/'rəubɔt/",
+    "translation": "n 机器人",
+    "unit": "第一册"
+  },
+  {
+    "word": "body",
+    "phonetic": "/'bɔdi/",
+    "translation": "n 身体",
+    "unit": "第一册"
+  },
+  {
+    "word": "broke",
+    "phonetic": "/brəuk/",
+    "translation": "v (动词break[breik]的过去时)折断;打破",
+    "unit": "第一册"
+  },
+  {
+    "word": "lost",
+    "phonetic": "/lɔst/",
+    "translation": "adj 丢失的;丢去的",
+    "unit": "第一册"
+  },
+  {
+    "word": "tell",
+    "phonetic": "/tel/",
+    "translation": "v  告诉;讲述",
+    "unit": "第一册"
+  },
+  {
+    "word": "round",
+    "phonetic": "/raund/",
+    "translation": "adj 球形的 ;圆的",
+    "unit": "第一册"
+  },
+  {
+    "word": "mummy",
+    "phonetic": "/'mʌmi/",
+    "translation": "n (口语)妈妈",
+    "unit": "第一册"
+  },
+  {
+    "word": "pleasure",
+    "phonetic": "/'pleʒə/",
+    "translation": "n 愉快;高兴",
+    "unit": "第一册"
+  },
+  {
+    "word": "food",
+    "phonetic": "/fu:d/",
+    "translation": "n 食物",
+    "unit": "第一册"
+  },
+  {
+    "word": "drink",
+    "phonetic": "/driŋk/",
+    "translation": "n & v  饮料   喝",
+    "unit": "第一册"
+  },
+  {
+    "word": "hungry",
+    "phonetic": "/'hʌŋgri/",
+    "translation": "adj 饥饿的",
+    "unit": "第一册"
+  },
+  {
+    "word": "thirsty",
+    "phonetic": "/'θə:sti/",
+    "translation": "adj 口渴的",
+    "unit": "第一册"
+  },
+  {
+    "word": "water",
+    "phonetic": "/'wɔ:tə/",
+    "translation": "n & v  水;浇水",
+    "unit": "第一册"
+  },
+  {
+    "word": "eat",
+    "phonetic": "/i:t/",
+    "translation": "v  吃",
+    "unit": "第一册"
+  },
+  {
+    "word": "rice",
+    "phonetic": "/rais/",
+    "translation": "n 米饭;大米",
+    "unit": "第一册"
+  },
+  {
+    "word": "bread",
+    "phonetic": "/bred/",
+    "translation": "n 面包",
+    "unit": "第一册"
+  },
+  {
+    "word": "meat",
+    "phonetic": "/mi:t/",
+    "translation": "n 肉",
+    "unit": "第一册"
+  },
+  {
+    "word": "tea",
+    "phonetic": "/ti:/",
+    "translation": "n 茶",
+    "unit": "第一册"
+  },
+  {
+    "word": "milk",
+    "phonetic": "/milk/",
+    "translation": "n 牛奶",
+    "unit": "第一册"
+  },
+  {
+    "word": "glass",
+    "phonetic": "/glɑ:s/",
+    "translation": "n 玻璃杯",
+    "unit": "第一册"
+  },
+  {
+    "word": "a glass of   phr. 一(玻璃)杯",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "would like",
+    "phonetic": "",
+    "translation": "phr.想要(语气婉转地表示请求等)",
+    "unit": "第一册"
+  },
+  {
+    "word": "something",
+    "phonetic": "/'sʌmθiŋ/",
+    "translation": "pro某事(物)某东西",
+    "unit": "第一册"
+  },
+  {
+    "word": "porridge",
+    "phonetic": "/'pɔridʒ/",
+    "translation": "n 粥;稀饭",
+    "unit": "第一册"
+  },
+  {
+    "word": "fish",
+    "phonetic": "/fiʃ/",
+    "translation": "n 鱼",
+    "unit": "第一册"
+  },
+  {
+    "word": "dumpling",
+    "phonetic": "/'dʌmpliŋ/",
+    "translation": "n 饺子",
+    "unit": "第一册"
+  },
+  {
+    "word": "fruit",
+    "phonetic": "/fru:t/",
+    "translation": "n 水果",
+    "unit": "第一册"
+  },
+  {
+    "word": "piece",
+    "phonetic": "/pi:s/",
+    "translation": "n 一张(片;张)",
+    "unit": "第一册"
+  },
+  {
+    "word": "a piece of   phr. 一片(一张、块)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "hamburger",
+    "phonetic": "/'hæmbə:gə/",
+    "translation": "n 汉堡包",
+    "unit": "第一册"
+  },
+  {
+    "word": "noodle",
+    "phonetic": "/'nu:dl/",
+    "translation": "n 面条",
+    "unit": "第一册"
+  },
+  {
+    "word": "potato",
+    "phonetic": "/pə'teitəu/",
+    "translation": "n pl.potatoes 马铃薯;土豆",
+    "unit": "第一册"
+  },
+  {
+    "word": "chips",
+    "phonetic": "/tʃip/",
+    "translation": "n (口语)炸士豆儿条",
+    "unit": "第一册"
+  },
+  {
+    "word": "coke",
+    "phonetic": "/kəuk/",
+    "translation": "n (口语)可口可乐",
+    "unit": "第一册"
+  },
+  {
+    "word": "coffee",
+    "phonetic": "/'kɔfi/",
+    "translation": "n 咖啡",
+    "unit": "第一册"
+  },
+  {
+    "word": "madam",
+    "phonetic": "/'mædəm/",
+    "translation": "n 夫人;女士",
+    "unit": "第一册"
+  },
+  {
+    "word": "dear",
+    "phonetic": "/diə/",
+    "translation": "adj 亲爱的;可爱的",
+    "unit": "第一册"
+  },
+  {
+    "word": "ice",
+    "phonetic": "/ais/",
+    "translation": "n 冰",
+    "unit": "第一册"
+  },
+  {
+    "word": "cream",
+    "phonetic": "/kri:m/",
+    "translation": "n 奶油;乳脂",
+    "unit": "第一册"
+  },
+  {
+    "word": "ice cream",
+    "phonetic": "",
+    "translation": "n 冰淇淋",
+    "unit": "第一册"
+  },
+  {
+    "word": "USA",
+    "phonetic": "",
+    "translation": "n 美国",
+    "unit": "第一册"
+  },
+  {
+    "word": "different",
+    "phonetic": "/'difərənt/",
+    "translation": "adj 不同的",
+    "unit": "第一册"
+  },
+  {
+    "word": "vegetable",
+    "phonetic": "/'vedʒitəbl/",
+    "translation": "n 蔬菜",
+    "unit": "第一册"
+  },
+  {
+    "word": "sometimes",
+    "phonetic": "/'sʌmtaimz/",
+    "translation": "adv 有时",
+    "unit": "第一册"
+  },
+  {
+    "word": "sport",
+    "phonetic": "/spɔ:t/",
+    "translation": "n 运动",
+    "unit": "第一册"
+  },
+  {
+    "word": "come on   phr. 来;过来",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "ouch",
+    "phonetic": "/autʃ/",
+    "translation": "int (突然感到病痛时发出的声音)啊呀",
+    "unit": "第一册"
+  },
+  {
+    "word": "be good at   phr. 在...方面(学得,做得)好; 善于",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "basketball",
+    "phonetic": "/'bæskitbɔ:l/",
+    "translation": "n 蓝球",
+    "unit": "第一册"
+  },
+  {
+    "word": "easy",
+    "phonetic": "/'i:zi/",
+    "translation": "adj 容易的",
+    "unit": "第一册"
+  },
+  {
+    "word": "pass",
+    "phonetic": "/pɑ:s/",
+    "translation": "v  传递",
+    "unit": "第一册"
+  },
+  {
+    "word": "try",
+    "phonetic": "/trai/",
+    "translation": "v  试(做);设法;努力",
+    "unit": "第一册"
+  },
+  {
+    "word": "yo-yo",
+    "phonetic": "/'jəujəu/",
+    "translation": "n 溜溜球 (一种玩具)",
+    "unit": "第一册"
+  },
+  {
+    "word": "go",
+    "phonetic": "/gəu/",
+    "translation": "n 尝试(做某事)",
+    "unit": "第一册"
+  },
+  {
+    "word": "throw",
+    "phonetic": "/θrəu/",
+    "translation": "v  投,掷",
+    "unit": "第一册"
+  },
+  {
+    "word": "hard",
+    "phonetic": "/hɑ:d/",
+    "translation": "adj 困难的",
+    "unit": "第一册"
+  },
+  {
+    "word": "ride",
+    "phonetic": "/raid/",
+    "translation": "v  骑(自行车,马等)",
+    "unit": "第一册"
+  },
+  {
+    "word": "swim",
+    "phonetic": "/swim/",
+    "translation": "v  游泳",
+    "unit": "第一册"
+  },
+  {
+    "word": "skate",
+    "phonetic": "/skeit/",
+    "translation": "v  滑冰,溜冰",
+    "unit": "第一册"
+  },
+  {
+    "word": "fly",
+    "phonetic": "/flai/",
+    "translation": "v  放(风筝,飞机模型等)",
+    "unit": "第一册"
+  },
+  {
+    "word": "card",
+    "phonetic": "/kɑ:d/",
+    "translation": "n 纸牌,卡片",
+    "unit": "第一册"
+  },
+  {
+    "word": "volleyball",
+    "phonetic": "/'vɔli,bɔ:l/",
+    "translation": "n 排球",
+    "unit": "第一册"
+  },
+  {
+    "word": "jump",
+    "phonetic": "/dʒʌmp/",
+    "translation": "v  跳",
+    "unit": "第一册"
+  },
+  {
+    "word": "sing",
+    "phonetic": "/siŋ/",
+    "translation": "v  唱,唱歌",
+    "unit": "第一册"
+  },
+  {
+    "word": "run",
+    "phonetic": "/rʌn/",
+    "translation": "v  跑",
+    "unit": "第一册"
+  },
+  {
+    "word": "high",
+    "phonetic": "/hai/",
+    "translation": "adj & adv 高的(地)",
+    "unit": "第一册"
+  },
+  {
+    "word": "then",
+    "phonetic": "/ðen/",
+    "translation": "adv 那么,然后",
+    "unit": "第一册"
+  },
+  {
+    "word": "question",
+    "phonetic": "/'kwestʃən/",
+    "translation": "n 问题",
+    "unit": "第一册"
+  },
+  {
+    "word": "postal",
+    "phonetic": "/'pəustəl/",
+    "translation": "adj 邮政的",
+    "unit": "第一册"
+  },
+  {
+    "word": "code",
+    "phonetic": "/kəud/",
+    "translation": "n 密码,符号",
+    "unit": "第一册"
+  },
+  {
+    "word": "ski",
+    "phonetic": "/ski:/",
+    "translation": "v  滑雪",
+    "unit": "第一册"
+  },
+  {
+    "word": "tennis",
+    "phonetic": "/'tenis/",
+    "translation": "n 网球(运动)",
+    "unit": "第一册"
+  },
+  {
+    "word": "table tennis",
+    "phonetic": "",
+    "translation": "n 乒乓球",
+    "unit": "第一册"
+  },
+  {
+    "word": "roller-skating",
+    "phonetic": "/'rəuləskeitiŋ/",
+    "translation": "n 滑旱冰",
+    "unit": "第一册"
+  },
+  {
+    "word": "chess",
+    "phonetic": "/tʃes/",
+    "translation": "n 国际象棋",
+    "unit": "第一册"
+  },
+  {
+    "word": "fan",
+    "phonetic": "/fæn/",
+    "translation": "n (口语，电影,运动等的)迷",
+    "unit": "第一册"
+  },
+  {
+    "word": "player",
+    "phonetic": "/'pleiə/",
+    "translation": "n 比赛者,选手",
+    "unit": "第一册"
+  },
+  {
+    "word": "team",
+    "phonetic": "/ti:m/",
+    "translation": "n 队,组",
+    "unit": "第一册"
+  },
+  {
+    "word": "every",
+    "phonetic": "/'evri/",
+    "translation": "adj 每一,每个的",
+    "unit": "第一册"
+  },
+  {
+    "word": "Friday",
+    "phonetic": "/'fraidi/",
+    "translation": "n 星期五",
+    "unit": "第一册"
+  },
+  {
+    "word": "make",
+    "phonetic": "/meik/",
+    "translation": "v  做,制作",
+    "unit": "第一册"
+  },
+  {
+    "word": "make the bed   phr. 整理床铺",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "homework",
+    "phonetic": "/'həumwə:k/",
+    "translation": "n 家庭作业",
+    "unit": "第一册"
+  },
+  {
+    "word": "do homework   phr. 做作业",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "read",
+    "phonetic": "/ri:d/",
+    "translation": "n 读,阅读",
+    "unit": "第一册"
+  },
+  {
+    "word": "write",
+    "phonetic": "/rait/",
+    "translation": "v  写",
+    "unit": "第一册"
+  },
+  {
+    "word": "sleep",
+    "phonetic": "/sli:p/",
+    "translation": "v  睡,睡觉",
+    "unit": "第一册"
+  },
+  {
+    "word": "look for",
+    "phonetic": "/'luk fər/",
+    "translation": "phr. 寻找",
+    "unit": "第一册"
+  },
+  {
+    "word": "cook",
+    "phonetic": "/kuk/",
+    "translation": "v & n 烹调,煮,烧 炊事员,厨师",
+    "unit": "第一册"
+  },
+  {
+    "word": "talk",
+    "phonetic": "/tɔ:k/",
+    "translation": "v  说话,谈话",
+    "unit": "第一册"
+  },
+  {
+    "word": "talk with",
+    "phonetic": "/'tɔ:k wið/",
+    "translation": "phr. 和....交谈",
+    "unit": "第一册"
+  },
+  {
+    "word": "open",
+    "phonetic": "/'əupən/",
+    "translation": "n 打开",
+    "unit": "第一册"
+  },
+  {
+    "word": "close",
+    "phonetic": "/kləuz/",
+    "translation": "v  关;闭",
+    "unit": "第一册"
+  },
+  {
+    "word": "take photos   phr. 照象",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "wear",
+    "phonetic": "/wɛə/",
+    "translation": "v  穿",
+    "unit": "第一册"
+  },
+  {
+    "word": "Sunday",
+    "phonetic": "/'sʌndi/",
+    "translation": "n 星期日",
+    "unit": "第一册"
+  },
+  {
+    "word": "park",
+    "phonetic": "/pɑ:k/",
+    "translation": "n 公园",
+    "unit": "第一册"
+  },
+  {
+    "word": "toy",
+    "phonetic": "/tɔi/",
+    "translation": "n 玩具;玩物",
+    "unit": "第一册"
+  },
+  {
+    "word": "lake",
+    "phonetic": "/leik/",
+    "translation": "n 湖",
+    "unit": "第一册"
+  },
+  {
+    "word": "clear",
+    "phonetic": "/kliə/",
+    "translation": "adj 清晰的;清楚的;明亮的",
+    "unit": "第一册"
+  },
+  {
+    "word": "shop",
+    "phonetic": "/ʃɔp/",
+    "translation": "n 商店",
+    "unit": "第一册"
+  },
+  {
+    "word": "closed",
+    "phonetic": "/kləuzd/",
+    "translation": "adj 关着的",
+    "unit": "第一册"
+  },
+  {
+    "word": "day",
+    "phonetic": "/dei/",
+    "translation": "n 日,一天",
+    "unit": "第一册"
+  },
+  {
+    "word": "Friday",
+    "phonetic": "/'fraidi/",
+    "translation": "n 星期五",
+    "unit": "第一册"
+  },
+  {
+    "word": "early",
+    "phonetic": "/'ə:li/",
+    "translation": "adj & adv  早的(地)初期",
+    "unit": "第一册"
+  },
+  {
+    "word": "supermarket",
+    "phonetic": "/'sju:pə,mɑ:kit/",
+    "translation": "n 超级市场",
+    "unit": "第一册"
+  },
+  {
+    "word": "Wednesday",
+    "phonetic": "/'wenzdi/",
+    "translation": "n 星期三",
+    "unit": "第一册"
+  },
+  {
+    "word": "may",
+    "phonetic": "/mei/",
+    "translation": "v.aux 可以;可能;也许",
+    "unit": "第一册"
+  },
+  {
+    "word": "borrow",
+    "phonetic": "/'bɔrəu/",
+    "translation": "v  借",
+    "unit": "第一册"
+  },
+  {
+    "word": "from",
+    "phonetic": "/frɔm/",
+    "translation": "prep  从;从....起",
+    "unit": "第一册"
+  },
+  {
+    "word": "Thursday",
+    "phonetic": "/'θə:zdi/",
+    "translation": "n 星期四",
+    "unit": "第一册"
+  },
+  {
+    "word": "week",
+    "phonetic": "/wi:k/",
+    "translation": "n 周;星期",
+    "unit": "第一册"
+  },
+  {
+    "word": "Monday",
+    "phonetic": "/'mʌndei/",
+    "translation": "n 星期一",
+    "unit": "第一册"
+  },
+  {
+    "word": "Saturday",
+    "phonetic": "/'sætədi/",
+    "translation": "n 星期六",
+    "unit": "第一册"
+  },
+  {
+    "word": "Sunday",
+    "phonetic": "/'sʌndi/",
+    "translation": "n 星期日",
+    "unit": "第一册"
+  },
+  {
+    "word": "hey",
+    "phonetic": "/hei/",
+    "translation": "int 嘿;喂(唤起注意.表示惊讶或询问)",
+    "unit": "第一册"
+  },
+  {
+    "word": "dictionary",
+    "phonetic": "/'dikʃəneri/",
+    "translation": "n 字典;词典",
+    "unit": "第一册"
+  },
+  {
+    "word": "back",
+    "phonetic": "/bæk/",
+    "translation": "adv 回(原处) ;向后",
+    "unit": "第一册"
+  },
+  {
+    "word": "tomorrow",
+    "phonetic": "/tə'mɔ:rəu/",
+    "translation": "n &adv 明天;在明天",
+    "unit": "第一册"
+  },
+  {
+    "word": "CD",
+    "phonetic": "",
+    "translation": "n 激光唱片(缩写词)",
+    "unit": "第一册"
+  },
+  {
+    "word": "lot",
+    "phonetic": "/lɔt/",
+    "translation": "n 许多",
+    "unit": "第一册"
+  },
+  {
+    "word": "a lot   phr. 非常",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "give...a hand   phr. 给予.....帮助",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "evening",
+    "phonetic": "/'i:vniŋ/",
+    "translation": "n 傍晚;晚上",
+    "unit": "第一册"
+  },
+  {
+    "word": "from…to…   phr.  …从…到…",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "after class   phr. 课后",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "help...with   phr. 帮助(某人)做(某事)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "model",
+    "phonetic": "/'mɔdl/",
+    "translation": "n 模型;模范 ;样式",
+    "unit": "第一册"
+  },
+  {
+    "word": "park",
+    "phonetic": "/pɑ:k/",
+    "translation": "n 公园",
+    "unit": "第一册"
+  },
+  {
+    "word": "rest",
+    "phonetic": "/rest/",
+    "translation": "n 休息",
+    "unit": "第一册"
+  },
+  {
+    "word": "have a (good) rest   phr. 休息",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "maths",
+    "phonetic": "/mæθs/",
+    "translation": "n (英式拼法)数学",
+    "unit": "第一册"
+  },
+  {
+    "word": "math",
+    "phonetic": "/mæθ/",
+    "translation": "n (美式拼法)数学",
+    "unit": "第一册"
+  },
+  {
+    "word": "all",
+    "phonetic": "/ɔ:l/",
+    "translation": "adv 全体;全部",
+    "unit": "第一册"
+  },
+  {
+    "word": "hard",
+    "phonetic": "/hɑ:d/",
+    "translation": "adv 努力",
+    "unit": "第一册"
+  },
+  {
+    "word": "fun",
+    "phonetic": "/fʌn/",
+    "translation": "adj 有趣的;愉快的",
+    "unit": "第一册"
+  },
+  {
+    "word": "yeah",
+    "phonetic": "/jɛə/",
+    "translation": "adv (口语)是的;嗯",
+    "unit": "第一册"
+  },
+  {
+    "word": "take",
+    "phonetic": "/teik/",
+    "translation": "v  花费(时间)",
+    "unit": "第一册"
+  },
+  {
+    "word": "straight",
+    "phonetic": "/streit/",
+    "translation": "adj 直的",
+    "unit": "第一册"
+  },
+  {
+    "word": "use",
+    "phonetic": "/ju:z/",
+    "translation": "v  用;使用;应用",
+    "unit": "第一册"
+  },
+  {
+    "word": "wheel",
+    "phonetic": "/hwi:l/",
+    "translation": "n 轮;机轮",
+    "unit": "第一册"
+  },
+  {
+    "word": "into",
+    "phonetic": "/'intu:/",
+    "translation": "prep  到.....里;向内",
+    "unit": "第一册"
+  },
+  {
+    "word": "music",
+    "phonetic": "/'mju:zik/",
+    "translation": "n 音乐;乐曲",
+    "unit": "第一册"
+  },
+  {
+    "word": "boat",
+    "phonetic": "/bəut/",
+    "translation": "v  划船",
+    "unit": "第一册"
+  },
+  {
+    "word": "lake",
+    "phonetic": "/leik/",
+    "translation": "n 湖",
+    "unit": "第一册"
+  },
+  {
+    "word": "into",
+    "phonetic": "/'intu:/",
+    "translation": "prep  到...里,向内",
+    "unit": "第一册"
+  },
+  {
+    "word": "worried",
+    "phonetic": "/'wʌrid/",
+    "translation": "adj 担心的,烦恼的",
+    "unit": "第一册"
+  },
+  {
+    "word": "save",
+    "phonetic": "/seiv/",
+    "translation": "v  救,挽救,节省",
+    "unit": "第一册"
+  },
+  {
+    "word": "ticket",
+    "phonetic": "/'tikit/",
+    "translation": "n 票,券",
+    "unit": "第一册"
+  },
+  {
+    "word": "New York",
+    "phonetic": "/'nju:leid/",
+    "translation": "n 纽约",
+    "unit": "第一册"
+  },
+  {
+    "word": "learn",
+    "phonetic": "/lə:n/",
+    "translation": "v  学,学习",
+    "unit": "第一册"
+  },
+  {
+    "word": "learn...from  phr. 向...学习",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "meeting",
+    "phonetic": "/'mi:tiŋ/",
+    "translation": "n 会,会议",
+    "unit": "第一册"
+  },
+  {
+    "word": "bring",
+    "phonetic": "/briŋ/",
+    "translation": "v  带来,拿来",
+    "unit": "第一册"
+  },
+  {
+    "word": "foreign",
+    "phonetic": "/'fɔrin/",
+    "translation": "adj 外国的",
+    "unit": "第一册"
+  },
+  {
+    "word": "difference",
+    "phonetic": "/'difərəns/",
+    "translation": "n 不同,差异",
+    "unit": "第一册"
+  },
+  {
+    "word": "each",
+    "phonetic": "/i:tʃ/",
+    "translation": "adv & pron 各自,各个",
+    "unit": "第一册"
+  },
+  {
+    "word": "each other",
+    "phonetic": "",
+    "translation": "pron 互相",
+    "unit": "第一册"
+  },
+  {
+    "word": "talk about   phr. 谈论,交谈",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "USA",
+    "phonetic": "",
+    "translation": "n 美国",
+    "unit": "第一册"
+  },
+  {
+    "word": "Australia",
+    "phonetic": "/ɔ:s'treiljə/",
+    "translation": "n 澳大利亚",
+    "unit": "第一册"
+  },
+  {
+    "word": "Canada",
+    "phonetic": "/'kænədə/",
+    "translation": "n 加拿大",
+    "unit": "第一册"
+  },
+  {
+    "word": "UK",
+    "phonetic": "",
+    "translation": "n 联合王国",
+    "unit": "第一册"
+  },
+  {
+    "word": "Japan",
+    "phonetic": "/dʒə'pæn/",
+    "translation": "n 日本",
+    "unit": "第一册"
+  },
+  {
+    "word": "America",
+    "phonetic": "/ə'merikə/",
+    "translation": "n 美国",
+    "unit": "第一册"
+  },
+  {
+    "word": "a little   phr. 一点,少量",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "French",
+    "phonetic": "/frentʃ/",
+    "translation": "n 法语",
+    "unit": "第一册"
+  },
+  {
+    "word": "great",
+    "phonetic": "/greit/",
+    "translation": "adj 伟大的,很大的,重要的",
+    "unit": "第一册"
+  },
+  {
+    "word": "the Great Wall",
+    "phonetic": "",
+    "translation": "n 长城",
+    "unit": "第一册"
+  },
+  {
+    "word": "hotel",
+    "phonetic": "/həu'tel/",
+    "translation": "n 旅馆,饭馆",
+    "unit": "第一册"
+  },
+  {
+    "word": "building",
+    "phonetic": "/'bildiŋ/",
+    "translation": "n 建筑物",
+    "unit": "第一册"
+  },
+  {
+    "word": "follow",
+    "phonetic": "/'fɔləu/",
+    "translation": "v  跟随",
+    "unit": "第一册"
+  },
+  {
+    "word": "call",
+    "phonetic": "/kɔ:l/",
+    "translation": "v &n 称呼,叫喊,打电话给 电话,通话",
+    "unit": "第一册"
+  },
+  {
+    "word": "family name",
+    "phonetic": "",
+    "translation": "n 姓",
+    "unit": "第一册"
+  },
+  {
+    "word": "first",
+    "phonetic": "/fə:st/",
+    "translation": "n um & adv 第一,首先,最初",
+    "unit": "第一册"
+  },
+  {
+    "word": "postcard",
+    "phonetic": "/'pəust,kɑ:d/",
+    "translation": "n 明信片",
+    "unit": "第一册"
+  },
+  {
+    "word": "teach",
+    "phonetic": "/ti:tʃ/",
+    "translation": "v  教,教书",
+    "unit": "第一册"
+  },
+  {
+    "word": "dinner",
+    "phonetic": "/'dinə/",
+    "translation": "n 正餐,晚餐",
+    "unit": "第一册"
+  },
+  {
+    "word": "soon",
+    "phonetic": "/su:n/",
+    "translation": "adv 不久,一会儿",
+    "unit": "第一册"
+  },
+  {
+    "word": "stay",
+    "phonetic": "/stei/",
+    "translation": "v  停留(在某处)",
+    "unit": "第一册"
+  },
+  {
+    "word": "high school",
+    "phonetic": "",
+    "translation": "n 中学",
+    "unit": "第一册"
+  },
+  {
+    "word": "Toronto",
+    "phonetic": "/tə'rɔntəu/",
+    "translation": "n 多伦多(加拿大港市)",
+    "unit": "第一册"
+  },
+  {
+    "word": "schoolboy",
+    "phonetic": "/'sku:lbɔi/",
+    "translation": "n (中小学的)男学生",
+    "unit": "第一册"
+  },
+  {
+    "word": "country",
+    "phonetic": "/'kʌntri/",
+    "translation": "n 国家",
+    "unit": "第一册"
+  },
+  {
+    "word": "make friends   phr. 交朋友",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "France",
+    "phonetic": "/frɑ:ns/",
+    "translation": "n 法国",
+    "unit": "第一册"
+  },
+  {
+    "word": "textbook",
+    "phonetic": "/'tekstbuk/",
+    "translation": "n 课本",
+    "unit": "第一册"
+  },
+  {
+    "word": "Englishman",
+    "phonetic": "/'iŋgliʃmən/",
+    "translation": "n (pl.Englishmen)英国(男)人",
+    "unit": "第一册"
+  },
+  {
+    "word": "Australian",
+    "phonetic": "/ɔ:s'treiljən/",
+    "translation": "adj 澳大利亚人",
+    "unit": "第一册"
+  },
+  {
+    "word": "Canadian",
+    "phonetic": "/kə'neidiən/",
+    "translation": "n 加拿大人",
+    "unit": "第一册"
+  },
+  {
+    "word": "city",
+    "phonetic": "/'siti/",
+    "translation": "n 城市",
+    "unit": "第一册"
+  },
+  {
+    "word": "foreigner",
+    "phonetic": "/'fɔ:rinə/",
+    "translation": "n 外国人",
+    "unit": "第一册"
+  },
+  {
+    "word": "visit",
+    "phonetic": "/'vizit/",
+    "translation": "v  访问,参观,拜访",
+    "unit": "第一册"
+  },
+  {
+    "word": "word",
+    "phonetic": "/wə:d/",
+    "translation": "n 词,单词",
+    "unit": "第一册"
+  },
+  {
+    "word": "well",
+    "phonetic": "/wel/",
+    "translation": "adv 好",
+    "unit": "第一册"
+  },
+  {
+    "word": "why",
+    "phonetic": "/hwai/",
+    "translation": "adv 为什么",
+    "unit": "第一册"
+  },
+  {
+    "word": "English-speaking",
+    "phonetic": "",
+    "translation": "adj 说英语的",
+    "unit": "第一册"
+  },
+  {
+    "word": "letter",
+    "phonetic": "/'letə/",
+    "translation": "n 信",
+    "unit": "第一册"
+  },
+  {
+    "word": "hot",
+    "phonetic": "/hɔt/",
+    "translation": "adj 热的,辣的",
+    "unit": "第一册"
+  },
+  {
+    "word": "hot dog",
+    "phonetic": "",
+    "translation": "n 热狗(红肠面包)",
+    "unit": "第一册"
+  },
+  {
+    "word": "not...at all   phr. 一点也不",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "different",
+    "phonetic": "/'difərənt/",
+    "translation": "adj 不同的",
+    "unit": "第一册"
+  },
+  {
+    "word": "kind",
+    "phonetic": "/kaind/",
+    "translation": "n 种,类",
+    "unit": "第一册"
+  },
+  {
+    "word": "a kind of   phr. 一种,一类",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "every",
+    "phonetic": "/'evri/",
+    "translation": "adj 每一的,每个的",
+    "unit": "第一册"
+  },
+  {
+    "word": "meal",
+    "phonetic": "/mi:l/",
+    "translation": "n 一餐,一顿饭",
+    "unit": "第一册"
+  },
+  {
+    "word": "noodle",
+    "phonetic": "/'nu:dl/",
+    "translation": "n 面条",
+    "unit": "第一册"
+  },
+  {
+    "word": "vegetable",
+    "phonetic": "/'vedʒitəbl/",
+    "translation": "n 蔬菜",
+    "unit": "第一册"
+  },
+  {
+    "word": "restaurant",
+    "phonetic": "/'restərɔnt/",
+    "translation": "n 饭馆",
+    "unit": "第一册"
+  },
+  {
+    "word": "often",
+    "phonetic": "/'ɔ:fən/",
+    "translation": "adv 常常",
+    "unit": "第一册"
+  },
+  {
+    "word": "potato",
+    "phonetic": "/pə'teitəu/",
+    "translation": "n 马铃薯,土豆",
+    "unit": "第一册"
+  },
+  {
+    "word": "well",
+    "phonetic": "/wel/",
+    "translation": "adj & adv 好,(身体)健康",
+    "unit": "第一册"
+  },
+  {
+    "word": "why",
+    "phonetic": "/hwai/",
+    "translation": "adv 为什么",
+    "unit": "第一册"
+  },
+  {
+    "word": "because",
+    "phonetic": "/bi'kɔ:z/",
+    "translation": "conj 因为",
+    "unit": "第一册"
+  },
+  {
+    "word": "housework",
+    "phonetic": "/'hauswə:k/",
+    "translation": "n 家务劳动",
+    "unit": "第一册"
+  },
+  {
+    "word": "machine",
+    "phonetic": "/mə'ʃi:n/",
+    "translation": "n 机器",
+    "unit": "第一册"
+  },
+  {
+    "word": "again",
+    "phonetic": "/ə'gen/",
+    "translation": "adv 又,再",
+    "unit": "第一册"
+  },
+  {
+    "word": "make phone calls   phr. 打电话",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "wash",
+    "phonetic": "/wɔʃ/",
+    "translation": "v  洗,漱洗",
+    "unit": "第一册"
+  },
+  {
+    "word": "dish",
+    "phonetic": "/diʃ/",
+    "translation": "n 一道菜,盘,碟",
+    "unit": "第一册"
+  },
+  {
+    "word": "electronic",
+    "phonetic": "/ilek'trɔnik/",
+    "translation": "adj 电子的",
+    "unit": "第一册"
+  },
+  {
+    "word": "mail",
+    "phonetic": "/meil/",
+    "translation": "n 邮政,邮递",
+    "unit": "第一册"
+  },
+  {
+    "word": "smoke",
+    "phonetic": "/sməuk/",
+    "translation": "v &n 吸烟,烟",
+    "unit": "第一册"
+  },
+  {
+    "word": "fog",
+    "phonetic": "/fɔg/",
+    "translation": "n 雾",
+    "unit": "第一册"
+  },
+  {
+    "word": "smog",
+    "phonetic": "/smɔg/",
+    "translation": "n 烟雾",
+    "unit": "第一册"
+  },
+  {
+    "word": "dance",
+    "phonetic": "/dɑ:ns/",
+    "translation": "v  跳舞",
+    "unit": "第一册"
+  },
+  {
+    "word": "living room",
+    "phonetic": "",
+    "translation": "n 起居室",
+    "unit": "第一册"
+  },
+  {
+    "word": "dining room",
+    "phonetic": "",
+    "translation": "n 餐厅",
+    "unit": "第一册"
+  },
+  {
+    "word": "driver",
+    "phonetic": "/'draivə/",
+    "translation": "n 司机,驾驶员",
+    "unit": "第一册"
+  },
+  {
+    "word": "farmer",
+    "phonetic": "/'fɑ:mə/",
+    "translation": "n 农民",
+    "unit": "第一册"
+  },
+  {
+    "word": "soldier",
+    "phonetic": "/'səuldʒə/",
+    "translation": "n 士兵,战士",
+    "unit": "第一册"
+  },
+  {
+    "word": "businessman",
+    "phonetic": "/'biznismæn/",
+    "translation": "n 商人",
+    "unit": "第一册"
+  },
+  {
+    "word": "assistant",
+    "phonetic": "/ə'sistənt/",
+    "translation": "n 助手,助理",
+    "unit": "第一册"
+  },
+  {
+    "word": "a shop assistant   phr. 售货员,店员",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "nurse",
+    "phonetic": "/nə:s/",
+    "translation": "n 护士",
+    "unit": "第一册"
+  },
+  {
+    "word": "postman",
+    "phonetic": "/'pəustmən/",
+    "translation": "n 邮递员",
+    "unit": "第一册"
+  },
+  {
+    "word": "factory",
+    "phonetic": "/'fæktəri/",
+    "translation": "n 工厂",
+    "unit": "第一册"
+  },
+  {
+    "word": "station",
+    "phonetic": "/'steiʃən/",
+    "translation": "n 车站,所,站",
+    "unit": "第一册"
+  },
+  {
+    "word": "bus station",
+    "phonetic": "",
+    "translation": "n 公共汽车站",
+    "unit": "第一册"
+  },
+  {
+    "word": "hospital",
+    "phonetic": "/'hɔspitl/",
+    "translation": "n 医院",
+    "unit": "第一册"
+  },
+  {
+    "word": "farm",
+    "phonetic": "/fɑ:m/",
+    "translation": "n 农场",
+    "unit": "第一册"
+  },
+  {
+    "word": "post",
+    "phonetic": "/pəust/",
+    "translation": "n 邮政,邮寄,邮件",
+    "unit": "第一册"
+  },
+  {
+    "word": "office",
+    "phonetic": "/'ɔ:fis/",
+    "translation": "n 办公室",
+    "unit": "第一册"
+  },
+  {
+    "word": "post office",
+    "phonetic": "",
+    "translation": "n 邮局",
+    "unit": "第一册"
+  },
+  {
+    "word": "study",
+    "phonetic": "/'stʌdi/",
+    "translation": "v  学习,研究",
+    "unit": "第一册"
+  },
+  {
+    "word": "party",
+    "phonetic": "/'pɑ:ti/",
+    "translation": "n 聚会",
+    "unit": "第一册"
+  },
+  {
+    "word": "friendly",
+    "phonetic": "/'frendli/",
+    "translation": "adj 友好的",
+    "unit": "第一册"
+  },
+  {
+    "word": "also",
+    "phonetic": "/'ɔ:lsəu/",
+    "translation": "adv 也",
+    "unit": "第一册"
+  },
+  {
+    "word": "medicine",
+    "phonetic": "/'medisin/",
+    "translation": "n 内服药,医学",
+    "unit": "第一册"
+  },
+  {
+    "word": "in the day   phr. 在白天",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "at night   phr. 在晚上,在夜里",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "make money   phr. 赚钱",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "weekend",
+    "phonetic": "/'wi:k'end/",
+    "translation": "n 周末",
+    "unit": "第一册"
+  },
+  {
+    "word": "job",
+    "phonetic": "/dʒɔb/",
+    "translation": "n 工作",
+    "unit": "第一册"
+  },
+  {
+    "word": "writer",
+    "phonetic": "/'raitə/",
+    "translation": "n 作家,作者",
+    "unit": "第一册"
+  },
+  {
+    "word": "cleaner",
+    "phonetic": "/'kli:nə/",
+    "translation": "n 清洁工",
+    "unit": "第一册"
+  },
+  {
+    "word": "turn",
+    "phonetic": "/tə:n/",
+    "translation": "n (依次轮流的)顺序,轮流",
+    "unit": "第一册"
+  },
+  {
+    "word": "grow",
+    "phonetic": "/grəu/",
+    "translation": "v  种植,生长",
+    "unit": "第一册"
+  },
+  {
+    "word": "baker",
+    "phonetic": "/'beikə/",
+    "translation": "n 面包师",
+    "unit": "第一册"
+  },
+  {
+    "word": "artist",
+    "phonetic": "/'ɑ:tist/",
+    "translation": "n 画家,艺术家",
+    "unit": "第一册"
+  },
+  {
+    "word": "hobby",
+    "phonetic": "/'hɔbi/",
+    "translation": "n 业余爱好",
+    "unit": "第一册"
+  },
+  {
+    "word": "be",
+    "phonetic": "/bi:/",
+    "translation": "v  (am,is,are)是,成为",
+    "unit": "第一册"
+  },
+  {
+    "word": "place",
+    "phonetic": "/pleis/",
+    "translation": "n 地点,地方",
+    "unit": "第一册"
+  },
+  {
+    "word": "weekday",
+    "phonetic": "/'wi:kdei/",
+    "translation": "n 工作日,平日(除星期六,日以外)",
+    "unit": "第一册"
+  },
+  {
+    "word": "when",
+    "phonetic": "/hwen/",
+    "translation": "adv 什么时候,何时",
+    "unit": "第一册"
+  },
+  {
+    "word": "leave",
+    "phonetic": "/li:v/",
+    "translation": "v  离去,出发",
+    "unit": "第一册"
+  },
+  {
+    "word": "begin",
+    "phonetic": "/bi'gin/",
+    "translation": "v  开始,着手",
+    "unit": "第一册"
+  },
+  {
+    "word": "have sports   phr. 进行体育活动",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "go to bed   phr. 睡觉",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "usually",
+    "phonetic": "/'ju:ʒuəli/",
+    "translation": "adv 通常",
+    "unit": "第一册"
+  },
+  {
+    "word": "right now   phr. 立刻,马上",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "sometimes",
+    "phonetic": "/'sʌmtaimz/",
+    "translation": "adv 有时",
+    "unit": "第一册"
+  },
+  {
+    "word": "take off   phr. 脱衣服",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "after school   phr. 放学后,下课后",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "get to   phr. 到达",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "exercise",
+    "phonetic": "/'eksəsaiz/",
+    "translation": "n 锻炼,做操,练习",
+    "unit": "第一册"
+  },
+  {
+    "word": "do morning exercises   phr. 做早操",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "shopping",
+    "phonetic": "/'ʃɔpiŋ/",
+    "translation": "n 买东西",
+    "unit": "第一册"
+  },
+  {
+    "word": "go shopping   phr. (去)买东西",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "garden",
+    "phonetic": "/'gɑ:dn/",
+    "translation": "n 花(果,菜)园",
+    "unit": "第一册"
+  },
+  {
+    "word": "be",
+    "phonetic": "/bi:/",
+    "translation": "v  (am,is,are)是,成为",
+    "unit": "第一册"
+  },
+  {
+    "word": "over",
+    "phonetic": "/'əuvə/",
+    "translation": "adv 结束,完了",
+    "unit": "第一册"
+  },
+  {
+    "word": "do (some) reading   phr. 朗读,阅读",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "living-room",
+    "phonetic": "",
+    "translation": "n 起居室",
+    "unit": "第一册"
+  },
+  {
+    "word": "playground",
+    "phonetic": "/'pleigraund/",
+    "translation": "n (学校的)操场",
+    "unit": "第一册"
+  },
+  {
+    "word": "walk",
+    "phonetic": "/wɔ:k/",
+    "translation": "v  走,步行,散步",
+    "unit": "第一册"
+  },
+  {
+    "word": "news",
+    "phonetic": "/nju:z/",
+    "translation": "n 新闻,消息",
+    "unit": "第一册"
+  },
+  {
+    "word": "match",
+    "phonetic": "/mætʃ/",
+    "translation": "n 比赛,竞赛",
+    "unit": "第一册"
+  },
+  {
+    "word": "quickly",
+    "phonetic": "/'kwikli/",
+    "translation": "adv 迅速",
+    "unit": "第一册"
+  },
+  {
+    "word": "sun",
+    "phonetic": "/sʌn/",
+    "translation": "n 太阳",
+    "unit": "第一册"
+  },
+  {
+    "word": "moon",
+    "phonetic": "/mu:n/",
+    "translation": "n 月亮",
+    "unit": "第一册"
+  },
+  {
+    "word": "bridge",
+    "phonetic": "/bridʒ/",
+    "translation": "n 桥",
+    "unit": "第一册"
+  },
+  {
+    "word": "train",
+    "phonetic": "/trein/",
+    "translation": "n 火车",
+    "unit": "第一册"
+  },
+  {
+    "word": "ship",
+    "phonetic": "/ʃip/",
+    "translation": "n 船,轮船",
+    "unit": "第一册"
+  },
+  {
+    "word": "on foot   phr. 走路,步行",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "holiday",
+    "phonetic": "/'hɔlədi/",
+    "translation": "n 假日,假期",
+    "unit": "第一册"
+  },
+  {
+    "word": "year",
+    "phonetic": "/jiə/",
+    "translation": "n 年",
+    "unit": "第一册"
+  },
+  {
+    "word": "by",
+    "phonetic": "/bai/",
+    "translation": "prep  乘车(船等)",
+    "unit": "第一册"
+  },
+  {
+    "word": "by plane   phr. 乘飞机",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "by ship   phr. 乘船",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "air",
+    "phonetic": "/ɛə/",
+    "translation": "n 天空,空气",
+    "unit": "第一册"
+  },
+  {
+    "word": "by air   phr. 乘飞机",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "sea",
+    "phonetic": "/si:/",
+    "translation": "n 海,海洋",
+    "unit": "第一册"
+  },
+  {
+    "word": "by sea   phr. 乘船",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "take time   phr. 花费(时间)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "how long   phr. 多久",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "walk",
+    "phonetic": "/wɔ:k/",
+    "translation": "v  走,步行,散步",
+    "unit": "第一册"
+  },
+  {
+    "word": "clean",
+    "phonetic": "/kli:n/",
+    "translation": "adj 干净的,清洁的",
+    "unit": "第一册"
+  },
+  {
+    "word": "story",
+    "phonetic": "/'stɔ:ri/",
+    "translation": "n 故事",
+    "unit": "第一册"
+  },
+  {
+    "word": "far",
+    "phonetic": "/fɑ:/",
+    "translation": "adj & adv 远",
+    "unit": "第一册"
+  },
+  {
+    "word": "problem",
+    "phonetic": "/'prɔbləm/",
+    "translation": "n 问题,难题",
+    "unit": "第一册"
+  },
+  {
+    "word": "earlier",
+    "phonetic": "/'ə:liə/",
+    "translation": "adj & adv ( early的比较级)更早的(地)",
+    "unit": "第一册"
+  },
+  {
+    "word": "ill",
+    "phonetic": "/il/",
+    "translation": "adj 病的,不健康的",
+    "unit": "第一册"
+  },
+  {
+    "word": "tear",
+    "phonetic": "/tɛə/",
+    "translation": "n (常用复数)眼泪,泪珠",
+    "unit": "第一册"
+  },
+  {
+    "word": "chicken",
+    "phonetic": "/'tʃikin/",
+    "translation": "n 鸡,鸡肉",
+    "unit": "第一册"
+  },
+  {
+    "word": "tofu",
+    "phonetic": "/'təufu:/",
+    "translation": "n 豆腐",
+    "unit": "第一册"
+  },
+  {
+    "word": "fridge",
+    "phonetic": "/fridʒ/",
+    "translation": "n 电冰箱",
+    "unit": "第一册"
+  },
+  {
+    "word": "list",
+    "phonetic": "/list/",
+    "translation": "n 清单,一览表,名单,目录",
+    "unit": "第一册"
+  },
+  {
+    "word": "shopping list   phr. 购物清单",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "buy",
+    "phonetic": "/bai/",
+    "translation": "v  买",
+    "unit": "第一册"
+  },
+  {
+    "word": "kilo",
+    "phonetic": "/'ki:ləu/",
+    "translation": "n 千克,公斤",
+    "unit": "第一册"
+  },
+  {
+    "word": "sell",
+    "phonetic": "/sel/",
+    "translation": "v  卖,售",
+    "unit": "第一册"
+  },
+  {
+    "word": "how much   phr. 多少,多少钱",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "cheap",
+    "phonetic": "/tʃi:p/",
+    "translation": "adj 便宜的",
+    "unit": "第一册"
+  },
+  {
+    "word": "expensive",
+    "phonetic": "/iks'pensiv/",
+    "translation": "adj 昂贵的",
+    "unit": "第一册"
+  },
+  {
+    "word": "tomato",
+    "phonetic": "/tə'meitəu/",
+    "translation": "n (pl.tomatoes)西红柿,蕃茄",
+    "unit": "第一册"
+  },
+  {
+    "word": "onion",
+    "phonetic": "/'ʌnjən/",
+    "translation": "n 洋葱",
+    "unit": "第一册"
+  },
+  {
+    "word": "carrot",
+    "phonetic": "/'kærət/",
+    "translation": "n 胡萝卜",
+    "unit": "第一册"
+  },
+  {
+    "word": "pork",
+    "phonetic": "/pɔ:k/",
+    "translation": "n 猪肉",
+    "unit": "第一册"
+  },
+  {
+    "word": "all day   phr. 一整天,一天到晚",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "a lot of   phr. 许多,很多",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "open",
+    "phonetic": "/'əupən/",
+    "translation": "adj 开着的",
+    "unit": "第一册"
+  },
+  {
+    "word": "market",
+    "phonetic": "/'mɑ:kit/",
+    "translation": "n 市场,集市",
+    "unit": "第一册"
+  },
+  {
+    "word": "dollar",
+    "phonetic": "/'dɔlə/",
+    "translation": "n 元(美,加拿大等国的货币单位)",
+    "unit": "第一册"
+  },
+  {
+    "word": "cent",
+    "phonetic": "/sent/",
+    "translation": "n (货币)分",
+    "unit": "第一册"
+  },
+  {
+    "word": "pound",
+    "phonetic": "/paund/",
+    "translation": "n 镑(重量单位)",
+    "unit": "第一册"
+  },
+  {
+    "word": "health",
+    "phonetic": "/helθ/",
+    "translation": "n 健康,卫生",
+    "unit": "第一册"
+  },
+  {
+    "word": "fast",
+    "phonetic": "/fɑ:st/",
+    "translation": "adj & adv 快的(地),迅速的(地)",
+    "unit": "第一册"
+  },
+  {
+    "word": "of course   phr. 当然,自然的事",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "travel",
+    "phonetic": "/'trævl/",
+    "translation": "v & n 旅行",
+    "unit": "第一册"
+  },
+  {
+    "word": "safe",
+    "phonetic": "/seif/",
+    "translation": "adj 安全的,平安的",
+    "unit": "第一册"
+  },
+  {
+    "word": "minibus",
+    "phonetic": "/'mini,bʌs/",
+    "translation": "n 小型公共汽车",
+    "unit": "第一册"
+  },
+  {
+    "word": "and so on   phr. 等等",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "price",
+    "phonetic": "/prais/",
+    "translation": "n 价格,价钱",
+    "unit": "第一册"
+  },
+  {
+    "word": "example",
+    "phonetic": "/ig'zɑ:mpl/",
+    "translation": "n 例子,榜样",
+    "unit": "第一册"
+  },
+  {
+    "word": "for example  phr. 例如",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "stand",
+    "phonetic": "/stænd/",
+    "translation": "v  站,立",
+    "unit": "第一册"
+  },
+  {
+    "word": "field",
+    "phonetic": "/fi:ld/",
+    "translation": "n 地,田地",
+    "unit": "第一册"
+  },
+  {
+    "word": "one day phr.(过去或将来)有一天,某一天",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "job",
+    "phonetic": "/dʒɔb/",
+    "translation": "n 工作",
+    "unit": "第一册"
+  },
+  {
+    "word": "bright",
+    "phonetic": "/brait/",
+    "translation": "adj 明亮的,灿烂的",
+    "unit": "第一册"
+  },
+  {
+    "word": "foreign",
+    "phonetic": "/'fɔrin/",
+    "translation": "adj 外国的",
+    "unit": "第一册"
+  },
+  {
+    "word": "sunglasses",
+    "phonetic": "/'sʌnglɑ:siz/",
+    "translation": "n 太阳镜",
+    "unit": "第一册"
+  },
+  {
+    "word": "each",
+    "phonetic": "/i:tʃ/",
+    "translation": "pron 各自,各个",
+    "unit": "第一册"
+  },
+  {
+    "word": "language",
+    "phonetic": "/'læŋgwidʒ/",
+    "translation": "n 语言",
+    "unit": "第一册"
+  },
+  {
+    "word": "helpful",
+    "phonetic": "/'helpfəl/",
+    "translation": "adj 有帮助的,有益的",
+    "unit": "第一册"
+  },
+  {
+    "word": "get on (a bus)  phr. 上车",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第一册"
+  },
+  {
+    "word": "business",
+    "phonetic": "/'biznis/",
+    "translation": "n 商业,生意,事物",
+    "unit": "第一册"
+  },
+  {
+    "word": "company",
+    "phonetic": "/'kʌmpəni/",
+    "translation": "n 公司",
+    "unit": "第一册"
+  },
+  {
+    "word": "manager",
+    "phonetic": "/'mænidʒə/",
+    "translation": "n 经理,负责人",
+    "unit": "第一册"
+  },
+  {
+    "word": "century",
+    "phonetic": "/'sentʃuri/",
+    "translation": "n 世纪,百年",
+    "unit": "第一册"
+  }
+]

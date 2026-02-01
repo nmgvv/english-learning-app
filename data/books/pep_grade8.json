@@ -1,0 +1,4868 @@
+[
+  {
+    "word": "lesson",
+    "phonetic": "/'lesn/",
+    "translation": "n 课,功课",
+    "unit": "第二册"
+  },
+  {
+    "word": "fun",
+    "phonetic": "/fʌn/",
+    "translation": "n 有趣",
+    "unit": "第二册"
+  },
+  {
+    "word": "when",
+    "phonetic": "/hwen/",
+    "translation": "conj 当......时",
+    "unit": "第二册"
+  },
+  {
+    "word": "traffic",
+    "phonetic": "/'træfik/",
+    "translation": "n 交通",
+    "unit": "第二册"
+  },
+  {
+    "word": "bad",
+    "phonetic": "/bæd/",
+    "translation": "adj 坏的",
+    "unit": "第二册"
+  },
+  {
+    "word": "matter",
+    "phonetic": "/'mætə/",
+    "translation": "v (否定句,疑问句)要紧,有关系",
+    "unit": "第二册"
+  },
+  {
+    "word": "on time   phr. 准时",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "September",
+    "phonetic": "/sep'tembə/",
+    "translation": "n 九月",
+    "unit": "第二册"
+  },
+  {
+    "word": "happy",
+    "phonetic": "/'hæpi/",
+    "translation": "adj 快乐的,幸福的",
+    "unit": "第二册"
+  },
+  {
+    "word": "best",
+    "phonetic": "/best/",
+    "translation": "adj &adv 最好的(地)",
+    "unit": "第二册"
+  },
+  {
+    "word": "wish",
+    "phonetic": "/wiʃ/",
+    "translation": "n &v  祝愿,希望,想要",
+    "unit": "第二册"
+  },
+  {
+    "word": "second",
+    "phonetic": "/'sekənd/",
+    "translation": "n um &adj 第二(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "idea",
+    "phonetic": "/ai'diə/",
+    "translation": "n 主意,想法,意见",
+    "unit": "第二册"
+  },
+  {
+    "word": "last",
+    "phonetic": "/lɑ:st/",
+    "translation": "adj 最后的,刚过去的",
+    "unit": "第二册"
+  },
+  {
+    "word": "given name   phr. 名字",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "mean",
+    "phonetic": "/mi:n/",
+    "translation": "v  表示...的意思,意味着",
+    "unit": "第二册"
+  },
+  {
+    "word": "meaning",
+    "phonetic": "/'mi:niŋ/",
+    "translation": "n 意思,意义,含义",
+    "unit": "第二册"
+  },
+  {
+    "word": "important",
+    "phonetic": "/im'pɔ:tənt/",
+    "translation": "adj 重要的,重大的",
+    "unit": "第二册"
+  },
+  {
+    "word": "use",
+    "phonetic": "/ju:z/",
+    "translation": "v  用,使用,运用",
+    "unit": "第二册"
+  },
+  {
+    "word": "Ms",
+    "phonetic": "/mɪz/",
+    "translation": "n 女士(用于婚姻状况不明的女名)",
+    "unit": "第二册"
+  },
+  {
+    "word": "before",
+    "phonetic": "/bi'fɔ:/",
+    "translation": "prep &adv 在..之前,以前",
+    "unit": "第二册"
+  },
+  {
+    "word": "never",
+    "phonetic": "/'nevə/",
+    "translation": "adv 从来,决不",
+    "unit": "第二册"
+  },
+  {
+    "word": "just",
+    "phonetic": "/dʒʌst/",
+    "translation": "adv 刚刚,方才",
+    "unit": "第二册"
+  },
+  {
+    "word": "third",
+    "phonetic": "/θə:d/",
+    "translation": "n um &adj 第三的",
+    "unit": "第二册"
+  },
+  {
+    "word": "afraid",
+    "phonetic": "/ə'freid/",
+    "translation": "adj 害怕的",
+    "unit": "第二册"
+  },
+  {
+    "word": "live",
+    "phonetic": "/liv/",
+    "translation": "v  居住",
+    "unit": "第二册"
+  },
+  {
+    "word": "sound",
+    "phonetic": "/saund/",
+    "translation": "n & v  声音,听起来",
+    "unit": "第二册"
+  },
+  {
+    "word": "have to   phr. 不得不,必须",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "time",
+    "phonetic": "/taim/",
+    "translation": "n 次数",
+    "unit": "第二册"
+  },
+  {
+    "word": "more",
+    "phonetic": "/mɔ:/",
+    "translation": "adv 更,更加",
+    "unit": "第二册"
+  },
+  {
+    "word": "not...any more   phr. 不再",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "laugh",
+    "phonetic": "/lɑ:f/",
+    "translation": "v  & n 笑,大笑,笑声",
+    "unit": "第二册"
+  },
+  {
+    "word": "waste",
+    "phonetic": "/weist/",
+    "translation": "n & v  浪费,废弃物",
+    "unit": "第二册"
+  },
+  {
+    "word": "a waste of time  phr. 浪费(白费)时间",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "fifth",
+    "phonetic": "/fifθ/",
+    "translation": "n um & adj 第五(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "trip",
+    "phonetic": "/trip/",
+    "translation": "n & v  旅游,旅行",
+    "unit": "第二册"
+  },
+  {
+    "word": "field trip   phr. 野外旅游",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "hometown",
+    "phonetic": "/'hom'taun/",
+    "translation": "n 故乡,家乡",
+    "unit": "第二册"
+  },
+  {
+    "word": "discuss",
+    "phonetic": "/di'skʌs/",
+    "translation": "v  讨论,议论",
+    "unit": "第二册"
+  },
+  {
+    "word": "fish",
+    "phonetic": "/fiʃ/",
+    "translation": "v  钓鱼",
+    "unit": "第二册"
+  },
+  {
+    "word": "fishing",
+    "phonetic": "/'fiʃiŋ/",
+    "translation": "n 钓鱼",
+    "unit": "第二册"
+  },
+  {
+    "word": "go fishing   phr. 去钓鱼",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "east",
+    "phonetic": "/i:st/",
+    "translation": "n & adj 东方(的),东部(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "agree",
+    "phonetic": "/ə'gri:/",
+    "translation": "v  同意,赞成",
+    "unit": "第二册"
+  },
+  {
+    "word": "boating",
+    "phonetic": "/'bəutiŋ/",
+    "translation": "n 划船",
+    "unit": "第二册"
+  },
+  {
+    "word": "go boating   phr. 去划船",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "maybe",
+    "phonetic": "/'meibi/",
+    "translation": "adv 也许,大概",
+    "unit": "第二册"
+  },
+  {
+    "word": "mountain",
+    "phonetic": "/'mauntin/",
+    "translation": "n 山,高山",
+    "unit": "第二册"
+  },
+  {
+    "word": "hike",
+    "phonetic": "/haik/",
+    "translation": "n & v  远足,徒步旅行",
+    "unit": "第二册"
+  },
+  {
+    "word": "hiking",
+    "phonetic": "/haikin/",
+    "translation": "n 徒步旅行",
+    "unit": "第二册"
+  },
+  {
+    "word": "go hiking   phr. 去徒步旅行",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "picnic",
+    "phonetic": "/'piknik/",
+    "translation": "n 野餐",
+    "unit": "第二册"
+  },
+  {
+    "word": "the day after tomorrow  phr. 后天",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "top",
+    "phonetic": "/tɔp/",
+    "translation": "n 顶部",
+    "unit": "第二册"
+  },
+  {
+    "word": "problem",
+    "phonetic": "/'prɔbləm/",
+    "translation": "n 问题,难题",
+    "unit": "第二册"
+  },
+  {
+    "word": "quick",
+    "phonetic": "/kwik/",
+    "translation": "adj 快的,迅速的",
+    "unit": "第二册"
+  },
+  {
+    "word": "quickly",
+    "phonetic": "/'kwikli/",
+    "translation": "adv 快地,迅速地",
+    "unit": "第二册"
+  },
+  {
+    "word": "start",
+    "phonetic": "/stɑ:t/",
+    "translation": "v  开始,着手",
+    "unit": "第二册"
+  },
+  {
+    "word": "trip",
+    "phonetic": "/trip/",
+    "translation": "over   phr. (被...)绊倒",
+    "unit": "第二册"
+  },
+  {
+    "word": "tired",
+    "phonetic": "/'taiəd/",
+    "translation": "adj 累,疲乏",
+    "unit": "第二册"
+  },
+  {
+    "word": "hurry",
+    "phonetic": "/'hʌri/",
+    "translation": "v  赶快,慌忙",
+    "unit": "第二册"
+  },
+  {
+    "word": "hurry up   phr. 赶快",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "tie",
+    "phonetic": "/tai/",
+    "translation": "v  捆,(系,栓)紧",
+    "unit": "第二册"
+  },
+  {
+    "word": "die",
+    "phonetic": "/dai/",
+    "translation": "v  死亡",
+    "unit": "第二册"
+  },
+  {
+    "word": "city",
+    "phonetic": "/'siti/",
+    "translation": "n 城市",
+    "unit": "第二册"
+  },
+  {
+    "word": "take",
+    "phonetic": "/teik/",
+    "translation": "v  花费(时间),消耗",
+    "unit": "第二册"
+  },
+  {
+    "word": "eighth",
+    "phonetic": "/eitθ/",
+    "translation": "n um 第八",
+    "unit": "第二册"
+  },
+  {
+    "word": "salesgirl",
+    "phonetic": "/'seilzgə:l/",
+    "translation": "n 女售货员",
+    "unit": "第二册"
+  },
+  {
+    "word": "far",
+    "phonetic": "/fɑ:/",
+    "translation": "adj & adv 远的(地)",
+    "unit": "第二册"
+  },
+  {
+    "word": "beautiful",
+    "phonetic": "/'bju:təfəl/",
+    "translation": "adj 美丽的,漂亮的",
+    "unit": "第二册"
+  },
+  {
+    "word": "together",
+    "phonetic": "/tə'geðə/",
+    "translation": "adv 一起",
+    "unit": "第二册"
+  },
+  {
+    "word": "autumn",
+    "phonetic": "/'ɔ:təm/",
+    "translation": "n 秋天,秋季",
+    "unit": "第二册"
+  },
+  {
+    "word": "festival",
+    "phonetic": "/'festəvəl/",
+    "translation": "n & adj 节日(的),喜庆(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "ninth",
+    "phonetic": "/nainθ/",
+    "translation": "n um &adj 第九(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "free",
+    "phonetic": "/fri:/",
+    "translation": "adj 自由的,空闲的",
+    "unit": "第二册"
+  },
+  {
+    "word": "mid-autumn",
+    "phonetic": "",
+    "translation": "n 中秋",
+    "unit": "第二册"
+  },
+  {
+    "word": "mooncake",
+    "phonetic": "",
+    "translation": "n 月饼",
+    "unit": "第二册"
+  },
+  {
+    "word": "nut",
+    "phonetic": "/nʌt/",
+    "translation": "n 坚果,坚果核",
+    "unit": "第二册"
+  },
+  {
+    "word": "sweet",
+    "phonetic": "/swi:t/",
+    "translation": "adj 甜的,可爱的",
+    "unit": "第二册"
+  },
+  {
+    "word": "inside",
+    "phonetic": "/,in'said/",
+    "translation": "prep  在...里面",
+    "unit": "第二册"
+  },
+  {
+    "word": "store",
+    "phonetic": "/'in'said/",
+    "translation": "n (美)商店,大百货公司",
+    "unit": "第二册"
+  },
+  {
+    "word": "come over   phr. 过来,顺便来访",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "thanksgiving",
+    "phonetic": "/,θæŋks'giviŋ/",
+    "translation": "n 感谢,感恩",
+    "unit": "第二册"
+  },
+  {
+    "word": "Thanksgiving=Thanksgiving Day  phr. 感恩节",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "get together  phr. 相聚",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "October",
+    "phonetic": "/ɔk'təubə/",
+    "translation": "n. 十月",
+    "unit": "第二册"
+  },
+  {
+    "word": "taste",
+    "phonetic": "/teist/",
+    "translation": "v  品尝,有...味道",
+    "unit": "第二册"
+  },
+  {
+    "word": "pie",
+    "phonetic": "/pai/",
+    "translation": "n (用肉或水果做成的)馅饼",
+    "unit": "第二册"
+  },
+  {
+    "word": "outside",
+    "phonetic": "/'aut'said/",
+    "translation": "prep  & adv 在...外",
+    "unit": "第二册"
+  },
+  {
+    "word": "in the open air",
+    "phonetic": "",
+    "translation": "phr.在户外,在野外",
+    "unit": "第二册"
+  },
+  {
+    "word": "harvest",
+    "phonetic": "/'hɑ:vist/",
+    "translation": "n 收获",
+    "unit": "第二册"
+  },
+  {
+    "word": "than",
+    "phonetic": "/ðæn/",
+    "translation": "conj 比....,比较....",
+    "unit": "第二册"
+  },
+  {
+    "word": "another",
+    "phonetic": "/ə'nʌðə/",
+    "translation": "adj &conj另一个(的),又一个(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "delicious",
+    "phonetic": "/di'liʃəs/",
+    "translation": "adj 美味的,可口的",
+    "unit": "第二册"
+  },
+  {
+    "word": "better",
+    "phonetic": "/'betə/",
+    "translation": "adj (goo或well的比较级)更好的",
+    "unit": "第二册"
+  },
+  {
+    "word": "pumpkin",
+    "phonetic": "/'pʌmpkin/",
+    "translation": "n 南瓜",
+    "unit": "第二册"
+  },
+  {
+    "word": "twelfth",
+    "phonetic": "/twelfθ/",
+    "translation": "n um &adj 第十二(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "turkey",
+    "phonetic": "/'tə:ki/",
+    "translation": "n 火鸡",
+    "unit": "第二册"
+  },
+  {
+    "word": "celebrate",
+    "phonetic": "/'selibreit/",
+    "translation": "v  庆祝",
+    "unit": "第二册"
+  },
+  {
+    "word": "wait",
+    "phonetic": "/weit/",
+    "translation": "v 等,等待",
+    "unit": "第二册"
+  },
+  {
+    "word": "feed",
+    "phonetic": "/fi:d/",
+    "translation": "v 喂,饲养",
+    "unit": "第二册"
+  },
+  {
+    "word": "cow",
+    "phonetic": "/kau/",
+    "translation": "n 母牛,乳牛",
+    "unit": "第二册"
+  },
+  {
+    "word": "interesting",
+    "phonetic": "/'intəristiŋ/",
+    "translation": "adj 有趣的,有意思的",
+    "unit": "第二册"
+  },
+  {
+    "word": "tractor",
+    "phonetic": "/'træktə/",
+    "translation": "n 拖拉机",
+    "unit": "第二册"
+  },
+  {
+    "word": "taxi",
+    "phonetic": "/'tæksi/",
+    "translation": "n 出租汽车",
+    "unit": "第二册"
+  },
+  {
+    "word": "slow",
+    "phonetic": "/sləu/",
+    "translation": "adj 慢的,缓慢的",
+    "unit": "第二册"
+  },
+  {
+    "word": "slowly",
+    "phonetic": "/'sləuli/",
+    "translation": "adv 缓慢地",
+    "unit": "第二册"
+  },
+  {
+    "word": "grow",
+    "phonetic": "/grəu/",
+    "translation": "v  种植,生长",
+    "unit": "第二册"
+  },
+  {
+    "word": "wheat",
+    "phonetic": "/hwi:t/",
+    "translation": "n 小麦",
+    "unit": "第二册"
+  },
+  {
+    "word": "country",
+    "phonetic": "/'kʌntri/",
+    "translation": "n 乡村,郊外",
+    "unit": "第二册"
+  },
+  {
+    "word": "hear",
+    "phonetic": "/hiə/",
+    "translation": "v  听见,听说",
+    "unit": "第二册"
+  },
+  {
+    "word": "bleat",
+    "phonetic": "/bli:t/",
+    "translation": "v & n 羊叫(声)",
+    "unit": "第二册"
+  },
+  {
+    "word": "agree with",
+    "phonetic": "",
+    "translation": "phr.同意...意见(想法)符合,一致",
+    "unit": "第二册"
+  },
+  {
+    "word": "corn",
+    "phonetic": "/kɔ:n/",
+    "translation": "n (美)玉米,谷类庄稼",
+    "unit": "第二册"
+  },
+  {
+    "word": "most",
+    "phonetic": "/məust/",
+    "translation": "adj &adv(many或much的最高级)最多的",
+    "unit": "第二册"
+  },
+  {
+    "word": "summer",
+    "phonetic": "/'sʌmə/",
+    "translation": "n 夏天,夏季",
+    "unit": "第二册"
+  },
+  {
+    "word": "winter",
+    "phonetic": "/'wintə/",
+    "translation": "n 冬天,冬季",
+    "unit": "第二册"
+  },
+  {
+    "word": "stop",
+    "phonetic": "/stɔp/",
+    "translation": "v  停止,中止",
+    "unit": "第二册"
+  },
+  {
+    "word": "pick",
+    "phonetic": "/pik/",
+    "translation": "v  采摘(花,果实)",
+    "unit": "第二册"
+  },
+  {
+    "word": "exciting",
+    "phonetic": "/ik'saitiŋ/",
+    "translation": "adj 令人兴奋的",
+    "unit": "第二册"
+  },
+  {
+    "word": "town",
+    "phonetic": "/taun/",
+    "translation": "n 城镇",
+    "unit": "第二册"
+  },
+  {
+    "word": "star",
+    "phonetic": "/stɑ:/",
+    "translation": "n 星星,恒星",
+    "unit": "第二册"
+  },
+  {
+    "word": "until",
+    "phonetic": "/ən'til/",
+    "translation": "prep &pron 到...为止",
+    "unit": "第二册"
+  },
+  {
+    "word": "till",
+    "phonetic": "/til/",
+    "translation": "prep &pron (直)到...为止",
+    "unit": "第二册"
+  },
+  {
+    "word": "college",
+    "phonetic": "/'kɔlidʒ/",
+    "translation": "n 学院,高等专科学校",
+    "unit": "第二册"
+  },
+  {
+    "word": "farming",
+    "phonetic": "/'fɑ:miŋ/",
+    "translation": "n 农业,务农",
+    "unit": "第二册"
+  },
+  {
+    "word": "somebody",
+    "phonetic": "/'sʌmbədi/",
+    "translation": "pron 某人,有人",
+    "unit": "第二册"
+  },
+  {
+    "word": "nobody",
+    "phonetic": "/'nəubɔdi/",
+    "translation": "pron 没有人",
+    "unit": "第二册"
+  },
+  {
+    "word": "shall",
+    "phonetic": "/ʃæl/",
+    "translation": "v   (我,我们)将,会",
+    "unit": "第二册"
+  },
+  {
+    "word": "zoo",
+    "phonetic": "/zu:/",
+    "translation": "n 动物园",
+    "unit": "第二册"
+  },
+  {
+    "word": "nothing",
+    "phonetic": "/'nʌθiŋ/",
+    "translation": "pron 没有什么,没有东西",
+    "unit": "第二册"
+  },
+  {
+    "word": "dolphin",
+    "phonetic": "/'dɔlfin/",
+    "translation": "n 海豚",
+    "unit": "第二册"
+  },
+  {
+    "word": "show",
+    "phonetic": "/ʃəu/",
+    "translation": "n &v演出,展览 给...看,出示",
+    "unit": "第二册"
+  },
+  {
+    "word": "gate",
+    "phonetic": "/geit/",
+    "translation": "n 大门",
+    "unit": "第二册"
+  },
+  {
+    "word": "land",
+    "phonetic": "/lænd/",
+    "translation": "n 陆地,土地",
+    "unit": "第二册"
+  },
+  {
+    "word": "just",
+    "phonetic": "/dʒʌst/",
+    "translation": "adv 仅仅,只有",
+    "unit": "第二册"
+  },
+  {
+    "word": "grass",
+    "phonetic": "/grɑ:s/",
+    "translation": "n 草,草地",
+    "unit": "第二册"
+  },
+  {
+    "word": "dangerous",
+    "phonetic": "/'deindʒərəs/",
+    "translation": "adj 危险的",
+    "unit": "第二册"
+  },
+  {
+    "word": "panda",
+    "phonetic": "/'pændə/",
+    "translation": "n 熊猫",
+    "unit": "第二册"
+  },
+  {
+    "word": "lion",
+    "phonetic": "/'laiən/",
+    "translation": "n 狮子",
+    "unit": "第二册"
+  },
+  {
+    "word": "elephant",
+    "phonetic": "/'elifənt/",
+    "translation": "n 象",
+    "unit": "第二册"
+  },
+  {
+    "word": "monkey",
+    "phonetic": "/'mʌŋki/",
+    "translation": "n 猴子",
+    "unit": "第二册"
+  },
+  {
+    "word": "tiger",
+    "phonetic": "/'taigə/",
+    "translation": "n 老虎",
+    "unit": "第二册"
+  },
+  {
+    "word": "deer",
+    "phonetic": "/diə/",
+    "translation": "(pl.deer)  n 鹿",
+    "unit": "第二册"
+  },
+  {
+    "word": "snake",
+    "phonetic": "/sneik/",
+    "translation": "n 蛇",
+    "unit": "第二册"
+  },
+  {
+    "word": "rabbit",
+    "phonetic": "/'ræbit/",
+    "translation": "n 兔子",
+    "unit": "第二册"
+  },
+  {
+    "word": "duck",
+    "phonetic": "/dʌk/",
+    "translation": "n 鸭",
+    "unit": "第二册"
+  },
+  {
+    "word": "fox",
+    "phonetic": "/fɔks/",
+    "translation": "n 狐狸",
+    "unit": "第二册"
+  },
+  {
+    "word": "horse",
+    "phonetic": "/hɔ:s/",
+    "translation": "n 马",
+    "unit": "第二册"
+  },
+  {
+    "word": "bear",
+    "phonetic": "/bɛə/",
+    "translation": "n 熊",
+    "unit": "第二册"
+  },
+  {
+    "word": "cage",
+    "phonetic": "/keidʒ/",
+    "translation": "n 笼(子),鸟笼",
+    "unit": "第二册"
+  },
+  {
+    "word": "should",
+    "phonetic": "/ʃud/",
+    "translation": "v.aux (shall的过去式)将,会,应该",
+    "unit": "第二册"
+  },
+  {
+    "word": "forest",
+    "phonetic": "/'fɔrist/",
+    "translation": "n 森林",
+    "unit": "第二册"
+  },
+  {
+    "word": "feel",
+    "phonetic": "/fi:l/",
+    "translation": "v  觉得,感到",
+    "unit": "第二册"
+  },
+  {
+    "word": "if",
+    "phonetic": "/if/",
+    "translation": "conj 假如,如果",
+    "unit": "第二册"
+  },
+  {
+    "word": "fall",
+    "phonetic": "/fɔ:l/",
+    "translation": "v  落下,跌倒",
+    "unit": "第二册"
+  },
+  {
+    "word": "climb",
+    "phonetic": "/klaim/",
+    "translation": "v  爬,攀登",
+    "unit": "第二册"
+  },
+  {
+    "word": "finish",
+    "phonetic": "/'finiʃ/",
+    "translation": "v  完成,结束",
+    "unit": "第二册"
+  },
+  {
+    "word": "cinema",
+    "phonetic": "/'sinimə/",
+    "translation": "n 电影院,电影",
+    "unit": "第二册"
+  },
+  {
+    "word": "seafood",
+    "phonetic": "/'sifu:d/",
+    "translation": "n 海鲜,海产食品",
+    "unit": "第二册"
+  },
+  {
+    "word": "twentieth",
+    "phonetic": "/'twentiiθ/",
+    "translation": "n um 第十二",
+    "unit": "第二册"
+  },
+  {
+    "word": "baby",
+    "phonetic": "/'beibi/",
+    "translation": "n 婴儿,幼畜",
+    "unit": "第二册"
+  },
+  {
+    "word": "back",
+    "phonetic": "/bæk/",
+    "translation": "n 背部,后面",
+    "unit": "第二册"
+  },
+  {
+    "word": "place",
+    "phonetic": "/pleis/",
+    "translation": "n 地点,地方",
+    "unit": "第二册"
+  },
+  {
+    "word": "twenty-first",
+    "phonetic": "/,twenti'fə:st/",
+    "translation": "n um 第二十一",
+    "unit": "第二册"
+  },
+  {
+    "word": "bank",
+    "phonetic": "/bæŋk/",
+    "translation": "n 银行",
+    "unit": "第二册"
+  },
+  {
+    "word": "theatre(theater",
+    "phonetic": "/'θiətə/",
+    "translation": ")['θiətə]n剧场,戏院",
+    "unit": "第二册"
+  },
+  {
+    "word": "bookshop",
+    "phonetic": "/'bukʃɔp/",
+    "translation": "n 书店",
+    "unit": "第二册"
+  },
+  {
+    "word": "toilet",
+    "phonetic": "/'tɔilit/",
+    "translation": "n 厕所",
+    "unit": "第二册"
+  },
+  {
+    "word": "museum",
+    "phonetic": "/mju:'ziəm/",
+    "translation": "n 博物馆",
+    "unit": "第二册"
+  },
+  {
+    "word": "front",
+    "phonetic": "/frʌnt/",
+    "translation": "adj & n 前面(的),前部",
+    "unit": "第二册"
+  },
+  {
+    "word": "in front of   phr. 在...前面",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "left",
+    "phonetic": "/left/",
+    "translation": "n & adj 左(的),左边(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "right",
+    "phonetic": "/rait/",
+    "translation": "n & adj 右(的),右边(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "side",
+    "phonetic": "/said/",
+    "translation": "n 边,面",
+    "unit": "第二册"
+  },
+  {
+    "word": "on the left/right side   phr. 在左(右)边",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "all the same   phr. 仍然,还是",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "need",
+    "phonetic": "/ni:d/",
+    "translation": "v 需要,必需",
+    "unit": "第二册"
+  },
+  {
+    "word": "ask for phr. 请求,询问",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "along",
+    "phonetic": "/ə'lɔŋ/",
+    "translation": "prep 沿着,顺着 一起,一道",
+    "unit": "第二册"
+  },
+  {
+    "word": "road",
+    "phonetic": "/rəud/",
+    "translation": "n 道路,公路",
+    "unit": "第二册"
+  },
+  {
+    "word": "turn",
+    "phonetic": "/tə:n/",
+    "translation": "v  (使)转动,(使)翻动",
+    "unit": "第二册"
+  },
+  {
+    "word": "turning",
+    "phonetic": "/'tə:niŋ/",
+    "translation": "n 拐弯处",
+    "unit": "第二册"
+  },
+  {
+    "word": "metre",
+    "phonetic": "/'mi:tə/",
+    "translation": "n 公尺,米",
+    "unit": "第二册"
+  },
+  {
+    "word": "kilometre",
+    "phonetic": "/'kilə,mi:tə/",
+    "translation": "n 公里,千米",
+    "unit": "第二册"
+  },
+  {
+    "word": "had better (do)  phr. 最好(做...)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "coin",
+    "phonetic": "/kɔin/",
+    "translation": "n 硬币",
+    "unit": "第二册"
+  },
+  {
+    "word": "keep",
+    "phonetic": "/ki:p/",
+    "translation": "v  保持,留住",
+    "unit": "第二册"
+  },
+  {
+    "word": "as",
+    "phonetic": "/æz/",
+    "translation": "conj 按照,如同",
+    "unit": "第二册"
+  },
+  {
+    "word": "moment",
+    "phonetic": "/'məumənt/",
+    "translation": "n 片刻,瞬间",
+    "unit": "第二册"
+  },
+  {
+    "word": "tell",
+    "phonetic": "/tel/",
+    "translation": "v  告述,讲述,吩咐",
+    "unit": "第二册"
+  },
+  {
+    "word": "street",
+    "phonetic": "/stri:t/",
+    "translation": "n 街道",
+    "unit": "第二册"
+  },
+  {
+    "word": "next to",
+    "phonetic": "/'nekst tə/",
+    "translation": "phr. 相邻,靠近",
+    "unit": "第二册"
+  },
+  {
+    "word": "around",
+    "phonetic": "/ə'raund/",
+    "translation": "prep  在...周围环绕着",
+    "unit": "第二册"
+  },
+  {
+    "word": "lift",
+    "phonetic": "/lift/",
+    "translation": "n 电梯",
+    "unit": "第二册"
+  },
+  {
+    "word": "up and down   phr. 上上下下,来来回回",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "busy",
+    "phonetic": "/'bizi/",
+    "translation": "adj 忙的,繁忙的",
+    "unit": "第二册"
+  },
+  {
+    "word": "team",
+    "phonetic": "/ti:m/",
+    "translation": "n 队,组",
+    "unit": "第二册"
+  },
+  {
+    "word": "centre",
+    "phonetic": "/'sɛntɚ/",
+    "translation": "(center ['sentə]) n 中心",
+    "unit": "第二册"
+  },
+  {
+    "word": "popular",
+    "phonetic": "/'pɔpjulə/",
+    "translation": "adj 大众的,流行的",
+    "unit": "第二册"
+  },
+  {
+    "word": "soccer",
+    "phonetic": "/'sɔkə/",
+    "translation": "n 英式足球",
+    "unit": "第二册"
+  },
+  {
+    "word": "quite",
+    "phonetic": "/kwait/",
+    "translation": "adv 很,十分",
+    "unit": "第二册"
+  },
+  {
+    "word": "month",
+    "phonetic": "/mʌnθ/",
+    "translation": "n 月",
+    "unit": "第二册"
+  },
+  {
+    "word": "village",
+    "phonetic": "/'vilidʒ/",
+    "translation": "n 村庄,乡村",
+    "unit": "第二册"
+  },
+  {
+    "word": "strong",
+    "phonetic": "/strɔŋ/",
+    "translation": "adj 强壮的,坚强的",
+    "unit": "第二册"
+  },
+  {
+    "word": "was",
+    "phonetic": "/wɔz/",
+    "translation": "v   be(am,is,are)的过去式",
+    "unit": "第二册"
+  },
+  {
+    "word": "yesterday",
+    "phonetic": "/'jestədi/",
+    "translation": "n & adv 昨天",
+    "unit": "第二册"
+  },
+  {
+    "word": "November",
+    "phonetic": "/nəu'vembə/",
+    "translation": "n 十一月",
+    "unit": "第二册"
+  },
+  {
+    "word": "ill",
+    "phonetic": "/il/",
+    "translation": "adj 病的",
+    "unit": "第二册"
+  },
+  {
+    "word": "hope",
+    "phonetic": "/həup/",
+    "translation": "v  希望",
+    "unit": "第二册"
+  },
+  {
+    "word": "composition",
+    "phonetic": "/,kɔmpə'ziʃən/",
+    "translation": "n 作文作品",
+    "unit": "第二册"
+  },
+  {
+    "word": "remember",
+    "phonetic": "/ri'membə/",
+    "translation": "v  记起,想起",
+    "unit": "第二册"
+  },
+  {
+    "word": "were",
+    "phonetic": "/wə:/",
+    "translation": "v  动词be(are)的过去式",
+    "unit": "第二册"
+  },
+  {
+    "word": "bit",
+    "phonetic": "/bit/",
+    "translation": "n 一点儿,小片",
+    "unit": "第二册"
+  },
+  {
+    "word": "a bit",
+    "phonetic": "/ə'bit/",
+    "translation": "phr. 一点儿",
+    "unit": "第二册"
+  },
+  {
+    "word": "healthy",
+    "phonetic": "/'helθi/",
+    "translation": "adj 健康的,健壮的",
+    "unit": "第二册"
+  },
+  {
+    "word": "grow up",
+    "phonetic": "/'grəu ʌp/",
+    "translation": "phr. 成长,长大",
+    "unit": "第二册"
+  },
+  {
+    "word": "visit",
+    "phonetic": "/'vizit/",
+    "translation": "v  参观,访问,拜访",
+    "unit": "第二册"
+  },
+  {
+    "word": "ago",
+    "phonetic": "/ə'gəu/",
+    "translation": "adv 以前",
+    "unit": "第二册"
+  },
+  {
+    "word": "the day before yesterday  phr. 前天",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "enjoy",
+    "phonetic": "/in'dʒɔi/",
+    "translation": "v  喜欢,享受...乐趣",
+    "unit": "第二册"
+  },
+  {
+    "word": "world",
+    "phonetic": "/wə:ld/",
+    "translation": "n 世界",
+    "unit": "第二册"
+  },
+  {
+    "word": "at the same time   phr. 同时",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "a moment ago   phr. 刚才",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "just now   phr. 不久以前,刚才",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "reply",
+    "phonetic": "/ri'plai/",
+    "translation": "n & v  答复,回答",
+    "unit": "第二册"
+  },
+  {
+    "word": "by the way   phr. 顺便说,顺便问一下",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "match",
+    "phonetic": "/mætʃ/",
+    "translation": "n 比赛,竞赛",
+    "unit": "第二册"
+  },
+  {
+    "word": "cold",
+    "phonetic": "/kəuld/",
+    "translation": "adj 冷的,寒冷的",
+    "unit": "第二册"
+  },
+  {
+    "word": "drive",
+    "phonetic": "/draiv/",
+    "translation": "v  驾驶",
+    "unit": "第二册"
+  },
+  {
+    "word": "plan",
+    "phonetic": "/plæn/",
+    "translation": "n 计划",
+    "unit": "第二册"
+  },
+  {
+    "word": "diary",
+    "phonetic": "/'daiəri/",
+    "translation": "n 日记",
+    "unit": "第二册"
+  },
+  {
+    "word": "make telephone calls   phr. 打电话",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "go out   phr. 外出,到外面",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "India",
+    "phonetic": "/'indiə/",
+    "translation": "n 印度",
+    "unit": "第二册"
+  },
+  {
+    "word": "went",
+    "phonetic": "/went/",
+    "translation": "v  动词go的过去式",
+    "unit": "第二册"
+  },
+  {
+    "word": "rain",
+    "phonetic": "/rein/",
+    "translation": "v  下雨",
+    "unit": "第二册"
+  },
+  {
+    "word": "rained",
+    "phonetic": "",
+    "translation": "v  动词rain的过去式",
+    "unit": "第二册"
+  },
+  {
+    "word": "memory",
+    "phonetic": "/'meməri/",
+    "translation": "n 记忆力,存储器",
+    "unit": "第二册"
+  },
+  {
+    "word": "pack",
+    "phonetic": "/pæk/",
+    "translation": "v  打包,打行李",
+    "unit": "第二册"
+  },
+  {
+    "word": "everything",
+    "phonetic": "/'evriθiŋ/",
+    "translation": "pron 每件事,每样东西,一切",
+    "unit": "第二册"
+  },
+  {
+    "word": "umbrella",
+    "phonetic": "/ʌm'brelə/",
+    "translation": "n 伞,雨伞",
+    "unit": "第二册"
+  },
+  {
+    "word": "dry",
+    "phonetic": "/drai/",
+    "translation": "adj 干的,干燥的",
+    "unit": "第二册"
+  },
+  {
+    "word": "newspaper",
+    "phonetic": "/'nju:z,peipə/",
+    "translation": "n 报纸",
+    "unit": "第二册"
+  },
+  {
+    "word": "paper",
+    "phonetic": "/'peipə/",
+    "translation": "n 纸,报纸",
+    "unit": "第二册"
+  },
+  {
+    "word": "morning paper",
+    "phonetic": "",
+    "translation": "n 晨报",
+    "unit": "第二册"
+  },
+  {
+    "word": "at breakfast   phr. 早餐时",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "say goodbye to   phr. 告别,告辞",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "useful",
+    "phonetic": "/'ju:sfəl/",
+    "translation": "adj 有用的,有益的",
+    "unit": "第二册"
+  },
+  {
+    "word": "scientist",
+    "phonetic": "/'saiəntist/",
+    "translation": "n 科学家",
+    "unit": "第二册"
+  },
+  {
+    "word": "invent",
+    "phonetic": "/in'vent/",
+    "translation": "v  发明,创造",
+    "unit": "第二册"
+  },
+  {
+    "word": "all the time",
+    "phonetic": "/,ɔ:l ðə 'taim/",
+    "translation": "phr.一直,始终,老是",
+    "unit": "第二册"
+  },
+  {
+    "word": "always",
+    "phonetic": "/'ɔ:lweiz/",
+    "translation": "adv 总是,一直,经常",
+    "unit": "第二册"
+  },
+  {
+    "word": "everywhere",
+    "phonetic": "/'evrihwɛə/",
+    "translation": "adv 到处,无论哪里",
+    "unit": "第二册"
+  },
+  {
+    "word": "born",
+    "phonetic": "/bɔ:n/",
+    "translation": "v (动词bear的过去分词)出生",
+    "unit": "第二册"
+  },
+  {
+    "word": "be born   phr. 出生于",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "May",
+    "phonetic": "/mei/",
+    "translation": "n 五月",
+    "unit": "第二册"
+  },
+  {
+    "word": "move",
+    "phonetic": "/mu:v/",
+    "translation": "v  移动,搬动,搬家",
+    "unit": "第二册"
+  },
+  {
+    "word": "understand",
+    "phonetic": "/,ʌndə'stænd/",
+    "translation": "v  懂得,理解",
+    "unit": "第二册"
+  },
+  {
+    "word": "so-so",
+    "phonetic": "/'səusəu/",
+    "translation": "adj (口语)不好不坏的,马马虎虎",
+    "unit": "第二册"
+  },
+  {
+    "word": "at first  phr. 起先,首先",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "most",
+    "phonetic": "/məust/",
+    "translation": "pron 大部分,大多数",
+    "unit": "第二册"
+  },
+  {
+    "word": "luck",
+    "phonetic": "/lʌk/",
+    "translation": "n 运气,好运",
+    "unit": "第二册"
+  },
+  {
+    "word": "April",
+    "phonetic": "/'eiprəl/",
+    "translation": "n 四月",
+    "unit": "第二册"
+  },
+  {
+    "word": "hate",
+    "phonetic": "/heit/",
+    "translation": "v  讨厌,不喜欢,憎恨",
+    "unit": "第二册"
+  },
+  {
+    "word": "fly",
+    "phonetic": "/flai/",
+    "translation": "v  飞,飞行,乘飞机旅行",
+    "unit": "第二册"
+  },
+  {
+    "word": "painting",
+    "phonetic": "/'peintiŋ/",
+    "translation": "n 油画,水彩画",
+    "unit": "第二册"
+  },
+  {
+    "word": "airport",
+    "phonetic": "/'ɛəpɔ:t/",
+    "translation": "n 航空站,飞机场",
+    "unit": "第二册"
+  },
+  {
+    "word": "Swedish",
+    "phonetic": "/'swi:diʃ/",
+    "translation": "adj 瑞典的,瑞典人的",
+    "unit": "第二册"
+  },
+  {
+    "word": "rock",
+    "phonetic": "/rɔk/",
+    "translation": "n 摇动,摇滚乐",
+    "unit": "第二册"
+  },
+  {
+    "word": "band",
+    "phonetic": "/bænd/",
+    "translation": "n 乐队",
+    "unit": "第二册"
+  },
+  {
+    "word": "concert",
+    "phonetic": "/'kɔnsət/",
+    "translation": "n 音乐会,演奏会",
+    "unit": "第二册"
+  },
+  {
+    "word": "give a concert   phr. 开音乐会",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "tonight",
+    "phonetic": "/tə'nait/",
+    "translation": "adv & n 今晚",
+    "unit": "第二册"
+  },
+  {
+    "word": "singer",
+    "phonetic": "/'siŋə/",
+    "translation": "n 歌唱者,歌手",
+    "unit": "第二册"
+  },
+  {
+    "word": "journalist",
+    "phonetic": "/'dʒə:nəlist/",
+    "translation": "n 记者,新闻工作者",
+    "unit": "第二册"
+  },
+  {
+    "word": "famous",
+    "phonetic": "/'feiməs/",
+    "translation": "adj 有名的,著名的",
+    "unit": "第二册"
+  },
+  {
+    "word": "Sweden",
+    "phonetic": "/'swi:dən/",
+    "translation": "n 瑞典",
+    "unit": "第二册"
+  },
+  {
+    "word": "song",
+    "phonetic": "/sɔŋ/",
+    "translation": "n 歌,歌曲,歌谣",
+    "unit": "第二册"
+  },
+  {
+    "word": "more than  phr. 多过,...以上,比....更",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "thousand",
+    "phonetic": "/'θauzənd/",
+    "translation": "n um 千",
+    "unit": "第二册"
+  },
+  {
+    "word": "accident",
+    "phonetic": "/'æksidənt/",
+    "translation": "n 事故,灾难",
+    "unit": "第二册"
+  },
+  {
+    "word": "careless",
+    "phonetic": "/'kɛəlis/",
+    "translation": "adj 粗心的,大意的",
+    "unit": "第二册"
+  },
+  {
+    "word": "fall down   phr. 倒下,跌倒,从...落下",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "break",
+    "phonetic": "/breik/",
+    "translation": "v  折断,断裂,破碎",
+    "unit": "第二册"
+  },
+  {
+    "word": "go on   phr. 继续",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "someone",
+    "phonetic": "/'sʌmwʌn/",
+    "translation": "pron 某人,有人",
+    "unit": "第二册"
+  },
+  {
+    "word": "heart",
+    "phonetic": "/hɑ:t/",
+    "translation": "n 心(脏)",
+    "unit": "第二册"
+  },
+  {
+    "word": "past",
+    "phonetic": "/pɑ:st/",
+    "translation": "n & adj 过去(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "end",
+    "phonetic": "/end/",
+    "translation": "n & v  末端,终点,结束",
+    "unit": "第二册"
+  },
+  {
+    "word": "at the end of   phr. 在...结尾,到...尽头",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "happen",
+    "phonetic": "/'hæpən/",
+    "translation": "v  (偶然)发生,碰巧",
+    "unit": "第二册"
+  },
+  {
+    "word": "part",
+    "phonetic": "/pɑ:t/",
+    "translation": "n 部分",
+    "unit": "第二册"
+  },
+  {
+    "word": "tourist",
+    "phonetic": "/'tu:rist/",
+    "translation": "n 旅游者,观光者",
+    "unit": "第二册"
+  },
+  {
+    "word": "go back   phr. 回去",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "in a hurry   phr. 匆忙地",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "grape",
+    "phonetic": "/greip/",
+    "translation": "n 葡萄",
+    "unit": "第二册"
+  },
+  {
+    "word": "science",
+    "phonetic": "/'saiəns/",
+    "translation": "n (自然)科学",
+    "unit": "第二册"
+  },
+  {
+    "word": "marry",
+    "phonetic": "/'mæri/",
+    "translation": "v  结婚",
+    "unit": "第二册"
+  },
+  {
+    "word": "get married   phr. 结婚",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "subject",
+    "phonetic": "/'sʌbdʒikt/",
+    "translation": "n 题目,题材",
+    "unit": "第二册"
+  },
+  {
+    "word": "friendship",
+    "phonetic": "/'frendʃip/",
+    "translation": "n 友谊,友情",
+    "unit": "第二册"
+  },
+  {
+    "word": "anyone",
+    "phonetic": "/'eniwʌn/",
+    "translation": "pron 任何人",
+    "unit": "第二册"
+  },
+  {
+    "word": "date",
+    "phonetic": "/deit/",
+    "translation": "n 日期",
+    "unit": "第二册"
+  },
+  {
+    "word": "season",
+    "phonetic": "/'si:zn/",
+    "translation": "n 季节",
+    "unit": "第二册"
+  },
+  {
+    "word": "write down   phr. 写下,记下",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "January",
+    "phonetic": "/'dʒænjueri/",
+    "translation": "n 一月",
+    "unit": "第二册"
+  },
+  {
+    "word": "March",
+    "phonetic": "/mɑ:tʃ/",
+    "translation": "n 三月",
+    "unit": "第二册"
+  },
+  {
+    "word": "June",
+    "phonetic": "/dʒu:n/",
+    "translation": "n 六月",
+    "unit": "第二册"
+  },
+  {
+    "word": "July",
+    "phonetic": "/dʒu:'lai/",
+    "translation": "n 七月",
+    "unit": "第二册"
+  },
+  {
+    "word": "August",
+    "phonetic": "/ɔ:'gʌst/",
+    "translation": "n 八月",
+    "unit": "第二册"
+  },
+  {
+    "word": "December",
+    "phonetic": "/di'sembə/",
+    "translation": "n 十二月",
+    "unit": "第二册"
+  },
+  {
+    "word": "spring",
+    "phonetic": "/spriŋ/",
+    "translation": "n 春天",
+    "unit": "第二册"
+  },
+  {
+    "word": "last",
+    "phonetic": "/lɑ:st/",
+    "translation": "v  持续,耐久",
+    "unit": "第二册"
+  },
+  {
+    "word": "weather",
+    "phonetic": "/'weðə/",
+    "translation": "n 天气",
+    "unit": "第二册"
+  },
+  {
+    "word": "warm",
+    "phonetic": "/wɔ:m/",
+    "translation": "adj 暖和的,热情的",
+    "unit": "第二册"
+  },
+  {
+    "word": "come out",
+    "phonetic": "/'kʌm aut/",
+    "translation": "phr. (花)开,发(芽),出来",
+    "unit": "第二册"
+  },
+  {
+    "word": "heavily",
+    "phonetic": "/'hevili/",
+    "translation": "adv 大量地,猛烈地,厉害地",
+    "unit": "第二册"
+  },
+  {
+    "word": "crop",
+    "phonetic": "/krɔp/",
+    "translation": "n 庄稼,收成",
+    "unit": "第二册"
+  },
+  {
+    "word": "really",
+    "phonetic": "/'riəli/",
+    "translation": "adv 确实,真正地",
+    "unit": "第二册"
+  },
+  {
+    "word": "snow",
+    "phonetic": "/snəu/",
+    "translation": "n & v  雪,下雪",
+    "unit": "第二册"
+  },
+  {
+    "word": "snowman",
+    "phonetic": "/'snəu,mæn/",
+    "translation": "n 雪人",
+    "unit": "第二册"
+  },
+  {
+    "word": "all the year round   phr. 一年到头",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "true",
+    "phonetic": "/tru:/",
+    "translation": "adj 真的,真实的",
+    "unit": "第二册"
+  },
+  {
+    "word": "nearly",
+    "phonetic": "/'niəli/",
+    "translation": "adv 将近,几乎",
+    "unit": "第二册"
+  },
+  {
+    "word": "unlike",
+    "phonetic": "/'ʌn'laik/",
+    "translation": "prep  不像,和...不同",
+    "unit": "第二册"
+  },
+  {
+    "word": "opposite",
+    "phonetic": "/'ɔpəzit/",
+    "translation": "adj 对面的,相反的",
+    "unit": "第二册"
+  },
+  {
+    "word": "sunny",
+    "phonetic": "/'sʌni/",
+    "translation": "adj 晴朗的,阳光充足的",
+    "unit": "第二册"
+  },
+  {
+    "word": "cloud",
+    "phonetic": "/klaud/",
+    "translation": "n 云",
+    "unit": "第二册"
+  },
+  {
+    "word": "cloudy",
+    "phonetic": "/'klaudi/",
+    "translation": "adj 多云的,阴天的",
+    "unit": "第二册"
+  },
+  {
+    "word": "wet",
+    "phonetic": "/wet/",
+    "translation": "adj 湿的",
+    "unit": "第二册"
+  },
+  {
+    "word": "rainy",
+    "phonetic": "/'reini/",
+    "translation": "adj 多雨的,下雨的",
+    "unit": "第二册"
+  },
+  {
+    "word": "wind",
+    "phonetic": "/waind/",
+    "translation": "n 风",
+    "unit": "第二册"
+  },
+  {
+    "word": "windy",
+    "phonetic": "/'windi/",
+    "translation": "adj 有风的,风大的",
+    "unit": "第二册"
+  },
+  {
+    "word": "snowy",
+    "phonetic": "/snəui/",
+    "translation": "adj 多雪的,降雪的",
+    "unit": "第二册"
+  },
+  {
+    "word": "later",
+    "phonetic": "/'leitə/",
+    "translation": "adv 以后,后来",
+    "unit": "第二册"
+  },
+  {
+    "word": "later on   phr. 后来,稍后",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "ring",
+    "phonetic": "/riŋ/",
+    "translation": "v  (钟,铃等)响,摇铃",
+    "unit": "第二册"
+  },
+  {
+    "word": "ring up   phr. 打电话",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "west",
+    "phonetic": "/west/",
+    "translation": "n & adj 西方、西部(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "strange",
+    "phonetic": "/streindʒ/",
+    "translation": "adj 奇怪的,陌生的",
+    "unit": "第二册"
+  },
+  {
+    "word": "sunshine",
+    "phonetic": "/'sʌnʃain/",
+    "translation": "n 日光,阳光",
+    "unit": "第二册"
+  },
+  {
+    "word": "melon",
+    "phonetic": "/'melən/",
+    "translation": "n 瓜",
+    "unit": "第二册"
+  },
+  {
+    "word": "radio",
+    "phonetic": "/'reidiəu/",
+    "translation": "n 收音机",
+    "unit": "第二册"
+  },
+  {
+    "word": "report",
+    "phonetic": "/ri'pɔ:t/",
+    "translation": "n & v  报导,报告",
+    "unit": "第二册"
+  },
+  {
+    "word": "north",
+    "phonetic": "/nɔ:θ/",
+    "translation": "n & v  北方(的),北部(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "south",
+    "phonetic": "/sauθ/",
+    "translation": "n & v  南方(的),南部(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "at times   phr. 有时,偶尔",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "northeast",
+    "phonetic": "/'nɔ:θ'i:st/",
+    "translation": "n 东北,东北部",
+    "unit": "第二册"
+  },
+  {
+    "word": "temperature",
+    "phonetic": "/'tempritʃə/",
+    "translation": "n 温度",
+    "unit": "第二册"
+  },
+  {
+    "word": "above",
+    "phonetic": "/ə'bʌv/",
+    "translation": "prep  在...上面",
+    "unit": "第二册"
+  },
+  {
+    "word": "daytime",
+    "phonetic": "/'deitaim/",
+    "translation": "n 白天",
+    "unit": "第二册"
+  },
+  {
+    "word": "below",
+    "phonetic": "/bi'ləu/",
+    "translation": "prep  在...下,低于",
+    "unit": "第二册"
+  },
+  {
+    "word": "northwest",
+    "phonetic": "/'nɔ:θ'west/",
+    "translation": "n 西北,西北部",
+    "unit": "第二册"
+  },
+  {
+    "word": "lift",
+    "phonetic": "/lift/",
+    "translation": "v  (云,雾等)消散,(雨)停止",
+    "unit": "第二册"
+  },
+  {
+    "word": "worse",
+    "phonetic": "/wə:s/",
+    "translation": "adj & adv ( bad,ill的比较级)更坏,更差",
+    "unit": "第二册"
+  },
+  {
+    "word": "foggy",
+    "phonetic": "/'fɔgi/",
+    "translation": "adj 有雾,多雾的",
+    "unit": "第二册"
+  },
+  {
+    "word": "low",
+    "phonetic": "/ləu/",
+    "translation": "adj 低的,浅,矮的",
+    "unit": "第二册"
+  },
+  {
+    "word": "birthday",
+    "phonetic": "/'bə:θdei/",
+    "translation": "n 生日",
+    "unit": "第二册"
+  },
+  {
+    "word": "invite",
+    "phonetic": "/in'vait/",
+    "translation": "v 邀请,招待",
+    "unit": "第二册"
+  },
+  {
+    "word": "film",
+    "phonetic": "/film/",
+    "translation": "n 影片,电影",
+    "unit": "第二册"
+  },
+  {
+    "word": "hold",
+    "phonetic": "/həuld/",
+    "translation": "v  拿,握",
+    "unit": "第二册"
+  },
+  {
+    "word": "hold on",
+    "phonetic": "/'həuld ɔn/",
+    "translation": "phr. (打电话时)等一等,不挂断",
+    "unit": "第二册"
+  },
+  {
+    "word": "message",
+    "phonetic": "/'mesidʒ/",
+    "translation": "n 消息,信息",
+    "unit": "第二册"
+  },
+  {
+    "word": "take/leave a message   phr. 捎/留口信",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "ready",
+    "phonetic": "/'redi/",
+    "translation": "adj 准备好的,乐意的",
+    "unit": "第二册"
+  },
+  {
+    "word": "sandwich",
+    "phonetic": "/'sændwitʃ/",
+    "translation": "n 三明治,夹心面包片",
+    "unit": "第二册"
+  },
+  {
+    "word": "plate",
+    "phonetic": "/pleit/",
+    "translation": "n 盘子,碟子",
+    "unit": "第二册"
+  },
+  {
+    "word": "candle",
+    "phonetic": "/'kændl/",
+    "translation": "n 蜡烛",
+    "unit": "第二册"
+  },
+  {
+    "word": "doorbell",
+    "phonetic": "/'dɔ:bel/",
+    "translation": "n 门铃",
+    "unit": "第二册"
+  },
+  {
+    "word": "present",
+    "phonetic": "/'preznt/",
+    "translation": "n 礼物",
+    "unit": "第二册"
+  },
+  {
+    "word": "smile",
+    "phonetic": "/smail/",
+    "translation": "n & v  微笑",
+    "unit": "第二册"
+  },
+  {
+    "word": "telephone(phone",
+    "phonetic": "/fəun/",
+    "translation": ") ['telifəun] n 电话,电话机",
+    "unit": "第二册"
+  },
+  {
+    "word": "double",
+    "phonetic": "/'dʌbl/",
+    "translation": "n & adj两倍(的),双倍(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "but",
+    "phonetic": "/bʌt/",
+    "translation": "prep  除了",
+    "unit": "第二册"
+  },
+  {
+    "word": "take out   phr.  取出",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "the same as   phr. 和...相同",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "word",
+    "phonetic": "/wə:d/",
+    "translation": "n 词,单词",
+    "unit": "第二册"
+  },
+  {
+    "word": "shout",
+    "phonetic": "/ʃaut/",
+    "translation": "v  呼喊,喊叫",
+    "unit": "第二册"
+  },
+  {
+    "word": "turn over",
+    "phonetic": "/'tə:n ,əuvə/",
+    "translation": "phr. 把...翻过来",
+    "unit": "第二册"
+  },
+  {
+    "word": "study",
+    "phonetic": "/'stʌdi/",
+    "translation": "n 书房",
+    "unit": "第二册"
+  },
+  {
+    "word": "less",
+    "phonetic": "/les/",
+    "translation": "adj &adv ( little的比较级)较少的,较小的",
+    "unit": "第二册"
+  },
+  {
+    "word": "less than   phr. 不到,少于",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "be late for   phr. 迟到",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "beef",
+    "phonetic": "/bi:f/",
+    "translation": "n 牛肉",
+    "unit": "第二册"
+  },
+  {
+    "word": "help yourself to   phr. 自取,随便吃",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "Christmas",
+    "phonetic": "/'krisməs/",
+    "translation": "n 圣诞节",
+    "unit": "第二册"
+  },
+  {
+    "word": "during",
+    "phonetic": "/'djuəriŋ/",
+    "translation": "prep  在...的期间",
+    "unit": "第二册"
+  },
+  {
+    "word": "Spring Festival",
+    "phonetic": "",
+    "translation": "n 春节",
+    "unit": "第二册"
+  },
+  {
+    "word": "exam",
+    "phonetic": "/ig'zæm/",
+    "translation": "n (口语)考试",
+    "unit": "第二册"
+  },
+  {
+    "word": "get-together",
+    "phonetic": "/'gettə,geðə/",
+    "translation": "n 聚会",
+    "unit": "第二册"
+  },
+  {
+    "word": "put on   phr. (戏剧等)上演,放(唱片等)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "play",
+    "phonetic": "/plei/",
+    "translation": "n 剧,戏剧",
+    "unit": "第二册"
+  },
+  {
+    "word": "shower",
+    "phonetic": "/'ʃauə/",
+    "translation": "n 降雨,骤雨",
+    "unit": "第二册"
+  },
+  {
+    "word": "showery",
+    "phonetic": "/'ʃauəri/",
+    "translation": "adj 降雨的,多阵雨的",
+    "unit": "第二册"
+  },
+  {
+    "word": "magical",
+    "phonetic": "/'mædʒikəl/",
+    "translation": "adj 魔法(似)的",
+    "unit": "第二册"
+  },
+  {
+    "word": "Rome",
+    "phonetic": "/rəum/",
+    "translation": "n 罗马(意大利首都)",
+    "unit": "第二册"
+  },
+  {
+    "word": "Berlin",
+    "phonetic": "/bə:'lin/",
+    "translation": "n 柏林",
+    "unit": "第二册"
+  },
+  {
+    "word": "Moscow",
+    "phonetic": "/'mɔskəu/",
+    "translation": "n 莫斯科",
+    "unit": "第二册"
+  },
+  {
+    "word": "kitchen",
+    "phonetic": "/'kitʃin/",
+    "translation": "n 厨房",
+    "unit": "第二册"
+  },
+  {
+    "word": "cupboard",
+    "phonetic": "/'kʌbəd/",
+    "translation": "n 碗橱,小橱(柜)",
+    "unit": "第二册"
+  },
+  {
+    "word": "few",
+    "phonetic": "/fju:/",
+    "translation": "adj 少数的,不多的",
+    "unit": "第二册"
+  },
+  {
+    "word": "a few   phr. 一些,几个",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "salt",
+    "phonetic": "/sɔ:lt/",
+    "translation": "n 盐",
+    "unit": "第二册"
+  },
+  {
+    "word": "sugar",
+    "phonetic": "/'ʃugə/",
+    "translation": "n 糖",
+    "unit": "第二册"
+  },
+  {
+    "word": "pepper",
+    "phonetic": "/'pepə/",
+    "translation": "n 胡椒",
+    "unit": "第二册"
+  },
+  {
+    "word": "oil",
+    "phonetic": "/ɔil/",
+    "translation": "n 油",
+    "unit": "第二册"
+  },
+  {
+    "word": "wine",
+    "phonetic": "/wain/",
+    "translation": "n 酒",
+    "unit": "第二册"
+  },
+  {
+    "word": "beer",
+    "phonetic": "/biə/",
+    "translation": "n 啤酒",
+    "unit": "第二册"
+  },
+  {
+    "word": "fork",
+    "phonetic": "/fɔ:k/",
+    "translation": "n 叉,餐叉",
+    "unit": "第二册"
+  },
+  {
+    "word": "spoon",
+    "phonetic": "/spu:n/",
+    "translation": "n 匙,调羹",
+    "unit": "第二册"
+  },
+  {
+    "word": "chopsticks",
+    "phonetic": "/'tʃɔpstiks/",
+    "translation": "n (常用复数)筷子",
+    "unit": "第二册"
+  },
+  {
+    "word": "cabbage",
+    "phonetic": "/'kæbidʒ/",
+    "translation": "n 卷心菜,洋白菜",
+    "unit": "第二册"
+  },
+  {
+    "word": "pea",
+    "phonetic": "/pi:/",
+    "translation": "n 豌豆",
+    "unit": "第二册"
+  },
+  {
+    "word": "butter",
+    "phonetic": "/'bʌtə/",
+    "translation": "n 黄油",
+    "unit": "第二册"
+  },
+  {
+    "word": "cheese",
+    "phonetic": "/tʃi:z/",
+    "translation": "n 乳酪",
+    "unit": "第二册"
+  },
+  {
+    "word": "soup",
+    "phonetic": "/su:p/",
+    "translation": "n 汤",
+    "unit": "第二册"
+  },
+  {
+    "word": "Italian",
+    "phonetic": "/i'tæljən/",
+    "translation": "n & adj意大利人(的),意大利语(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "pizza",
+    "phonetic": "/'pi:tsə/",
+    "translation": "n (意大利)烤馅饼",
+    "unit": "第二册"
+  },
+  {
+    "word": "Indian",
+    "phonetic": "/'indiən/",
+    "translation": "n & adj 印度人(的),印第安人(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "kinds of   phr. 各种各样的",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "workplace",
+    "phonetic": "/'wə:kpleis/",
+    "translation": "n 工作场所",
+    "unit": "第二册"
+  },
+  {
+    "word": "seem",
+    "phonetic": "/si:m/",
+    "translation": "v  好像,似乎",
+    "unit": "第二册"
+  },
+  {
+    "word": "even",
+    "phonetic": "/'i:vən/",
+    "translation": "adv 甚至,更",
+    "unit": "第二册"
+  },
+  {
+    "word": "Italy",
+    "phonetic": "/'itəli/",
+    "translation": "n 意大利",
+    "unit": "第二册"
+  },
+  {
+    "word": "chocolate",
+    "phonetic": "/'tʃɔkəlit/",
+    "translation": "n 巧克力,巧克力糖",
+    "unit": "第二册"
+  },
+  {
+    "word": "ice",
+    "phonetic": "/ais/",
+    "translation": "n 冰",
+    "unit": "第二册"
+  },
+  {
+    "word": "make",
+    "phonetic": "/meik/",
+    "translation": "v  使...(发生)",
+    "unit": "第二册"
+  },
+  {
+    "word": "laugh",
+    "phonetic": "/lɑ:f/",
+    "translation": "v  (大)笑,发笑",
+    "unit": "第二册"
+  },
+  {
+    "word": "both",
+    "phonetic": "/bəuθ/",
+    "translation": "adj & pron 两个(人....)都",
+    "unit": "第二册"
+  },
+  {
+    "word": "either",
+    "phonetic": "/'i:ðə/",
+    "translation": "adv (用于否定句中)也(不)",
+    "unit": "第二册"
+  },
+  {
+    "word": "either...or...",
+    "phonetic": "/,i:ðə'ɔ:/",
+    "translation": "conj 或者...或者...",
+    "unit": "第二册"
+  },
+  {
+    "word": "anything",
+    "phonetic": "/'eni,θiŋ/",
+    "translation": "pron 任何事(物)",
+    "unit": "第二册"
+  },
+  {
+    "word": "neither",
+    "phonetic": "/'ni:ðə,nai:ðə/",
+    "translation": "adj & pron (两者)都不",
+    "unit": "第二册"
+  },
+  {
+    "word": "nor",
+    "phonetic": "/nɔ:/",
+    "translation": "conj 也不",
+    "unit": "第二册"
+  },
+  {
+    "word": "neither...nor..",
+    "phonetic": "",
+    "translation": "conj 既不...也不...",
+    "unit": "第二册"
+  },
+  {
+    "word": "a bit (of)  phr. 少量(的),一点",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "without",
+    "phonetic": "/wi'ðaut/",
+    "translation": "prep  无,没有,不",
+    "unit": "第二册"
+  },
+  {
+    "word": "take a seat",
+    "phonetic": "/,teik ə 'si:t/",
+    "translation": "phr. 坐下,就坐",
+    "unit": "第二册"
+  },
+  {
+    "word": "take-away",
+    "phonetic": "/'teikə'wei/",
+    "translation": "adj &n可拿走的(熟食)",
+    "unit": "第二册"
+  },
+  {
+    "word": "waiter",
+    "phonetic": "/'weitə/",
+    "translation": "n 服务员",
+    "unit": "第二册"
+  },
+  {
+    "word": "madam",
+    "phonetic": "/'mædəm/",
+    "translation": "n 女士,夫人,小姐",
+    "unit": "第二册"
+  },
+  {
+    "word": "menu",
+    "phonetic": "/'menju:/",
+    "translation": "n (餐厅等的)菜单",
+    "unit": "第二册"
+  },
+  {
+    "word": "order",
+    "phonetic": "/'ɔ:də/",
+    "translation": "n &v 订购,点菜  订购单,定购,一份菜",
+    "unit": "第二册"
+  },
+  {
+    "word": "bill",
+    "phonetic": "/bil/",
+    "translation": "n 帐单,清单,纸币",
+    "unit": "第二册"
+  },
+  {
+    "word": "be famous for   phr. 因...而有名的",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "kind",
+    "phonetic": "/kaind/",
+    "translation": "adj 和蔼的,友好的",
+    "unit": "第二册"
+  },
+  {
+    "word": "lady",
+    "phonetic": "/'leidi/",
+    "translation": "n 女士,夫人",
+    "unit": "第二册"
+  },
+  {
+    "word": "ladies' room",
+    "phonetic": "",
+    "translation": "n (妇女)公共厕所",
+    "unit": "第二册"
+  },
+  {
+    "word": "tell",
+    "phonetic": "/tel/",
+    "translation": "v  说,告述,吩咐",
+    "unit": "第二册"
+  },
+  {
+    "word": "library",
+    "phonetic": "/'laibrəri/",
+    "translation": "n 图书馆",
+    "unit": "第二册"
+  },
+  {
+    "word": "cross",
+    "phonetic": "/krɔ:s/",
+    "translation": "n 十字形(物),十字记号    v穿过,越过",
+    "unit": "第二册"
+  },
+  {
+    "word": "crossing",
+    "phonetic": "/'krɔ:siŋ/",
+    "translation": "n 十字路口,交叉点",
+    "unit": "第二册"
+  },
+  {
+    "word": "across",
+    "phonetic": "/ə'krɔ:s/",
+    "translation": "prep  穿过,横过",
+    "unit": "第二册"
+  },
+  {
+    "word": "miss",
+    "phonetic": "/mis/",
+    "translation": "v  错过",
+    "unit": "第二册"
+  },
+  {
+    "word": "church",
+    "phonetic": "/tʃə:tʃ/",
+    "translation": "n 教堂,教会",
+    "unit": "第二册"
+  },
+  {
+    "word": "cafe",
+    "phonetic": "/kə'fei/",
+    "translation": "n 小餐馆,咖啡厅",
+    "unit": "第二册"
+  },
+  {
+    "word": "video",
+    "phonetic": "/'vidiəu/",
+    "translation": "n 录像",
+    "unit": "第二册"
+  },
+  {
+    "word": "reach",
+    "phonetic": "/ri:tʃ/",
+    "translation": "v  到达,抵达,达到",
+    "unit": "第二册"
+  },
+  {
+    "word": "corner",
+    "phonetic": "/'kɔ:nə/",
+    "translation": "n 角落,(街道)拐角",
+    "unit": "第二册"
+  },
+  {
+    "word": "on one's way to   phr. 在..的途中",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "sick",
+    "phonetic": "/sik/",
+    "translation": "adj 患病的",
+    "unit": "第二册"
+  },
+  {
+    "word": "pocket",
+    "phonetic": "/'pɔkit/",
+    "translation": "n 衣袋",
+    "unit": "第二册"
+  },
+  {
+    "word": "still",
+    "phonetic": "/stil/",
+    "translation": "adv 仍旧,更",
+    "unit": "第二册"
+  },
+  {
+    "word": "weak",
+    "phonetic": "/wi:k/",
+    "translation": "adj 弱的,差的",
+    "unit": "第二册"
+  },
+  {
+    "word": "wait for   phr. 等候",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "cut",
+    "phonetic": "/kʌt/",
+    "translation": "v  割,砍,切",
+    "unit": "第二册"
+  },
+  {
+    "word": "finger",
+    "phonetic": "/'fiŋgə/",
+    "translation": "n 手指",
+    "unit": "第二册"
+  },
+  {
+    "word": "geography",
+    "phonetic": "/dʒi'ɔgrəfi/",
+    "translation": "n 地理(学)",
+    "unit": "第二册"
+  },
+  {
+    "word": "physics",
+    "phonetic": "/'fiziks/",
+    "translation": "n 物理(学)",
+    "unit": "第二册"
+  },
+  {
+    "word": "history",
+    "phonetic": "/'histəri/",
+    "translation": "n 历史(学)",
+    "unit": "第二册"
+  },
+  {
+    "word": "key",
+    "phonetic": "/ki:/",
+    "translation": "n 钥匙",
+    "unit": "第二册"
+  },
+  {
+    "word": "fix",
+    "phonetic": "/fiks/",
+    "translation": "v  修理,安装",
+    "unit": "第二册"
+  },
+  {
+    "word": "lab",
+    "phonetic": "/læb/",
+    "translation": "(=laboratory[lə'bɔrətəri])n实验室",
+    "unit": "第二册"
+  },
+  {
+    "word": "suddenly",
+    "phonetic": "/'sʌdnli/",
+    "translation": "adv 突然地",
+    "unit": "第二册"
+  },
+  {
+    "word": "DVD",
+    "phonetic": "",
+    "translation": "n 光碟,影碟",
+    "unit": "第二册"
+  },
+  {
+    "word": "in time",
+    "phonetic": "/in 'taim/",
+    "translation": "phr. 及时",
+    "unit": "第二册"
+  },
+  {
+    "word": "make one's way to   phr. 往..走去",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "sign",
+    "phonetic": "/sain/",
+    "translation": "n 标记,符号,痕迹",
+    "unit": "第二册"
+  },
+  {
+    "word": "lost",
+    "phonetic": "/lɔst/",
+    "translation": "adj 迷途的,丢失的",
+    "unit": "第二册"
+  },
+  {
+    "word": "be/get lost   phr. 迷失(道路)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "just then   phr. 正在那时",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "first of all   phr. 首先,第一",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "main",
+    "phonetic": "/mein/",
+    "translation": "adj 主要的",
+    "unit": "第二册"
+  },
+  {
+    "word": "go wrong",
+    "phonetic": "/,gəu 'rɔŋ/",
+    "translation": "phr. 走错路",
+    "unit": "第二册"
+  },
+  {
+    "word": "hit",
+    "phonetic": "/hit/",
+    "translation": "v  打,击中,撞",
+    "unit": "第二册"
+  },
+  {
+    "word": "noise",
+    "phonetic": "/nɔiz/",
+    "translation": "n 嘈杂声,响声",
+    "unit": "第二册"
+  },
+  {
+    "word": "make a noise   phr. 吵闹",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "disturb",
+    "phonetic": "/dis'tə:b/",
+    "translation": "v  妨碍,打扰",
+    "unit": "第二册"
+  },
+  {
+    "word": "passenger",
+    "phonetic": "/'pæsindʒə/",
+    "translation": "n 乘客,旅客",
+    "unit": "第二册"
+  },
+  {
+    "word": "get on",
+    "phonetic": "/'get ɔn/",
+    "translation": "phr. 上(车)",
+    "unit": "第二册"
+  },
+  {
+    "word": "get off",
+    "phonetic": "/'get ɔf/",
+    "translation": "phr. 下来,从...下来",
+    "unit": "第二册"
+  },
+  {
+    "word": "push",
+    "phonetic": "/puʃ/",
+    "translation": "v  推,挤",
+    "unit": "第二册"
+  },
+  {
+    "word": "stand in line   phr. 站(在)队(里)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "turn",
+    "phonetic": "/tə:n/",
+    "translation": "n (依次轮流的)顺序",
+    "unit": "第二册"
+  },
+  {
+    "word": "necessary",
+    "phonetic": "/'nesə,səri/",
+    "translation": "adj 必需的,必要的",
+    "unit": "第二册"
+  },
+  {
+    "word": "waiting room",
+    "phonetic": "",
+    "translation": "n 等候室,候诊(车,机)室",
+    "unit": "第二册"
+  },
+  {
+    "word": "queue",
+    "phonetic": "/kju:/",
+    "translation": "n (按次序等待的人,车等的)队,行列",
+    "unit": "第二册"
+  },
+  {
+    "word": "jumper",
+    "phonetic": "/'dʒʌmpə/",
+    "translation": "n 跳跃者",
+    "unit": "第二册"
+  },
+  {
+    "word": "queue jumper",
+    "phonetic": "",
+    "translation": "n 不按次序排队的人",
+    "unit": "第二册"
+  },
+  {
+    "word": "patient",
+    "phonetic": "/'peiʃənt/",
+    "translation": "n 病人",
+    "unit": "第二册"
+  },
+  {
+    "word": "at the head of",
+    "phonetic": "",
+    "translation": "phr.在...的最前",
+    "unit": "第二册"
+  },
+  {
+    "word": "visitor",
+    "phonetic": "/'vizitə/",
+    "translation": "n 参观者,访问者",
+    "unit": "第二册"
+  },
+  {
+    "word": "live",
+    "phonetic": "/liv/",
+    "translation": "v  居住",
+    "unit": "第二册"
+  },
+  {
+    "word": "knee",
+    "phonetic": "/ni:/",
+    "translation": "n 膝盖",
+    "unit": "第二册"
+  },
+  {
+    "word": "hurt",
+    "phonetic": "/hə:t/",
+    "translation": "v  使受伤,痛",
+    "unit": "第二册"
+  },
+  {
+    "word": "laugh at",
+    "phonetic": "/'lɑ:f ət/",
+    "translation": "phr. 嘲笑",
+    "unit": "第二册"
+  },
+  {
+    "word": "mistake",
+    "phonetic": "/mi'steik/",
+    "translation": "n 错误",
+    "unit": "第二册"
+  },
+  {
+    "word": "quiet",
+    "phonetic": "/'kwaiət/",
+    "translation": "adj 安静的,平静的",
+    "unit": "第二册"
+  },
+  {
+    "word": "quietly",
+    "phonetic": "/'kwaiətli/",
+    "translation": "adv 安静地,平静地",
+    "unit": "第二册"
+  },
+  {
+    "word": "reading room",
+    "phonetic": "",
+    "translation": "n 阅览室",
+    "unit": "第二册"
+  },
+  {
+    "word": "alone",
+    "phonetic": "/ə'ləun/",
+    "translation": "adv 独自的,单独的",
+    "unit": "第二册"
+  },
+  {
+    "word": "plastic",
+    "phonetic": "/'plæstik/",
+    "translation": "n & adj 塑料(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "throw about",
+    "phonetic": "/'θrəu ə,baut/",
+    "translation": "phr.乱丢,抛散",
+    "unit": "第二册"
+  },
+  {
+    "word": "change",
+    "phonetic": "/tʃeindʒ/",
+    "translation": "v  变化,变更,改变",
+    "unit": "第二册"
+  },
+  {
+    "word": "have a good time   phr. 过得愉快",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "fact",
+    "phonetic": "/fækt/",
+    "translation": "n 事实,实际",
+    "unit": "第二册"
+  },
+  {
+    "word": "in fact",
+    "phonetic": "/in 'fækt/",
+    "translation": "phr. 实际上",
+    "unit": "第二册"
+  },
+  {
+    "word": "at midnight   phr. 在半夜",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "arrive",
+    "phonetic": "/ə'raiv/",
+    "translation": "v  到达,抵达某地",
+    "unit": "第二册"
+  },
+  {
+    "word": "telephone",
+    "phonetic": "/'telifəun/",
+    "translation": "v  打电话给(某人)",
+    "unit": "第二册"
+  },
+  {
+    "word": "complain",
+    "phonetic": "/kəm'plein/",
+    "translation": "v  抱怨,发牢骚",
+    "unit": "第二册"
+  },
+  {
+    "word": "quarrel",
+    "phonetic": "/'kwɔrəl/",
+    "translation": "v  争吵",
+    "unit": "第二册"
+  },
+  {
+    "word": "quarrel with",
+    "phonetic": "/'kwɔrəl wið/",
+    "translation": "phr.(和某人)吵架",
+    "unit": "第二册"
+  },
+  {
+    "word": "surprise",
+    "phonetic": "/sə'praiz/",
+    "translation": "n 惊奇,惊讶",
+    "unit": "第二册"
+  },
+  {
+    "word": "police",
+    "phonetic": "/pə'li:s/",
+    "translation": "n 警察(局)",
+    "unit": "第二册"
+  },
+  {
+    "word": "voice",
+    "phonetic": "/vɔis/",
+    "translation": "n 说话声,嗓音",
+    "unit": "第二册"
+  },
+  {
+    "word": "enjoy oneself",
+    "phonetic": "/in'dʒɔi wʌn,self/",
+    "translation": "phr.过得快乐,玩得痛快",
+    "unit": "第二册"
+  },
+  {
+    "word": "themselves",
+    "phonetic": "/ðəm'selvz/",
+    "translation": "pron 他们自己",
+    "unit": "第二册"
+  },
+  {
+    "word": "care",
+    "phonetic": "/kɛə/",
+    "translation": "v  介意,在乎,关心",
+    "unit": "第二册"
+  },
+  {
+    "word": "half-way",
+    "phonetic": "",
+    "translation": "adv 在途中,半路上",
+    "unit": "第二册"
+  },
+  {
+    "word": "trouble",
+    "phonetic": "/'trʌbl/",
+    "translation": "n 麻烦,烦恼",
+    "unit": "第二册"
+  },
+  {
+    "word": "headache",
+    "phonetic": "/'hedeik/",
+    "translation": "n 头痛",
+    "unit": "第二册"
+  },
+  {
+    "word": "have a headache   phr. (患)头痛",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "cough",
+    "phonetic": "/kɔf/",
+    "translation": "v & n 咳嗽",
+    "unit": "第二册"
+  },
+  {
+    "word": "have a cough   phr. (患)咳嗽",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "terrible",
+    "phonetic": "/'terəbl/",
+    "translation": "adj 可怕的,感到极不舒服的",
+    "unit": "第二册"
+  },
+  {
+    "word": "serious",
+    "phonetic": "/'siəriəs/",
+    "translation": "adj 严重的,严肃",
+    "unit": "第二册"
+  },
+  {
+    "word": "pain",
+    "phonetic": "/pein/",
+    "translation": "n 疼痛,疼",
+    "unit": "第二册"
+  },
+  {
+    "word": "dream",
+    "phonetic": "/dri:m/",
+    "translation": "n & v梦,梦想 做梦,向往",
+    "unit": "第二册"
+  },
+  {
+    "word": "worst",
+    "phonetic": "/wə:st/",
+    "translation": "adj 最坏的,最恶劣的",
+    "unit": "第二册"
+  },
+  {
+    "word": "wake",
+    "phonetic": "/weik/",
+    "translation": "v  (使)醒来",
+    "unit": "第二册"
+  },
+  {
+    "word": "wake up   phr. 醒来,唤醒",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "as soon as",
+    "phonetic": "",
+    "translation": "conj 一...就",
+    "unit": "第二册"
+  },
+  {
+    "word": "asleep",
+    "phonetic": "/ə'sli:p/",
+    "translation": "adj 睡着的,熟睡的",
+    "unit": "第二册"
+  },
+  {
+    "word": "fall asleep   phr. 睡觉,入睡",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "plant",
+    "phonetic": "/plɑ:nt/",
+    "translation": "n & v  植物  种植",
+    "unit": "第二册"
+  },
+  {
+    "word": "storm",
+    "phonetic": "/stɔ:m/",
+    "translation": "n 暴风雨",
+    "unit": "第二册"
+  },
+  {
+    "word": "stop...from  phr. 阻止...做",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "difficult",
+    "phonetic": "/'difikəlt/",
+    "translation": "adj 困难的,难的",
+    "unit": "第二册"
+  },
+  {
+    "word": "pill",
+    "phonetic": "/pil/",
+    "translation": "n 药丸,药片",
+    "unit": "第二册"
+  },
+  {
+    "word": "awake",
+    "phonetic": "/ə'weik/",
+    "translation": "adj 清醒的",
+    "unit": "第二册"
+  },
+  {
+    "word": "be awake   phr. 醒着的",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "relax",
+    "phonetic": "/ri'læks/",
+    "translation": "v  放松,轻松",
+    "unit": "第二册"
+  },
+  {
+    "word": "again and again phr. 再三地,一再地,反复地",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "angry",
+    "phonetic": "/'æŋgri/",
+    "translation": "adj 发怒的,生气的",
+    "unit": "第二册"
+  },
+  {
+    "word": "hard",
+    "phonetic": "/hɑ:d/",
+    "translation": "adj 硬的",
+    "unit": "第二册"
+  },
+  {
+    "word": "smell",
+    "phonetic": "/smel/",
+    "translation": "v  闻,嗅,散发(气味)",
+    "unit": "第二册"
+  },
+  {
+    "word": "rich",
+    "phonetic": "/ritʃ/",
+    "translation": "adj 有钱的,富裕的,丰富的",
+    "unit": "第二册"
+  },
+  {
+    "word": "become",
+    "phonetic": "/bi'kʌm/",
+    "translation": "v  变得,变成,成为",
+    "unit": "第二册"
+  },
+  {
+    "word": "instead",
+    "phonetic": "/in'sted/",
+    "translation": "adv 代替,顶替",
+    "unit": "第二册"
+  },
+  {
+    "word": "instead of",
+    "phonetic": "/in'sted əv/",
+    "translation": "phr. 代替",
+    "unit": "第二册"
+  },
+  {
+    "word": "look over   phr. (仔细)检查",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "enough",
+    "phonetic": "/i'nʌf/",
+    "translation": "adj 足够的,充分的",
+    "unit": "第二册"
+  },
+  {
+    "word": "take exercise   phr. 做运动",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "fat",
+    "phonetic": "/fæt/",
+    "translation": "adj 肥胖的",
+    "unit": "第二册"
+  },
+  {
+    "word": "thin",
+    "phonetic": "/θin/",
+    "translation": "adj 瘦的,薄的",
+    "unit": "第二册"
+  },
+  {
+    "word": "island",
+    "phonetic": "/'ailənd/",
+    "translation": "n 岛,岛状物",
+    "unit": "第二册"
+  },
+  {
+    "word": "farther",
+    "phonetic": "/'fɑ:ðə/",
+    "translation": "adj &adv (far的比较级)较远,更远",
+    "unit": "第二册"
+  },
+  {
+    "word": "farthest",
+    "phonetic": "/'fɑ:ðist/",
+    "translation": "adj &adv(far的最高级)最远",
+    "unit": "第二册"
+  },
+  {
+    "word": "somewhere",
+    "phonetic": "/'sʌmhwɛə/",
+    "translation": "adv 某处,在某处",
+    "unit": "第二册"
+  },
+  {
+    "word": "land",
+    "phonetic": "/lænd/",
+    "translation": "v  登陆,上岸,降落",
+    "unit": "第二册"
+  },
+  {
+    "word": "pull",
+    "phonetic": "/pul/",
+    "translation": "v  拉,拖,拔",
+    "unit": "第二册"
+  },
+  {
+    "word": "out of",
+    "phonetic": "",
+    "translation": "prep 从..向外,从..往外",
+    "unit": "第二册"
+  },
+  {
+    "word": "cool",
+    "phonetic": "/ku:l/",
+    "translation": "adj 凉快的",
+    "unit": "第二册"
+  },
+  {
+    "word": "anybody",
+    "phonetic": "/'eni,bɔdi/",
+    "translation": "pron 任何人",
+    "unit": "第二册"
+  },
+  {
+    "word": "ourselves",
+    "phonetic": "/,auə'selvz/",
+    "translation": "pron 我们自己",
+    "unit": "第二册"
+  },
+  {
+    "word": "all by oneself   phr. 独立,单独",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "perhaps",
+    "phonetic": "/pə'hæps/",
+    "translation": "adv 也许,可能",
+    "unit": "第二册"
+  },
+  {
+    "word": "happily",
+    "phonetic": "/'hæpili/",
+    "translation": "adv 高兴地,快乐地",
+    "unit": "第二册"
+  },
+  {
+    "word": "lots of   phr. 许许多多的",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "no longer   phr. 不再",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "missing",
+    "phonetic": "/'misiŋ/",
+    "translation": "adj 丢失的,失踪的",
+    "unit": "第二册"
+  },
+  {
+    "word": "cry",
+    "phonetic": "/krai/",
+    "translation": "v  哭,叫喊",
+    "unit": "第二册"
+  },
+  {
+    "word": "get back",
+    "phonetic": "/'get bæk/",
+    "translation": "phr. 回来,取回",
+    "unit": "第二册"
+  },
+  {
+    "word": "too...to  phr. 太...而不能",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "anywhere",
+    "phonetic": "/'enihwɛə/",
+    "translation": "adv 任何地方",
+    "unit": "第二册"
+  },
+  {
+    "word": "solve",
+    "phonetic": "/sɔlv/",
+    "translation": "v  解决,解答",
+    "unit": "第二册"
+  },
+  {
+    "word": "believe",
+    "phonetic": "/bi'li:v/",
+    "translation": "v  相信,认为",
+    "unit": "第二册"
+  },
+  {
+    "word": "everybody",
+    "phonetic": "/'evribɔdi/",
+    "translation": "pron 每人,人人",
+    "unit": "第二册"
+  },
+  {
+    "word": "sooner or later   phr. 迟早",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "drop",
+    "phonetic": "/drɔp/",
+    "translation": "n & v  滴,水滴  掉下,落下",
+    "unit": "第二册"
+  },
+  {
+    "word": "run away   phr. 逃跑",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "as",
+    "phonetic": "/æz/",
+    "translation": "conj 因为,由于",
+    "unit": "第二册"
+  },
+  {
+    "word": "eat up   phr. 吃完,吃光",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "bank",
+    "phonetic": "/bæŋk/",
+    "translation": "n (海,河,湖的)岸,堤",
+    "unit": "第二册"
+  },
+  {
+    "word": "circle",
+    "phonetic": "/'sə:kl/",
+    "translation": "n 圈子,圆",
+    "unit": "第二册"
+  },
+  {
+    "word": "yet",
+    "phonetic": "/jet/",
+    "translation": "adv (用于否定句)还(没)",
+    "unit": "第二册"
+  },
+  {
+    "word": "myself",
+    "phonetic": "/mai'self/",
+    "translation": "pron 我自己",
+    "unit": "第二册"
+  },
+  {
+    "word": "cousin",
+    "phonetic": "/'kʌzn/",
+    "translation": "n 堂(表)兄弟,堂(表)姐妹",
+    "unit": "第二册"
+  },
+  {
+    "word": "engineer",
+    "phonetic": "/,endʒi'niə/",
+    "translation": "n 工程师",
+    "unit": "第二册"
+  },
+  {
+    "word": "cancer",
+    "phonetic": "/'kænsə/",
+    "translation": "n 癌症",
+    "unit": "第二册"
+  },
+  {
+    "word": "care",
+    "phonetic": "/kɛə/",
+    "translation": "n 小心,照料,保护",
+    "unit": "第二册"
+  },
+  {
+    "word": "take care of   phr. 照顾,照料,注意",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "sad",
+    "phonetic": "/sæd/",
+    "translation": "adj 难过的,悲哀的",
+    "unit": "第二册"
+  },
+  {
+    "word": "death",
+    "phonetic": "/deθ/",
+    "translation": "n 死,死亡",
+    "unit": "第二册"
+  },
+  {
+    "word": "page",
+    "phonetic": "/peidʒ/",
+    "translation": "n (书的)页",
+    "unit": "第二册"
+  },
+  {
+    "word": "palace",
+    "phonetic": "/'pælis/",
+    "translation": "n 宫,宫殿",
+    "unit": "第二册"
+  },
+  {
+    "word": "the Summer Palace",
+    "phonetic": "",
+    "translation": "n 颐和园",
+    "unit": "第二册"
+  },
+  {
+    "word": "herself",
+    "phonetic": "/hə:'self/",
+    "translation": "pron 她自己",
+    "unit": "第二册"
+  },
+  {
+    "word": "turn on",
+    "phonetic": "/'tə:n ɔn/",
+    "translation": "phr.打开(电灯,收音机,煤气,自来水)",
+    "unit": "第二册"
+  },
+  {
+    "word": "while",
+    "phonetic": "/hwail/",
+    "translation": "n 一会儿",
+    "unit": "第二册"
+  },
+  {
+    "word": "after a while   phr. 过了一会儿",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "turn off",
+    "phonetic": "/'tə:n ɔf/",
+    "translation": "phr.关(电灯,收音机,煤气,自来水等)",
+    "unit": "第二册"
+  },
+  {
+    "word": "any more   phr. 再,更",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "make faces   phr. 做鬼脸,做苦脸",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "whole",
+    "phonetic": "/həul/",
+    "translation": "adj 全部的",
+    "unit": "第二册"
+  },
+  {
+    "word": "wonderful",
+    "phonetic": "/'wʌndəfəl/",
+    "translation": "adj 极好的,精彩的",
+    "unit": "第二册"
+  },
+  {
+    "word": "have a cold   phr. (患)感冒",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "once",
+    "phonetic": "/wʌns/",
+    "translation": "adv 曾经,以前",
+    "unit": "第二册"
+  },
+  {
+    "word": "himself",
+    "phonetic": "/him'self/",
+    "translation": "pron 他自己",
+    "unit": "第二册"
+  },
+  {
+    "word": "tooth",
+    "phonetic": "/tu:θ/",
+    "translation": "n 牙齿",
+    "unit": "第二册"
+  },
+  {
+    "word": "kill",
+    "phonetic": "/kil/",
+    "translation": "v  杀死,弄死",
+    "unit": "第二册"
+  },
+  {
+    "word": "teach oneself  phr. 自学",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "fall off",
+    "phonetic": "/'fɔ:l ɔf/",
+    "translation": "phr. (从...)掉下",
+    "unit": "第二册"
+  },
+  {
+    "word": "clever",
+    "phonetic": "/'klevə/",
+    "translation": "adj 聪明的,机灵的",
+    "unit": "第二册"
+  },
+  {
+    "word": "yourselves",
+    "phonetic": "/jɔ:'sɛlvz/",
+    "translation": "pron 你们自己",
+    "unit": "第二册"
+  },
+  {
+    "word": "find out",
+    "phonetic": "/'faind aut/",
+    "translation": "phr. 找出,查出",
+    "unit": "第二册"
+  },
+  {
+    "word": "piano",
+    "phonetic": "/pi'ænəu/",
+    "translation": "n 钢琴",
+    "unit": "第二册"
+  },
+  {
+    "word": "moonlight",
+    "phonetic": "/'mu:n,lait/",
+    "translation": "n & adj 月光(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "poor",
+    "phonetic": "/puə/",
+    "translation": "adj 贫穷的,可怜的",
+    "unit": "第二册"
+  },
+  {
+    "word": "afford",
+    "phonetic": "/ə'fɔ:d/",
+    "translation": "v 有足够的(钱/时间)做(某事)",
+    "unit": "第二册"
+  },
+  {
+    "word": "knock",
+    "phonetic": "/nɔk/",
+    "translation": "v  敲,击",
+    "unit": "第二册"
+  },
+  {
+    "word": "knock at   phr. 敲(门,窗等)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "dim",
+    "phonetic": "/dim/",
+    "translation": "adj 微暗的,昏暗的",
+    "unit": "第二册"
+  },
+  {
+    "word": "pardon",
+    "phonetic": "/'pɑ:dn/",
+    "translation": "v  原谅(某人),宽恕",
+    "unit": "第二册"
+  },
+  {
+    "word": "to one's surprise   phr. 令(某人)惊讶",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "blind",
+    "phonetic": "/blaind/",
+    "translation": "adj 瞎的,盲的",
+    "unit": "第二册"
+  },
+  {
+    "word": "shine",
+    "phonetic": "/ʃain/",
+    "translation": "v  照亮,发亮",
+    "unit": "第二册"
+  },
+  {
+    "word": "bright",
+    "phonetic": "/brait/",
+    "translation": "adj 明亮的,晴朗的",
+    "unit": "第二册"
+  },
+  {
+    "word": "brightly",
+    "phonetic": "/'braitli/",
+    "translation": "adv 明亮地,闪亮地",
+    "unit": "第二册"
+  },
+  {
+    "word": "through",
+    "phonetic": "/θru:/",
+    "translation": "prep  通过,穿过,经过",
+    "unit": "第二册"
+  },
+  {
+    "word": "look up",
+    "phonetic": "/'luk ʌp/",
+    "translation": "phr. 向上看,抬头看",
+    "unit": "第二册"
+  },
+  {
+    "word": "silently",
+    "phonetic": "/'sailəntli/",
+    "translation": "adv 寂静地,沉默地",
+    "unit": "第二册"
+  },
+  {
+    "word": "come along come along phr. 来,随同",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "return",
+    "phonetic": "/ri'tə:n/",
+    "translation": "v  回来,归还",
+    "unit": "第二册"
+  },
+  {
+    "word": "cookie",
+    "phonetic": "/'kuki/",
+    "translation": "n 小甜饼",
+    "unit": "第二册"
+  },
+  {
+    "word": "leave...behind  phr. 把...遗留在(留下)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "hold a sports meeting   phr. 举行运动会",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "race",
+    "phonetic": "/reis/",
+    "translation": "n 赛跑",
+    "unit": "第二册"
+  },
+  {
+    "word": "100-metre race   phr. 100米赛跑",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "win",
+    "phonetic": "/win/",
+    "translation": "v  获胜,赢",
+    "unit": "第二册"
+  },
+  {
+    "word": "high jump",
+    "phonetic": "",
+    "translation": "n 跳高",
+    "unit": "第二册"
+  },
+  {
+    "word": "long jump",
+    "phonetic": "",
+    "translation": "n 跳远",
+    "unit": "第二册"
+  },
+  {
+    "word": "neck",
+    "phonetic": "/nek/",
+    "translation": "n 颈,脖子",
+    "unit": "第二册"
+  },
+  {
+    "word": "active",
+    "phonetic": "/'æktiv/",
+    "translation": "adj 积极的",
+    "unit": "第二册"
+  },
+  {
+    "word": "take an active part in",
+    "phonetic": "",
+    "translation": "phr.积极参加",
+    "unit": "第二册"
+  },
+  {
+    "word": "relay",
+    "phonetic": "/ri'lei/",
+    "translation": "n 接力,赛跑",
+    "unit": "第二册"
+  },
+  {
+    "word": "starting/finishing line  phr. 起点/终点线",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "runner",
+    "phonetic": "/'rʌnə/",
+    "translation": "n 赛跑的人",
+    "unit": "第二册"
+  },
+  {
+    "word": "loud",
+    "phonetic": "/laud/",
+    "translation": "adj 大声的,响亮的",
+    "unit": "第二册"
+  },
+  {
+    "word": "loudly",
+    "phonetic": "/'laudli/",
+    "translation": "adv 大声地,高声地",
+    "unit": "第二册"
+  },
+  {
+    "word": "lap",
+    "phonetic": "/læp/",
+    "translation": "n (竞赛场的)一圈",
+    "unit": "第二册"
+  },
+  {
+    "word": "pass on",
+    "phonetic": "/'pɑ:s ɔn/",
+    "translation": "phr. 传递,转移到...",
+    "unit": "第二册"
+  },
+  {
+    "word": "stick",
+    "phonetic": "/stik/",
+    "translation": "n 棒,棍",
+    "unit": "第二册"
+  },
+  {
+    "word": "catch up with   phr. 赶上",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "neck and neck   phr. (竞赛等)并驾齐驱",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "as...as",
+    "phonetic": "",
+    "translation": "conj 与...一样",
+    "unit": "第二册"
+  },
+  {
+    "word": "a moment later  phr. 片刻之后",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "go on doing sth  phr. 继续做(某事)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "fall behind  phr. 落在...后面,输给别人",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "winner",
+    "phonetic": "/'winə/",
+    "translation": "n 获胜者",
+    "unit": "第二册"
+  },
+  {
+    "word": "well done   phr. 做得好",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "congratulation",
+    "phonetic": "/kən,grætju'leiʃən/",
+    "translation": "n (常用复数)祝贺,庆贺",
+    "unit": "第二册"
+  },
+  {
+    "word": "not as/so...as",
+    "phonetic": "",
+    "translation": "conj 与...不一样",
+    "unit": "第二册"
+  },
+  {
+    "word": "rather",
+    "phonetic": "/'rɑ:ðə/",
+    "translation": "adv 相当",
+    "unit": "第二册"
+  },
+  {
+    "word": "loudspeaker",
+    "phonetic": "/'laud'spi:kə/",
+    "translation": "n 扬声器,扩音器",
+    "unit": "第二册"
+  },
+  {
+    "word": "result",
+    "phonetic": "/ri'zʌlt/",
+    "translation": "n 结果",
+    "unit": "第二册"
+  },
+  {
+    "word": "dance",
+    "phonetic": "/dɑ:ns/",
+    "translation": "v  跳舞",
+    "unit": "第二册"
+  },
+  {
+    "word": "headmaster",
+    "phonetic": "/'hed'mɑ:stə/",
+    "translation": "n 校长",
+    "unit": "第二册"
+  },
+  {
+    "word": "take turns",
+    "phonetic": "/,teik 'tə:nz/",
+    "translation": "phr. 轮流",
+    "unit": "第二册"
+  },
+  {
+    "word": "do one's best   phr. 尽最大努力,尽力",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "person",
+    "phonetic": "/'pə:sn/",
+    "translation": "n 人",
+    "unit": "第二册"
+  },
+  {
+    "word": "speed",
+    "phonetic": "/spi:d/",
+    "translation": "n 迅速,速度",
+    "unit": "第二册"
+  },
+  {
+    "word": "thought",
+    "phonetic": "/θɔ:t/",
+    "translation": "n 思考,思想,想法",
+    "unit": "第二册"
+  },
+  {
+    "word": "technology",
+    "phonetic": "/tek'nɔlədʒi/",
+    "translation": "n 技术,工艺学",
+    "unit": "第二册"
+  },
+  {
+    "word": "best-seller",
+    "phonetic": "",
+    "translation": "n 畅销货(书)",
+    "unit": "第二册"
+  },
+  {
+    "word": "interested",
+    "phonetic": "/'intəristid/",
+    "translation": "adj 感兴趣的",
+    "unit": "第二册"
+  },
+  {
+    "word": "be interested in   phr. 对..感兴趣",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "Washington",
+    "phonetic": "/'wɔʃiŋtən/",
+    "translation": "n 华盛顿",
+    "unit": "第二册"
+  },
+  {
+    "word": "future",
+    "phonetic": "/'fju:tʃə/",
+    "translation": "n 将来,未来",
+    "unit": "第二册"
+  },
+  {
+    "word": "in the future   phr. 将来",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "large",
+    "phonetic": "/lɑ:dʒ/",
+    "translation": "adj 大的,(数量)多的",
+    "unit": "第二册"
+  },
+  {
+    "word": "spend",
+    "phonetic": "/spend/",
+    "translation": "v  花(时间,钱),度过",
+    "unit": "第二册"
+  },
+  {
+    "word": "unusual",
+    "phonetic": "/ʌn'ju:ʒuəl/",
+    "translation": "adj 不寻常的,非凡的",
+    "unit": "第二册"
+  },
+  {
+    "word": "in the end   phr. 最后",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "work out   phr. 算出,制定出",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "software",
+    "phonetic": "/'sɔftwɛə/",
+    "translation": "n (电脑)软件",
+    "unit": "第二册"
+  },
+  {
+    "word": "program(programme",
+    "phonetic": "/'prəugræm/",
+    "translation": ")",
+    "unit": "第二册"
+  },
+  {
+    "word": "university",
+    "phonetic": "/,ju:ni'və:siti/",
+    "translation": "n 综合性大学",
+    "unit": "第二册"
+  },
+  {
+    "word": "develop",
+    "phonetic": "/di'veləp/",
+    "translation": "v  发展,研制,开发",
+    "unit": "第二册"
+  },
+  {
+    "word": "BASIC",
+    "phonetic": "/'beisik/",
+    "translation": "n (电脑)初学者通用符号指令码",
+    "unit": "第二册"
+  },
+  {
+    "word": "microcomputer",
+    "phonetic": "/'maikrəukəm'pju:tə/",
+    "translation": "n 微型计算机",
+    "unit": "第二册"
+  },
+  {
+    "word": "Microsoft",
+    "phonetic": "/'maikrəusɔft/",
+    "translation": "n 微软公司",
+    "unit": "第二册"
+  },
+  {
+    "word": "tool",
+    "phonetic": "/tu:l/",
+    "translation": "n 工具",
+    "unit": "第二册"
+  },
+  {
+    "word": "personal",
+    "phonetic": "/'pə:sənl/",
+    "translation": "adj 私人的,个人的",
+    "unit": "第二册"
+  },
+  {
+    "word": "improve",
+    "phonetic": "/im'pru:v/",
+    "translation": "v  提高,改善",
+    "unit": "第二册"
+  },
+  {
+    "word": "golf",
+    "phonetic": "/gɔlf/",
+    "translation": "n 高尔夫球",
+    "unit": "第二册"
+  },
+  {
+    "word": "bridge",
+    "phonetic": "/bridʒ/",
+    "translation": "n 桥牌",
+    "unit": "第二册"
+  },
+  {
+    "word": "pleased",
+    "phonetic": "/pli:zd/",
+    "translation": "adj 高兴的,愉快的",
+    "unit": "第二册"
+  },
+  {
+    "word": "T-shirt",
+    "phonetic": "/'ti:ʃə:t/",
+    "translation": "n 短袖无领汗杉,T恤(杉)",
+    "unit": "第二册"
+  },
+  {
+    "word": "disease",
+    "phonetic": "/di'zi:z/",
+    "translation": "n 疾病",
+    "unit": "第二册"
+  },
+  {
+    "word": "million",
+    "phonetic": "/'miljən/",
+    "translation": "n 百万,百万元",
+    "unit": "第二册"
+  },
+  {
+    "word": "decide",
+    "phonetic": "/di'said/",
+    "translation": "v  决定,决心",
+    "unit": "第二册"
+  },
+  {
+    "word": "billion",
+    "phonetic": "/'biljən/",
+    "translation": "n 十亿",
+    "unit": "第二册"
+  },
+  {
+    "word": "lucky",
+    "phonetic": "/'lʌki/",
+    "translation": "adj 幸运的,侥幸的",
+    "unit": "第二册"
+  },
+  {
+    "word": "unlucky",
+    "phonetic": "/ʌn'lʌki/",
+    "translation": "adj 不走运的,不幸的",
+    "unit": "第二册"
+  },
+  {
+    "word": "size",
+    "phonetic": "/saiz/",
+    "translation": "n 尺寸,大小",
+    "unit": "第二册"
+  },
+  {
+    "word": "almost",
+    "phonetic": "/'ɔ:lməust/",
+    "translation": "adv 几乎,差不多",
+    "unit": "第二册"
+  },
+  {
+    "word": "speaker",
+    "phonetic": "/'spi:kə/",
+    "translation": "n 演讲者,说话者",
+    "unit": "第二册"
+  },
+  {
+    "word": "joke",
+    "phonetic": "/dʒəuk/",
+    "translation": "n 笑话,玩笑",
+    "unit": "第二册"
+  },
+  {
+    "word": "play a joke on   phr. 戏弄人,对某人恶作剧",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "lose",
+    "phonetic": "/lu:z/",
+    "translation": "v  丢失,失去,迷失(方向)",
+    "unit": "第二册"
+  },
+  {
+    "word": "hide",
+    "phonetic": "/haid/",
+    "translation": "v  躲藏",
+    "unit": "第二册"
+  },
+  {
+    "word": "conductor",
+    "phonetic": "/kən'dʌktə/",
+    "translation": "n (汽车,电车上的)售票员,列车员",
+    "unit": "第二册"
+  },
+  {
+    "word": "check",
+    "phonetic": "/tʃek/",
+    "translation": "v  检查,核对",
+    "unit": "第二册"
+  },
+  {
+    "word": "lie",
+    "phonetic": "/lai/",
+    "translation": "v  躺,平躺",
+    "unit": "第二册"
+  },
+  {
+    "word": "deaf",
+    "phonetic": "/def/",
+    "translation": "adj 聋的",
+    "unit": "第二册"
+  },
+  {
+    "word": "painter",
+    "phonetic": "/'peintə/",
+    "translation": "n 画家",
+    "unit": "第二册"
+  },
+  {
+    "word": "get on well with  phr. 与...相处融洽",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "neighbour",
+    "phonetic": "/'neibə/",
+    "translation": "n 邻居",
+    "unit": "第二册"
+  },
+  {
+    "word": "ever",
+    "phonetic": "/'evə/",
+    "translation": "adv 曾经",
+    "unit": "第二册"
+  },
+  {
+    "word": "upstairs",
+    "phonetic": "/'ʌp'stɛəz/",
+    "translation": "adj & adv (在)楼上,(往)楼上",
+    "unit": "第二册"
+  },
+  {
+    "word": "take off   phr. 脱下(衣,帽,鞋等)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "boot",
+    "phonetic": "/bu:t/",
+    "translation": "n 长统鞋",
+    "unit": "第二册"
+  },
+  {
+    "word": "downstairs",
+    "phonetic": "/,daun'stɛəz/",
+    "translation": "adj & adv(在)楼下,(往)楼下",
+    "unit": "第二册"
+  },
+  {
+    "word": "bang",
+    "phonetic": "/bæŋ/",
+    "translation": "v  猛敲,猛撞,砰砰作响",
+    "unit": "第二册"
+  },
+  {
+    "word": "be angry with   phr. 对(某人)发脾气",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "usual",
+    "phonetic": "/'ju:ʒuəl/",
+    "translation": "adj 通常的,平常的",
+    "unit": "第二册"
+  },
+  {
+    "word": "as usual",
+    "phonetic": "/əz 'ju:ʒuəl/",
+    "translation": "phr. 像平常一样",
+    "unit": "第二册"
+  },
+  {
+    "word": "sound",
+    "phonetic": "/saund/",
+    "translation": "n 声音",
+    "unit": "第二册"
+  },
+  {
+    "word": "PE",
+    "phonetic": "",
+    "translation": "n 体育",
+    "unit": "第二册"
+  },
+  {
+    "word": "chemistry",
+    "phonetic": "/'kemistri/",
+    "translation": "n 化学",
+    "unit": "第二册"
+  },
+  {
+    "word": "sweep",
+    "phonetic": "/swi:p/",
+    "translation": "v  扫,扫地",
+    "unit": "第二册"
+  },
+  {
+    "word": "choose",
+    "phonetic": "/tʃu:z/",
+    "translation": "v  选择,挑选",
+    "unit": "第二册"
+  },
+  {
+    "word": "truck",
+    "phonetic": "/trʌk/",
+    "translation": "n 卡车",
+    "unit": "第二册"
+  },
+  {
+    "word": "seller",
+    "phonetic": "/'selə/",
+    "translation": "n 卖者,售货员",
+    "unit": "第二册"
+  },
+  {
+    "word": "biology",
+    "phonetic": "/bai'ɔlədʒi/",
+    "translation": "n 生物(学)",
+    "unit": "第二册"
+  },
+  {
+    "word": "be fed up with   phr. 厌倦",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "knock on   phr. 敲(门,窗等)",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "refuse",
+    "phonetic": "/ri'fju:z/",
+    "translation": "v  拒绝",
+    "unit": "第二册"
+  },
+  {
+    "word": "politely",
+    "phonetic": "/pə'laitli/",
+    "translation": "adv 有礼貌地",
+    "unit": "第二册"
+  },
+  {
+    "word": "pair",
+    "phonetic": "/pɛə/",
+    "translation": "n 一对,一双",
+    "unit": "第二册"
+  },
+  {
+    "word": "a pair of   phr. 一对,一双",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "scissors",
+    "phonetic": "/'sizəz/",
+    "translation": "n (复数)剪刀",
+    "unit": "第二册"
+  },
+  {
+    "word": "racket",
+    "phonetic": "/'rækit/",
+    "translation": "n (网球,羽毛球等的)球拍",
+    "unit": "第二册"
+  },
+  {
+    "word": "motorbike",
+    "phonetic": "/'məutəbaik/",
+    "translation": "n 摩托车或有发动机的自行车",
+    "unit": "第二册"
+  },
+  {
+    "word": "review",
+    "phonetic": "/ri'vju:/",
+    "translation": "v  复习(功课等)",
+    "unit": "第二册"
+  },
+  {
+    "word": "Russian",
+    "phonetic": "/'rʌʃən/",
+    "translation": "n &adj俄国的,俄国人(的), 俄语(的)",
+    "unit": "第二册"
+  },
+  {
+    "word": "novel",
+    "phonetic": "/'nɔvəl/",
+    "translation": "n (长篇)小说",
+    "unit": "第二册"
+  },
+  {
+    "word": "wallet",
+    "phonetic": "/'wɔlit/",
+    "translation": "n 钱夹,皮夹",
+    "unit": "第二册"
+  },
+  {
+    "word": "ground",
+    "phonetic": "/graund/",
+    "translation": "n 地面,土地",
+    "unit": "第二册"
+  },
+  {
+    "word": "cause",
+    "phonetic": "/kɔ:z/",
+    "translation": "v  引起",
+    "unit": "第二册"
+  },
+  {
+    "word": "suddenly",
+    "phonetic": "/'sʌdnli/",
+    "translation": "adv 突然地",
+    "unit": "第二册"
+  },
+  {
+    "word": "luckily",
+    "phonetic": "/'lʌkili/",
+    "translation": "adv 好运地,幸运地",
+    "unit": "第二册"
+  },
+  {
+    "word": "gatekeeper",
+    "phonetic": "/'geit,ki:pə/",
+    "translation": "n 看门人,门卫",
+    "unit": "第二册"
+  },
+  {
+    "word": "mention",
+    "phonetic": "/'menʃən/",
+    "translation": "v  提到,说起",
+    "unit": "第二册"
+  },
+  {
+    "word": "crow",
+    "phonetic": "/krəu/",
+    "translation": "v  拥挤",
+    "unit": "第二册"
+  },
+  {
+    "word": "imagine",
+    "phonetic": "/i'mædʒin/",
+    "translation": "v  设想,想像",
+    "unit": "第二册"
+  },
+  {
+    "word": "while",
+    "phonetic": "/hwail/",
+    "translation": "conj 当..时候,和..同时",
+    "unit": "第二册"
+  },
+  {
+    "word": "repair",
+    "phonetic": "/ri'pɛə/",
+    "translation": "v  修理,修补",
+    "unit": "第二册"
+  },
+  {
+    "word": "steer",
+    "phonetic": "/stiə/",
+    "translation": "n & v  驾驶,掌舵",
+    "unit": "第二册"
+  },
+  {
+    "word": "steering wheel",
+    "phonetic": "",
+    "translation": "n 驾驶盘",
+    "unit": "第二册"
+  },
+  {
+    "word": "dive",
+    "phonetic": "/daiv/",
+    "translation": "v  潜入(水中),跳水",
+    "unit": "第二册"
+  },
+  {
+    "word": "diver",
+    "phonetic": "/'daivə/",
+    "translation": "n 潜入水中的人,潜水员",
+    "unit": "第二册"
+  },
+  {
+    "word": "at once   phr. 立刻,马上",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "mouth-to-mouth",
+    "phonetic": "/'mauθtə'mauθ/",
+    "translation": "adj (人工呼吸)口对口的",
+    "unit": "第二册"
+  },
+  {
+    "word": "breathe",
+    "phonetic": "/bri:ð/",
+    "translation": "v  呼吸",
+    "unit": "第二册"
+  },
+  {
+    "word": "come to oneself  phr. 苏醒,恢复知觉",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "rob",
+    "phonetic": "/rɔb/",
+    "translation": "v  抢劫",
+    "unit": "第二册"
+  },
+  {
+    "word": "hard-working",
+    "phonetic": "",
+    "translation": "adj 辛勤工作的,用功的",
+    "unit": "第二册"
+  },
+  {
+    "word": "art",
+    "phonetic": "/ɑ:t/",
+    "translation": "n 艺术,艺术品",
+    "unit": "第二册"
+  },
+  {
+    "word": "at the moment  phr. 此刻",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "Titanic",
+    "phonetic": "/tai'tænik/",
+    "translation": "n 泰坦尼克(船名)",
+    "unit": "第二册"
+  },
+  {
+    "word": "set",
+    "phonetic": "/set/",
+    "translation": "v  使开始,安置",
+    "unit": "第二册"
+  },
+  {
+    "word": "set off",
+    "phonetic": "/'set ɔf/",
+    "translation": "phr. 出发,动身,起初",
+    "unit": "第二册"
+  },
+  {
+    "word": "pleasant",
+    "phonetic": "/'pleznt/",
+    "translation": "adj 愉快的,快乐的",
+    "unit": "第二册"
+  },
+  {
+    "word": "iceberg",
+    "phonetic": "/'aisbə:g/",
+    "translation": "n 冰山",
+    "unit": "第二册"
+  },
+  {
+    "word": "here and there   phr. 到处,处处",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "on watch   phr. 值班,守望",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "look out   phr. 留神,注意",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "in front   phr. 前方,正对面",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "hole",
+    "phonetic": "/həul/",
+    "translation": "n 洞,孔,坑",
+    "unit": "第二册"
+  },
+  {
+    "word": "sink",
+    "phonetic": "/siŋk/",
+    "translation": "v  下沉,沉没",
+    "unit": "第二册"
+  },
+  {
+    "word": "life",
+    "phonetic": "/laif/",
+    "translation": "n 生命,生活",
+    "unit": "第二册"
+  },
+  {
+    "word": "lifeboat",
+    "phonetic": "/'laifbəut/",
+    "translation": "n 救生船(艇)",
+    "unit": "第二册"
+  },
+  {
+    "word": "make room for   phr. 给..腾出地方",
+    "phonetic": "",
+    "translation": "",
+    "unit": "第二册"
+  },
+  {
+    "word": "take one's place",
+    "phonetic": "",
+    "translation": "phr.坐某人的座位,代替某人的职位",
+    "unit": "第二册"
+  },
+  {
+    "word": "thankful",
+    "phonetic": "/'θæŋkfəl/",
+    "translation": "adj 感激的,感谢的",
+    "unit": "第二册"
+  },
+  {
+    "word": "Boston",
+    "phonetic": "/'bɔstən/",
+    "translation": "n 波士顿(美国马萨诸塞州的首府)",
+    "unit": "第二册"
+  },
+  {
+    "word": "war",
+    "phonetic": "/wɔ:/",
+    "translation": "n 战争",
+    "unit": "第二册"
+  },
+  {
+    "word": "information",
+    "phonetic": "/,infə'meiʃən/",
+    "translation": "n 信息,情报",
+    "unit": "第二册"
+  },
+  {
+    "word": "noisy",
+    "phonetic": "/'nɔizi/",
+    "translation": "adj 喧闹的,嘈杂的",
+    "unit": "第二册"
+  },
+  {
+    "word": "penguin",
+    "phonetic": "/'peŋgwin/",
+    "translation": "n 企鹅",
+    "unit": "第二册"
+  },
+  {
+    "word": "pink",
+    "phonetic": "/piŋk/",
+    "translation": "adj 粉红色的,桃红色的",
+    "unit": "第二册"
+  },
+  {
+    "word": "shellfish",
+    "phonetic": "/'ʃelfiʃ/",
+    "translation": "n 贝类,甲壳虫",
+    "unit": "第二册"
+  },
+  {
+    "word": "lay",
+    "phonetic": "/lei/",
+    "translation": "v  下蛋,产蛋",
+    "unit": "第二册"
+  },
+  {
+    "word": "pretty",
+    "phonetic": "/'priti/",
+    "translation": "adj 漂亮的,美丽的",
+    "unit": "第二册"
+  },
+  {
+    "word": "toe",
+    "phonetic": "/təu/",
+    "translation": "n 脚趾",
+    "unit": "第二册"
+  },
+  {
+    "word": "rub",
+    "phonetic": "/rʌb/",
+    "translation": "v  磨,擦",
+    "unit": "第二册"
+  },
+  {
+    "word": "human",
+    "phonetic": "/'hju:mən/",
+    "translation": "n & adj 人(的),人类(的)",
+    "unit": "第二册"
+  }
+]
