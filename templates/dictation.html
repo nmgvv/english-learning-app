@@ -678,6 +678,7 @@
                                     <rect x="6" y="6" width="12" height="12" rx="2"></rect>
                                 </svg>
                             </button>
+                            <p class="text-xs text-gray-400">按住空格录音</p>
                             <button
                                 x-show="!pronunciationResult"
                                 @click="skipPronunciation()"
@@ -740,6 +741,7 @@
                                     <rect x="6" y="6" width="12" height="12" rx="2"></rect>
                                 </svg>
                             </button>
+                            <p class="text-xs text-gray-400 -mt-1">按住空格录音</p>
 
                             <!-- 再试一次 / 继续 -->
                             <div class="flex flex-col gap-1.5 w-full">
@@ -999,8 +1001,20 @@ function dictationPage() {
                 }, 5000);
             }
 
-            // 全局键盘监听：回车键
+            // 全局键盘监听
             document.addEventListener('keydown', (e) => {
+                // 空格键：按住录音
+                if (e.code === 'Space') {
+                    const tag = document.activeElement.tagName;
+                    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag)) return;
+                    if (!this.showPronunciationUI) return;
+                    if (this.pronunciationSubmitting || this.audioPlaying) return;
+                    if (this.isRecordingPronunciation) return; // 防止 keydown 重复触发
+                    e.preventDefault();
+                    this.startRecordingPronunciation();
+                    return;
+                }
+
                 if (e.key === 'Enter') {
                     // 阶段1：回车等于点击「我记住了」
                     if (this.learnPhase === 1) {
@@ -1024,6 +1038,14 @@ function dictationPage() {
                         // 有输入且未禁用时，提交答案
                         this.submitAnswer();
                     }
+                }
+            });
+
+            // 空格键松开：停止录音
+            document.addEventListener('keyup', (e) => {
+                if (e.code === 'Space' && this.isRecordingPronunciation) {
+                    e.preventDefault();
+                    this.stopRecordingPronunciation();
                 }
             });
         },
