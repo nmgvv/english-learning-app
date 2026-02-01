@@ -185,6 +185,8 @@ def init_db():
     Base.metadata.create_all(bind=engine)
     # 执行迁移，添加新字段
     migrate_user_table()
+    # 一次性修正 FSRS due 日期
+    migrate_fix_fsrs_due()
 
 
 def migrate_user_table():
@@ -214,6 +216,32 @@ def migrate_user_table():
             except Exception:
                 # 列已存在，忽略错误
                 pass
+
+
+def migrate_fix_fsrs_due():
+    """一次性修正：用正确的 FSRS 公式重算所有 due 日期"""
+    from dictation import next_interval
+
+    db = SessionLocal()
+    try:
+        records = db.query(Progress).filter(
+            Progress.last_review.isnot(None),
+            Progress.stability > 0
+        ).all()
+
+        updated = 0
+        for p in records:
+            new_interval = next_interval(p.stability)
+            new_due = p.last_review + timedelta(days=new_interval)
+            if p.due != new_due:
+                p.due = new_due
+                updated += 1
+
+        if updated > 0:
+            db.commit()
+            print(f"[迁移] 已修正 {updated}/{len(records)} 条记录的 due 日期")
+    finally:
+        db.close()
 
 
 def get_db():
