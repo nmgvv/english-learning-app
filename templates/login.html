@@ -154,7 +154,7 @@ function loginForm() {
                     // 登录成功，跳转首页
                     window.location.href = '/';
                 } else {
-                    this.error = result.detail || '操作失败';
+                    this.error = typeof result.detail === 'string' ? result.detail : '注册失败，请重试';
                 }
             } catch (e) {
                 this.error = '网络错误，请重试';

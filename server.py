@@ -124,21 +124,19 @@ init_db()
 
 class UserCreate(BaseModel):
     """用户注册请求模型"""
-    # 必填（步骤1）
+    # 必填
     username: str
     password: str
-    email: str  # 邮箱必填
 
-    # 学习信息（步骤2）- 必填
-    grade: str  # grade7/grade8/grade9/senior1/senior2/senior3
-    school: str  # 学校名称必填
-
-    # 个人信息（步骤3）- 必填
-    age: int
-    province: str
-    city: str
-    phone: str
-    parent_phone: str
+    # 以下字段可选（简易注册只需用户名+密码）
+    email: Optional[str] = None
+    grade: Optional[str] = None
+    school: Optional[str] = None
+    age: Optional[int] = None
+    province: Optional[str] = None
+    city: Optional[str] = None
+    phone: Optional[str] = None
+    parent_phone: Optional[str] = None
 
 
 class UserLogin(BaseModel):
@@ -371,32 +369,28 @@ async def api_register(data: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="用户名至少2个字符")
     if len(data.password) < 4:
         raise HTTPException(status_code=400, detail="密码至少4个字符")
-    if not data.email or "@" not in data.email:
-        raise HTTPException(status_code=400, detail="请输入有效的邮箱地址")
-    if not data.school or len(data.school) < 2:
+
+    # 以下为完整注册表单的验证（简易注册时这些字段为 None，跳过验证）
+    if data.school and len(data.school) < 2:
         raise HTTPException(status_code=400, detail="学校名称至少2个字符")
 
-    # 验证年级（必填）
     valid_grades = ["grade7", "grade8", "grade9", "senior1", "senior2", "senior3"]
-    if data.grade not in valid_grades:
+    if data.grade and data.grade not in valid_grades:
         raise HTTPException(status_code=400, detail="请选择有效的年级")
 
-    # 验证年龄（必填）
-    if data.age < 6 or data.age > 25:
+    if data.age is not None and (data.age < 6 or data.age > 25):
         raise HTTPException(status_code=400, detail="年龄范围 6-25 岁")
 
-    # 验证省市（必填）
-    if not data.province or len(data.province) < 2:
+    if data.province and len(data.province) < 2:
         raise HTTPException(status_code=400, detail="请选择省份")
-    if not data.city or len(data.city) < 2:
+    if data.city and len(data.city) < 2:
         raise HTTPException(status_code=400, detail="请选择城市")
 
-    # 验证手机号（必填）
     import re
     phone_pattern = r'^1[3-9]\d{9}$'
-    if not data.phone or not re.match(phone_pattern, data.phone):
+    if data.phone and not re.match(phone_pattern, data.phone):
         raise HTTPException(status_code=400, detail="请输入有效的手机号")
-    if not data.parent_phone or not re.match(phone_pattern, data.parent_phone):
+    if data.parent_phone and not re.match(phone_pattern, data.parent_phone):
         raise HTTPException(status_code=400, detail="请输入有效的家长联系方式")
 
     # 创建用户
