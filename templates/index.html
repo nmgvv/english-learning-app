@@ -356,14 +356,35 @@ function indexPage() {
                 data: {
                     labels: this.curveData.dates || [],
                     datasets: [{
-                        label: '掌握单词数',
-                        data: this.curveData.counts || [],
+                        label: '一次正确',
+                        data: this.curveData.counts_1st || this.curveData.counts || [],
                         borderColor: 'rgb(34, 197, 94)',
-                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.05)',
                         fill: true,
                         tension: 0.3,
-                        pointRadius: 3,
-                        pointHoverRadius: 5
+                        pointRadius: 2,
+                        pointHoverRadius: 5,
+                        borderWidth: 2
+                    }, {
+                        label: '二次正确',
+                        data: this.curveData.counts_2nd || [],
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.05)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 2,
+                        pointHoverRadius: 5,
+                        borderWidth: 2
+                    }, {
+                        label: '三次正确',
+                        data: this.curveData.counts_3rd || [],
+                        borderColor: 'rgb(249, 115, 22)',
+                        backgroundColor: 'rgba(249, 115, 22, 0.05)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 2,
+                        pointHoverRadius: 5,
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -371,7 +392,13 @@ function indexPage() {
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            display: false
+                            display: true,
+                            labels: {
+                                color: 'rgb(148, 163, 184)',
+                                boxWidth: 12,
+                                padding: 12,
+                                font: { size: 11 }
+                            }
                         }
                     },
                     scales: {

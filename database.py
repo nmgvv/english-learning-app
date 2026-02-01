@@ -641,112 +641,103 @@ def get_user_stats(db: Session, user_id: int, book_id: str = None) -> dict:
 
 
 def get_global_mastered_curve(db: Session, user_id: int, days: int = 7) -> dict:
-    """获取全局掌握单词数曲线（跨所有词书）
+    """获取全局掌握单词数曲线（跨所有词书），按尝试次数分三条线
 
-    掌握定义：
-    - 一次答对(attempts=1, result=correct) → 计入掌握
-    - 答错(result=wrong) → 从掌握中移除
-
-    Args:
-        user_id: 用户ID
-        days: 统计天数，0 表示全部
+    分类逻辑（互斥，按最近一次正确的尝试次数归类）：
+    - 一次正确(attempts=1) → set_1st，从 set_2nd/set_3rd 移除
+    - 二次正确(attempts=2) → set_2nd，从 set_1st/set_3rd 移除
+    - 三次正确(attempts=3) → set_3rd，从 set_1st/set_2nd 移除
+    - 答错 → 从所有集合移除
 
     Returns:
-        {"dates": ["01-20", ...], "counts": [10, ...], "total": 当前总掌握数}
+        {"dates": [...], "counts_1st": [...], "counts_2nd": [...], "counts_3rd": [...], "total": N}
     """
     from datetime import timedelta
     from collections import defaultdict
 
-    # 查询用户所有历史记录，按时间排序
-    query = db.query(History).filter(
+    records = db.query(History).filter(
         History.user_id == user_id
-    ).order_by(History.time.asc())
-
-    records = query.all()
+    ).order_by(History.time.asc()).all()
 
     if not records:
-        return {"dates": [], "counts": [], "total": 0}
+        return {"dates": [], "counts_1st": [], "counts_2nd": [], "counts_3rd": [], "total": 0}
 
-    # 使用集合跟踪当前掌握的单词
-    mastered_words = set()
-    # 每日掌握数记录
-    daily_counts = defaultdict(int)
-
-    for record in records:
-        word = record.word
-        result = record.result
-        attempts = record.attempts
-        date_str = record.time.strftime("%m-%d")
-
-        # 一次答对 → 加入掌握
+    def _update_sets(set_1st, set_2nd, set_3rd, word, result, attempts):
         if result == "correct" and attempts == 1:
-            mastered_words.add(word)
-        # 答错 → 移出掌握
+            set_1st.add(word)
+            set_2nd.discard(word)
+            set_3rd.discard(word)
+        elif result == "correct" and attempts == 2:
+            set_2nd.add(word)
+            set_1st.discard(word)
+            set_3rd.discard(word)
+        elif result == "correct" and attempts == 3:
+            set_3rd.add(word)
+            set_1st.discard(word)
+            set_2nd.discard(word)
         elif result == "wrong":
-            mastered_words.discard(word)
+            set_1st.discard(word)
+            set_2nd.discard(word)
+            set_3rd.discard(word)
 
-        # 记录当天结束时的掌握数
-        daily_counts[date_str] = len(mastered_words)
+    set_1st, set_2nd, set_3rd = set(), set(), set()
+    daily_1st = defaultdict(int)
+    daily_2nd = defaultdict(int)
+    daily_3rd = defaultdict(int)
 
-    # 过滤时间范围
+    for r in records:
+        _update_sets(set_1st, set_2nd, set_3rd, r.word, r.result, r.attempts)
+        ds = r.time.strftime("%m-%d")
+        daily_1st[ds] = len(set_1st)
+        daily_2nd[ds] = len(set_2nd)
+        daily_3rd[ds] = len(set_3rd)
+
     if days > 0:
         end_date = datetime.utcnow().date()
         start_date = end_date - timedelta(days=days - 1)
 
-        filtered_dates = []
-        filtered_counts = []
+        # 重算：先算 start_date 之前的基准
+        set_1st, set_2nd, set_3rd = set(), set(), set()
+        for r in records:
+            if r.time.date() < start_date:
+                _update_sets(set_1st, set_2nd, set_3rd, r.word, r.result, r.attempts)
+        last_1st, last_2nd, last_3rd = len(set_1st), len(set_2nd), len(set_3rd)
 
-        # 生成连续日期
+        # 再算范围内的数据
+        s1, s2, s3 = set_1st.copy(), set_2nd.copy(), set_3rd.copy()
+        daily_1st, daily_2nd, daily_3rd = defaultdict(int), defaultdict(int), defaultdict(int)
+        for r in records:
+            if r.time.date() >= start_date:
+                _update_sets(s1, s2, s3, r.word, r.result, r.attempts)
+                ds = r.time.strftime("%m-%d")
+                daily_1st[ds] = len(s1)
+                daily_2nd[ds] = len(s2)
+                daily_3rd[ds] = len(s3)
+
+        dates, c1, c2, c3 = [], [], [], []
         current_date = start_date
-        last_count = 0
-
-        # 找到 start_date 之前的最后一个掌握数作为基准
-        for record in records:
-            if record.time.date() < start_date:
-                word = record.word
-                result = record.result
-                attempts = record.attempts
-                if result == "correct" and attempts == 1:
-                    mastered_words.add(word)
-                elif result == "wrong":
-                    mastered_words.discard(word)
-        last_count = len(mastered_words)
-
-        # 重新计算指定日期范围内的数据
-        mastered_in_range = mastered_words.copy()
-        for record in records:
-            if record.time.date() >= start_date:
-                word = record.word
-                result = record.result
-                attempts = record.attempts
-                if result == "correct" and attempts == 1:
-                    mastered_in_range.add(word)
-                elif result == "wrong":
-                    mastered_in_range.discard(word)
-                daily_counts[record.time.strftime("%m-%d")] = len(mastered_in_range)
-
         while current_date <= end_date:
-            date_str = current_date.strftime("%m-%d")
-            if date_str in daily_counts:
-                last_count = daily_counts[date_str]
-            filtered_dates.append(date_str)
-            filtered_counts.append(last_count)
+            ds = current_date.strftime("%m-%d")
+            if ds in daily_1st:
+                last_1st, last_2nd, last_3rd = daily_1st[ds], daily_2nd[ds], daily_3rd[ds]
+            dates.append(ds)
+            c1.append(last_1st)
+            c2.append(last_2nd)
+            c3.append(last_3rd)
             current_date += timedelta(days=1)
 
         return {
-            "dates": filtered_dates,
-            "counts": filtered_counts,
-            "total": len(mastered_words)
+            "dates": dates, "counts_1st": c1, "counts_2nd": c2, "counts_3rd": c3,
+            "total": len(s1) + len(s2) + len(s3)
         }
 
-    # 全部数据
-    dates = list(daily_counts.keys())
-    counts = list(daily_counts.values())
-
+    dates = list(daily_1st.keys())
     return {
         "dates": dates,
-        "counts": counts,
-        "total": len(mastered_words)
+        "counts_1st": list(daily_1st.values()),
+        "counts_2nd": list(daily_2nd.values()),
+        "counts_3rd": list(daily_3rd.values()),
+        "total": len(set_1st) + len(set_2nd) + len(set_3rd)
     }
 
 
