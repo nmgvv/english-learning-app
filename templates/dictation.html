@@ -82,7 +82,7 @@
         <!-- 单词卡片 -->
         <div class="bg-slate-800/50 backdrop-blur rounded-2xl shadow-xl border border-slate-700/50 flex-1 flex flex-col p-6">
             <!-- 中文释义 -->
-            <div class="text-center py-8">
+            <div class="text-center" :class="showPronunciationUI ? 'py-3' : 'py-8'">
                 <!-- 强化记忆：彩色音节显示在中文上方 -->
                 <div x-show="reinforceMode" x-cloak class="mb-4">
                     <div class="text-xs text-amber-400 mb-1">强化记忆 (<span x-text="reinforceCount"></span>/2)</div>
@@ -98,7 +98,7 @@
             </div>
 
             <!-- 输入区域 -->
-            <div class="flex-1 flex flex-col justify-center">
+            <div class="flex flex-col justify-center" :class="showPronunciationUI ? '' : 'flex-1'">
                 <!-- 单词历史统计 (仅复习模式且有历史记录时显示) -->
                 <div
                     x-show="mode === 'review' && currentCard?.history_stats"
@@ -144,7 +144,7 @@
                 </div>
 
                 <!-- 提示区域 -->
-                <div class="mt-4 min-h-[60px]">
+                <div :class="showPronunciationUI ? 'mt-1' : 'mt-4 min-h-[60px]'">
                     <!-- 错误提示 -->
                     <div x-show="hint" x-cloak class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 text-center">
                         <span class="text-amber-400" x-text="hint"></span>
@@ -199,206 +199,257 @@
                 </div>
             </div>
 
-            <!-- 跟读发音评估界面 -->
-            <div x-show="showPronunciationUI" x-cloak class="mt-4 bg-purple-500/10 border border-purple-500/30 rounded-xl p-4">
-                <div class="text-center mb-4">
-                    <div class="text-lg font-medium text-purple-300 mb-1">跟读练习</div>
-                    <div class="text-2xl font-bold text-slate-100" x-text="currentCard?.word || ''"></div>
-                    <div class="text-slate-400 text-sm mt-1" x-text="currentCard?.phonetic || ''"></div>
-                </div>
-
-                <!-- 评估结果 -->
-                <div x-show="pronunciationResult?.success" class="mb-4 bg-slate-800/50 rounded-lg p-3">
-                    <div class="flex justify-center space-x-6 text-sm">
-                        <div class="text-center">
-                            <div class="text-slate-400">准确度</div>
-                            <div class="text-xl font-bold"
-                                :class="{
-                                    'text-emerald-400': pronunciationResult?.accuracy_score >= 75,
-                                    'text-amber-400': pronunciationResult?.accuracy_score >= 60 && pronunciationResult?.accuracy_score < 75,
-                                    'text-rose-400': pronunciationResult?.accuracy_score < 60
-                                }"
-                                x-text="Math.round(pronunciationResult?.accuracy_score || 0) + '%'"></div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-slate-400">流畅度</div>
-                            <div class="text-xl font-bold"
-                                :class="{
-                                    'text-emerald-400': pronunciationResult?.fluency_score >= 75,
-                                    'text-amber-400': pronunciationResult?.fluency_score >= 60 && pronunciationResult?.fluency_score < 75,
-                                    'text-rose-400': pronunciationResult?.fluency_score < 60
-                                }"
-                                x-text="Math.round(pronunciationResult?.fluency_score || 0) + '%'"></div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-slate-400">完整度</div>
-                            <div class="text-xl font-bold"
-                                :class="{
-                                    'text-emerald-400': pronunciationResult?.completeness_score >= 75,
-                                    'text-amber-400': pronunciationResult?.completeness_score >= 60 && pronunciationResult?.completeness_score < 75,
-                                    'text-rose-400': pronunciationResult?.completeness_score < 60
-                                }"
-                                x-text="Math.round(pronunciationResult?.completeness_score || 0) + '%'"></div>
-                        </div>
-                    </div>
-                    <!-- 识别出的文本 -->
-                    <div x-show="pronunciationResult?.recognized_text" class="mt-2 text-center text-slate-400 text-sm">
-                        识别: <span class="text-slate-300" x-text="pronunciationResult?.recognized_text"></span>
+            <!-- 跟读发音评估界面（融合在主卡片内） -->
+            <div x-show="showPronunciationUI" x-cloak class="mt-2 bg-purple-500/10 border border-purple-500/30 rounded-xl overflow-hidden">
+                <div class="flex flex-row min-h-[160px]">
+                    <!-- 左侧书签：跟读练习竖排 -->
+                    <div class="flex-shrink-0 w-9 bg-gradient-to-b from-purple-600/40 to-purple-800/40 border-r border-purple-500/30 flex items-center justify-center">
+                        <div class="text-purple-200 text-sm font-bold tracking-[0.25em]" style="writing-mode: vertical-rl;">跟读练习</div>
                     </div>
 
-                    <!-- 字母-音素对照分析 -->
-                    <div x-show="pronunciationResult?.letter_mapping?.length > 0" class="mt-3 pt-3 border-t border-slate-700">
-                        <div class="text-xs text-slate-400 mb-2 text-center">发音分析</div>
-                        <!-- 字母行 -->
-                        <div class="flex flex-wrap justify-center gap-1 mb-1">
-                            <template x-for="(m, i) in pronunciationResult?.letter_mapping || []" :key="'letter-'+i">
-                                <span
-                                    class="px-2 py-1 rounded text-base font-bold cursor-default"
-                                    :class="{
-                                        'bg-emerald-500/20 text-emerald-300': m.accuracy >= 80,
-                                        'bg-amber-500/20 text-amber-300': m.accuracy >= 60 && m.accuracy < 80,
-                                        'bg-rose-500/20 text-rose-300': m.accuracy !== null && m.accuracy < 60,
-                                        'bg-slate-700/50 text-slate-400': m.accuracy === null
-                                    }"
-                                    :title="m.accuracy !== null ? '准确度: ' + Math.round(m.accuracy) + '%' : ''"
-                                    x-text="m.letter"
-                                ></span>
+                    <!-- 中间主体 -->
+                    <div class="flex-1 min-w-0 p-4">
+                        <!-- 单词（居中） -->
+                        <div class="text-2xl font-bold text-slate-100 text-center mb-1" x-text="currentCard?.word || ''"></div>
+                        <div class="text-slate-400 text-sm text-center" x-text="currentCard?.phonetic || ''"></div>
+
+                        <!-- 反馈文本（录音前显示提示语） -->
+                        <div x-show="!pronunciationResult?.success" class="text-slate-400 text-sm mt-3 text-center" x-text="pronunciationFeedback || '请跟读这个单词'"></div>
+
+                        <!-- 录音前音色按钮 -->
+                        <div x-show="!pronunciationResult?.success" class="grid grid-cols-4 gap-2 mt-3">
+                            <template x-for="v in TTS.voices" :key="'pre-'+v.id">
+                                <button
+                                    @click="playVoice(v.id)"
+                                    :disabled="audioPlaying || isRecordingPronunciation"
+                                    :class="currentVoice === v.id
+                                        ? 'bg-sky-500/30 border-sky-500/60 text-sky-300'
+                                        : 'bg-slate-700/50 border-slate-600 text-slate-300 hover:bg-slate-600/50'"
+                                    class="py-1.5 px-1 rounded-lg text-xs font-medium border transition disabled:opacity-40 disabled:cursor-not-allowed"
+                                    x-text="v.label"
+                                ></button>
                             </template>
                         </div>
-                        <!-- 音素行 -->
-                        <div class="flex flex-wrap justify-center gap-1">
-                            <template x-for="(m, i) in pronunciationResult?.letter_mapping || []" :key="'phoneme-'+i">
-                                <span
-                                    class="px-2 py-0.5 text-xs font-mono text-slate-500"
-                                    :style="'min-width: ' + (m.letter.length * 0.6 + 1) + 'rem'"
-                                    x-text="m.phoneme || ''"
-                                ></span>
-                            </template>
+
+                        <!-- 评估结果中的分析内容 -->
+                        <div x-show="pronunciationResult?.success">
+                            <!-- 识别文本 -->
+                            <div x-show="pronunciationResult?.recognized_text" class="mt-2 text-slate-400 text-sm text-center">
+                                识别: <span class="text-slate-300" x-text="pronunciationResult?.recognized_text"></span>
+                            </div>
+
+                            <!-- 字母-音素对照分析 -->
+                            <div x-show="pronunciationResult?.letter_mapping?.length > 0" class="mt-2">
+                                <div class="text-xs text-slate-400 mb-1 text-center">发音分析</div>
+                                <div class="flex flex-wrap justify-center gap-1 mb-1">
+                                    <template x-for="(m, i) in pronunciationResult?.letter_mapping || []" :key="'letter-'+i">
+                                        <span
+                                            class="px-2 py-1 rounded text-base font-bold cursor-default"
+                                            :class="{
+                                                'bg-emerald-500/20 text-emerald-300': m.accuracy >= 80,
+                                                'bg-amber-500/20 text-amber-300': m.accuracy >= 60 && m.accuracy < 80,
+                                                'bg-rose-500/20 text-rose-300': m.accuracy !== null && m.accuracy < 60,
+                                                'bg-slate-700/50 text-slate-400': m.accuracy === null
+                                            }"
+                                            :title="m.accuracy !== null ? '准确度: ' + Math.round(m.accuracy) + '%' : ''"
+                                            x-text="m.letter"
+                                        ></span>
+                                    </template>
+                                </div>
+                                <div class="flex flex-wrap justify-center gap-1">
+                                    <template x-for="(m, i) in pronunciationResult?.letter_mapping || []" :key="'phoneme-'+i">
+                                        <span
+                                            class="px-2 py-0.5 text-xs font-mono text-slate-500"
+                                            :style="'min-width: ' + (m.letter.length * 0.6 + 1) + 'rem'"
+                                            x-text="m.phoneme || ''"
+                                        ></span>
+                                    </template>
+                                </div>
+                                <div x-show="pronunciationResult?.letter_mapping?.filter(m => m.accuracy !== null && m.accuracy < 60).length > 0"
+                                     class="mt-1 text-xs text-rose-400 text-center">
+                                    需要注意: <span x-text="pronunciationResult?.letter_mapping?.filter(m => m.accuracy !== null && m.accuracy < 60).map(m => m.letter + ' /' + m.phoneme + '/').join(', ')"></span>
+                                </div>
+                            </div>
+
+                            <!-- 旧版音素详情（后备） -->
+                            <div x-show="!pronunciationResult?.letter_mapping?.length && pronunciationResult?.phoneme_details?.length > 0" class="mt-2">
+                                <div class="text-xs text-slate-400 mb-1 text-center">音素分析</div>
+                                <div class="flex flex-wrap justify-center gap-1">
+                                    <template x-for="(p, i) in pronunciationResult?.phoneme_details || []" :key="i">
+                                        <span
+                                            class="px-2 py-1 rounded text-sm font-mono cursor-default"
+                                            :class="{
+                                                'bg-emerald-500/20 text-emerald-300': p.accuracy >= 80,
+                                                'bg-amber-500/20 text-amber-300': p.accuracy >= 60 && p.accuracy < 80,
+                                                'bg-rose-500/20 text-rose-300': p.accuracy < 60
+                                            }"
+                                            :title="'准确度: ' + Math.round(p.accuracy) + '%'"
+                                            x-text="p.phoneme"
+                                        ></span>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <!-- 音色按钮 -->
+                            <div class="grid grid-cols-4 gap-2 mt-3">
+                                <template x-for="v in TTS.voices" :key="'pron-'+v.id">
+                                    <button
+                                        @click="playVoice(v.id)"
+                                        :disabled="audioPlaying || isRecordingPronunciation"
+                                        :class="currentVoice === v.id
+                                            ? 'bg-sky-500/30 border-sky-500/60 text-sky-300'
+                                            : 'bg-slate-700/50 border-slate-600 text-slate-300 hover:bg-slate-600/50'"
+                                        class="py-1.5 px-1 rounded-lg text-xs font-medium border transition disabled:opacity-40 disabled:cursor-not-allowed"
+                                        x-text="v.label"
+                                    ></button>
+                                </template>
+                            </div>
+
+                            <!-- 反馈文本（评估后） -->
+                            <div class="text-slate-300 text-sm mt-2 text-center" x-text="pronunciationFeedback"></div>
+
+                            <!-- 发音技巧提示 -->
+                            <div x-show="pronunciationResult?.tips" class="text-xs text-amber-400/80 mt-1 text-center">
+                                <span class="inline-flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span x-text="pronunciationResult?.tips"></span>
+                                </span>
+                            </div>
                         </div>
-                        <!-- 问题字母提示 -->
-                        <div x-show="pronunciationResult?.letter_mapping?.filter(m => m.accuracy !== null && m.accuracy < 60).length > 0"
-                             class="mt-2 text-center text-xs text-rose-400">
-                            <span>需要注意: </span>
-                            <span x-text="pronunciationResult?.letter_mapping?.filter(m => m.accuracy !== null && m.accuracy < 60).map(m => m.letter + ' /' + m.phoneme + '/').join(', ')"></span>
+
+                        <!-- 推荐练习单词 -->
+                        <div x-show="pronunciationResult?.practice_words?.length > 0" class="mt-3 p-3 bg-indigo-500/10 border border-indigo-500/30 rounded-lg">
+                            <div class="text-xs text-indigo-300 mb-2 text-center">
+                                <span x-show="pronunciationResult?.focus_phoneme">
+                                    练习 /<span x-text="pronunciationResult?.focus_phoneme"></span>/ 音：
+                                </span>
+                                <span x-show="!pronunciationResult?.focus_phoneme">推荐练习：</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <template x-for="(pw, i) in pronunciationResult?.practice_words || []" :key="'pw-'+i">
+                                    <button
+                                        @click="playPracticeWord(pw.word || pw)"
+                                        :disabled="audioPlaying"
+                                        class="px-4 py-2 bg-indigo-500/20 text-indigo-200 rounded-lg hover:bg-indigo-500/30 transition disabled:opacity-50 flex items-center gap-3"
+                                    >
+                                        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                                        </svg>
+                                        <span class="font-medium" x-text="pw.word || pw"></span>
+                                        <span x-show="pw.pos" class="text-xs text-indigo-400" x-text="pw.pos"></span>
+                                        <span x-show="pw.meaning" class="text-xs text-gray-400" x-text="pw.meaning"></span>
+                                    </button>
+                                </template>
+                            </div>
                         </div>
                     </div>
-                    <!-- 旧版音素详情（作为后备） -->
-                    <div x-show="!pronunciationResult?.letter_mapping?.length && pronunciationResult?.phoneme_details?.length > 0" class="mt-3 pt-3 border-t border-slate-700">
-                        <div class="text-xs text-slate-400 mb-2 text-center">音素分析</div>
-                        <div class="flex flex-wrap justify-center gap-1">
-                            <template x-for="(p, i) in pronunciationResult?.phoneme_details || []" :key="i">
-                                <span
-                                    class="px-2 py-1 rounded text-sm font-mono cursor-default"
-                                    :class="{
-                                        'bg-emerald-500/20 text-emerald-300': p.accuracy >= 80,
-                                        'bg-amber-500/20 text-amber-300': p.accuracy >= 60 && p.accuracy < 80,
-                                        'bg-rose-500/20 text-rose-300': p.accuracy < 60
-                                    }"
-                                    :title="'准确度: ' + Math.round(p.accuracy) + '%'"
-                                    x-text="p.phoneme"
-                                ></span>
-                            </template>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 反馈文本 -->
-                <div class="text-center text-slate-300 mb-2" x-text="pronunciationFeedback"></div>
-
-                <!-- 发音技巧提示 -->
-                <div x-show="pronunciationResult?.tips" class="text-center text-xs text-amber-400/80 mb-2">
-                    <span class="inline-flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <span x-text="pronunciationResult?.tips"></span>
-                    </span>
-                </div>
-
-                <!-- 推荐练习单词 -->
-                <div x-show="pronunciationResult?.practice_words?.length > 0" class="mb-4 p-3 bg-indigo-500/10 border border-indigo-500/30 rounded-lg">
-                    <div class="text-xs text-indigo-300 mb-2 text-center">
-                        <span x-show="pronunciationResult?.focus_phoneme">
-                            练习 /<span x-text="pronunciationResult?.focus_phoneme"></span>/ 音：
-                        </span>
-                        <span x-show="!pronunciationResult?.focus_phoneme">推荐练习：</span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <template x-for="(pw, i) in pronunciationResult?.practice_words || []" :key="'pw-'+i">
+                    <!-- 右栏：录音/评分 -->
+                    <div class="flex-shrink-0 w-32 border-l border-purple-500/20 bg-slate-800/30 flex flex-col items-center justify-center p-3 gap-3">
+                        <!-- 录音前：录音按钮 + 跳过 -->
+                        <div x-show="!pronunciationResult?.success" class="flex flex-col items-center gap-3">
                             <button
-                                @click="playPracticeWord(pw.word || pw)"
-                                :disabled="audioPlaying"
-                                class="px-4 py-2 bg-indigo-500/20 text-indigo-200 rounded-lg hover:bg-indigo-500/30 transition disabled:opacity-50 flex items-center gap-3"
+                                @click="togglePronunciationRecording()"
+                                :disabled="pronunciationSubmitting || audioPlaying"
+                                class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-50"
+                                :class="{
+                                    'bg-rose-500 hover:bg-rose-600 animate-pulse': isRecordingPronunciation,
+                                    'bg-purple-500 hover:bg-purple-600': !isRecordingPronunciation
+                                }"
                             >
-                                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                                <svg x-show="!isRecordingPronunciation" class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
                                 </svg>
-                                <span class="font-medium" x-text="pw.word || pw"></span>
-                                <span x-show="pw.pos" class="text-xs text-indigo-400" x-text="pw.pos"></span>
-                                <span x-show="pw.meaning" class="text-xs text-gray-400" x-text="pw.meaning"></span>
+                                <svg x-show="isRecordingPronunciation" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+                                </svg>
                             </button>
-                        </template>
+                            <button
+                                x-show="!pronunciationResult"
+                                @click="skipPronunciation()"
+                                class="px-3 py-1.5 bg-slate-700/50 text-slate-400 rounded-lg hover:bg-slate-600/50 transition text-sm"
+                            >
+                                跳过
+                            </button>
+                        </div>
+
+                        <!-- 录音后：评分 + 录音按钮 + 操作按钮 -->
+                        <div x-show="pronunciationResult?.success" class="flex flex-col items-center gap-3">
+                            <!-- 三项评分竖排 -->
+                            <div class="space-y-1.5 text-sm w-full">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400 text-xs">准确度</span>
+                                    <span class="font-bold"
+                                        :class="{
+                                            'text-emerald-400': pronunciationResult?.accuracy_score >= 75,
+                                            'text-amber-400': pronunciationResult?.accuracy_score >= 60 && pronunciationResult?.accuracy_score < 75,
+                                            'text-rose-400': pronunciationResult?.accuracy_score < 60
+                                        }"
+                                        x-text="Math.round(pronunciationResult?.accuracy_score || 0) + '%'"></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400 text-xs">流畅度</span>
+                                    <span class="font-bold"
+                                        :class="{
+                                            'text-emerald-400': pronunciationResult?.fluency_score >= 75,
+                                            'text-amber-400': pronunciationResult?.fluency_score >= 60 && pronunciationResult?.fluency_score < 75,
+                                            'text-rose-400': pronunciationResult?.fluency_score < 60
+                                        }"
+                                        x-text="Math.round(pronunciationResult?.fluency_score || 0) + '%'"></span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400 text-xs">完整度</span>
+                                    <span class="font-bold"
+                                        :class="{
+                                            'text-emerald-400': pronunciationResult?.completeness_score >= 75,
+                                            'text-amber-400': pronunciationResult?.completeness_score >= 60 && pronunciationResult?.completeness_score < 75,
+                                            'text-rose-400': pronunciationResult?.completeness_score < 60
+                                        }"
+                                        x-text="Math.round(pronunciationResult?.completeness_score || 0) + '%'"></span>
+                                </div>
+                            </div>
+
+                            <!-- 录音按钮 -->
+                            <button
+                                @click="togglePronunciationRecording()"
+                                :disabled="pronunciationSubmitting || audioPlaying"
+                                class="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-50"
+                                :class="{
+                                    'bg-rose-500 hover:bg-rose-600 animate-pulse': isRecordingPronunciation,
+                                    'bg-purple-500 hover:bg-purple-600': !isRecordingPronunciation
+                                }"
+                            >
+                                <svg x-show="!isRecordingPronunciation" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                                </svg>
+                                <svg x-show="isRecordingPronunciation" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+                                </svg>
+                            </button>
+
+                            <!-- 再试一次 / 继续 -->
+                            <div class="flex flex-col gap-1.5 w-full">
+                                <button
+                                    x-show="pronunciationResult && pronunciationAttempt < maxPronunciationAttempts"
+                                    @click="retryPronunciation()"
+                                    :disabled="audioPlaying || isRecordingPronunciation"
+                                    class="w-full py-1.5 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 transition disabled:opacity-50 text-xs text-center"
+                                >
+                                    再试一次
+                                </button>
+                                <button
+                                    x-show="pronunciationResult || pronunciationAttempt >= maxPronunciationAttempts"
+                                    @click="continuePronunciation()"
+                                    :disabled="audioPlaying"
+                                    class="w-full py-1.5 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition disabled:opacity-50 text-xs text-center"
+                                >
+                                    继续
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <!-- 录音按钮 -->
-                <div class="flex justify-center mb-4">
-                    <button
-                        @click="togglePronunciationRecording()"
-                        :disabled="pronunciationSubmitting || audioPlaying"
-                        class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 disabled:opacity-50"
-                        :class="{
-                            'bg-rose-500 hover:bg-rose-600 animate-pulse': isRecordingPronunciation,
-                            'bg-purple-500 hover:bg-purple-600': !isRecordingPronunciation
-                        }"
-                    >
-                        <svg x-show="!isRecordingPronunciation" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
-                        </svg>
-                        <svg x-show="isRecordingPronunciation" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <rect x="6" y="6" width="12" height="12" rx="2"></rect>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- 操作按钮 -->
-                <div class="flex justify-center space-x-4">
-                    <button
-                        @click="replayPronunciationDemo()"
-                        :disabled="audioPlaying || isRecordingPronunciation"
-                        class="px-4 py-2 bg-slate-700/50 text-slate-300 rounded-lg hover:bg-slate-600/50 transition disabled:opacity-50"
-                    >
-                        再听一遍
-                    </button>
-
-                    <!-- 再试一次（未达到最大次数且有评估结果时显示） -->
-                    <button
-                        x-show="pronunciationResult && pronunciationAttempt < maxPronunciationAttempts"
-                        @click="retryPronunciation()"
-                        :disabled="audioPlaying || isRecordingPronunciation"
-                        class="px-4 py-2 bg-amber-500/20 text-amber-300 rounded-lg hover:bg-amber-500/30 transition disabled:opacity-50"
-                    >
-                        再试一次
-                    </button>
-
-                    <!-- 继续（有评估结果或达到最大次数时显示） -->
-                    <button
-                        x-show="pronunciationResult || pronunciationAttempt >= maxPronunciationAttempts"
-                        @click="continuePronunciation()"
-                        :disabled="audioPlaying"
-                        class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition disabled:opacity-50"
-                    >
-                        继续
-                    </button>
-
-                    <!-- 跳过（没有评估结果时显示） -->
-                    <button
-                        x-show="!pronunciationResult"
-                        @click="skipPronunciation()"
-                        class="px-4 py-2 bg-slate-700/50 text-slate-400 rounded-lg hover:bg-slate-600/50 transition"
-                    >
-                        跳过
-                    </button>
                 </div>
             </div>
 
