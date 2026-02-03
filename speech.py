@@ -15,6 +15,7 @@ Usage:
 import os
 import tempfile
 import asyncio
+import threading
 from typing import Optional
 
 # Azure Speech SDK
@@ -40,6 +41,7 @@ class SpeechRecognizer:
     def _recognize_sync(self, audio_path: str) -> dict:
         """
         同步识别音频文件（内部方法）
+        使用连续识别模式，支持较长的语音输入
 
         Args:
             audio_path: 音频文件路径
@@ -63,26 +65,45 @@ class SpeechRecognizer:
                 audio_config=audio_config
             )
 
-            result = recognizer.recognize_once()
+            # 使用连续识别收集完整音频中的所有语句
+            all_texts = []
+            done_event = threading.Event()
+            error_info = {"error": None}
 
-            if result.reason == speechsdk.ResultReason.RecognizedSpeech:
+            def on_recognized(evt):
+                if evt.result.reason == speechsdk.ResultReason.RecognizedSpeech:
+                    all_texts.append(evt.result.text)
+
+            def on_canceled(evt):
+                cancellation = evt.cancellation_details
+                if cancellation.reason == speechsdk.CancellationReason.Error:
+                    error_info["error"] = f"识别取消: {cancellation.reason}, {cancellation.error_details}"
+                done_event.set()
+
+            def on_session_stopped(evt):
+                done_event.set()
+
+            recognizer.recognized.connect(on_recognized)
+            recognizer.canceled.connect(on_canceled)
+            recognizer.session_stopped.connect(on_session_stopped)
+
+            recognizer.start_continuous_recognition()
+            done_event.wait(timeout=30)
+            recognizer.stop_continuous_recognition()
+
+            if error_info["error"]:
+                return {"success": False, "text": "", "error": error_info["error"]}
+
+            if all_texts:
+                full_text = " ".join(all_texts)
                 return {
                     "success": True,
-                    "text": result.text,
-                    "confidence": 0.9,  # Azure 不直接返回置信度
+                    "text": full_text,
+                    "confidence": 0.9,
                     "error": None
                 }
-            elif result.reason == speechsdk.ResultReason.NoMatch:
-                return {"success": False, "text": "", "error": "未识别到语音"}
-            elif result.reason == speechsdk.ResultReason.Canceled:
-                cancellation = result.cancellation_details
-                return {
-                    "success": False,
-                    "text": "",
-                    "error": f"识别取消: {cancellation.reason}, {cancellation.error_details}"
-                }
             else:
-                return {"success": False, "text": "", "error": f"识别失败: {result.reason}"}
+                return {"success": False, "text": "", "error": "未识别到语音"}
 
         except Exception as e:
             return {"success": False, "text": "", "error": str(e)}
