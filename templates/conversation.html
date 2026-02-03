@@ -119,11 +119,7 @@
         <div x-show="!isComplete" class="flex flex-col items-center py-6">
             <!-- 录音按钮 -->
             <button
-                @mousedown="startRecording"
-                @mouseup="stopRecording"
-                @mouseleave="isRecording && stopRecording()"
-                @touchstart.prevent="startRecording"
-                @touchend.prevent="stopRecording"
+                @click="isRecording ? stopRecording() : startRecording()"
                 :disabled="isLoading || isRecognizing || !recorderReady"
                 :class="isRecording
                     ? 'bg-rose-500 scale-110 shadow-lg shadow-rose-500/50'
@@ -138,8 +134,8 @@
             </button>
             <p class="text-slate-400 text-sm mt-3">
                 <span x-show="!recorderReady">正在初始化麦克风...</span>
-                <span x-show="recorderReady && !isRecording">按住说英语</span>
-                <span x-show="isRecording">松开结束录音</span>
+                <span x-show="recorderReady && !isRecording">点击开始录音</span>
+                <span x-show="isRecording">点击停止录音</span>
             </p>
 
             <!-- 录音时长 -->
