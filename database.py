@@ -115,6 +115,28 @@ class History(Base):
     user = relationship("User", back_populates="history")
 
 
+class StudySession(Base):
+    """学习会话表 - 记录每次学习的会话级别数据"""
+    __tablename__ = "study_sessions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    started_at = Column(DateTime, nullable=False)
+    ended_at = Column(DateTime, nullable=False)
+    duration_ms = Column(Integer, default=0)
+    mode = Column(String(20), nullable=True)
+    book_id = Column(String(50), nullable=True)
+    total_words = Column(Integer, default=0)
+    first_correct = Column(Integer, default=0)
+    second_correct = Column(Integer, default=0)
+    third_correct = Column(Integer, default=0)
+    wrong_count = Column(Integer, default=0)
+    skipped_count = Column(Integer, default=0)
+    best_streak = Column(Integer, default=0)
+
+    user = relationship("User")
+
+
 class PronunciationRecord(Base):
     """发音评估记录表"""
     __tablename__ = "pronunciation_records"
@@ -185,6 +207,8 @@ def init_db():
     Base.metadata.create_all(bind=engine)
     # 执行迁移，添加新字段
     migrate_user_table()
+    # 创建 study_sessions 表（如不存在）
+    Base.metadata.create_all(bind=engine, tables=[StudySession.__table__])
     # 一次性修正 FSRS due 日期
     migrate_fix_fsrs_due()
 
@@ -585,7 +609,8 @@ def get_words_history_stats(db: Session, user_id: int, words_with_books: List[tu
         History.word,
         func.count(History.id).label("total"),
         func.sum(case((History.result == "correct", 1), else_=0)).label("correct"),
-        func.sum(case((History.result == "wrong", 1), else_=0)).label("wrong")
+        func.sum(case((History.result == "wrong", 1), else_=0)).label("wrong"),
+        func.sum(case((History.result == "skipped", 1), else_=0)).label("skipped")
     ).filter(
         History.user_id == user_id
     ).group_by(History.book_id, History.word)
@@ -599,7 +624,8 @@ def get_words_history_stats(db: Session, user_id: int, words_with_books: List[tu
             result[key] = {
                 "total": row.total or 0,
                 "correct": int(row.correct or 0),
-                "wrong": int(row.wrong or 0)
+                "wrong": int(row.wrong or 0),
+                "skipped": int(row.skipped or 0)
             }
 
     return result
@@ -739,6 +765,313 @@ def get_global_mastered_curve(db: Session, user_id: int, days: int = 7) -> dict:
         "counts_3rd": list(daily_3rd.values()),
         "total": len(set_1st) + len(set_2nd) + len(set_3rd)
     }
+
+
+# ==================== 学习会话操作 ====================
+
+def add_study_session(db: Session, user_id: int, started_at: datetime,
+                      ended_at: datetime, duration_ms: int, mode: str,
+                      book_id: str, total_words: int, first_correct: int,
+                      second_correct: int, third_correct: int,
+                      wrong_count: int, skipped_count: int,
+                      best_streak: int) -> StudySession:
+    """保存学习会话记录"""
+    record = StudySession(
+        user_id=user_id,
+        started_at=started_at,
+        ended_at=ended_at,
+        duration_ms=duration_ms,
+        mode=mode,
+        book_id=book_id,
+        total_words=total_words,
+        first_correct=first_correct,
+        second_correct=second_correct,
+        third_correct=third_correct,
+        wrong_count=wrong_count,
+        skipped_count=skipped_count,
+        best_streak=best_streak
+    )
+    db.add(record)
+    db.commit()
+    db.refresh(record)
+    return record
+
+
+def get_learning_stats(db: Session, user_id: int, period: str = "day") -> dict:
+    """获取学习统计（按时段聚合）
+
+    Args:
+        period: "day" / "week" / "month" / "year"
+
+    Returns:
+        包含学习时长、单词数、正确率分布、词书分布、每日明细的字典
+    """
+    from sqlalchemy import text
+    from bookmanager import get_book_display_name
+
+    now = datetime.utcnow() + timedelta(hours=8)  # 转为北京时间
+    today = now.date()
+
+    if period == "day":
+        start_date = today
+    elif period == "week":
+        start_date = today - timedelta(days=today.weekday())  # 本周一
+    elif period == "month":
+        start_date = today.replace(day=1)
+    elif period == "year":
+        start_date = today.replace(month=1, day=1)
+    else:
+        start_date = today
+
+    # 转为 UTC 时间范围（北京时间 00:00 = UTC 前一天 16:00）
+    start_utc = datetime(start_date.year, start_date.month, start_date.day) - timedelta(hours=8)
+    end_utc = datetime(today.year, today.month, today.day, 23, 59, 59) - timedelta(hours=8)
+
+    # 1. 从 history 表聚合
+    hist_query = db.query(
+        func.count(History.id).label("total"),
+        func.sum(case((History.result == "correct", 1), else_=0)).label("correct"),
+        func.sum(case(((History.result == "correct") & (History.attempts == 1), 1), else_=0)).label("first"),
+        func.sum(case(((History.result == "correct") & (History.attempts == 2), 1), else_=0)).label("second"),
+        func.sum(case(((History.result == "correct") & (History.attempts == 3), 1), else_=0)).label("third"),
+        func.sum(case((History.result == "wrong", 1), else_=0)).label("wrong"),
+        func.sum(case((History.result == "skipped", 1), else_=0)).label("skipped"),
+    ).filter(
+        History.user_id == user_id,
+        History.time >= start_utc,
+        History.time <= end_utc
+    )
+    hr = hist_query.first()
+
+    total_words = hr.total or 0
+    correct = int(hr.correct or 0)
+    first_correct = int(hr.first or 0)
+    second_correct = int(hr.second or 0)
+    third_correct = int(hr.third or 0)
+    wrong_count = int(hr.wrong or 0)
+    skipped_count = int(hr.skipped or 0)
+    accuracy = round(correct / total_words * 100, 1) if total_words > 0 else 0
+
+    # 2. 从 study_sessions 表聚合
+    sess_query = db.query(
+        func.sum(StudySession.duration_ms).label("total_ms"),
+        func.count(StudySession.id).label("count"),
+        func.max(StudySession.best_streak).label("best_streak")
+    ).filter(
+        StudySession.user_id == user_id,
+        StudySession.started_at >= start_utc,
+        StudySession.started_at <= end_utc
+    )
+    sr = sess_query.first()
+    study_time_ms = int(sr.total_ms or 0)
+    sessions_count = sr.count or 0
+    best_streak = sr.best_streak or 0
+
+    # 3. 词书分布
+    book_rows = db.query(
+        History.book_id,
+        func.count(History.id).label("total"),
+        func.sum(case((History.result == "correct", 1), else_=0)).label("correct")
+    ).filter(
+        History.user_id == user_id,
+        History.time >= start_utc,
+        History.time <= end_utc
+    ).group_by(History.book_id).all()
+
+    book_breakdown = []
+    for row in book_rows:
+        bt = row.total or 0
+        bc = int(row.correct or 0)
+        book_breakdown.append({
+            "book_id": row.book_id,
+            "book_name": get_book_display_name(row.book_id),
+            "words": bt,
+            "accuracy": round(bc / bt * 100, 1) if bt > 0 else 0
+        })
+
+    # 4. 每日明细（周/月/年时提供）
+    daily_breakdown = []
+    if period != "day":
+        # 用原生 SQL 按北京时间日期分组
+        daily_hist = db.execute(text("""
+            SELECT DATE(time, '+8 hours') as day,
+                   COUNT(*) as total,
+                   SUM(CASE WHEN result='correct' THEN 1 ELSE 0 END) as correct
+            FROM history
+            WHERE user_id = :uid AND time >= :start AND time <= :end
+            GROUP BY day ORDER BY day
+        """), {"uid": user_id, "start": start_utc, "end": end_utc}).fetchall()
+
+        daily_sess = {}
+        for row in db.execute(text("""
+            SELECT DATE(started_at, '+8 hours') as day,
+                   SUM(duration_ms) as ms
+            FROM study_sessions
+            WHERE user_id = :uid AND started_at >= :start AND started_at <= :end
+            GROUP BY day
+        """), {"uid": user_id, "start": start_utc, "end": end_utc}).fetchall():
+            daily_sess[row[0]] = int(row[1] or 0)
+
+        for row in daily_hist:
+            day_str = row[0]
+            dt = row[1] or 0
+            dc = int(row[2] or 0)
+            daily_breakdown.append({
+                "date": day_str[5:] if len(day_str) > 5 else day_str,  # MM-DD
+                "words": dt,
+                "accuracy": round(dc / dt * 100, 1) if dt > 0 else 0,
+                "study_time_ms": daily_sess.get(day_str, 0)
+            })
+
+    return {
+        "study_time_ms": study_time_ms,
+        "sessions_count": sessions_count,
+        "total_words": total_words,
+        "first_correct": first_correct,
+        "second_correct": second_correct,
+        "third_correct": third_correct,
+        "wrong_count": wrong_count,
+        "skipped_count": skipped_count,
+        "accuracy": accuracy,
+        "best_streak": best_streak,
+        "book_breakdown": book_breakdown,
+        "daily_breakdown": daily_breakdown
+    }
+
+
+def get_weak_words(db: Session, user_id: int, limit: int = 20) -> list:
+    """获取薄弱单词列表（基于 FSRS 评估：遗忘过的单词按难度排序）"""
+    from sqlalchemy import text
+
+    rows = db.execute(text("""
+        SELECT book_id, word, difficulty, stability, lapses, state, reps
+        FROM progress
+        WHERE user_id = :uid
+          AND lapses > 0
+        ORDER BY difficulty DESC, lapses DESC, stability ASC
+        LIMIT :lim
+    """), {"uid": user_id, "lim": limit}).fetchall()
+
+    return [
+        {
+            "word": row[1],
+            "book_id": row[0],
+            "difficulty": round(row[2], 1),
+            "stability": round(row[3], 1),
+            "lapses": row[4],
+            "state": row[5],
+            "reps": row[6]
+        }
+        for row in rows
+    ]
+
+
+def get_learning_streak(db: Session, user_id: int) -> dict:
+    """获取连续学习天数"""
+    from sqlalchemy import text
+
+    rows = db.execute(text("""
+        SELECT DISTINCT DATE(time, '+8 hours') as day
+        FROM history
+        WHERE user_id = :uid
+        ORDER BY day DESC
+    """), {"uid": user_id}).fetchall()
+
+    if not rows:
+        return {"current_streak": 0, "longest_streak": 0}
+
+    days = [row[0] for row in rows]
+    today = (datetime.utcnow() + timedelta(hours=8)).strftime("%Y-%m-%d")
+
+    # 当前连续天数
+    current_streak = 0
+    check_date = today
+    for d in days:
+        if d == check_date:
+            current_streak += 1
+            check_date = (datetime.strptime(d, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
+        else:
+            break
+
+    # 最长连续天数
+    longest = 1
+    streak = 1
+    for i in range(1, len(days)):
+        prev = datetime.strptime(days[i - 1], "%Y-%m-%d")
+        curr = datetime.strptime(days[i], "%Y-%m-%d")
+        if (prev - curr).days == 1:
+            streak += 1
+            longest = max(longest, streak)
+        else:
+            streak = 1
+
+    return {"current_streak": current_streak, "longest_streak": max(longest, current_streak)}
+
+
+def get_review_completion(db: Session, user_id: int) -> dict:
+    """获取今日复习完成率"""
+    now = datetime.utcnow()
+    # 今日应复习：due <= 当前时间
+    due_total = db.query(func.count(Progress.id)).filter(
+        Progress.user_id == user_id,
+        Progress.due <= now,
+        Progress.state >= 1  # 非新卡
+    ).scalar() or 0
+
+    # 今日已复习：今天的 history 记录数（去重单词）
+    today_start_utc = datetime(now.year, now.month, now.day) - timedelta(hours=8)
+    reviewed_today = db.query(func.count(func.distinct(
+        History.book_id + '|' + History.word
+    ))).filter(
+        History.user_id == user_id,
+        History.time >= today_start_utc
+    ).scalar() or 0
+
+    completion = round(reviewed_today / due_total * 100, 1) if due_total > 0 else 100.0
+
+    return {
+        "due_total": due_total,
+        "reviewed_today": reviewed_today,
+        "completion_rate": min(completion, 100.0)
+    }
+
+
+def get_pronunciation_history(db: Session, user_id: int, limit: int = 20) -> list:
+    """获取发音评估历史"""
+    records = db.query(PronunciationRecord).filter(
+        PronunciationRecord.user_id == user_id
+    ).order_by(PronunciationRecord.created_at.desc()).limit(limit).all()
+
+    return [
+        {
+            "word": r.word,
+            "accuracy_score": r.accuracy_score,
+            "pronunciation_score": r.pronunciation_score,
+            "fluency_score": r.fluency_score,
+            "completeness_score": r.completeness_score,
+            "created_at": r.created_at.isoformat() if r.created_at else None
+        }
+        for r in records
+    ]
+
+
+def get_phoneme_errors(db: Session, user_id: int, limit: int = 20) -> list:
+    """获取薄弱音素列表"""
+    records = db.query(PhonemeError).filter(
+        PhonemeError.user_id == user_id,
+        PhonemeError.error_count > 0
+    ).order_by(PhonemeError.avg_accuracy.asc()).limit(limit).all()
+
+    return [
+        {
+            "phoneme": r.phoneme,
+            "total_attempts": r.total_attempts,
+            "error_count": r.error_count,
+            "avg_accuracy": round(r.avg_accuracy, 1),
+            "error_types": json.loads(r.error_types) if r.error_types else {}
+        }
+        for r in records
+    ]
 
 
 # ==================== 发音评估操作 ====================

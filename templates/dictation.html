@@ -29,87 +29,29 @@
         </div>
     </header>
 
-    <!-- 实时学习统计面板 -->
+    <!-- 实时学习统计条 -->
     <div
         x-show="!loading && cards.length > 0 && !finished"
         x-cloak
         class="max-w-2xl mx-auto w-full px-4 pt-2"
     >
-        <div
-            @click="statsCollapsed = !statsCollapsed"
-            class="bg-slate-800/40 backdrop-blur-sm border border-slate-700/30 rounded-xl cursor-pointer select-none overflow-hidden"
-        >
-            <!-- 收起状态：单行摘要 -->
-            <div class="flex items-center justify-between py-2 px-3">
-                <div class="flex items-center gap-3 text-xs">
-                    <span class="flex items-center gap-1"
-                          :class="isIdle ? 'text-amber-400' : 'text-slate-400'">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <span x-text="formatTime()"></span>
-                        <span x-show="isIdle" class="text-[10px]">(暂停)</span>
-                    </span>
-                    <span class="text-slate-600">|</span>
-                    <span class="text-slate-400">
-                        完成 <span class="text-sky-300 font-medium" x-text="totalCompleted"></span>
-                    </span>
-                    <span class="text-slate-600">|</span>
-                    <span class="text-slate-400">
-                        首次 <span class="text-emerald-300 font-medium"
-                                  x-text="totalCompleted > 0 ? Math.round(firstAttemptCorrect / totalCompleted * 100) + '%' : '-'"></span>
-                    </span>
-                </div>
-                <svg class="w-4 h-4 text-slate-500 transition-transform duration-200 flex-shrink-0"
-                     :class="{ 'rotate-180': !statsCollapsed }"
-                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </div>
-
-            <!-- 展开状态：详细统计 -->
-            <div x-show="!statsCollapsed"
-                 x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100"
-                 x-transition:leave="transition ease-in duration-150"
-                 x-transition:leave-start="opacity-100"
-                 x-transition:leave-end="opacity-0"
-                 class="pb-3 px-3">
-                <div class="grid grid-cols-5 gap-1.5 text-center">
-                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
-                        <div class="text-sm font-bold text-slate-200" x-text="formatTime()"></div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">学习时长</div>
-                    </div>
-                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
-                        <div class="text-sm font-bold text-sky-400" x-text="totalCompleted"></div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">已完成</div>
-                    </div>
-                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
-                        <div class="text-sm font-bold text-emerald-400"
-                             x-text="totalCompleted > 0 ? Math.round(firstAttemptCorrect / totalCompleted * 100) + '%' : '-'"></div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">首次正确</div>
-                    </div>
-                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
-                        <div class="text-sm font-bold text-amber-400"
-                             x-text="totalCompleted > 0 ? Math.round(secondAttemptCorrect / totalCompleted * 100) + '%' : '-'"></div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">二次正确</div>
-                    </div>
-                    <div class="bg-slate-700/30 rounded-lg py-2 px-1">
-                        <div class="text-sm font-bold text-rose-400"
-                             x-text="totalCompleted > 0 ? Math.round(thirdAttemptCorrect / totalCompleted * 100) + '%' : '-'"></div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">三次正确</div>
-                    </div>
-                </div>
-                <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 mt-2 text-[11px] text-slate-400">
-                    <span>连续 <span class="text-emerald-300" x-text="currentStreak"></span></span>
-                    <span>最佳 <span class="text-amber-300" x-text="bestStreak"></span></span>
-                    <span>跳过 <span class="text-rose-300" x-text="skippedCount"></span></span>
-                    <span>均次 <span class="text-sky-300" x-text="totalCompleted > 0 ? (totalAttempts / totalCompleted).toFixed(1) : '-'"></span></span>
-                    <span>速度 <span class="text-purple-300" x-text="elapsedActiveMs >= 60000 ? (totalCompleted / (elapsedActiveMs / 60000)).toFixed(1) + '词/分' : '-'"></span></span>
-                </div>
-            </div>
+        <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-1.5 px-3 text-[11px] text-slate-400 bg-slate-800/40 border border-slate-700/30 rounded-lg">
+            <span class="flex items-center gap-1" :class="isIdle ? 'text-amber-400' : ''">
+                <span x-text="formatTime()"></span>
+                <span x-show="isIdle" class="text-[10px]">(暂停)</span>
+            </span>
+            <span class="text-slate-600">|</span>
+            <span>完成 <span class="text-sky-300" x-text="totalCompleted"></span></span>
+            <span class="text-slate-600">|</span>
+            <span>首次 <span class="text-emerald-300" x-text="totalCompleted > 0 ? Math.round(firstAttemptCorrect / totalCompleted * 100) + '%' : '-'"></span></span>
+            <span class="text-slate-600">|</span>
+            <span>连对 <span :class="currentStreak >= 5 ? 'text-amber-300' : 'text-emerald-300'" x-text="currentStreak"></span></span>
+            <span class="text-slate-600">|</span>
+            <span>最佳 <span class="text-amber-300" x-text="bestStreak"></span></span>
+            <span class="text-slate-600">|</span>
+            <span>跳过 <span class="text-rose-300" x-text="skippedCount"></span></span>
+            <span class="text-slate-600">|</span>
+            <span>速度 <span class="text-purple-300" x-text="elapsedActiveMs >= 60000 ? (totalCompleted / (elapsedActiveMs / 60000)).toFixed(1) + '词/分' : '-'"></span></span>
         </div>
     </div>
 
@@ -417,7 +359,7 @@
                     x-cloak
                     class="mb-3 text-center"
                 >
-                    <div class="inline-flex items-center gap-4 px-4 py-2 bg-slate-700/30 rounded-lg text-sm">
+                    <div class="inline-flex items-center gap-4 px-4 py-2 bg-slate-700/30 rounded-lg text-sm flex-wrap justify-center">
                         <span class="text-slate-400">
                             复习 <span class="text-sky-400 font-medium" x-text="currentCard?.history_stats?.total || 0"></span> 次
                         </span>
@@ -429,6 +371,14 @@
                         <span class="text-slate-400">
                             错误 <span class="text-rose-400 font-medium" x-text="currentCard?.history_stats?.wrong || 0"></span> 次
                         </span>
+                        <template x-if="currentCard?.history_stats?.skipped > 0">
+                            <span class="contents">
+                                <span class="text-slate-600">|</span>
+                                <span class="text-slate-400">
+                                    跳过 <span class="text-amber-400 font-medium" x-text="currentCard?.history_stats?.skipped"></span> 次
+                                </span>
+                            </span>
+                        </template>
                     </div>
                 </div>
                 <!-- 输入框 -->
@@ -866,7 +816,6 @@ function dictationPage() {
         wrongCount: 0,
 
         // 学习统计
-        statsCollapsed: true,
         totalCompleted: 0,
         firstAttemptCorrect: 0,
         secondAttemptCorrect: 0,
@@ -1082,6 +1031,7 @@ function dictationPage() {
             if (index >= this.cards.length) {
                 this.finished = true;
                 this.cleanupTimer();
+                this.saveSession();
                 return;
             }
             this.currentIndex = index;
@@ -1580,7 +1530,35 @@ function dictationPage() {
 
         goBack() {
             this.cleanupTimer();
+            if (this.totalCompleted > 0 && !this.finished) {
+                this.saveSession();
+            }
             window.location.href = '/';
+        },
+
+        async saveSession() {
+            if (this.totalCompleted === 0) return;
+            try {
+                await fetch('/api/session/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        started_at: new Date(this.sessionStartTime).toISOString(),
+                        duration_ms: this.elapsedActiveMs,
+                        mode: this.mode,
+                        book_id: this.bookId || null,
+                        total_words: this.totalCompleted,
+                        first_correct: this.firstAttemptCorrect,
+                        second_correct: this.secondAttemptCorrect,
+                        third_correct: this.thirdAttemptCorrect,
+                        wrong_count: this.wrongCount,
+                        skipped_count: this.skippedCount,
+                        best_streak: this.bestStreak
+                    })
+                });
+            } catch (e) {
+                console.error('保存会话失败:', e);
+            }
         },
 
         // ========== 跟读发音评估相关方法 ==========

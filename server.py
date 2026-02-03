@@ -167,6 +167,20 @@ class SessionComplete(BaseModel):
     skipped: bool = False
 
 
+class SessionSaveRequest(BaseModel):
+    started_at: str
+    duration_ms: int
+    mode: str
+    book_id: Optional[str] = None
+    total_words: int
+    first_correct: int
+    second_correct: int
+    third_correct: int
+    wrong_count: int
+    skipped_count: int
+    best_streak: int
+
+
 class ExampleRequest(BaseModel):
     word: str
     translation: str
@@ -368,6 +382,51 @@ async def reading_page(request: Request, book_id: str, unit: Optional[str] = Non
         "book_id": book_id,
         "book_name": book_name,
         "unit": unit or ""
+    })
+
+
+@app.get("/analytics", response_class=HTMLResponse)
+async def analytics_page(request: Request, db: Session = Depends(get_db)):
+    """数据分析页面"""
+    user = get_current_user(request, db)
+    if not user:
+        return RedirectResponse(url="/login", status_code=302)
+    return templates.TemplateResponse("analytics.html", {"request": request, "user": user})
+
+
+@app.get("/export/notebook", response_class=HTMLResponse)
+async def export_notebook_page(request: Request, limit: int = 50, db: Session = Depends(get_db)):
+    """导出默写本 - 可打印页面"""
+    user = get_current_user(request, db)
+    if not user:
+        return RedirectResponse(url="/login", status_code=302)
+
+    from database import get_weak_words
+    from collections import OrderedDict
+
+    weak_words = get_weak_words(db, user["id"], min(limit, 200))
+
+    enriched = []
+    for w in weak_words:
+        word_obj = book_manager.get_word(w["book_id"], w["word"])
+        enriched.append({
+            "word": w["word"],
+            "book_name": get_book_display_name(w["book_id"]),
+            "phonetic": word_obj.phonetic if word_obj else "",
+            "translation": word_obj.translation if word_obj else "",
+            "difficulty": w["difficulty"],
+            "lapses": w["lapses"],
+        })
+
+    books_grouped = OrderedDict()
+    for w in enriched:
+        books_grouped.setdefault(w["book_name"], []).append(w)
+
+    return templates.TemplateResponse("notebook.html", {
+        "request": request,
+        "total": len(enriched),
+        "books_grouped": books_grouped,
+        "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
     })
 
 
@@ -1231,6 +1290,100 @@ async def api_mastered_curve(
     """
     from database import get_global_mastered_curve
     return get_global_mastered_curve(db, user["id"], days)
+
+
+@app.post("/api/session/save")
+async def api_session_save(
+    data: SessionSaveRequest,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """保存学习会话统计"""
+    from database import add_study_session
+
+    started_at = datetime.fromisoformat(data.started_at.replace("Z", "+00:00"))
+    ended_at = datetime.utcnow()
+
+    record = add_study_session(
+        db, user["id"],
+        started_at=started_at,
+        ended_at=ended_at,
+        duration_ms=data.duration_ms,
+        mode=data.mode,
+        book_id=data.book_id,
+        total_words=data.total_words,
+        first_correct=data.first_correct,
+        second_correct=data.second_correct,
+        third_correct=data.third_correct,
+        wrong_count=data.wrong_count,
+        skipped_count=data.skipped_count,
+        best_streak=data.best_streak
+    )
+    return {"success": True, "session_id": record.id}
+
+
+@app.get("/api/stats/learning")
+async def api_learning_stats(
+    period: str = "day",
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取学习统计（含时长、正确率分布、词书分布）"""
+    from database import get_learning_stats
+    return get_learning_stats(db, user["id"], period)
+
+
+@app.get("/api/stats/weak-words")
+async def api_weak_words(
+    limit: int = 20,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取薄弱单词列表"""
+    from database import get_weak_words
+    return {"words": get_weak_words(db, user["id"], limit)}
+
+
+@app.get("/api/stats/streak")
+async def api_streak(
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取连续学习天数"""
+    from database import get_learning_streak
+    return get_learning_streak(db, user["id"])
+
+
+@app.get("/api/stats/review-completion")
+async def api_review_completion(
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取今日复习完成率"""
+    from database import get_review_completion
+    return get_review_completion(db, user["id"])
+
+
+@app.get("/api/stats/pronunciation")
+async def api_pronunciation_history(
+    limit: int = 20,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取发音评估历史"""
+    from database import get_pronunciation_history
+    return {"records": get_pronunciation_history(db, user["id"], limit)}
+
+
+@app.get("/api/stats/phoneme-errors")
+async def api_phoneme_errors(
+    limit: int = 20,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取薄弱音素列表"""
+    from database import get_phoneme_errors
+    return {"errors": get_phoneme_errors(db, user["id"], limit)}
 
 
 @app.get("/api/stats/{book_id}")

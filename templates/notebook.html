@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>默写本</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+            background: #fff;
+            color: #333;
+            padding: 16px;
+        }
+
+        .no-print { text-align: center; margin-bottom: 16px; }
+        .no-print button {
+            padding: 6px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin: 0 4px;
+        }
+        .btn-print { background: #3b82f6; color: #fff; }
+        .btn-print:hover { background: #2563eb; }
+        .btn-close { background: #6b7280; color: #fff; }
+        .btn-close:hover { background: #4b5563; }
+
+        .notebook-header {
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #333;
+        }
+        .notebook-header h1 { font-size: 18px; margin-bottom: 2px; }
+        .notebook-header .meta { font-size: 11px; color: #666; }
+
+        .book-section { margin-bottom: 8px; }
+        .book-section h2 {
+            font-size: 11px;
+            color: #555;
+            margin-bottom: 3px;
+            padding-bottom: 2px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+        }
+        .word-row {
+            display: contents;
+        }
+        .word-cell {
+            padding: 0 6px;
+            height: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .word-cell .translation {
+            font-size: 12px;
+            color: #333;
+            line-height: 1.2;
+        }
+        .word-cell .phonetic {
+            font-size: 10px;
+            color: #999;
+            line-height: 1;
+        }
+        .word-cell .write-line {
+            border-bottom: 1px solid #bbb;
+            flex-shrink: 0;
+            height: 14px;
+        }
+        .col-divider {
+            background: #ccc;
+        }
+
+        .empty-msg {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        @page { size: A4; margin: 20mm; }
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print">
+        <button class="btn-print" onclick="window.print()">打印默写本</button>
+        <button class="btn-close" onclick="window.close()">关闭</button>
+    </div>
+
+    <div class="notebook-header">
+        <h1>英语默写本</h1>
+        <div class="meta">共 {{ total }} 词 &middot; {{ generated_at }}</div>
+    </div>
+
+    {% if total == 0 %}
+    <div class="empty-msg">暂无薄弱单词，继续学习后再来导出吧</div>
+    {% else %}
+        {% for book_name, words in books_grouped.items() %}
+        <div class="book-section">
+            <h2>{{ book_name }} ({{ words|length }} 词)</h2>
+            <div class="word-grid">
+                {% set ns = namespace(i=0) %}
+                {% for w in words %}
+                    {% if ns.i % 2 == 0 %}
+                    <div class="word-cell">
+                        <div class="translation">{{ w.translation }}</div>
+                        {% if w.phonetic %}<div class="phonetic">{{ w.phonetic }}</div>{% endif %}
+                        <div class="write-line"></div>
+                    </div>
+                    <div class="col-divider"></div>
+                    {% else %}
+                    <div class="word-cell">
+                        <div class="translation">{{ w.translation }}</div>
+                        {% if w.phonetic %}<div class="phonetic">{{ w.phonetic }}</div>{% endif %}
+                        <div class="write-line"></div>
+                    </div>
+                    {% endif %}
+                    {% set ns.i = ns.i + 1 %}
+                {% endfor %}
+                {% if words|length % 2 != 0 %}
+                <div class="word-cell"></div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

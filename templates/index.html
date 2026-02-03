@@ -54,30 +54,97 @@
             </div>
         </div>
 
-        <!-- 掌握曲线图 -->
+        <!-- 掌握曲线 / 学习统计 卡片 -->
         <div class="bg-slate-800/50 backdrop-blur rounded-xl shadow-lg border border-slate-700/50 p-5 mb-4">
-            <div class="flex items-center justify-between mb-3">
-                <h2 class="text-sm text-slate-400">掌握曲线</h2>
-                <div class="flex space-x-2">
-                    <button
-                        @click="loadCurve(7)"
-                        :class="curveDays === 7 ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300'"
-                        class="px-2 py-1 text-xs rounded"
-                    >7天</button>
-                    <button
-                        @click="loadCurve(30)"
-                        :class="curveDays === 30 ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300'"
-                        class="px-2 py-1 text-xs rounded"
-                    >30天</button>
-                    <button
-                        @click="loadCurve(0)"
-                        :class="curveDays === 0 ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300'"
-                        class="px-2 py-1 text-xs rounded"
-                    >全部</button>
+            <!-- 标签页头部 -->
+            <div class="flex items-center border-b border-slate-700/50 -mx-5 px-5 -mt-2 mb-3">
+                <button @click="cardTab = 'curve'"
+                    :class="cardTab === 'curve' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-slate-500 hover:text-slate-300'"
+                    class="px-3 py-2 text-sm font-medium transition -mb-px">掌握曲线</button>
+                <button @click="cardTab = 'stats'; if(!statsData) loadStats()"
+                    :class="cardTab === 'stats' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-slate-500 hover:text-slate-300'"
+                    class="px-3 py-2 text-sm font-medium transition -mb-px">学习统计</button>
+            </div>
+
+            <!-- 标签1: 掌握曲线 -->
+            <div x-show="cardTab === 'curve'">
+                <div class="flex items-center justify-end mb-2">
+                    <div class="flex space-x-2">
+                        <button
+                            @click="loadCurve(7)"
+                            :class="curveDays === 7 ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300'"
+                            class="px-2 py-1 text-xs rounded"
+                        >7天</button>
+                        <button
+                            @click="loadCurve(30)"
+                            :class="curveDays === 30 ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300'"
+                            class="px-2 py-1 text-xs rounded"
+                        >30天</button>
+                        <button
+                            @click="loadCurve(0)"
+                            :class="curveDays === 0 ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300'"
+                            class="px-2 py-1 text-xs rounded"
+                        >全部</button>
+                    </div>
+                </div>
+                <div class="h-48">
+                    <canvas id="masteredChart"></canvas>
                 </div>
             </div>
-            <div class="h-48">
-                <canvas id="masteredChart"></canvas>
+
+            <!-- 标签2: 学习统计 -->
+            <div x-show="cardTab === 'stats'" x-cloak>
+                <!-- 时段选择器 -->
+                <div class="flex justify-center space-x-2 mb-3">
+                    <template x-for="p in [{key:'day',label:'天'},{key:'week',label:'周'},{key:'month',label:'月'},{key:'year',label:'年'}]">
+                        <button
+                            @click="switchStatsPeriod(p.key)"
+                            :class="statsPeriod === p.key ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300'"
+                            class="px-3 py-1 text-xs rounded transition"
+                            x-text="p.label"
+                        ></button>
+                    </template>
+                </div>
+
+                <!-- 核心指标 -->
+                <div class="grid grid-cols-3 gap-2 mb-3">
+                    <div class="bg-slate-700/30 rounded-lg p-2.5 text-center">
+                        <div class="text-base font-bold text-sky-400" x-text="formatStudyTime(statsData?.study_time_ms || 0)"></div>
+                        <div class="text-[10px] text-slate-500">学习时长</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg p-2.5 text-center">
+                        <div class="text-base font-bold text-emerald-400" x-text="statsData?.total_words || 0"></div>
+                        <div class="text-[10px] text-slate-500">学习单词</div>
+                    </div>
+                    <div class="bg-slate-700/30 rounded-lg p-2.5 text-center">
+                        <div class="text-base font-bold text-violet-400" x-text="(statsData?.accuracy || 0) + '%'"></div>
+                        <div class="text-[10px] text-slate-500">正确率</div>
+                    </div>
+                </div>
+
+                <!-- 正确分布条 -->
+                <div x-show="statsData?.total_words > 0">
+                    <div class="flex h-4 rounded-full overflow-hidden bg-slate-700/50 mb-1">
+                        <div class="bg-emerald-500 transition-all duration-500" :style="statsBarStyle('first')"></div>
+                        <div class="bg-amber-500 transition-all duration-500" :style="statsBarStyle('second')"></div>
+                        <div class="bg-orange-500 transition-all duration-500" :style="statsBarStyle('third')"></div>
+                        <div class="bg-rose-500 transition-all duration-500" :style="statsBarStyle('wrong')"></div>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-slate-500 mb-3">
+                        <span>一次 <span class="text-emerald-400" x-text="statsData?.first_correct || 0"></span></span>
+                        <span>二次 <span class="text-amber-400" x-text="statsData?.second_correct || 0"></span></span>
+                        <span>三次 <span class="text-orange-400" x-text="statsData?.third_correct || 0"></span></span>
+                        <span>错误 <span class="text-rose-400" x-text="statsData?.wrong_count || 0"></span></span>
+                        <span>跳过 <span class="text-slate-400" x-text="statsData?.skipped_count || 0"></span></span>
+                    </div>
+                </div>
+
+                <!-- 查看详情链接 -->
+                <div class="text-center">
+                    <a href="/analytics" class="text-xs text-sky-400 hover:text-sky-300 transition">
+                        查看详情 →
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -129,6 +196,7 @@
                 </div>
             </button>
         </div>
+
     </main>
 
     <!-- 复习弹窗 -->
@@ -282,6 +350,11 @@ function indexPage() {
         curveDays: 7,
         chart: null,
 
+        // 卡片标签页
+        cardTab: 'curve',
+        statsPeriod: 'day',
+        statsData: null,
+
         // 弹窗状态
         showReviewModal: false,
         showNewWordsModal: false,
@@ -327,6 +400,37 @@ function indexPage() {
             } catch (e) {
                 console.error('加载全局统计失败:', e);
             }
+        },
+
+        async loadStats() {
+            try {
+                const res = await fetch(`/api/stats/learning?period=${this.statsPeriod}`);
+                if (res.ok) {
+                    this.statsData = await res.json();
+                }
+            } catch(e) { console.error('加载统计失败:', e); }
+        },
+
+        async switchStatsPeriod(p) {
+            this.statsPeriod = p;
+            await this.loadStats();
+        },
+
+        formatStudyTime(ms) {
+            if (!ms || ms <= 0) return '0分';
+            const minutes = Math.floor(ms / 60000);
+            const hours = Math.floor(minutes / 60);
+            const remainMins = minutes % 60;
+            if (hours > 0) return hours + '时' + (remainMins > 0 ? remainMins + '分' : '');
+            return minutes + '分';
+        },
+
+        statsBarStyle(type) {
+            if (!this.statsData || !this.statsData.total_words) return 'width: 0%';
+            const total = this.statsData.total_words;
+            const map = { first: 'first_correct', second: 'second_correct', third: 'third_correct', wrong: 'wrong_count' };
+            const val = this.statsData[map[type]] || 0;
+            return `width: ${(val / total * 100).toFixed(1)}%`;
         },
 
         async loadCurve(days) {

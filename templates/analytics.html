@@ -1,0 +1,477 @@
+{% extends "base.html" %}
+
+{% block title %}数据分析{% endblock %}
+
+{% block head %}
+<script src="/static/chart.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900" x-data="analyticsPage()">
+    <!-- 顶部导航 -->
+    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg sticky top-0 z-10 border-b border-slate-700/50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <button @click="window.location.href='/'" class="text-slate-400 hover:text-slate-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h1 class="text-lg font-bold text-slate-100">数据分析</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-4">
+        <!-- 时段选择器 -->
+        <div class="flex justify-center space-x-2">
+            <template x-for="p in [{key:'day',label:'天'},{key:'week',label:'周'},{key:'month',label:'月'},{key:'year',label:'年'}]">
+                <button
+                    @click="switchPeriod(p.key)"
+                    :class="period === p.key ? 'bg-sky-500 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'"
+                    class="px-4 py-1.5 text-sm rounded-lg transition"
+                    x-text="p.label"
+                ></button>
+            </template>
+        </div>
+
+        <!-- 加载状态 -->
+        <div x-show="loading" class="text-center py-8">
+            <div class="text-slate-400 text-sm">加载中...</div>
+        </div>
+
+        <div x-show="!loading" x-cloak>
+            <!-- 概览卡片 第一行 -->
+            <div class="grid grid-cols-3 gap-2 mb-2">
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 text-center">
+                    <div class="text-lg font-bold text-sky-400" x-text="formatStudyTime(stats?.study_time_ms || 0)"></div>
+                    <div class="text-[10px] text-slate-500">学习时长</div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 text-center">
+                    <div class="text-lg font-bold text-emerald-400" x-text="stats?.total_words || 0"></div>
+                    <div class="text-[10px] text-slate-500">学习单词</div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 text-center">
+                    <div class="text-lg font-bold text-violet-400" x-text="(stats?.accuracy || 0) + '%'"></div>
+                    <div class="text-[10px] text-slate-500">正确率</div>
+                </div>
+            </div>
+
+            <!-- 概览卡片 第二行 -->
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 text-center">
+                    <div class="text-lg font-bold text-amber-400" x-text="stats?.sessions_count || 0"></div>
+                    <div class="text-[10px] text-slate-500">会话次数</div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 text-center">
+                    <div class="text-lg font-bold text-teal-400" x-text="(streak?.current_streak || 0) + '天'"></div>
+                    <div class="text-[10px] text-slate-500">连续学习</div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 text-center">
+                    <div class="text-lg font-bold text-rose-400" x-text="(reviewCompletion?.completion_rate || 0) + '%'"></div>
+                    <div class="text-[10px] text-slate-500">复习完成率</div>
+                </div>
+            </div>
+
+            <!-- 正确分布 -->
+            <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 mb-4" x-show="stats?.total_words > 0">
+                <div class="text-xs text-slate-400 mb-2">正确分布</div>
+                <div class="flex h-5 rounded-full overflow-hidden bg-slate-700/50">
+                    <div class="bg-emerald-500 transition-all duration-500" :style="attemptBarStyle('first')"></div>
+                    <div class="bg-amber-500 transition-all duration-500" :style="attemptBarStyle('second')"></div>
+                    <div class="bg-orange-500 transition-all duration-500" :style="attemptBarStyle('third')"></div>
+                    <div class="bg-rose-500 transition-all duration-500" :style="attemptBarStyle('wrong')"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1.5">
+                    <span>一次 <span class="text-emerald-400" x-text="stats?.first_correct || 0"></span></span>
+                    <span>二次 <span class="text-amber-400" x-text="stats?.second_correct || 0"></span></span>
+                    <span>三次 <span class="text-orange-400" x-text="stats?.third_correct || 0"></span></span>
+                    <span>错误 <span class="text-rose-400" x-text="stats?.wrong_count || 0"></span></span>
+                    <span>跳过 <span class="text-slate-400" x-text="stats?.skipped_count || 0"></span></span>
+                </div>
+                <!-- 最佳连击 -->
+                <div class="text-[10px] text-slate-500 mt-1" x-show="stats?.best_streak > 0">
+                    最佳连击: <span class="text-sky-400" x-text="stats?.best_streak || 0"></span>
+                </div>
+            </div>
+
+            <!-- 学习趋势图 (周/月/年) -->
+            <div x-show="period !== 'day' && stats?.daily_breakdown?.length > 0" class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 mb-4">
+                <div class="text-xs text-slate-400 mb-2">学习趋势</div>
+                <div class="h-44">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 掌握曲线 -->
+            <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 mb-4" x-show="curveData?.dates?.length > 0">
+                <div class="text-xs text-slate-400 mb-2">掌握曲线 (30天)</div>
+                <div class="h-44">
+                    <canvas id="curveChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 词书进度 -->
+            <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 mb-4" x-show="stats?.book_breakdown?.length > 0">
+                <div class="text-xs text-slate-400 mb-3">词书分布</div>
+                <div class="space-y-2">
+                    <template x-for="book in stats?.book_breakdown || []" :key="book.book_id">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-300 truncate flex-1 mr-2" x-text="book.book_name"></span>
+                            <span class="text-slate-400 text-xs whitespace-nowrap">
+                                <span class="text-sky-400" x-text="book.words"></span>词
+                                <span class="ml-1" :class="book.accuracy >= 80 ? 'text-emerald-400' : 'text-amber-400'" x-text="book.accuracy + '%'"></span>
+                            </span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- 薄弱单词 -->
+            <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl mb-4">
+                <button @click="showWeakWords = !showWeakWords; if(showWeakWords && !weakWords) loadWeakWords()"
+                    class="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-400 hover:text-slate-200 transition">
+                    <span>薄弱单词</span>
+                    <svg :class="showWeakWords ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="showWeakWords" x-cloak class="px-4 pb-3 space-y-1">
+                    <template x-if="weakWords && weakWords.length > 0">
+                        <div class="flex items-center justify-center gap-2 pb-2">
+                            <input type="number" x-model.number="notebookLimit" min="1" max="200"
+                                class="w-14 px-2 py-1 text-xs text-center bg-slate-700 text-slate-200
+                                       border border-slate-600 rounded-lg focus:border-sky-500 focus:outline-none">
+                            <span class="text-[11px] text-slate-500">词</span>
+                            <button @click="window.open('/export/notebook?limit=' + (notebookLimit || 25), '_blank')"
+                                class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs
+                                       bg-sky-500/20 text-sky-400 hover:bg-sky-500/30
+                                       border border-sky-500/30 rounded-lg transition">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                                </svg>
+                                <span>导出默写本</span>
+                            </button>
+                        </div>
+                    </template>
+                    <template x-if="weakWords && weakWords.length === 0">
+                        <div class="text-xs text-slate-500 py-2">暂无薄弱单词</div>
+                    </template>
+                    <div class="max-h-48 overflow-y-auto space-y-1">
+                        <template x-for="w in weakWords || []" :key="w.word + w.book_id">
+                            <div class="flex items-center justify-between text-xs px-2 py-1.5 bg-slate-700/30 rounded">
+                                <span class="text-slate-200 shrink-0" x-text="w.word"></span>
+                                <span class="flex items-center space-x-3 text-slate-500 shrink-0 ml-2">
+                                    <span>难度 <span :class="w.difficulty >= 7 ? 'text-rose-400' : 'text-amber-400'" x-text="w.difficulty"></span></span>
+                                    <span>遗忘 <span class="text-rose-400" x-text="w.lapses + '次'"></span></span>
+                                    <span>记忆 <span class="text-sky-400" x-text="w.stability <= 1 ? '<1天' : Math.round(w.stability) + '天'"></span></span>
+                                </span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 薄弱音素 -->
+            <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl mb-4">
+                <button @click="showPhonemeErrors = !showPhonemeErrors; if(showPhonemeErrors && !phonemeErrors) loadPhonemeErrors()"
+                    class="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-400 hover:text-slate-200 transition">
+                    <span>薄弱音素</span>
+                    <svg :class="showPhonemeErrors ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="showPhonemeErrors" x-cloak class="px-4 pb-3 space-y-1 max-h-48 overflow-y-auto">
+                    <template x-if="phonemeErrors && phonemeErrors.length === 0">
+                        <div class="text-xs text-slate-500 py-2">暂无发音错误数据</div>
+                    </template>
+                    <template x-for="p in phonemeErrors || []" :key="p.phoneme">
+                        <div class="flex items-center justify-between text-xs px-2 py-1.5 bg-slate-700/30 rounded">
+                            <span class="text-slate-200 font-mono" x-text="'/' + p.phoneme + '/'"></span>
+                            <span class="flex items-center space-x-2">
+                                <span class="text-slate-500" x-text="'错误' + p.error_count + '次'"></span>
+                                <span :class="p.avg_accuracy < 60 ? 'text-rose-400' : 'text-amber-400'" x-text="p.avg_accuracy + '%'"></span>
+                            </span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- 发音评估历史 -->
+            <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl mb-4">
+                <button @click="showPronRecords = !showPronRecords; if(showPronRecords && !pronRecords) loadPronRecords()"
+                    class="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-400 hover:text-slate-200 transition">
+                    <span>发音评估历史</span>
+                    <svg :class="showPronRecords ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="showPronRecords" x-cloak class="px-4 pb-3 space-y-1 max-h-48 overflow-y-auto">
+                    <template x-if="pronRecords && pronRecords.length === 0">
+                        <div class="text-xs text-slate-500 py-2">暂无发音评估记录</div>
+                    </template>
+                    <template x-for="r in pronRecords || []" :key="r.word + r.created_at">
+                        <div class="flex items-center justify-between text-xs px-2 py-1.5 bg-slate-700/30 rounded">
+                            <span class="text-slate-200" x-text="r.word"></span>
+                            <span class="flex items-center space-x-2 text-slate-400">
+                                <span>准确:<span :class="r.accuracy_score >= 80 ? 'text-emerald-400' : 'text-amber-400'" x-text="Math.round(r.accuracy_score || 0)"></span></span>
+                                <span>流利:<span :class="r.fluency_score >= 80 ? 'text-emerald-400' : 'text-amber-400'" x-text="Math.round(r.fluency_score || 0)"></span></span>
+                            </span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- 额外信息 -->
+            <div class="text-center text-[10px] text-slate-600 pb-4">
+                <span x-show="streak?.longest_streak > 0">历史最长连续学习: <span class="text-slate-500" x-text="streak?.longest_streak + '天'"></span></span>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function analyticsPage() {
+    return {
+        period: 'day',
+        stats: null,
+        streak: null,
+        reviewCompletion: null,
+        curveData: null,
+
+        weakWords: null,
+        showWeakWords: false,
+        notebookLimit: 36,
+        pronRecords: null,
+        showPronRecords: false,
+        phonemeErrors: null,
+        showPhonemeErrors: false,
+
+        trendChart: null,
+        curveChart: null,
+        loading: true,
+
+        async init() {
+            await this.loadAll();
+        },
+
+        async loadAll() {
+            this.loading = true;
+            try {
+                const [statsRes, streakRes, reviewRes, curveRes] = await Promise.all([
+                    fetch(`/api/stats/learning?period=${this.period}`),
+                    fetch('/api/stats/streak'),
+                    fetch('/api/stats/review-completion'),
+                    fetch('/api/stats/mastered-curve?days=30')
+                ]);
+                this.stats = await statsRes.json();
+                this.streak = await streakRes.json();
+                this.reviewCompletion = await reviewRes.json();
+                this.curveData = await curveRes.json();
+
+                this.$nextTick(() => {
+                    if (this.period !== 'day' && this.stats?.daily_breakdown?.length > 0) {
+                        this.renderTrendChart();
+                    }
+                    if (this.curveData?.dates?.length > 0) {
+                        this.renderCurveChart();
+                    }
+                });
+            } catch (e) {
+                console.error('加载数据失败:', e);
+            }
+            this.loading = false;
+        },
+
+        async switchPeriod(p) {
+            if (this.period === p) return;
+            this.period = p;
+            try {
+                const res = await fetch(`/api/stats/learning?period=${p}`);
+                this.stats = await res.json();
+                this.$nextTick(() => {
+                    if (p !== 'day' && this.stats?.daily_breakdown?.length > 0) {
+                        this.renderTrendChart();
+                    }
+                });
+            } catch (e) {
+                console.error('切换时段失败:', e);
+            }
+        },
+
+        formatStudyTime(ms) {
+            const totalMin = Math.floor(ms / 60000);
+            if (totalMin === 0) return '0分';
+            if (totalMin < 60) return totalMin + '分';
+            const hours = Math.floor(totalMin / 60);
+            const mins = totalMin % 60;
+            return hours + '时' + (mins > 0 ? mins + '分' : '');
+        },
+
+        attemptBarStyle(type) {
+            const s = this.stats;
+            if (!s) return 'width:0%';
+            const total = (s.first_correct || 0) + (s.second_correct || 0)
+                + (s.third_correct || 0) + (s.wrong_count || 0);
+            if (total === 0) return 'width:0%';
+            const map = { first: s.first_correct, second: s.second_correct,
+                third: s.third_correct, wrong: s.wrong_count };
+            return `width:${((map[type] || 0) / total * 100).toFixed(1)}%`;
+        },
+
+        renderTrendChart() {
+            const ctx = document.getElementById('trendChart');
+            if (!ctx || !this.stats?.daily_breakdown) return;
+            if (this.trendChart) this.trendChart.destroy();
+
+            const bd = this.stats.daily_breakdown;
+            this.trendChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: bd.map(d => d.date),
+                    datasets: [{
+                        label: '单词数',
+                        data: bd.map(d => d.words),
+                        backgroundColor: 'rgba(56, 189, 248, 0.6)',
+                        borderRadius: 4,
+                        yAxisID: 'y'
+                    }, {
+                        label: '正确率',
+                        data: bd.map(d => d.accuracy),
+                        type: 'line',
+                        borderColor: 'rgb(52, 211, 153)',
+                        backgroundColor: 'transparent',
+                        tension: 0.3,
+                        pointRadius: 2,
+                        borderWidth: 2,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: 'rgb(148,163,184)', boxWidth: 12, font: { size: 10 } }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(148,163,184,0.1)' },
+                            ticks: { color: 'rgb(148,163,184)', maxTicksLimit: 7, font: { size: 10 } }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            position: 'left',
+                            grid: { color: 'rgba(148,163,184,0.1)' },
+                            ticks: { color: 'rgb(148,163,184)', font: { size: 10 } }
+                        },
+                        y1: {
+                            beginAtZero: true,
+                            max: 100,
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: 'rgb(52,211,153)', callback: v => v + '%', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        },
+
+        renderCurveChart() {
+            const ctx = document.getElementById('curveChart');
+            if (!ctx || !this.curveData) return;
+            if (this.curveChart) this.curveChart.destroy();
+
+            this.curveChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: this.curveData.dates || [],
+                    datasets: [{
+                        label: '一次正确',
+                        data: this.curveData.counts_1st || [],
+                        borderColor: 'rgb(34, 197, 94)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.05)',
+                        fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2
+                    }, {
+                        label: '二次正确',
+                        data: this.curveData.counts_2nd || [],
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.05)',
+                        fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2
+                    }, {
+                        label: '三次正确',
+                        data: this.curveData.counts_3rd || [],
+                        borderColor: 'rgb(249, 115, 22)',
+                        backgroundColor: 'rgba(249, 115, 22, 0.05)',
+                        fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: 'rgb(148,163,184)', boxWidth: 12, padding: 12, font: { size: 10 } }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(148,163,184,0.1)' },
+                            ticks: { color: 'rgb(148,163,184)', maxTicksLimit: 7, font: { size: 10 } }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(148,163,184,0.1)' },
+                            ticks: { color: 'rgb(148,163,184)', stepSize: 1, font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        },
+
+        async loadWeakWords() {
+            try {
+                const res = await fetch('/api/stats/weak-words?limit=15');
+                if (res.ok) {
+                    const data = await res.json();
+                    this.weakWords = data.words || [];
+                }
+            } catch (e) {
+                console.error('加载薄弱单词失败:', e);
+                this.weakWords = [];
+            }
+        },
+
+        async loadPhonemeErrors() {
+            try {
+                const res = await fetch('/api/stats/phoneme-errors?limit=15');
+                if (res.ok) {
+                    const data = await res.json();
+                    this.phonemeErrors = data.errors || [];
+                }
+            } catch (e) {
+                console.error('加载薄弱音素失败:', e);
+                this.phonemeErrors = [];
+            }
+        },
+
+        async loadPronRecords() {
+            try {
+                const res = await fetch('/api/stats/pronunciation?limit=15');
+                if (res.ok) {
+                    const data = await res.json();
+                    this.pronRecords = data.records || [];
+                }
+            } catch (e) {
+                console.error('加载发音历史失败:', e);
+                this.pronRecords = [];
+            }
+        }
+    }
+}
+</script>
+{% endblock %}
