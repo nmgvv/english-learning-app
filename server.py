@@ -40,7 +40,7 @@ from database import (
     get_user_progress, update_progress, get_due_cards,
     add_history, get_user_stats, get_words_history_stats
 )
-from bookmanager import BookManager, get_book_display_name
+from bookmanager import BookManager, get_book_display_name, filter_books_by_grade
 
 # FSRS 算法和辅助函数 (从 dictation.py 复用)
 from dictation import (
@@ -257,8 +257,11 @@ async def index_page(request: Request, db: Session = Depends(get_db)):
         return RedirectResponse(url="/login", status_code=302)
 
     books = book_manager.list_books()
+    # 根据用户年级过滤词书（高中生只看高中词书，初中生只看初中词书）
+    user_grade = user.grade if hasattr(user, 'grade') else None
+    filtered_books = filter_books_by_grade(books, user_grade)
     # 构建词书列表，包含 ID 和中文名
-    book_list = [{"id": b, "name": get_book_display_name(b)} for b in books]
+    book_list = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
     return templates.TemplateResponse("index.html", {
         "request": request,
         "user": user,
@@ -299,9 +302,11 @@ async def dictation_global_page(request: Request, db: Session = Depends(get_db))
     if not user:
         return RedirectResponse(url="/login", status_code=302)
 
-    # 获取所有词书（用于显示词书名称）
+    # 获取所有词书（用于显示词书名称），根据年级过滤
     book_ids = book_manager.list_books()
-    books = [{"id": b, "name": get_book_display_name(b)} for b in book_ids]
+    user_grade = user.grade if hasattr(user, 'grade') else None
+    filtered_books = filter_books_by_grade(book_ids, user_grade)
+    books = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
 
     return templates.TemplateResponse("dictation.html", {
         "request": request,
@@ -324,9 +329,11 @@ async def dictation_page(request: Request, book_id: str, db: Session = Depends(g
     if not words:
         raise HTTPException(status_code=404, detail="词书不存在")
 
-    # 获取所有词书（用于显示词书名称）
+    # 获取所有词书（用于显示词书名称），根据年级过滤
     book_ids = book_manager.list_books()
-    books = [{"id": b, "name": get_book_display_name(b)} for b in book_ids]
+    user_grade = user.grade if hasattr(user, 'grade') else None
+    filtered_books = filter_books_by_grade(book_ids, user_grade)
+    books = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
 
     return templates.TemplateResponse("dictation.html", {
         "request": request,
@@ -592,10 +599,15 @@ async def api_weak_areas():
 # ==================== 词书 API ====================
 
 @app.get("/api/books")
-async def api_books():
-    """获取词书列表"""
+async def api_books(user: dict = Depends(require_auth), db: Session = Depends(get_db)):
+    """获取词书列表（根据用户年级过滤）"""
     books = book_manager.list_books()
-    return {"books": books}
+    # 获取用户年级并过滤
+    from database import User
+    db_user = db.query(User).filter(User.id == user["id"]).first()
+    user_grade = db_user.grade if db_user else None
+    filtered_books = filter_books_by_grade(books, user_grade)
+    return {"books": filtered_books}
 
 
 @app.get("/api/books/{book_id}")
@@ -1270,10 +1282,16 @@ async def api_global_stats(user: dict = Depends(require_auth), db: Session = Dep
     """获取全局学习统计（跨所有词书）"""
     stats = get_user_stats(db, user["id"])  # 不传 book_id
 
-    # 获取所有词书的总词数
-    book_ids = book_manager.list_books()  # 返回字符串列表
+    # 获取用户年级并过滤词书
+    from database import User
+    db_user = db.query(User).filter(User.id == user["id"]).first()
+    user_grade = db_user.grade if db_user else None
+    book_ids = book_manager.list_books()
+    filtered_book_ids = filter_books_by_grade(book_ids, user_grade)
+
+    # 计算过滤后词书的总词数
     total_words = 0
-    for book_id in book_ids:
+    for book_id in filtered_book_ids:
         words = book_manager.load(book_id)
         if words:
             total_words += len(words)

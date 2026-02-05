@@ -53,10 +53,60 @@ BOOK_NAMES = {
     "gaokao_3500": "高考3500词",
 }
 
+# 词书分类：初中 / 高中
+JUNIOR_BOOKS = [
+    "bsd_grade7_up", "bsd_grade7_down",
+    "bsd_grade8_up", "bsd_grade8_down",
+    "bsd_grade9_up", "bsd_grade9_down",
+    "pep_grade7", "pep_grade8", "pep_grade9",
+    "zhongkao",
+]
+
+SENIOR_BOOKS = [
+    "bsd_senior_compulsory1", "bsd_senior_compulsory2", "bsd_senior_compulsory3",
+    "bsd_senior_elective1", "bsd_senior_elective2", "bsd_senior_elective3", "bsd_senior_elective4",
+    "gaokao_3500",
+]
+
+# 年级分类
+JUNIOR_GRADES = ["grade7", "grade8", "grade9"]
+SENIOR_GRADES = ["senior1", "senior2", "senior3"]
+
 
 def get_book_display_name(book_id: str) -> str:
     """获取词书的中文显示名称"""
     return BOOK_NAMES.get(book_id, book_id)
+
+
+def filter_books_by_grade(book_ids: List[str], user_grade: str) -> List[str]:
+    """
+    根据用户年级过滤词书列表
+
+    Args:
+        book_ids: 所有词书ID列表
+        user_grade: 用户年级 (grade7/grade8/grade9/senior1/senior2/senior3)
+
+    Returns:
+        过滤后的词书ID列表
+    """
+    if not user_grade:
+        # 未设置年级，返回所有词书
+        return book_ids
+
+    if user_grade in SENIOR_GRADES:
+        # 高中生只显示高中词书
+        return [b for b in book_ids if b in SENIOR_BOOKS]
+    elif user_grade in JUNIOR_GRADES:
+        # 初中生只显示初中词书
+        return [b for b in book_ids if b in JUNIOR_BOOKS]
+    else:
+        # 未知年级，返回所有词书
+        return book_ids
+
+
+def is_senior_student(user_grade: str) -> bool:
+    """判断是否为高中生"""
+    return user_grade in SENIOR_GRADES if user_grade else False
 
 
 @dataclass
