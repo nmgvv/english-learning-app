@@ -49,6 +49,8 @@ BOOK_NAMES = {
     "bsd_senior_elective2": "北师大高中选择性必修二",
     "bsd_senior_elective3": "北师大高中选择性必修三",
     "bsd_senior_elective4": "北师大高中选择性必修四",
+    # 高考词汇
+    "gaokao_3500": "高考3500词",
 }
 
 
