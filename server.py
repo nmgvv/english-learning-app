@@ -22,7 +22,6 @@ for _proxy_key in ['http_proxy', 'https_proxy', 'HTTP_PROXY', 'HTTPS_PROXY', 'al
     os.environ.pop(_proxy_key, None)
 
 import json
-import asyncio
 from datetime import datetime
 from typing import Optional, List
 from pathlib import Path
@@ -41,7 +40,7 @@ from database import (
     get_user_progress, update_progress, get_due_cards,
     add_history, get_user_stats, get_words_history_stats
 )
-from bookmanager import BookManager, BOOK_NAMES, get_book_display_name
+from bookmanager import BookManager, get_book_display_name
 
 # FSRS 算法和辅助函数 (从 dictation.py 复用)
 from dictation import (
@@ -382,6 +381,24 @@ async def reading_page(request: Request, book_id: str, unit: Optional[str] = Non
         "book_id": book_id,
         "book_name": book_name,
         "unit": unit or ""
+    })
+
+
+@app.get("/reading-comprehension", response_class=HTMLResponse)
+async def reading_comprehension_page(request: Request, difficulty: str = "medium", db: Session = Depends(get_db)):
+    """阅读理解练习页面"""
+    user = get_current_user(request, db)
+    if not user:
+        return RedirectResponse(url="/login", status_code=302)
+
+    # 验证难度参数
+    if difficulty not in ["medium", "hard"]:
+        difficulty = "medium"
+
+    return templates.TemplateResponse("reading_comprehension.html", {
+        "request": request,
+        "user": user,
+        "difficulty": difficulty
     })
 
 
@@ -2202,6 +2219,113 @@ async def api_tts_chinese(text: str, user: dict = Depends(require_auth)):
     if not result:
         raise HTTPException(status_code=503, detail="TTS 服务不可用")
     return FileResponse(str(result), media_type="audio/mpeg")
+
+
+# ==================== 阅读理解 API ====================
+
+class ReadingComprehensionRequest(BaseModel):
+    difficulty: str = "medium"
+
+
+class ReadingComprehensionSubmit(BaseModel):
+    questions: List[dict]
+    answers: dict  # {"1": "A", "2": "B", ...}
+
+
+@app.post("/api/reading-comprehension/generate")
+async def api_reading_comprehension_generate(data: ReadingComprehensionRequest, user: dict = Depends(require_auth)):
+    """生成阅读理解题目"""
+    if not QWEN_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Qwen 服务不可用")
+
+    api_key = os.getenv("DASHSCOPE_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="未配置 DASHSCOPE_API_KEY")
+
+    # 导入提示词模块
+    from prompts.api_prompts import get_random_reading_prompt
+
+    # 获取随机主题的提示词
+    system_prompt, user_prompt, topic = get_random_reading_prompt(data.difficulty)
+
+    try:
+        async with httpx.AsyncClient(timeout=120.0) as client:
+            response = await client.post(
+                "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": "qwen-plus",
+                    "messages": [
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    "temperature": 0.7,
+                    "max_tokens": 4000
+                }
+            )
+
+            if response.status_code == 200:
+                result = response.json()
+                content = result["choices"][0]["message"]["content"]
+
+                # 解析 JSON（处理可能的 markdown 代码块）
+                if "```json" in content:
+                    content = content.split("```json")[1].split("```")[0].strip()
+                elif "```" in content:
+                    content = content.split("```")[1].split("```")[0].strip()
+
+                parsed = json.loads(content)
+                parsed["topic"] = topic
+                parsed["difficulty"] = data.difficulty
+                return parsed
+            else:
+                raise HTTPException(
+                    status_code=response.status_code,
+                    detail=f"API 返回错误: {response.text}"
+                )
+    except json.JSONDecodeError as e:
+        raise HTTPException(status_code=500, detail=f"JSON 解析失败: {str(e)}")
+    except httpx.TimeoutException:
+        raise HTTPException(status_code=504, detail="生成超时，请重试")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/reading-comprehension/submit")
+async def api_reading_comprehension_submit(data: ReadingComprehensionSubmit, user: dict = Depends(require_auth)):
+    """提交答案并返回结果"""
+    results = []
+    correct_count = 0
+
+    for q in data.questions:
+        q_num = str(q["number"])
+        user_answer = data.answers.get(q_num, "")
+        correct_answer = q["answer"]
+        is_correct = user_answer.upper() == correct_answer.upper()
+
+        if is_correct:
+            correct_count += 1
+
+        results.append({
+            "number": q["number"],
+            "user_answer": user_answer,
+            "correct_answer": correct_answer,
+            "is_correct": is_correct,
+            "explanation": q.get("explanation", "")
+        })
+
+    total = len(data.questions)
+    score = int((correct_count / total) * 100) if total > 0 else 0
+
+    return {
+        "results": results,
+        "correct_count": correct_count,
+        "total": total,
+        "score": score
+    }
 
 
 # ==================== 启动 ====================

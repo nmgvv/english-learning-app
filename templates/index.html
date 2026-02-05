@@ -170,7 +170,7 @@
         </div>
 
         <!-- 对话和跟读练习 -->
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4 mb-4">
             <button
                 @click="showConversationModal = true"
                 :disabled="!globalStats?.words_learned"
@@ -194,6 +194,22 @@
                     </svg>
                     跟读练习
                 </div>
+            </button>
+        </div>
+
+        <!-- 阅读理解 -->
+        <div class="grid grid-cols-1 gap-4">
+            <button
+                @click="showRCModal = true"
+                class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-4 rounded-xl font-medium hover:from-indigo-600 hover:to-purple-600 transition shadow-lg shadow-indigo-500/20"
+            >
+                <div class="text-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    阅读理解
+                </div>
+                <div class="text-sm opacity-80">高考真题风格练习</div>
             </button>
         </div>
 
@@ -338,6 +354,41 @@
             </div>
         </div>
     </div>
+
+    <!-- 阅读理解弹窗 -->
+    <div x-show="showRCModal" x-cloak class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click.self="showRCModal = false">
+        <div class="bg-slate-800 rounded-xl p-6 w-80">
+            <h3 class="text-lg font-bold text-slate-100 mb-4">选择难度</h3>
+            <div class="space-y-3 mb-4">
+                <button
+                    @click="rcDifficulty = 'medium'"
+                    class="w-full text-left px-4 py-3 rounded-lg transition"
+                    :class="rcDifficulty === 'medium' ? 'bg-indigo-600 text-white' : 'bg-slate-700 text-slate-200 hover:bg-slate-600'"
+                >
+                    <div class="font-medium">中等难度</div>
+                    <div class="text-sm opacity-70">说明文 - 科普/社会现象/环保/健康</div>
+                </button>
+                <button
+                    @click="rcDifficulty = 'hard'"
+                    class="w-full text-left px-4 py-3 rounded-lg transition"
+                    :class="rcDifficulty === 'hard' ? 'bg-indigo-600 text-white' : 'bg-slate-700 text-slate-200 hover:bg-slate-600'"
+                >
+                    <div class="font-medium">较高难度</div>
+                    <div class="text-sm opacity-70">议论文 - 前沿科技/学术研究/社会议题</div>
+                </button>
+            </div>
+            <div class="flex space-x-3">
+                <button
+                    @click="showRCModal = false"
+                    class="flex-1 px-4 py-2 bg-slate-600 text-slate-200 rounded-lg hover:bg-slate-500"
+                >取消</button>
+                <button
+                    @click="startReadingComprehension"
+                    class="flex-1 px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-400"
+                >开始练习</button>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
@@ -360,6 +411,7 @@ function indexPage() {
         showNewWordsModal: false,
         showConversationModal: false,
         showReadingModal: false,
+        showRCModal: false,
 
         // 复习选项
         reviewLimit: 20,
@@ -374,6 +426,9 @@ function indexPage() {
         // 对话和跟读选项
         selectedBookForConv: null,
         selectedBookForReading: null,
+
+        // 阅读理解选项
+        rcDifficulty: 'medium',
 
         async init() {
             await Promise.all([
@@ -571,6 +626,11 @@ function indexPage() {
             if (!this.selectedBookForReading) return;
             window.location.href = `/reading/${this.selectedBookForReading}`;
             this.showReadingModal = false;
+        },
+
+        startReadingComprehension() {
+            window.location.href = `/reading-comprehension?difficulty=${this.rcDifficulty}`;
+            this.showRCModal = false;
         },
 
         async logout() {
