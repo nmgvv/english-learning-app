@@ -41,7 +41,7 @@ from database import (
     add_history, get_user_stats, get_words_history_stats,
     ConfusingWords, ConfusionRecord, User, Progress
 )
-from bookmanager import BookManager, get_book_display_name, filter_books_by_grade, is_senior_student
+from bookmanager import BookManager, get_book_display_name, filter_books_by_grade
 
 # FSRS 算法和辅助函数 (从 dictation.py 复用)
 from dictation import (
@@ -264,20 +264,10 @@ async def index_page(request: Request, db: Session = Depends(get_db)):
     # 构建词书列表，包含 ID 和中文名
     book_list = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
 
-    # 计算摸底剩余数量（所有学生）
-    from sqlalchemy import func
-    all_words_count = len(book_manager.load("gaokao_3500"))
-    assessed_count = db.query(func.count(Progress.id)).filter(
-        Progress.user_id == user["id"],
-        Progress.book_id == "gaokao_3500"
-    ).scalar() or 0
-    assessment_remaining = all_words_count - assessed_count
-
     return templates.TemplateResponse("index.html", {
         "request": request,
         "user": user,
-        "books": book_list,
-        "assessment_remaining": assessment_remaining
+        "books": book_list
     })
 
 
@@ -2363,38 +2353,44 @@ async def api_reading_comprehension_submit(data: ReadingComprehensionSubmit, use
 @app.get("/quick-assessment")
 async def quick_assessment_page(
     request: Request,
+    book_id: str = "gaokao_3500",
     batch_size: int = 500,
     user: dict = Depends(require_auth),
     db: Session = Depends(get_db)
 ):
     """快速摸底页面"""
     user_obj = db.query(User).filter(User.id == user["id"]).first()
-    if not is_senior_student(user_obj.grade):
+
+    # 验证词书存在
+    words = book_manager.load(book_id)
+    if not words:
         return RedirectResponse("/", status_code=302)
 
     return templates.TemplateResponse("quick_assessment.html", {
         "request": request,
         "user": user_obj,
+        "book_id": book_id,
+        "book_name": get_book_display_name(book_id),
         "batch_size": batch_size
     })
 
 
 @app.get("/api/assessment/progress")
-async def get_assessment_progress(user: dict = Depends(require_auth), db: Session = Depends(get_db)):
+async def get_assessment_progress(book_id: str = "gaokao_3500", user: dict = Depends(require_auth), db: Session = Depends(get_db)):
     """获取摸底进度"""
     from sqlalchemy import func
 
-    words = book_manager.load("gaokao_3500")
-    total = len(words)
+    words = book_manager.load(book_id)
+    total = len(words) if words else 0
 
     assessed = db.query(func.count(Progress.id)).filter(
         Progress.user_id == user["id"],
-        Progress.book_id == "gaokao_3500"
+        Progress.book_id == book_id
     ).scalar() or 0
 
     mastered = db.query(func.count(Progress.id)).filter(
         Progress.user_id == user["id"],
-        Progress.book_id == "gaokao_3500",
+        Progress.book_id == book_id,
         Progress.state == 2
     ).scalar() or 0
 
@@ -2409,6 +2405,7 @@ async def get_assessment_progress(user: dict = Depends(require_auth), db: Sessio
 
 @app.get("/api/assessment/batch")
 async def get_assessment_batch(
+    book_id: str = "gaokao_3500",
     batch_size: int = 500,
     user: dict = Depends(require_auth),
     db: Session = Depends(get_db),
@@ -2417,12 +2414,14 @@ async def get_assessment_batch(
     """获取一批待摸底的单词（含易混淆干扰项）"""
     import random
 
-    all_words = book_manager.load("gaokao_3500")
+    all_words = book_manager.load(book_id)
+    if not all_words:
+        return {"words": [], "total_batch": 0, "remaining": 0}
     word_list = [w.word for w in all_words]
 
     assessed_words = db.query(Progress.word).filter(
         Progress.user_id == user["id"],
-        Progress.book_id == "gaokao_3500"
+        Progress.book_id == book_id
     ).all()
     assessed_set = {w[0] for w in assessed_words}
 
@@ -2456,6 +2455,7 @@ async def get_assessment_batch(
 
 @app.get("/api/assessment/next")
 async def get_next_word(
+    book_id: str = "gaokao_3500",
     exclude: str = None,
     user: dict = Depends(require_auth),
     db: Session = Depends(get_db)
@@ -2463,12 +2463,14 @@ async def get_next_word(
     """获取下一个待摸底单词（随机选取，支持排除当前词）"""
     import random
 
-    all_words = book_manager.load("gaokao_3500")
+    all_words = book_manager.load(book_id)
+    if not all_words:
+        return {"done": True}
     word_list = [w.word for w in all_words]
 
     assessed_set = {w[0] for w in db.query(Progress.word).filter(
         Progress.user_id == user["id"],
-        Progress.book_id == "gaokao_3500"
+        Progress.book_id == book_id
     ).all()}
 
     remaining = [w for w in all_words if w.word not in assessed_set and w.word != exclude]
@@ -2615,6 +2617,7 @@ class AssessmentSubmit(BaseModel):
     word: str
     correct: bool
     selected: Optional[str] = None
+    book_id: str = "gaokao_3500"
 
 
 @app.post("/api/assessment/submit")
@@ -2632,7 +2635,7 @@ async def submit_assessment(
         stability = init_stability(grade)
         interval = next_interval(stability)
 
-        update_progress(db, user["id"], "gaokao_3500", data.word,
+        update_progress(db, user["id"], data.book_id, data.word,
             difficulty=difficulty,
             stability=stability,
             state=2,
@@ -2646,7 +2649,7 @@ async def submit_assessment(
         difficulty = init_difficulty(grade)
         stability = init_stability(grade)
 
-        update_progress(db, user["id"], "gaokao_3500", data.word,
+        update_progress(db, user["id"], data.book_id, data.word,
             difficulty=difficulty,
             stability=stability,
             state=0,

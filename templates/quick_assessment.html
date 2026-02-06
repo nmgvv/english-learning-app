@@ -13,7 +13,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </a>
-                <h1 class="text-lg font-bold text-slate-100">快速摸底</h1>
+                <h1 class="text-lg font-bold text-slate-100">快速摸底 - {{ book_name }}</h1>
             </div>
             <div class="text-sm text-slate-400">
                 <span x-text="masteredCount + notMasteredCount"></span> / <span x-text="totalCount"></span>
@@ -124,6 +124,7 @@
 <script>
 function assessmentPage() {
     return {
+        bookId: '{{ book_id }}',
         currentWord: null,
         options: [],
         selectedOption: null,
@@ -147,7 +148,7 @@ function assessmentPage() {
         async startBatch() {
             this.loading = true;
             try {
-                const res = await fetch(`/api/assessment/batch?batch_size=${this.batchSize}`);
+                const res = await fetch(`/api/assessment/batch?book_id=${this.bookId}&batch_size=${this.batchSize}`);
                 const data = await res.json();
 
                 if (data.words.length === 0) {
@@ -177,7 +178,7 @@ function assessmentPage() {
         prefetchNext() {
             // 在后台预加载下一个词汇（含大模型生成干扰词）
             this.nextWordData = null;
-            this.prefetchPromise = fetch(`/api/assessment/next?exclude=${this.currentWord.word}`)
+            this.prefetchPromise = fetch(`/api/assessment/next?book_id=${this.bookId}&exclude=${this.currentWord.word}`)
                 .then(res => res.json())
                 .then(data => {
                     this.nextWordData = data;
@@ -220,7 +221,8 @@ function assessmentPage() {
                 body: JSON.stringify({
                     word: this.currentWord.word,
                     correct: correct,
-                    selected: opt
+                    selected: opt,
+                    book_id: this.bookId
                 })
             }).catch(e => console.error('提交失败:', e));
 
@@ -276,7 +278,7 @@ function assessmentPage() {
         },
 
         goToLearn() {
-            window.location.href = '/dictation/gaokao_3500?mode=new';
+            window.location.href = `/dictation/${this.bookId}?mode=new`;
         },
 
         goHome() {
