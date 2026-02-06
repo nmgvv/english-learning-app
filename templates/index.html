@@ -148,6 +148,17 @@
             </div>
         </div>
 
+        <!-- 快速摸底按钮（高中生且有未摸底词汇时显示） -->
+        <div x-show="isSenior && assessmentRemaining > 0" class="mb-4">
+            <button
+                @click="showAssessmentPrompt = true"
+                class="w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-4 rounded-xl font-medium hover:from-rose-600 hover:to-pink-600 transition shadow-lg shadow-pink-500/20"
+            >
+                <div class="text-lg">快速摸底</div>
+                <div class="text-sm opacity-80" x-text="'剩余 ' + assessmentRemaining + ' 词待摸底'"></div>
+            </button>
+        </div>
+
         <!-- 操作按钮 -->
         <div class="grid grid-cols-2 gap-4 mb-4">
             <!-- 全局复习按钮 -->
@@ -159,7 +170,7 @@
                 <div class="text-lg">复习</div>
                 <div class="text-sm opacity-80" x-text="(globalStats?.due_today || 0) + ' 个待复习'"></div>
             </button>
-            <!-- 学新词按钮（需要选择词书） -->
+            <!-- 学新词按钮 -->
             <button
                 @click="showNewWordsModal = true"
                 class="bg-gradient-to-r from-sky-500 to-blue-500 text-white py-4 rounded-xl font-medium hover:from-sky-600 hover:to-blue-600 transition shadow-lg shadow-blue-500/20"
@@ -389,6 +400,44 @@
             </div>
         </div>
     </div>
+
+    <!-- 快速摸底提示弹窗 -->
+    <div x-show="showAssessmentPrompt" x-cloak class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click.self="showAssessmentPrompt = false">
+        <div class="bg-slate-800 rounded-xl p-6 w-80">
+            <h3 class="text-lg font-bold text-slate-100 mb-4">快速摸底</h3>
+            <p class="text-slate-300 text-sm mb-4">
+                通过词汇摸底测试，快速筛选出已掌握的词汇，让后续学习更有针对性。
+            </p>
+            <div class="bg-slate-700/50 rounded-lg p-3 mb-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span class="text-slate-400">剩余待摸底</span>
+                    <span class="text-sky-400" x-text="assessmentRemaining + ' 词'"></span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="text-xs text-slate-400 mb-1 block">本次摸底数量</label>
+                <select
+                    x-model="batchSize"
+                    class="w-full px-3 py-2 bg-slate-700 border border-slate-600 text-slate-200 rounded-lg text-sm"
+                >
+                    <option value="100">100 词</option>
+                    <option value="200">200 词</option>
+                    <option value="500">500 词</option>
+                    <option value="1000">1000 词</option>
+                </select>
+            </div>
+            <div class="flex space-x-3">
+                <button
+                    @click="showAssessmentPrompt = false"
+                    class="flex-1 px-4 py-2 bg-slate-600 text-slate-200 rounded-lg hover:bg-slate-500"
+                >取消</button>
+                <button
+                    @click="startAssessment"
+                    class="flex-1 px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-400"
+                >开始摸底</button>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
@@ -429,6 +478,12 @@ function indexPage() {
 
         // 阅读理解选项
         rcDifficulty: 'medium',
+
+        // 快速摸底
+        showAssessmentPrompt: false,
+        isSenior: {{ 'true' if is_senior else 'false' }},
+        assessmentRemaining: {{ assessment_remaining }},
+        batchSize: 500,
 
         async init() {
             await Promise.all([
@@ -631,6 +686,11 @@ function indexPage() {
         startReadingComprehension() {
             window.location.href = `/reading-comprehension?difficulty=${this.rcDifficulty}`;
             this.showRCModal = false;
+        },
+
+        // 快速摸底
+        startAssessment() {
+            window.location.href = `/quick-assessment?batch_size=${this.batchSize}`;
         },
 
         async logout() {

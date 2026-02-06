@@ -11,21 +11,21 @@ import re
 
 class UserCreate(BaseModel):
     """用户注册请求模型"""
-    # 必填（步骤1）
+    # 必填字段
     username: str
     password: str
-    email: str  # 邮箱必填
-
-    # 学习信息（步骤2）- 必填
-    grade: str  # grade7/grade8/grade9/senior1/senior2/senior3
-    school: str  # 学校名称必填
-
-    # 个人信息（步骤3）- 必填
     age: int
+    grade: str  # grade7/grade8/grade9/senior1/senior2/senior3
+    school: str
+
+    # 必填字段（省市）
     province: str
     city: str
-    phone: str
-    parent_phone: str
+
+    # 可选字段
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    parent_phone: Optional[str] = None
 
     @validator("username")
     def username_valid(cls, v):
@@ -41,10 +41,10 @@ class UserCreate(BaseModel):
             raise ValueError("密码至少4个字符")
         return v
 
-    @validator("email")
-    def email_valid(cls, v):
-        if not v or "@" not in v:
-            raise ValueError("请输入有效的邮箱地址")
+    @validator("age")
+    def age_valid(cls, v):
+        if v < 6 or v > 25:
+            raise ValueError("年龄范围 6-25 岁")
         return v
 
     @validator("grade")
@@ -60,12 +60,6 @@ class UserCreate(BaseModel):
             raise ValueError("学校名称至少2个字符")
         return v
 
-    @validator("age")
-    def age_valid(cls, v):
-        if v < 6 or v > 25:
-            raise ValueError("年龄范围 6-25 岁")
-        return v
-
     @validator("province")
     def province_valid(cls, v):
         if not v or len(v) < 2:
@@ -76,14 +70,6 @@ class UserCreate(BaseModel):
     def city_valid(cls, v):
         if not v or len(v) < 2:
             raise ValueError("请选择城市")
-        return v
-
-    @validator("phone", "parent_phone")
-    def phone_valid(cls, v):
-        if not v:
-            raise ValueError("请输入手机号")
-        if not re.match(r'^1[3-9]\d{9}$', v):
-            raise ValueError("手机号格式不正确")
         return v
 
 

@@ -198,6 +198,35 @@ class PhonemeError(Base):
     user = relationship("User")
 
 
+class ConfusingWords(Base):
+    """混淆词对缓存表 - 存储大模型生成的混淆词"""
+    __tablename__ = "confusing_words"
+
+    id = Column(Integer, primary_key=True, index=True)
+    word = Column(String(100), unique=True, nullable=False, index=True)
+    confusing = Column(Text, nullable=False)  # JSON: ["effect", "efficient", "afford"]
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+
+class ConfusionRecord(Base):
+    """学生混淆记录表 - 记录容易选错的单词"""
+    __tablename__ = "confusion_records"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    correct_word = Column(String(100), nullable=False)  # 正确答案
+    selected_word = Column(String(100), nullable=False)  # 学生选择的错误答案
+    count = Column(Integer, default=1)  # 混淆次数
+    last_confused = Column(DateTime, default=datetime.utcnow)
+
+    __table_args__ = (
+        UniqueConstraint('user_id', 'correct_word', 'selected_word', name='uix_confusion'),
+    )
+
+    # 关系
+    user = relationship("User")
+
+
 # ==================== 数据库初始化 ====================
 
 def init_db():
@@ -209,6 +238,8 @@ def init_db():
     migrate_user_table()
     # 创建 study_sessions 表（如不存在）
     Base.metadata.create_all(bind=engine, tables=[StudySession.__table__])
+    # 创建快速摸底相关表（如不存在）
+    Base.metadata.create_all(bind=engine, tables=[ConfusingWords.__table__, ConfusionRecord.__table__])
     # 一次性修正 FSRS due 日期
     migrate_fix_fsrs_due()
 

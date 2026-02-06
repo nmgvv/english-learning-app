@@ -22,11 +22,11 @@ for _proxy_key in ['http_proxy', 'https_proxy', 'HTTP_PROXY', 'HTTPS_PROXY', 'al
     os.environ.pop(_proxy_key, None)
 
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional, List
 from pathlib import Path
 
-from fastapi import FastAPI, Request, Depends, HTTPException, status, Form, Response, UploadFile, File
+from fastapi import FastAPI, Request, Depends, HTTPException, status, Form, Response, UploadFile, File, BackgroundTasks
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -38,9 +38,10 @@ from database import (
     create_user, authenticate_user, get_user_by_id,
     create_token, verify_token,
     get_user_progress, update_progress, get_due_cards,
-    add_history, get_user_stats, get_words_history_stats
+    add_history, get_user_stats, get_words_history_stats,
+    ConfusingWords, ConfusionRecord, User, Progress
 )
-from bookmanager import BookManager, get_book_display_name, filter_books_by_grade
+from bookmanager import BookManager, get_book_display_name, filter_books_by_grade, is_senior_student
 
 # FSRS 算法和辅助函数 (从 dictation.py 复用)
 from dictation import (
@@ -233,7 +234,7 @@ def get_current_user(request: Request, db: Session = Depends(get_db)) -> Optiona
     if not user:
         return None
 
-    return {"id": user.id, "username": user.username}
+    return {"id": user.id, "username": user.username, "grade": user.grade}
 
 
 def require_auth(request: Request, db: Session = Depends(get_db)):
@@ -258,14 +259,29 @@ async def index_page(request: Request, db: Session = Depends(get_db)):
 
     books = book_manager.list_books()
     # 根据用户年级过滤词书（高中生只看高中词书，初中生只看初中词书）
-    user_grade = user.grade if hasattr(user, 'grade') else None
+    user_grade = user.get('grade')
     filtered_books = filter_books_by_grade(books, user_grade)
     # 构建词书列表，包含 ID 和中文名
     book_list = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
+
+    # 检测是否为高中生，及摸底剩余数量
+    is_senior = is_senior_student(user_grade)
+    assessment_remaining = 0
+    if is_senior:
+        from sqlalchemy import func
+        all_words_count = len(book_manager.load("gaokao_3500"))
+        assessed_count = db.query(func.count(Progress.id)).filter(
+            Progress.user_id == user["id"],
+            Progress.book_id == "gaokao_3500"
+        ).scalar() or 0
+        assessment_remaining = all_words_count - assessed_count
+
     return templates.TemplateResponse("index.html", {
         "request": request,
         "user": user,
-        "books": book_list
+        "books": book_list,
+        "is_senior": is_senior,
+        "assessment_remaining": assessment_remaining
     })
 
 
@@ -304,7 +320,7 @@ async def dictation_global_page(request: Request, db: Session = Depends(get_db))
 
     # 获取所有词书（用于显示词书名称），根据年级过滤
     book_ids = book_manager.list_books()
-    user_grade = user.grade if hasattr(user, 'grade') else None
+    user_grade = user.get('grade')
     filtered_books = filter_books_by_grade(book_ids, user_grade)
     books = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
 
@@ -331,7 +347,7 @@ async def dictation_page(request: Request, book_id: str, db: Session = Depends(g
 
     # 获取所有词书（用于显示词书名称），根据年级过滤
     book_ids = book_manager.list_books()
-    user_grade = user.grade if hasattr(user, 'grade') else None
+    user_grade = user.get('grade')
     filtered_books = filter_books_by_grade(book_ids, user_grade)
     books = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
 
@@ -2344,6 +2360,332 @@ async def api_reading_comprehension_submit(data: ReadingComprehensionSubmit, use
         "total": total,
         "score": score
     }
+
+
+# ==================== 快速摸底 API ====================
+
+@app.get("/quick-assessment")
+async def quick_assessment_page(
+    request: Request,
+    batch_size: int = 500,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """快速摸底页面"""
+    user_obj = db.query(User).filter(User.id == user["id"]).first()
+    if not is_senior_student(user_obj.grade):
+        return RedirectResponse("/", status_code=302)
+
+    return templates.TemplateResponse("quick_assessment.html", {
+        "request": request,
+        "user": user_obj,
+        "batch_size": batch_size
+    })
+
+
+@app.get("/api/assessment/progress")
+async def get_assessment_progress(user: dict = Depends(require_auth), db: Session = Depends(get_db)):
+    """获取摸底进度"""
+    from sqlalchemy import func
+
+    words = book_manager.load("gaokao_3500")
+    total = len(words)
+
+    assessed = db.query(func.count(Progress.id)).filter(
+        Progress.user_id == user["id"],
+        Progress.book_id == "gaokao_3500"
+    ).scalar() or 0
+
+    mastered = db.query(func.count(Progress.id)).filter(
+        Progress.user_id == user["id"],
+        Progress.book_id == "gaokao_3500",
+        Progress.state == 2
+    ).scalar() or 0
+
+    return {
+        "assessed": assessed,
+        "total": total,
+        "remaining": total - assessed,
+        "mastered": mastered,
+        "not_mastered": assessed - mastered
+    }
+
+
+@app.get("/api/assessment/batch")
+async def get_assessment_batch(
+    batch_size: int = 500,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db),
+    background_tasks: BackgroundTasks = None
+):
+    """获取一批待摸底的单词（含易混淆干扰项）"""
+    import random
+
+    all_words = book_manager.load("gaokao_3500")
+    word_list = [w.word for w in all_words]
+
+    assessed_words = db.query(Progress.word).filter(
+        Progress.user_id == user["id"],
+        Progress.book_id == "gaokao_3500"
+    ).all()
+    assessed_set = {w[0] for w in assessed_words}
+
+    remaining = [w for w in all_words if w.word not in assessed_set]
+    random.shuffle(remaining)
+    batch = remaining[:batch_size]
+
+    result = []
+    if batch:
+        first_word = batch[0]
+        options = get_or_generate_confusing(db, first_word.word, word_list)
+        result.append({
+            "word": first_word.word,
+            "translation": first_word.translation,
+            "phonetic": first_word.phonetic,
+            "options": options
+        })
+
+        if len(batch) > 1 and background_tasks:
+            background_tasks.add_task(
+                pregenerate_confusing_words,
+                [w.word for w in batch[1:]], word_list
+            )
+
+    return {
+        "words": result,
+        "total_batch": len(batch),
+        "remaining": len(remaining) - len(batch)
+    }
+
+
+@app.get("/api/assessment/next")
+async def get_next_word(
+    exclude: str = None,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """获取下一个待摸底单词（随机选取，支持排除当前词）"""
+    import random
+
+    all_words = book_manager.load("gaokao_3500")
+    word_list = [w.word for w in all_words]
+
+    assessed_set = {w[0] for w in db.query(Progress.word).filter(
+        Progress.user_id == user["id"],
+        Progress.book_id == "gaokao_3500"
+    ).all()}
+
+    remaining = [w for w in all_words if w.word not in assessed_set and w.word != exclude]
+    if not remaining:
+        return {"done": True}
+
+    w = random.choice(remaining)
+    options = get_or_generate_confusing(db, w.word, word_list)
+    return {
+        "word": w.word,
+        "translation": w.translation,
+        "phonetic": w.phonetic,
+        "options": options
+    }
+
+
+def get_or_generate_confusing(db: Session, word: str, word_pool: list) -> list:
+    """获取或生成混淆词（优先从缓存读取）"""
+    import random
+
+    cached = db.query(ConfusingWords).filter(ConfusingWords.word == word).first()
+    if cached:
+        confusing = json.loads(cached.confusing)
+        # 去重并排除正确答案
+        confusing = [c for c in confusing if c != word and c in word_pool]
+        confusing = list(dict.fromkeys(confusing))[:3]
+        options = [word] + confusing
+        # 确保有4个选项
+        if len(options) < 4:
+            fillers = [w for w in word_pool if w not in options]
+            random.shuffle(fillers)
+            options.extend(fillers[:4 - len(options)])
+        random.shuffle(options)
+        return options[:4]
+
+    confusing = generate_confusing_by_llm(word, word_pool)
+    # 去重并排除正确答案
+    confusing = [c for c in confusing if c != word]
+    confusing = list(dict.fromkeys(confusing))[:3]
+
+    cache_entry = ConfusingWords(
+        word=word,
+        confusing=json.dumps(confusing, ensure_ascii=False)
+    )
+    db.add(cache_entry)
+    db.commit()
+
+    options = [word] + confusing
+    # 确保有4个选项
+    if len(options) < 4:
+        fillers = [w for w in word_pool if w not in options]
+        random.shuffle(fillers)
+        options.extend(fillers[:4 - len(options)])
+    random.shuffle(options)
+    return options[:4]
+
+
+def pregenerate_confusing_words(words: list, word_pool: list):
+    """后台任务：批量预生成混淆词"""
+    db = next(get_db())
+    try:
+        for word in words:
+            if not db.query(ConfusingWords).filter(ConfusingWords.word == word).first():
+                confusing = generate_confusing_by_llm(word, word_pool)
+                cache_entry = ConfusingWords(
+                    word=word,
+                    confusing=json.dumps(confusing, ensure_ascii=False)
+                )
+                db.add(cache_entry)
+        db.commit()
+    finally:
+        db.close()
+
+
+def generate_confusing_by_llm(word: str, word_pool: list) -> list:
+    """调用大模型生成易混淆词（同步版本用于后台任务）"""
+    import random
+    import httpx as sync_httpx
+
+    sample_pool = random.sample(word_pool, min(200, len(word_pool)))
+
+    prompt = f"""从以下英语词汇中，选择3个与"{word}"最容易混淆的单词。
+混淆标准：拼写相似（如affect/effect）、发音相近（如quite/quiet）、或词形相似（如principle/principal）。
+
+可选词汇：{', '.join(sample_pool)}
+
+只返回3个单词，用英文逗号分隔，不要其他内容。"""
+
+    try:
+        if QWEN_AVAILABLE:
+            api_key = os.getenv("DASHSCOPE_API_KEY")
+            if api_key:
+                with sync_httpx.Client(timeout=15.0) as client:
+                    response = client.post(
+                        "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+                        headers={
+                            "Authorization": f"Bearer {api_key}",
+                            "Content-Type": "application/json"
+                        },
+                        json={
+                            "model": "qwen-plus",
+                            "messages": [{"role": "user", "content": prompt}],
+                            "max_tokens": 50
+                        }
+                    )
+                    if response.status_code == 200:
+                        data = response.json()
+                        content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+                        words = [w.strip() for w in content.split(',') if w.strip() in word_pool]
+                        if len(words) >= 3:
+                            return words[:3]
+    except Exception as e:
+        print(f"LLM生成混淆词失败: {e}")
+
+    return fallback_confusing(word, word_pool)
+
+
+def fallback_confusing(word: str, word_pool: list) -> list:
+    """兜底：基于编辑距离的混淆词生成"""
+    import difflib
+    import random
+
+    candidates = []
+    for w in word_pool:
+        if w == word:
+            continue
+        if abs(len(w) - len(word)) <= 2:
+            ratio = difflib.SequenceMatcher(None, word.lower(), w.lower()).ratio()
+            if ratio >= 0.5:
+                candidates.append((w, ratio))
+
+    candidates.sort(key=lambda x: x[1], reverse=True)
+    result = [w for w, _ in candidates[:3]]
+
+    if len(result) < 3:
+        fillers = [w for w in word_pool if w != word and w not in result]
+        random.shuffle(fillers)
+        result.extend(fillers[:3 - len(result)])
+
+    return result
+
+
+class AssessmentSubmit(BaseModel):
+    word: str
+    correct: bool
+    selected: Optional[str] = None
+
+
+@app.post("/api/assessment/submit")
+async def submit_assessment(
+    data: AssessmentSubmit,
+    user: dict = Depends(require_auth),
+    db: Session = Depends(get_db)
+):
+    """提交单个单词的摸底结果"""
+    now = datetime.utcnow()
+
+    if data.correct:
+        grade = 4
+        difficulty = init_difficulty(grade)
+        stability = init_stability(grade)
+        interval = next_interval(stability)
+
+        update_progress(db, user["id"], "gaokao_3500", data.word,
+            difficulty=difficulty,
+            stability=stability,
+            state=2,
+            reps=1,
+            lapses=0,
+            last_review=now,
+            due=now + timedelta(days=interval)
+        )
+    else:
+        grade = 1
+        difficulty = init_difficulty(grade)
+        stability = init_stability(grade)
+
+        update_progress(db, user["id"], "gaokao_3500", data.word,
+            difficulty=difficulty,
+            stability=stability,
+            state=0,
+            reps=0,
+            lapses=0,
+            last_review=now,
+            due=now
+        )
+
+        if data.selected and data.selected != data.word:
+            record_confusion(db, user["id"], data.word, data.selected)
+
+    return {"status": "ok"}
+
+
+def record_confusion(db: Session, user_id: int, correct_word: str, selected_word: str):
+    """记录学生的混淆选择"""
+    existing = db.query(ConfusionRecord).filter(
+        ConfusionRecord.user_id == user_id,
+        ConfusionRecord.correct_word == correct_word,
+        ConfusionRecord.selected_word == selected_word
+    ).first()
+
+    if existing:
+        existing.count += 1
+        existing.last_confused = datetime.utcnow()
+    else:
+        record = ConfusionRecord(
+            user_id=user_id,
+            correct_word=correct_word,
+            selected_word=selected_word
+        )
+        db.add(record)
+
+    db.commit()
 
 
 # ==================== 启动 ====================

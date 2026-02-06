@@ -13,38 +13,14 @@
 
         <!-- 注册卡片 -->
         <div class="bg-white rounded-2xl shadow-xl p-6">
-            <!-- 步骤指示器 -->
-            <div class="flex items-center justify-center mb-6">
-                <template x-for="(step, index) in steps" :key="index">
-                    <div class="flex items-center">
-                        <div
-                            :class="{
-                                'bg-blue-600 text-white': currentStep >= index,
-                                'bg-gray-200 text-gray-500': currentStep < index
-                            }"
-                            class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all"
-                        >
-                            <span x-text="index + 1"></span>
-                        </div>
-                        <div
-                            x-show="index < steps.length - 1"
-                            :class="currentStep > index ? 'bg-blue-600' : 'bg-gray-200'"
-                            class="w-8 h-1 mx-1 transition-all"
-                        ></div>
-                    </div>
-                </template>
-            </div>
-
-            <!-- 步骤标题 -->
-            <h3 class="text-lg font-medium text-gray-800 mb-4 text-center" x-text="steps[currentStep]"></h3>
+            <h3 class="text-lg font-medium text-gray-800 mb-4 text-center">填写注册信息</h3>
 
             <!-- 错误提示 -->
             <div x-show="error" x-cloak class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
                 <span x-text="error"></span>
             </div>
 
-            <!-- 步骤 1: 账号信息 -->
-            <div x-show="currentStep === 0" class="space-y-4">
+            <div class="space-y-4">
                 <!-- 用户名 -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">用户名 <span class="text-red-500">*</span></label>
@@ -56,6 +32,76 @@
                         maxlength="50"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                         placeholder="请输入用户名（至少2个字符）"
+                    >
+                </div>
+
+                <!-- 年龄 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">年龄 <span class="text-red-500">*</span></label>
+                    <input
+                        type="number"
+                        x-model="age"
+                        required
+                        min="6"
+                        max="25"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                        placeholder="6-25岁"
+                    >
+                </div>
+
+                <!-- 省市 -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">省份 <span class="text-red-500">*</span></label>
+                        <select
+                            x-model="province"
+                            required
+                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white text-sm"
+                        >
+                            <option value="">选择省份</option>
+                            <template x-for="p in provinces" :key="p.code">
+                                <option :value="p.name" x-text="p.name"></option>
+                            </template>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">城市 <span class="text-red-500">*</span></label>
+                        <input
+                            type="text"
+                            x-model="city"
+                            required
+                            maxlength="50"
+                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-sm"
+                            placeholder="请输入城市名称"
+                        >
+                    </div>
+                </div>
+
+                <!-- 年级 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">年级 <span class="text-red-500">*</span></label>
+                    <select
+                        x-model="grade"
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white"
+                    >
+                        <option value="">请选择年级</option>
+                        <template x-for="g in grades" :key="g.id">
+                            <option :value="g.id" x-text="g.name"></option>
+                        </template>
+                    </select>
+                </div>
+
+                <!-- 学校 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">就读学校 <span class="text-red-500">*</span></label>
+                    <input
+                        type="text"
+                        x-model="school"
+                        required
+                        maxlength="100"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                        placeholder="请输入学校名称"
                     >
                 </div>
 
@@ -83,157 +129,18 @@
                         placeholder="请再次输入密码"
                     >
                 </div>
-
-                <!-- 邮箱 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">邮箱 <span class="text-red-500">*</span></label>
-                    <input
-                        type="email"
-                        x-model="email"
-                        required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                        placeholder="用于找回密码和接收通知"
-                    >
-                </div>
             </div>
 
-            <!-- 步骤 2: 学习信息 -->
-            <div x-show="currentStep === 1" class="space-y-4">
-                <!-- 年级 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">年级 <span class="text-red-500">*</span></label>
-                    <select
-                        x-model="grade"
-                        required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white"
-                    >
-                        <option value="">请选择年级</option>
-                        <template x-for="g in grades" :key="g.id">
-                            <option :value="g.id" x-text="g.name"></option>
-                        </template>
-                    </select>
-                </div>
-
-                <!-- 学校 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">学校名称 <span class="text-red-500">*</span></label>
-                    <input
-                        type="text"
-                        x-model="school"
-                        required
-                        maxlength="100"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                        placeholder="请输入学校名称"
-                    >
-                </div>
-            </div>
-
-            <!-- 步骤 3: 个人信息 -->
-            <div x-show="currentStep === 2" class="space-y-4">
-                <!-- 年龄 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">年龄 <span class="text-red-500">*</span></label>
-                    <input
-                        type="number"
-                        x-model="age"
-                        required
-                        min="6"
-                        max="25"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                        placeholder="6-25岁"
-                    >
-                </div>
-
-                <!-- 省市 -->
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">省份 <span class="text-red-500">*</span></label>
-                        <select
-                            x-model="province"
-                            required
-                            @change="onProvinceChange()"
-                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white text-sm"
-                        >
-                            <option value="">选择省份</option>
-                            <template x-for="p in provinces" :key="p.code">
-                                <option :value="p.name" x-text="p.name"></option>
-                            </template>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">城市 <span class="text-red-500">*</span></label>
-                        <select
-                            x-model="city"
-                            required
-                            :disabled="cities.length === 0"
-                            class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white text-sm disabled:bg-gray-100"
-                        >
-                            <option value="">选择城市</option>
-                            <template x-for="c in cities" :key="c.code">
-                                <option :value="c.name" x-text="c.name"></option>
-                            </template>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 手机号 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">手机号 <span class="text-red-500">*</span></label>
-                    <input
-                        type="tel"
-                        x-model="phone"
-                        required
-                        pattern="1[3-9]\d{9}"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                        placeholder="11位手机号码"
-                    >
-                </div>
-
-                <!-- 家长联系方式 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">家长联系方式 <span class="text-red-500">*</span></label>
-                    <input
-                        type="tel"
-                        x-model="parentPhone"
-                        required
-                        pattern="1[3-9]\d{9}"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                        placeholder="便于家长了解学习情况"
-                    >
-                </div>
-            </div>
-
-            <!-- 导航按钮 -->
-            <div class="flex justify-between mt-6 gap-3">
-                <button
-                    x-show="currentStep > 0"
-                    @click="prevStep()"
-                    type="button"
-                    class="flex-1 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition"
-                >
-                    上一步
-                </button>
-                <button
-                    x-show="currentStep < 2"
-                    @click="nextStep()"
-                    type="button"
-                    :disabled="!canProceed()"
-                    class="flex-1 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                    下一步
-                </button>
-                <button
-                    x-show="currentStep === 2"
-                    @click="submit()"
-                    type="button"
-                    :disabled="loading"
-                    class="flex-1 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                    <span x-show="!loading">完成注册</span>
-                    <span x-show="loading" x-cloak>注册中...</span>
-                </button>
-            </div>
-
+            <!-- 注册按钮 -->
+            <button
+                @click="submit()"
+                type="button"
+                :disabled="loading || !canSubmit()"
+                class="w-full mt-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                <span x-show="!loading">注册</span>
+                <span x-show="loading" x-cloak>注册中...</span>
+            </button>
         </div>
 
         <!-- 底部链接 -->
@@ -248,159 +155,110 @@
 <script>
 function registerForm() {
     return {
-        currentStep: 0,
-        steps: ['账号信息', '学习信息', '个人信息'],
-
-        // 步骤1: 账号
+        // 表单字段
         username: '',
-        password: '',
-        confirmPassword: '',
-        email: '',
-
-        // 步骤2: 学习
-        grade: '',
-        school: '',
-
-        // 步骤3: 个人
         age: '',
         province: '',
         city: '',
-        phone: '',
-        parentPhone: '',
+        grade: '',
+        school: '',
+        password: '',
+        confirmPassword: '',
 
         // 数据
         grades: [],
         provinces: [],
-        cities: [],
 
         // 状态
         error: '',
         loading: false,
 
         async init() {
-            // 加载年级数据
+            // 并行加载年级和省市数据
+            await Promise.all([
+                this.loadGrades(),
+                this.loadRegions()
+            ]);
+        },
+
+        async loadGrades() {
             try {
-                const gradesRes = await fetch('/api/grades');
-                const gradesData = await gradesRes.json();
-                this.grades = gradesData.grades || [];
+                const res = await fetch('/api/grades');
+                const data = await res.json();
+                this.grades = data.grades || [];
             } catch (e) {
                 console.error('加载年级数据失败:', e);
             }
+        },
 
-            // 加载省市数据
+        async loadRegions() {
             try {
-                const regionsRes = await fetch('/api/regions');
-                const regionsData = await regionsRes.json();
-                this.provinces = regionsData.provinces || [];
+                const res = await fetch('/api/regions');
+                const data = await res.json();
+                this.provinces = data.provinces || [];
             } catch (e) {
                 console.error('加载省市数据失败:', e);
             }
         },
 
-        onProvinceChange() {
-            const p = this.provinces.find(p => p.name === this.province);
-            this.cities = p ? p.cities : [];
-            this.city = '';
-        },
-
-        canProceed() {
-            if (this.currentStep === 0) {
-                return this.username.length >= 2 &&
-                       this.password.length >= 4 &&
-                       this.password === this.confirmPassword &&
-                       this.email.includes('@');
-            }
-            if (this.currentStep === 1) {
-                return this.grade !== '' && this.school.length >= 2;
-            }
-            return true;
-        },
-
-        nextStep() {
-            this.error = '';
-
-            // 验证当前步骤
-            if (this.currentStep === 0) {
-                if (this.username.length < 2) {
-                    this.error = '用户名至少2个字符';
-                    return;
-                }
-                if (this.password.length < 4) {
-                    this.error = '密码至少4个字符';
-                    return;
-                }
-                if (this.password !== this.confirmPassword) {
-                    this.error = '两次输入的密码不一致';
-                    return;
-                }
-                if (!this.email || !this.email.includes('@')) {
-                    this.error = '请输入有效的邮箱地址';
-                    return;
-                }
-            }
-
-            if (this.currentStep === 1) {
-                if (!this.grade) {
-                    this.error = '请选择年级';
-                    return;
-                }
-                if (!this.school || this.school.length < 2) {
-                    this.error = '请输入学校名称';
-                    return;
-                }
-            }
-
-            this.currentStep++;
-        },
-
-        prevStep() {
-            this.error = '';
-            this.currentStep--;
+        canSubmit() {
+            return this.username.length >= 2 &&
+                   this.age >= 6 && this.age <= 25 &&
+                   this.province !== '' &&
+                   this.city !== '' &&
+                   this.grade !== '' &&
+                   this.school.length >= 2 &&
+                   this.password.length >= 4 &&
+                   this.password === this.confirmPassword;
         },
 
         async submit() {
             this.error = '';
-            this.loading = true;
 
-            // 验证步骤3
+            // 验证
+            if (this.username.length < 2) {
+                this.error = '用户名至少2个字符';
+                return;
+            }
             if (!this.age || this.age < 6 || this.age > 25) {
                 this.error = '请输入有效年龄（6-25岁）';
-                this.loading = false;
                 return;
             }
             if (!this.province) {
                 this.error = '请选择省份';
-                this.loading = false;
                 return;
             }
             if (!this.city) {
                 this.error = '请选择城市';
-                this.loading = false;
                 return;
             }
-            const phonePattern = /^1[3-9]\d{9}$/;
-            if (!this.phone || !phonePattern.test(this.phone)) {
-                this.error = '请输入有效的手机号';
-                this.loading = false;
+            if (!this.grade) {
+                this.error = '请选择年级';
                 return;
             }
-            if (!this.parentPhone || !phonePattern.test(this.parentPhone)) {
-                this.error = '请输入有效的家长联系方式';
-                this.loading = false;
+            if (!this.school || this.school.length < 2) {
+                this.error = '请输入学校名称';
                 return;
             }
+            if (this.password.length < 4) {
+                this.error = '密码至少4个字符';
+                return;
+            }
+            if (this.password !== this.confirmPassword) {
+                this.error = '两次输入的密码不一致';
+                return;
+            }
+
+            this.loading = true;
 
             const data = {
                 username: this.username,
                 password: this.password,
-                email: this.email,
-                grade: this.grade,
-                school: this.school,
                 age: parseInt(this.age),
                 province: this.province,
                 city: this.city,
-                phone: this.phone,
-                parent_phone: this.parentPhone
+                grade: this.grade,
+                school: this.school
             };
 
             try {

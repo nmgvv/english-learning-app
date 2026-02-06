@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block title %}快速摸底 - 英语学习{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-900" x-data="assessmentPage()">
+    <!-- 顶部导航 -->
+    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg sticky top-0 z-10 border-b border-slate-700/50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="/" class="text-slate-400 hover:text-slate-200 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+                <h1 class="text-lg font-bold text-slate-100">快速摸底</h1>
+            </div>
+            <div class="text-sm text-slate-400">
+                <span x-text="masteredCount + notMasteredCount"></span> / <span x-text="totalCount"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 顶部进度条 -->
+    <div class="bg-slate-800 px-4 py-3" x-show="!finished && !batchComplete">
+        <div class="text-sm text-slate-400 mb-1">
+            本批进度: <span x-text="masteredCount + notMasteredCount"></span> / <span x-text="totalCount"></span>
+        </div>
+        <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-emerald-500 to-sky-500 transition-all"
+                 :style="`width: ${totalCount > 0 ? (masteredCount + notMasteredCount) / totalCount * 100 : 0}%`"></div>
+        </div>
+    </div>
+
+    <!-- 加载中 -->
+    <div x-show="loading" class="flex items-center justify-center py-20">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-500 mx-auto mb-4"></div>
+            <p class="text-slate-400">加载中...</p>
+        </div>
+    </div>
+
+    <!-- 主内容区 - 答题界面 -->
+    <div class="p-4 max-w-lg mx-auto" x-show="!finished && !batchComplete && !loading">
+        <!-- 中文释义（大号显示） -->
+        <div class="bg-slate-800 rounded-xl p-6 mb-6 text-center border border-slate-700/50">
+            <div class="text-2xl font-bold text-slate-100 leading-relaxed" x-text="currentWord?.translation"></div>
+        </div>
+
+        <!-- 四个英文选项 -->
+        <div class="grid grid-cols-2 gap-3 mb-6">
+            <template x-for="(opt, idx) in options" :key="idx">
+                <button
+                    @click="selectOption(opt)"
+                    :disabled="answered"
+                    :class="getOptionClass(opt)"
+                    class="border-2 rounded-xl p-4 text-lg font-medium transition"
+                    x-text="opt"
+                ></button>
+            </template>
+        </div>
+    </div>
+
+    <!-- 批次完成页 -->
+    <div x-show="batchComplete && !finished" class="p-4 max-w-lg mx-auto text-center">
+        <div class="bg-slate-800 rounded-xl p-6 mb-6 border border-slate-700/50">
+            <h2 class="text-xl font-bold text-slate-100 mb-4">本批摸底完成!</h2>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4">
+                    <div class="text-3xl font-bold text-emerald-400" x-text="masteredCount"></div>
+                    <div class="text-sm text-slate-400">已掌握</div>
+                </div>
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4">
+                    <div class="text-3xl font-bold text-amber-400" x-text="notMasteredCount"></div>
+                    <div class="text-sm text-slate-400">需学习</div>
+                </div>
+            </div>
+            <div class="text-sm text-slate-400">
+                正确率: <span class="text-sky-400" x-text="`${Math.round(masteredCount / (masteredCount + notMasteredCount) * 100)}%`"></span>
+            </div>
+        </div>
+        <div class="space-y-3">
+            <button x-show="hasMore" @click="continueTesting"
+                class="w-full py-3 rounded-xl bg-sky-600 text-white font-medium hover:bg-sky-500 transition">
+                继续下一批
+            </button>
+            <button @click="goToLearn"
+                class="w-full py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition">
+                开始学习（未掌握词汇）
+            </button>
+            <button @click="goHome"
+                class="w-full py-3 rounded-xl bg-slate-700 text-slate-200 font-medium hover:bg-slate-600 transition">
+                返回首页
+            </button>
+        </div>
+    </div>
+
+    <!-- 全部完成页 -->
+    <div x-show="finished" class="p-4 max-w-lg mx-auto text-center">
+        <div class="bg-slate-800 rounded-xl p-6 mb-6 border border-slate-700/50">
+            <div class="text-5xl mb-4">🎉</div>
+            <h2 class="text-xl font-bold text-slate-100 mb-2">全部摸底完成!</h2>
+            <p class="text-slate-400">高考词汇摸底测试已完成</p>
+        </div>
+        <div class="space-y-3">
+            <button @click="goToLearn"
+                class="w-full py-3 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition">
+                开始学习未掌握词汇
+            </button>
+            <button @click="goToReview"
+                class="w-full py-3 rounded-xl bg-amber-600 text-white font-medium hover:bg-amber-500 transition">
+                复习已掌握词汇
+            </button>
+            <button @click="goHome"
+                class="w-full py-3 rounded-xl bg-slate-700 text-slate-200 font-medium hover:bg-slate-600 transition">
+                返回首页
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function assessmentPage() {
+    return {
+        currentWord: null,
+        options: [],
+        selectedOption: null,
+        answered: false,
+        finished: false,
+        masteredCount: 0,
+        notMasteredCount: 0,
+        totalCount: 0,
+        batchSize: {{ batch_size }},
+        batchComplete: false,
+        hasMore: false,
+        loading: true,
+        submitting: false,
+        nextWordData: null,
+        prefetchPromise: null,
+
+        async init() {
+            await this.startBatch();
+        },
+
+        async startBatch() {
+            this.loading = true;
+            try {
+                const res = await fetch(`/api/assessment/batch?batch_size=${this.batchSize}`);
+                const data = await res.json();
+
+                if (data.words.length === 0) {
+                    this.finished = true;
+                    this.loading = false;
+                    return;
+                }
+
+                this.currentWord = data.words[0];
+                this.options = this.currentWord.options;
+                this.selectedOption = null;
+                this.answered = false;
+                this.hasMore = data.remaining > 0;
+                this.totalCount = data.total_batch;
+                this.masteredCount = 0;
+                this.notMasteredCount = 0;
+                this.batchComplete = false;
+
+                // 立即预加载下一题
+                this.prefetchNext();
+            } catch (e) {
+                console.error('加载失败:', e);
+            }
+            this.loading = false;
+        },
+
+        prefetchNext() {
+            // 在后台预加载下一个词汇（含大模型生成干扰词）
+            this.nextWordData = null;
+            this.prefetchPromise = fetch(`/api/assessment/next?exclude=${this.currentWord.word}`)
+                .then(res => res.json())
+                .then(data => {
+                    this.nextWordData = data;
+                    return data;
+                })
+                .catch(e => {
+                    console.error('预加载失败:', e);
+                    return null;
+                });
+        },
+
+        getOptionClass(opt) {
+            if (!this.answered) {
+                return this.selectedOption === opt
+                    ? 'bg-sky-600 border-sky-500 text-white'
+                    : 'bg-slate-800 border-slate-700 text-slate-200 hover:border-slate-600';
+            }
+            if (opt === this.currentWord.word) {
+                return 'bg-emerald-600 border-emerald-500 text-white';
+            }
+            if (opt === this.selectedOption && opt !== this.currentWord.word) {
+                return 'bg-red-600 border-red-500 text-white';
+            }
+            return 'bg-slate-800 border-slate-700 text-slate-500 opacity-50';
+        },
+
+        async selectOption(opt) {
+            if (this.answered || this.submitting) return;
+
+            this.selectedOption = opt;
+            this.answered = true;
+            this.submitting = true;
+
+            const correct = opt === this.currentWord.word;
+
+            // 提交答案（不阻塞 UI）
+            fetch('/api/assessment/submit', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    word: this.currentWord.word,
+                    correct: correct,
+                    selected: opt
+                })
+            }).catch(e => console.error('提交失败:', e));
+
+            if (correct) {
+                this.masteredCount++;
+            } else {
+                this.notMasteredCount++;
+            }
+
+            // 短暂显示对错反馈后自动跳转
+            setTimeout(async () => {
+                // 检查本批是否完成
+                if (this.masteredCount + this.notMasteredCount >= this.totalCount) {
+                    this.batchComplete = true;
+                    this.submitting = false;
+                    return;
+                }
+
+                await this.showNext();
+                this.submitting = false;
+            }, correct ? 500 : 1000);
+        },
+
+        async showNext() {
+            // 等待预加载完成（通常已完成）
+            if (this.prefetchPromise) {
+                await this.prefetchPromise;
+            }
+
+            const data = this.nextWordData;
+
+            if (!data || data.done) {
+                this.finished = true;
+                return;
+            }
+
+            this.currentWord = data;
+            this.options = data.options;
+            this.selectedOption = null;
+            this.answered = false;
+
+            // 立即预加载下下一题
+            this.prefetchNext();
+        },
+
+        async continueTesting() {
+            this.batchComplete = false;
+            await this.startBatch();
+        },
+
+        goToReview() {
+            window.location.href = '/dictation?mode=review';
+        },
+
+        goToLearn() {
+            window.location.href = '/dictation/gaokao_3500?mode=new';
+        },
+
+        goHome() {
+            window.location.href = '/';
+        }
+    }
+}
+</script>
+{% endblock %}
