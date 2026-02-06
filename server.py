@@ -264,23 +264,19 @@ async def index_page(request: Request, db: Session = Depends(get_db)):
     # 构建词书列表，包含 ID 和中文名
     book_list = [{"id": b, "name": get_book_display_name(b)} for b in filtered_books]
 
-    # 检测是否为高中生，及摸底剩余数量
-    is_senior = is_senior_student(user_grade)
-    assessment_remaining = 0
-    if is_senior:
-        from sqlalchemy import func
-        all_words_count = len(book_manager.load("gaokao_3500"))
-        assessed_count = db.query(func.count(Progress.id)).filter(
-            Progress.user_id == user["id"],
-            Progress.book_id == "gaokao_3500"
-        ).scalar() or 0
-        assessment_remaining = all_words_count - assessed_count
+    # 计算摸底剩余数量（所有学生）
+    from sqlalchemy import func
+    all_words_count = len(book_manager.load("gaokao_3500"))
+    assessed_count = db.query(func.count(Progress.id)).filter(
+        Progress.user_id == user["id"],
+        Progress.book_id == "gaokao_3500"
+    ).scalar() or 0
+    assessment_remaining = all_words_count - assessed_count
 
     return templates.TemplateResponse("index.html", {
         "request": request,
         "user": user,
         "books": book_list,
-        "is_senior": is_senior,
         "assessment_remaining": assessment_remaining
     })
 

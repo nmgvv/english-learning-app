@@ -148,8 +148,8 @@
             </div>
         </div>
 
-        <!-- 快速摸底按钮（高中生且有未摸底词汇时显示） -->
-        <div x-show="isSenior && assessmentRemaining > 0" class="mb-4">
+        <!-- 快速摸底按钮（有未摸底词汇时显示） -->
+        <div x-show="assessmentRemaining > 0" class="mb-4">
             <button
                 @click="showAssessmentPrompt = true"
                 class="w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-4 rounded-xl font-medium hover:from-rose-600 hover:to-pink-600 transition shadow-lg shadow-pink-500/20"
