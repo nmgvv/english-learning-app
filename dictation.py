@@ -213,21 +213,23 @@ def next_difficulty(d: float, grade: int) -> float:
 
 
 def next_recall_stability(d: float, s: float, r: float, grade: int) -> float:
-    """计算复习后的新稳定性"""
+    """计算复习后的新稳定性（最小1天）"""
     hard_penalty = FSRS_W[15] if grade == 2 else 1
     easy_bonus = FSRS_W[16] if grade == 4 else 1
-    return s * (1 +
+    new_s = s * (1 +
         pow(2.71828, FSRS_W[8]) *
         (11 - d) *
         pow(s, -FSRS_W[9]) *
         (pow(2.71828, FSRS_W[10] * (1 - r)) - 1) *
         hard_penalty * easy_bonus
     )
+    return max(1.0, new_s)
 
 
 def next_forget_stability(d: float, s: float, r: float) -> float:
-    """遗忘后的新稳定性"""
-    return FSRS_W[11] * pow(d, -FSRS_W[12]) * (pow(s + 1, FSRS_W[13]) - 1) * pow(2.71828, FSRS_W[14] * (1 - r))
+    """遗忘后的新稳定性（最小1天）"""
+    new_s = FSRS_W[11] * pow(d, -FSRS_W[12]) * (pow(s + 1, FSRS_W[13]) - 1) * pow(2.71828, FSRS_W[14] * (1 - r))
+    return max(1.0, new_s)
 
 
 def retrievability(s: float, t: float) -> float:
