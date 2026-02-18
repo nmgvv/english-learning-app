@@ -1,0 +1,7359 @@
+{
+  "description": "虚词差异含义对验证结果（需人工复核）",
+  "total_pairs": 606,
+  "equiv_count": 211,
+  "not_equiv_count": 395,
+  "failed_count": 0,
+  "equiv": [
+    {
+      "m1": "一年一次",
+      "m2": "一年一次的",
+      "extra": "的",
+      "words1": [
+        "annually"
+      ],
+      "words2": [
+        "annual"
+      ]
+    },
+    {
+      "m1": "一般",
+      "m2": "一般的",
+      "extra": "的",
+      "words1": [
+        "currently",
+        "general"
+      ],
+      "words2": [
+        "general"
+      ]
+    },
+    {
+      "m1": "不可回收",
+      "m2": "不可回收的",
+      "extra": "的",
+      "words1": [
+        "unrecyclable"
+      ],
+      "words2": [
+        "unrecyclable"
+      ]
+    },
+    {
+      "m1": "不在",
+      "m2": "不在的",
+      "extra": "的",
+      "words1": [
+        "absence"
+      ],
+      "words2": [
+        "absent"
+      ]
+    },
+    {
+      "m1": "不幸",
+      "m2": "不幸的",
+      "extra": "的",
+      "words1": [
+        "disaster",
+        "evil",
+        "ill",
+        "sorrow"
+      ],
+      "words2": [
+        "evil",
+        "unfortunate",
+        "unlucky"
+      ]
+    },
+    {
+      "m1": "不顾一切",
+      "m2": "不顾一切的",
+      "extra": "的",
+      "words1": [
+        "desperation"
+      ],
+      "words2": [
+        "desperate"
+      ]
+    },
+    {
+      "m1": "东方",
+      "m2": "东方的",
+      "extra": "的",
+      "words1": [
+        "east"
+      ],
+      "words2": [
+        "eastern"
+      ]
+    },
+    {
+      "m1": "丝绸",
+      "m2": "丝绸的",
+      "extra": "的",
+      "words1": [
+        "silk"
+      ],
+      "words2": [
+        "silk"
+      ]
+    },
+    {
+      "m1": "两者择一",
+      "m2": "两者择一的",
+      "extra": "的",
+      "words1": [
+        "alternative"
+      ],
+      "words2": [
+        "alternative"
+      ]
+    },
+    {
+      "m1": "个人",
+      "m2": "个人的",
+      "extra": "的",
+      "words1": [
+        "individual"
+      ],
+      "words2": [
+        "individual",
+        "personal",
+        "subjective"
+      ]
+    },
+    {
+      "m1": "中国",
+      "m2": "中国的",
+      "extra": "的",
+      "words1": [
+        "china"
+      ],
+      "words2": [
+        "chinese"
+      ]
+    },
+    {
+      "m1": "临时",
+      "m2": "临时的",
+      "extra": "的",
+      "words1": [
+        "temporary"
+      ],
+      "words2": [
+        "casual",
+        "extraordinary",
+        "temporary"
+      ]
+    },
+    {
+      "m1": "主人",
+      "m2": "主人的",
+      "extra": "的",
+      "words1": [
+        "host",
+        "master"
+      ],
+      "words2": [
+        "master"
+      ]
+    },
+    {
+      "m1": "主要",
+      "m2": "主要地",
+      "extra": "地",
+      "words1": [
+        "mostly"
+      ],
+      "words2": [
+        "mainly"
+      ]
+    },
+    {
+      "m1": "乡村",
+      "m2": "乡村的",
+      "extra": "的",
+      "words1": [
+        "countryside"
+      ],
+      "words2": [
+        "rural"
+      ]
+    },
+    {
+      "m1": "产业",
+      "m2": "产业的",
+      "extra": "的",
+      "words1": [
+        "industry"
+      ],
+      "words2": [
+        "industrial"
+      ]
+    },
+    {
+      "m1": "仁慈",
+      "m2": "仁慈的",
+      "extra": "的",
+      "words1": [
+        "kindness"
+      ],
+      "words2": [
+        "merciful"
+      ]
+    },
+    {
+      "m1": "仅仅",
+      "m2": "仅仅的",
+      "extra": "的",
+      "words1": [
+        "just",
+        "merely"
+      ],
+      "words2": [
+        "mere"
+      ]
+    },
+    {
+      "m1": "仙女",
+      "m2": "仙女的",
+      "extra": "的",
+      "words1": [
+        "fairy"
+      ],
+      "words2": [
+        "fairy"
+      ]
+    },
+    {
+      "m1": "代表",
+      "m2": "代表的",
+      "extra": "的",
+      "words1": [
+        "represent",
+        "representative"
+      ],
+      "words2": [
+        "representative"
+      ]
+    },
+    {
+      "m1": "传统",
+      "m2": "传统的",
+      "extra": "的",
+      "words1": [
+        "tradition"
+      ],
+      "words2": [
+        "conventional",
+        "traditional"
+      ]
+    },
+    {
+      "m1": "侦探",
+      "m2": "侦探的",
+      "extra": "的",
+      "words1": [
+        "detective",
+        "spy"
+      ],
+      "words2": [
+        "detective"
+      ]
+    },
+    {
+      "m1": "便利",
+      "m2": "便利的",
+      "extra": "的",
+      "words1": [
+        "convenience"
+      ],
+      "words2": [
+        "convenient",
+        "handy"
+      ]
+    },
+    {
+      "m1": "停车",
+      "m2": "停车的",
+      "extra": "的",
+      "words1": [
+        "parking"
+      ],
+      "words2": [
+        "parking"
+      ]
+    },
+    {
+      "m1": "健康",
+      "m2": "健康的",
+      "extra": "的",
+      "words1": [
+        "health"
+      ],
+      "words2": [
+        "fit",
+        "healthy"
+      ]
+    },
+    {
+      "m1": "充足",
+      "m2": "充足的",
+      "extra": "的",
+      "words1": [
+        "plenty"
+      ],
+      "words2": [
+        "ample"
+      ]
+    },
+    {
+      "m1": "公开",
+      "m2": "公开的",
+      "extra": "的",
+      "words1": [
+        "open",
+        "opening",
+        "publish"
+      ],
+      "words2": [
+        "open",
+        "public"
+      ]
+    },
+    {
+      "m1": "兴奋",
+      "m2": "兴奋的",
+      "extra": "的",
+      "words1": [
+        "excitement",
+        "glee",
+        "stimulation",
+        "thrill"
+      ],
+      "words2": [
+        "excited"
+      ]
+    },
+    {
+      "m1": "内部",
+      "m2": "内部的",
+      "extra": "的",
+      "words1": [
+        "inner"
+      ],
+      "words2": [
+        "inner",
+        "internal"
+      ]
+    },
+    {
+      "m1": "军事",
+      "m2": "军事的",
+      "extra": "的",
+      "words1": [
+        "war"
+      ],
+      "words2": [
+        "martial",
+        "military"
+      ]
+    },
+    {
+      "m1": "农业",
+      "m2": "农业的",
+      "extra": "的",
+      "words1": [
+        "agriculture"
+      ],
+      "words2": [
+        "agricultural"
+      ]
+    },
+    {
+      "m1": "出局",
+      "m2": "出局的",
+      "extra": "的",
+      "words1": [
+        "out"
+      ],
+      "words2": [
+        "out"
+      ]
+    },
+    {
+      "m1": "分开",
+      "m2": "分开的",
+      "extra": "的",
+      "words1": [
+        "division",
+        "separate",
+        "separation",
+        "split"
+      ],
+      "words2": [
+        "separate"
+      ]
+    },
+    {
+      "m1": "劈开",
+      "m2": "劈开的",
+      "extra": "的",
+      "words1": [
+        "split"
+      ],
+      "words2": [
+        "split"
+      ]
+    },
+    {
+      "m1": "助理",
+      "m2": "助理的",
+      "extra": "的",
+      "words1": [
+        "assistant"
+      ],
+      "words2": [
+        "assistant"
+      ]
+    },
+    {
+      "m1": "化学",
+      "m2": "化学的",
+      "extra": "的",
+      "words1": [
+        "chemistry"
+      ],
+      "words2": [
+        "chemical"
+      ]
+    },
+    {
+      "m1": "北部",
+      "m2": "北部的",
+      "extra": "的",
+      "words1": [
+        "north"
+      ],
+      "words2": [
+        "north",
+        "northern"
+      ]
+    },
+    {
+      "m1": "医学",
+      "m2": "医学的",
+      "extra": "的",
+      "words1": [
+        "medicine"
+      ],
+      "words2": [
+        "medical"
+      ]
+    },
+    {
+      "m1": "午夜",
+      "m2": "午夜的",
+      "extra": "的",
+      "words1": [
+        "midnight"
+      ],
+      "words2": [
+        "midnight"
+      ]
+    },
+    {
+      "m1": "半夜",
+      "m2": "半夜的",
+      "extra": "的",
+      "words1": [
+        "midnight"
+      ],
+      "words2": [
+        "midnight"
+      ]
+    },
+    {
+      "m1": "南方",
+      "m2": "南方的",
+      "extra": "的",
+      "words1": [
+        "south"
+      ],
+      "words2": [
+        "south"
+      ]
+    },
+    {
+      "m1": "历史",
+      "m2": "历史的",
+      "extra": "的",
+      "words1": [
+        "history"
+      ],
+      "words2": [
+        "historical"
+      ]
+    },
+    {
+      "m1": "及时",
+      "m2": "及时的",
+      "extra": "的",
+      "words1": [
+        "in time"
+      ],
+      "words2": [
+        "timely"
+      ]
+    },
+    {
+      "m1": "反射",
+      "m2": "反射的",
+      "extra": "的",
+      "words1": [
+        "glance",
+        "reflect",
+        "reflection"
+      ],
+      "words2": [
+        "reflective"
+      ]
+    },
+    {
+      "m1": "反映",
+      "m2": "反映的",
+      "extra": "的",
+      "words1": [
+        "mirror",
+        "reflect",
+        "reflection"
+      ],
+      "words2": [
+        "reflective"
+      ]
+    },
+    {
+      "m1": "城市",
+      "m2": "城市的",
+      "extra": "的",
+      "words1": [
+        "city"
+      ],
+      "words2": [
+        "urban"
+      ]
+    },
+    {
+      "m1": "塑料",
+      "m2": "塑料的",
+      "extra": "的",
+      "words1": [
+        "plastic"
+      ],
+      "words2": [
+        "plastic"
+      ]
+    },
+    {
+      "m1": "大体",
+      "m2": "大体的",
+      "extra": "的",
+      "words1": [
+        "general"
+      ],
+      "words2": [
+        "general"
+      ]
+    },
+    {
+      "m1": "大西洋",
+      "m2": "大西洋的",
+      "extra": "的",
+      "words1": [
+        "atlantic"
+      ],
+      "words2": [
+        "atlantic"
+      ]
+    },
+    {
+      "m1": "大量",
+      "m2": "大量的",
+      "extra": "的",
+      "words1": [
+        "lots of",
+        "mass",
+        "much",
+        "packet"
+      ],
+      "words2": [
+        "generous",
+        "massive",
+        "vast"
+      ]
+    },
+    {
+      "m1": "失望",
+      "m2": "失望的",
+      "extra": "的",
+      "words1": [
+        "despair",
+        "disappoint",
+        "disappointment"
+      ],
+      "words2": [
+        "disappointed"
+      ]
+    },
+    {
+      "m1": "失踪",
+      "m2": "失踪的",
+      "extra": "的",
+      "words1": [
+        "disappearance"
+      ],
+      "words2": [
+        "missing"
+      ]
+    },
+    {
+      "m1": "奇数",
+      "m2": "奇数的",
+      "extra": "的",
+      "words1": [
+        "odd"
+      ],
+      "words2": [
+        "odd"
+      ]
+    },
+    {
+      "m1": "奥林匹克运动会",
+      "m2": "奥林匹克运动会的",
+      "extra": "的",
+      "words1": [
+        "olympics"
+      ],
+      "words2": [
+        "olympic"
+      ]
+    },
+    {
+      "m1": "威胁",
+      "m2": "威胁的",
+      "extra": "的",
+      "words1": [
+        "threat"
+      ],
+      "words2": [
+        "threatening"
+      ]
+    },
+    {
+      "m1": "孤儿",
+      "m2": "孤儿的",
+      "extra": "的",
+      "words1": [
+        "orphan"
+      ],
+      "words2": [
+        "orphan"
+      ]
+    },
+    {
+      "m1": "平均",
+      "m2": "平均的",
+      "extra": "的",
+      "words1": [
+        "average"
+      ],
+      "words2": [
+        "average"
+      ]
+    },
+    {
+      "m1": "平民",
+      "m2": "平民的",
+      "extra": "的",
+      "words1": [
+        "civilian"
+      ],
+      "words2": [
+        "civilian"
+      ]
+    },
+    {
+      "m1": "平行",
+      "m2": "平行的",
+      "extra": "的",
+      "words1": [
+        "parallel"
+      ],
+      "words2": [
+        "parallel"
+      ]
+    },
+    {
+      "m1": "平面",
+      "m2": "平面的",
+      "extra": "的",
+      "words1": [
+        "plane"
+      ],
+      "words2": [
+        "plane"
+      ]
+    },
+    {
+      "m1": "幸福",
+      "m2": "幸福的",
+      "extra": "的",
+      "words1": [
+        "happiness",
+        "welfare"
+      ],
+      "words2": [
+        "happy"
+      ]
+    },
+    {
+      "m1": "幸运",
+      "m2": "幸运的",
+      "extra": "的",
+      "words1": [
+        "luck"
+      ],
+      "words2": [
+        "fortunate",
+        "lucky"
+      ]
+    },
+    {
+      "m1": "广播",
+      "m2": "广播的",
+      "extra": "的",
+      "words1": [
+        "broadcast"
+      ],
+      "words2": [
+        "broadcast"
+      ]
+    },
+    {
+      "m1": "弄翻",
+      "m2": "弄翻的",
+      "extra": "的",
+      "words1": [
+        "upset"
+      ],
+      "words2": [
+        "upset"
+      ]
+    },
+    {
+      "m1": "当前",
+      "m2": "当前的",
+      "extra": "的",
+      "words1": [
+        "currently"
+      ],
+      "words2": [
+        "current",
+        "present"
+      ]
+    },
+    {
+      "m1": "录像",
+      "m2": "录像的",
+      "extra": "的",
+      "words1": [
+        "video"
+      ],
+      "words2": [
+        "video"
+      ]
+    },
+    {
+      "m1": "很可能",
+      "m2": "很可能的",
+      "extra": "的",
+      "words1": [
+        "probably"
+      ],
+      "words2": [
+        "likely"
+      ]
+    },
+    {
+      "m1": "很少",
+      "m2": "很少地",
+      "extra": "地",
+      "words1": [
+        "seldom"
+      ],
+      "words2": [
+        "rarely"
+      ]
+    },
+    {
+      "m1": "抽象",
+      "m2": "抽象的",
+      "extra": "的",
+      "words1": [
+        "abstract"
+      ],
+      "words2": [
+        "abstract",
+        "ivy"
+      ]
+    },
+    {
+      "m1": "拉丁人",
+      "m2": "拉丁人的",
+      "extra": "的",
+      "words1": [
+        "latin"
+      ],
+      "words2": [
+        "latin"
+      ]
+    },
+    {
+      "m1": "拉丁语",
+      "m2": "拉丁语的",
+      "extra": "的",
+      "words1": [
+        "latin"
+      ],
+      "words2": [
+        "latin"
+      ]
+    },
+    {
+      "m1": "拉紧",
+      "m2": "拉紧的",
+      "extra": "的",
+      "words1": [
+        "tense"
+      ],
+      "words2": [
+        "tense"
+      ]
+    },
+    {
+      "m1": "摘要",
+      "m2": "摘要的",
+      "extra": "的",
+      "words1": [
+        "abstract",
+        "brief",
+        "summary"
+      ],
+      "words2": [
+        "summary"
+      ]
+    },
+    {
+      "m1": "擦亮",
+      "m2": "擦亮的",
+      "extra": "的",
+      "words1": [
+        "polish"
+      ],
+      "words2": [
+        "polished"
+      ]
+    },
+    {
+      "m1": "政治",
+      "m2": "政治的",
+      "extra": "的",
+      "words1": [
+        "politics"
+      ],
+      "words2": [
+        "political"
+      ]
+    },
+    {
+      "m1": "文艺",
+      "m2": "文艺的",
+      "extra": "的",
+      "words1": [
+        "literature"
+      ],
+      "words2": [
+        "literary"
+      ]
+    },
+    {
+      "m1": "新娘",
+      "m2": "新娘的",
+      "extra": "的",
+      "words1": [
+        "bride"
+      ],
+      "words2": [
+        "bridal"
+      ]
+    },
+    {
+      "m1": "日本",
+      "m2": "日本的",
+      "extra": "的",
+      "words1": [
+        "japan"
+      ],
+      "words2": [
+        "japanese"
+      ]
+    },
+    {
+      "m1": "暴力",
+      "m2": "暴力的",
+      "extra": "的",
+      "words1": [
+        "violence"
+      ],
+      "words2": [
+        "violent"
+      ]
+    },
+    {
+      "m1": "更远",
+      "m2": "更远地",
+      "extra": "地",
+      "words1": [
+        "farther"
+      ],
+      "words2": [
+        "further"
+      ]
+    },
+    {
+      "m1": "更远",
+      "m2": "更远的",
+      "extra": "的",
+      "words1": [
+        "farther"
+      ],
+      "words2": [
+        "further"
+      ]
+    },
+    {
+      "m1": "最初",
+      "m2": "最初的",
+      "extra": "的",
+      "words1": [
+        "first",
+        "initially",
+        "originally"
+      ],
+      "words2": [
+        "initial",
+        "original",
+        "premier"
+      ]
+    },
+    {
+      "m1": "月亮",
+      "m2": "月亮的",
+      "extra": "的",
+      "words1": [
+        "moon"
+      ],
+      "words2": [
+        "lunar"
+      ]
+    },
+    {
+      "m1": "有区别",
+      "m2": "有区别的",
+      "extra": "的",
+      "words1": [
+        "differ"
+      ],
+      "words2": [
+        "different"
+      ]
+    },
+    {
+      "m1": "有益",
+      "m2": "有益的",
+      "extra": "的",
+      "words1": [
+        "profit"
+      ],
+      "words2": [
+        "beneficial",
+        "helpful",
+        "rewarding",
+        "useful"
+      ]
+    },
+    {
+      "m1": "每年",
+      "m2": "每年的",
+      "extra": "的",
+      "words1": [
+        "annually"
+      ],
+      "words2": [
+        "annually"
+      ]
+    },
+    {
+      "m1": "沉默",
+      "m2": "沉默地",
+      "extra": "地",
+      "words1": [
+        "silence"
+      ],
+      "words2": [
+        "silently"
+      ]
+    },
+    {
+      "m1": "沉默",
+      "m2": "沉默的",
+      "extra": "的",
+      "words1": [
+        "silence"
+      ],
+      "words2": [
+        "silent"
+      ]
+    },
+    {
+      "m1": "油炸",
+      "m2": "油炸的",
+      "extra": "的",
+      "words1": [
+        "fry"
+      ],
+      "words2": [
+        "fried"
+      ]
+    },
+    {
+      "m1": "法律",
+      "m2": "法律的",
+      "extra": "的",
+      "words1": [
+        "law"
+      ],
+      "words2": [
+        "legal"
+      ]
+    },
+    {
+      "m1": "流畅",
+      "m2": "流畅的",
+      "extra": "的",
+      "words1": [
+        "fluency"
+      ],
+      "words2": [
+        "fluent"
+      ]
+    },
+    {
+      "m1": "液体",
+      "m2": "液体的",
+      "extra": "的",
+      "words1": [
+        "liquid"
+      ],
+      "words2": [
+        "liquid"
+      ]
+    },
+    {
+      "m1": "清楚",
+      "m2": "清楚的",
+      "extra": "的",
+      "words1": [
+        "clarity"
+      ],
+      "words2": [
+        "clear",
+        "explicit"
+      ]
+    },
+    {
+      "m1": "清洁",
+      "m2": "清洁的",
+      "extra": "的",
+      "words1": [
+        "cleaning"
+      ],
+      "words2": [
+        "clean"
+      ]
+    },
+    {
+      "m1": "温暖",
+      "m2": "温暖的",
+      "extra": "的",
+      "words1": [
+        "warmth"
+      ],
+      "words2": [
+        "warm"
+      ]
+    },
+    {
+      "m1": "满意",
+      "m2": "满意的",
+      "extra": "的",
+      "words1": [
+        "satisfaction"
+      ],
+      "words2": [
+        "content"
+      ]
+    },
+    {
+      "m1": "满足",
+      "m2": "满足的",
+      "extra": "的",
+      "words1": [
+        "content",
+        "satisfaction",
+        "satisfy"
+      ],
+      "words2": [
+        "content",
+        "contented"
+      ]
+    },
+    {
+      "m1": "烦恼",
+      "m2": "烦恼的",
+      "extra": "的",
+      "words1": [
+        "bother",
+        "worry"
+      ],
+      "words2": [
+        "worried"
+      ]
+    },
+    {
+      "m1": "热心",
+      "m2": "热心的",
+      "extra": "的",
+      "words1": [
+        "warmth"
+      ],
+      "words2": [
+        "enthusiastic",
+        "keen"
+      ]
+    },
+    {
+      "m1": "热烈",
+      "m2": "热烈的",
+      "extra": "的",
+      "words1": [
+        "warmth"
+      ],
+      "words2": [
+        "enthusiastic",
+        "passionate"
+      ]
+    },
+    {
+      "m1": "熄灭",
+      "m2": "熄灭的",
+      "extra": "的",
+      "words1": [
+        "die out",
+        "extinction",
+        "put out"
+      ],
+      "words2": [
+        "extinct"
+      ]
+    },
+    {
+      "m1": "燃烧",
+      "m2": "燃烧的",
+      "extra": "的",
+      "words1": [
+        "burning"
+      ],
+      "words2": [
+        "burning"
+      ]
+    },
+    {
+      "m1": "爵士乐",
+      "m2": "爵士乐的",
+      "extra": "的",
+      "words1": [
+        "jazz"
+      ],
+      "words2": [
+        "jazz"
+      ]
+    },
+    {
+      "m1": "特别",
+      "m2": "特别的",
+      "extra": "的",
+      "words1": [
+        "especially",
+        "in particular"
+      ],
+      "words2": [
+        "extraordinary",
+        "special"
+      ]
+    },
+    {
+      "m1": "独立",
+      "m2": "独立地",
+      "extra": "地",
+      "words1": [
+        "independence"
+      ],
+      "words2": [
+        "independently",
+        "on one's own"
+      ]
+    },
+    {
+      "m1": "独立",
+      "m2": "独立的",
+      "extra": "的",
+      "words1": [
+        "independence"
+      ],
+      "words2": [
+        "independent"
+      ]
+    },
+    {
+      "m1": "猛烈",
+      "m2": "猛烈的",
+      "extra": "的",
+      "words1": [
+        "violence"
+      ],
+      "words2": [
+        "fierce",
+        "hard",
+        "violent",
+        "volcanic"
+      ]
+    },
+    {
+      "m1": "王室",
+      "m2": "王室的",
+      "extra": "的",
+      "words1": [
+        "household",
+        "royal"
+      ],
+      "words2": [
+        "household",
+        "royal"
+      ]
+    },
+    {
+      "m1": "现在",
+      "m2": "现在的",
+      "extra": "的",
+      "words1": [
+        "currently",
+        "now"
+      ],
+      "words2": [
+        "current"
+      ]
+    },
+    {
+      "m1": "理论",
+      "m2": "理论的",
+      "extra": "的",
+      "words1": [
+        "theory"
+      ],
+      "words2": [
+        "theoretical"
+      ]
+    },
+    {
+      "m1": "瑞典",
+      "m2": "瑞典的",
+      "extra": "的",
+      "words1": [
+        "sweden"
+      ],
+      "words2": [
+        "swedish"
+      ]
+    },
+    {
+      "m1": "甜蜜",
+      "m2": "甜蜜的",
+      "extra": "的",
+      "words1": [
+        "honey"
+      ],
+      "words2": [
+        "honey"
+      ]
+    },
+    {
+      "m1": "疫苗",
+      "m2": "疫苗的",
+      "extra": "的",
+      "words1": [
+        "vaccine"
+      ],
+      "words2": [
+        "vaccine"
+      ]
+    },
+    {
+      "m1": "疼痛",
+      "m2": "疼痛的",
+      "extra": "的",
+      "words1": [
+        "pain"
+      ],
+      "words2": [
+        "painful"
+      ]
+    },
+    {
+      "m1": "相反",
+      "m2": "相反地",
+      "extra": "地",
+      "words1": [
+        "contrary"
+      ],
+      "words2": [
+        "backward",
+        "contrary"
+      ]
+    },
+    {
+      "m1": "相反",
+      "m2": "相反的",
+      "extra": "的",
+      "words1": [
+        "contrary"
+      ],
+      "words2": [
+        "contrary",
+        "opposed",
+        "opposite"
+      ]
+    },
+    {
+      "m1": "矿物",
+      "m2": "矿物的",
+      "extra": "的",
+      "words1": [
+        "mineral"
+      ],
+      "words2": [
+        "mineral"
+      ]
+    },
+    {
+      "m1": "磨光",
+      "m2": "磨光的",
+      "extra": "的",
+      "words1": [
+        "polish"
+      ],
+      "words2": [
+        "polished"
+      ]
+    },
+    {
+      "m1": "社会",
+      "m2": "社会的",
+      "extra": "的",
+      "words1": [
+        "community",
+        "society"
+      ],
+      "words2": [
+        "social"
+      ]
+    },
+    {
+      "m1": "福利",
+      "m2": "福利的",
+      "extra": "的",
+      "words1": [
+        "welfare"
+      ],
+      "words2": [
+        "welfare"
+      ]
+    },
+    {
+      "m1": "种种",
+      "m2": "种种的",
+      "extra": "的",
+      "words1": [
+        "variety"
+      ],
+      "words2": [
+        "varied"
+      ]
+    },
+    {
+      "m1": "科学",
+      "m2": "科学的",
+      "extra": "的",
+      "words1": [
+        "science"
+      ],
+      "words2": [
+        "scientific"
+      ]
+    },
+    {
+      "m1": "空白",
+      "m2": "空白的",
+      "extra": "的",
+      "words1": [
+        "blank"
+      ],
+      "words2": [
+        "blank",
+        "vacant"
+      ]
+    },
+    {
+      "m1": "空闲",
+      "m2": "空闲的",
+      "extra": "的",
+      "words1": [
+        "leisure"
+      ],
+      "words2": [
+        "free",
+        "spare",
+        "vacant"
+      ]
+    },
+    {
+      "m1": "窘迫",
+      "m2": "窘迫的",
+      "extra": "的",
+      "words1": [
+        "embarrassment"
+      ],
+      "words2": [
+        "embarrassed"
+      ]
+    },
+    {
+      "m1": "立方体",
+      "m2": "立方体的",
+      "extra": "的",
+      "words1": [
+        "cube"
+      ],
+      "words2": [
+        "cubic"
+      ]
+    },
+    {
+      "m1": "第一次",
+      "m2": "第一次的",
+      "extra": "的",
+      "words1": [
+        "for the first time"
+      ],
+      "words2": [
+        "first-time"
+      ]
+    },
+    {
+      "m1": "粉红色",
+      "m2": "粉红色的",
+      "extra": "的",
+      "words1": [
+        "pink",
+        "rose"
+      ],
+      "words2": [
+        "rose"
+      ]
+    },
+    {
+      "m1": "精确",
+      "m2": "精确的",
+      "extra": "的",
+      "words1": [
+        "accuracy"
+      ],
+      "words2": [
+        "accurate",
+        "exact",
+        "precise"
+      ]
+    },
+    {
+      "m1": "组成公司",
+      "m2": "组成公司的",
+      "extra": "的",
+      "words1": [
+        "incorporate"
+      ],
+      "words2": [
+        "incorporate"
+      ]
+    },
+    {
+      "m1": "终极",
+      "m2": "终极的",
+      "extra": "的",
+      "words1": [
+        "ultimate"
+      ],
+      "words2": [
+        "ultimate"
+      ]
+    },
+    {
+      "m1": "经济",
+      "m2": "经济的",
+      "extra": "的",
+      "words1": [
+        "economy"
+      ],
+      "words2": [
+        "economic"
+      ]
+    },
+    {
+      "m1": "绒毛",
+      "m2": "绒毛的",
+      "extra": "的",
+      "words1": [
+        "down"
+      ],
+      "words2": [
+        "downy"
+      ]
+    },
+    {
+      "m1": "统统",
+      "m2": "统统地",
+      "extra": "地",
+      "words1": [
+        "wholly"
+      ],
+      "words2": [
+        "wholly"
+      ]
+    },
+    {
+      "m1": "缺席",
+      "m2": "缺席的",
+      "extra": "的",
+      "words1": [
+        "absence"
+      ],
+      "words2": [
+        "absent"
+      ]
+    },
+    {
+      "m1": "群众",
+      "m2": "群众的",
+      "extra": "的",
+      "words1": [
+        "mass"
+      ],
+      "words2": [
+        "mass"
+      ]
+    },
+    {
+      "m1": "腐败",
+      "m2": "腐败的",
+      "extra": "的",
+      "words1": [
+        "rot"
+      ],
+      "words2": [
+        "corrupt"
+      ]
+    },
+    {
+      "m1": "自主",
+      "m2": "自主地",
+      "extra": "地",
+      "words1": [
+        "freedom",
+        "independence"
+      ],
+      "words2": [
+        "independently"
+      ]
+    },
+    {
+      "m1": "自主",
+      "m2": "自主的",
+      "extra": "的",
+      "words1": [
+        "freedom",
+        "independence"
+      ],
+      "words2": [
+        "autonomous"
+      ]
+    },
+    {
+      "m1": "自己",
+      "m2": "自己的",
+      "extra": "的",
+      "words1": [
+        "oneself"
+      ],
+      "words2": [
+        "own"
+      ]
+    },
+    {
+      "m1": "自豪",
+      "m2": "自豪的",
+      "extra": "的",
+      "words1": [
+        "pride"
+      ],
+      "words2": [
+        "proud"
+      ]
+    },
+    {
+      "m1": "艺术",
+      "m2": "艺术的",
+      "extra": "的",
+      "words1": [
+        "art"
+      ],
+      "words2": [
+        "artistic"
+      ]
+    },
+    {
+      "m1": "蒸汽",
+      "m2": "蒸汽的",
+      "extra": "的",
+      "words1": [
+        "steam"
+      ],
+      "words2": [
+        "steam"
+      ]
+    },
+    {
+      "m1": "西方",
+      "m2": "西方的",
+      "extra": "的",
+      "words1": [
+        "west"
+      ],
+      "words2": [
+        "western"
+      ]
+    },
+    {
+      "m1": "视觉",
+      "m2": "视觉的",
+      "extra": "的",
+      "words1": [
+        "sight"
+      ],
+      "words2": [
+        "visual"
+      ]
+    },
+    {
+      "m1": "警告",
+      "m2": "警告的",
+      "extra": "的",
+      "words1": [
+        "warn",
+        "warning"
+      ],
+      "words2": [
+        "warning"
+      ]
+    },
+    {
+      "m1": "诙谐",
+      "m2": "诙谐的",
+      "extra": "的",
+      "words1": [
+        "humour"
+      ],
+      "words2": [
+        "humorous"
+      ]
+    },
+    {
+      "m1": "诚实",
+      "m2": "诚实的",
+      "extra": "的",
+      "words1": [
+        "honesty",
+        "sincerity"
+      ],
+      "words2": [
+        "honest"
+      ]
+    },
+    {
+      "m1": "谨慎",
+      "m2": "谨慎的",
+      "extra": "的",
+      "words1": [
+        "caution"
+      ],
+      "words2": [
+        "cautious",
+        "conservative"
+      ]
+    },
+    {
+      "m1": "财务",
+      "m2": "财务的",
+      "extra": "的",
+      "words1": [
+        "finance"
+      ],
+      "words2": [
+        "financial"
+      ]
+    },
+    {
+      "m1": "财政",
+      "m2": "财政的",
+      "extra": "的",
+      "words1": [
+        "finance"
+      ],
+      "words2": [
+        "financial"
+      ]
+    },
+    {
+      "m1": "贪婪",
+      "m2": "贪婪的",
+      "extra": "的",
+      "words1": [
+        "greed"
+      ],
+      "words2": [
+        "greedy"
+      ]
+    },
+    {
+      "m1": "贵族",
+      "m2": "贵族的",
+      "extra": "的",
+      "words1": [
+        "noble",
+        "prince"
+      ],
+      "words2": [
+        "noble"
+      ]
+    },
+    {
+      "m1": "迅速",
+      "m2": "迅速的",
+      "extra": "的",
+      "words1": [
+        "quickly"
+      ],
+      "words2": [
+        "fast",
+        "quick",
+        "rapid",
+        "swift"
+      ]
+    },
+    {
+      "m1": "退休",
+      "m2": "退休的",
+      "extra": "的",
+      "words1": [
+        "retire",
+        "retirement"
+      ],
+      "words2": [
+        "retired"
+      ]
+    },
+    {
+      "m1": "退役",
+      "m2": "退役的",
+      "extra": "的",
+      "words1": [
+        "retire"
+      ],
+      "words2": [
+        "retired"
+      ]
+    },
+    {
+      "m1": "通常",
+      "m2": "通常地",
+      "extra": "地",
+      "words1": [
+        "in general"
+      ],
+      "words2": [
+        "usually"
+      ]
+    },
+    {
+      "m1": "逻辑",
+      "m2": "逻辑的",
+      "extra": "的",
+      "words1": [
+        "logic"
+      ],
+      "words2": [
+        "logical"
+      ]
+    },
+    {
+      "m1": "道德",
+      "m2": "道德的",
+      "extra": "的",
+      "words1": [
+        "moral"
+      ],
+      "words2": [
+        "ethical",
+        "moral"
+      ]
+    },
+    {
+      "m1": "邪恶",
+      "m2": "邪恶的",
+      "extra": "的",
+      "words1": [
+        "evil"
+      ],
+      "words2": [
+        "evil",
+        "ill"
+      ]
+    },
+    {
+      "m1": "邮政",
+      "m2": "邮政的",
+      "extra": "的",
+      "words1": [
+        "mail"
+      ],
+      "words2": [
+        "postal"
+      ]
+    },
+    {
+      "m1": "部分时间",
+      "m2": "部分时间的",
+      "extra": "的",
+      "words1": [
+        "part-time"
+      ],
+      "words2": [
+        "part-time"
+      ]
+    },
+    {
+      "m1": "金色",
+      "m2": "金色的",
+      "extra": "的",
+      "words1": [
+        "gold"
+      ],
+      "words2": [
+        "gold",
+        "golden"
+      ]
+    },
+    {
+      "m1": "长时间",
+      "m2": "长时间的",
+      "extra": "的",
+      "words1": [
+        "long"
+      ],
+      "words2": [
+        "long"
+      ]
+    },
+    {
+      "m1": "防卫",
+      "m2": "防卫的",
+      "extra": "的",
+      "words1": [
+        "defence",
+        "defend",
+        "defense",
+        "protection"
+      ],
+      "words2": [
+        "defensive"
+      ]
+    },
+    {
+      "m1": "限制",
+      "m2": "限制的",
+      "extra": "的",
+      "words1": [
+        "bound",
+        "limit",
+        "qualify",
+        "restrict"
+      ],
+      "words2": [
+        "limiting"
+      ]
+    },
+    {
+      "m1": "随机",
+      "m2": "随机的",
+      "extra": "的",
+      "words1": [
+        "random"
+      ],
+      "words2": [
+        "random"
+      ]
+    },
+    {
+      "m1": "雄性",
+      "m2": "雄性的",
+      "extra": "的",
+      "words1": [
+        "male"
+      ],
+      "words2": [
+        "male"
+      ]
+    },
+    {
+      "m1": "青少年",
+      "m2": "青少年的",
+      "extra": "的",
+      "words1": [
+        "teen"
+      ],
+      "words2": [
+        "teenage"
+      ]
+    },
+    {
+      "m1": "非洲",
+      "m2": "非洲的",
+      "extra": "的",
+      "words1": [
+        "africa"
+      ],
+      "words2": [
+        "african"
+      ]
+    },
+    {
+      "m1": "革新",
+      "m2": "革新的",
+      "extra": "的",
+      "words1": [
+        "innovate",
+        "reform"
+      ],
+      "words2": [
+        "innovative"
+      ]
+    },
+    {
+      "m1": "音乐",
+      "m2": "音乐的",
+      "extra": "的",
+      "words1": [
+        "music"
+      ],
+      "words2": [
+        "musical"
+      ]
+    },
+    {
+      "m1": "频繁",
+      "m2": "频繁的",
+      "extra": "的",
+      "words1": [
+        "frequently"
+      ],
+      "words2": [
+        "frequent"
+      ]
+    },
+    {
+      "m1": "饥饿",
+      "m2": "饥饿的",
+      "extra": "的",
+      "words1": [
+        "hunger",
+        "starvation"
+      ],
+      "words2": [
+        "hungry"
+      ]
+    },
+    {
+      "m1": "骄傲",
+      "m2": "骄傲的",
+      "extra": "的",
+      "words1": [
+        "pride"
+      ],
+      "words2": [
+        "proud"
+      ]
+    },
+    {
+      "m1": "高贵",
+      "m2": "高贵的",
+      "extra": "的",
+      "words1": [
+        "dignity"
+      ],
+      "words2": [
+        "noble"
+      ]
+    },
+    {
+      "m1": "黑暗",
+      "m2": "黑暗的",
+      "extra": "的",
+      "words1": [
+        "darkness"
+      ],
+      "words2": [
+        "dark"
+      ]
+    },
+    {
+      "m1": "只不过",
+      "m2": "只不过的",
+      "extra": "的",
+      "words1": [
+        "merely"
+      ],
+      "words2": [
+        "mere"
+      ]
+    },
+    {
+      "m1": "向后",
+      "m2": "向后的",
+      "extra": "的",
+      "words1": [
+        "backwards"
+      ],
+      "words2": [
+        "backward"
+      ]
+    },
+    {
+      "m1": "向西北",
+      "m2": "向西北的",
+      "extra": "的",
+      "words1": [
+        "northwest"
+      ],
+      "words2": [
+        "northwest"
+      ]
+    },
+    {
+      "m1": "周围",
+      "m2": "周围的",
+      "extra": "的",
+      "words1": [
+        "around"
+      ],
+      "words2": [
+        "surrounding"
+      ]
+    },
+    {
+      "m1": "固体",
+      "m2": "固体的",
+      "extra": "的",
+      "words1": [
+        "solid"
+      ],
+      "words2": [
+        "solid"
+      ]
+    },
+    {
+      "m1": "地方",
+      "m2": "地方的",
+      "extra": "的",
+      "words1": [
+        "district",
+        "place"
+      ],
+      "words2": [
+        "local"
+      ]
+    },
+    {
+      "m1": "坚决",
+      "m2": "坚决地",
+      "extra": "地",
+      "words1": [
+        "resolve"
+      ],
+      "words2": [
+        "resolutely"
+      ]
+    },
+    {
+      "m1": "坚决",
+      "m2": "坚决的",
+      "extra": "的",
+      "words1": [
+        "resolve"
+      ],
+      "words2": [
+        "determined"
+      ]
+    },
+    {
+      "m1": "安全",
+      "m2": "安全地",
+      "extra": "地",
+      "words1": [
+        "safety",
+        "security"
+      ],
+      "words2": [
+        "safely"
+      ]
+    },
+    {
+      "m1": "安全",
+      "m2": "安全的",
+      "extra": "的",
+      "words1": [
+        "safety",
+        "security"
+      ],
+      "words2": [
+        "safe",
+        "secure"
+      ]
+    },
+    {
+      "m1": "完全",
+      "m2": "完全地",
+      "extra": "地",
+      "words1": [
+        "altogether"
+      ],
+      "words2": [
+        "absolutely",
+        "entirely",
+        "thoroughly",
+        "wholly"
+      ]
+    },
+    {
+      "m1": "家庭",
+      "m2": "家庭的",
+      "extra": "的",
+      "words1": [
+        "house",
+        "household"
+      ],
+      "words2": [
+        "home",
+        "household"
+      ]
+    },
+    {
+      "m1": "宾格",
+      "m2": "宾格的",
+      "extra": "的",
+      "words1": [
+        "objective"
+      ],
+      "words2": [
+        "objective"
+      ]
+    },
+    {
+      "m1": "寂静",
+      "m2": "寂静地",
+      "extra": "地",
+      "words1": [
+        "silence"
+      ],
+      "words2": [
+        "silently"
+      ]
+    },
+    {
+      "m1": "小心",
+      "m2": "小心的",
+      "extra": "的",
+      "words1": [
+        "caution"
+      ],
+      "words2": [
+        "careful",
+        "cautious"
+      ]
+    },
+    {
+      "m1": "尖刻",
+      "m2": "尖刻的",
+      "extra": "的",
+      "words1": [
+        "acid"
+      ],
+      "words2": [
+        "acid",
+        "sharp"
+      ]
+    },
+    {
+      "m1": "心理学",
+      "m2": "心理学的",
+      "extra": "的",
+      "words1": [
+        "psychology"
+      ],
+      "words2": [
+        "psychological"
+      ]
+    },
+    {
+      "m1": "忧虑",
+      "m2": "忧虑地",
+      "extra": "地",
+      "words1": [
+        "anxiety"
+      ],
+      "words2": [
+        "anxiously"
+      ]
+    },
+    {
+      "m1": "忧虑",
+      "m2": "忧虑的",
+      "extra": "的",
+      "words1": [
+        "anxiety"
+      ],
+      "words2": [
+        "anxious"
+      ]
+    },
+    {
+      "m1": "快乐",
+      "m2": "快乐的",
+      "extra": "的",
+      "words1": [
+        "delight"
+      ],
+      "words2": [
+        "delighted",
+        "joyous",
+        "merry"
+      ]
+    },
+    {
+      "m1": "忽然",
+      "m2": "忽然的",
+      "extra": "的",
+      "words1": [
+        "suddenly"
+      ],
+      "words2": [
+        "sudden"
+      ]
+    },
+    {
+      "m1": "悲哀",
+      "m2": "悲哀的",
+      "extra": "的",
+      "words1": [
+        "sadness"
+      ],
+      "words2": [
+        "sad"
+      ]
+    },
+    {
+      "m1": "情感",
+      "m2": "情感的",
+      "extra": "的",
+      "words1": [
+        "emotion"
+      ],
+      "words2": [
+        "emotional"
+      ]
+    },
+    {
+      "m1": "感激",
+      "m2": "感激的",
+      "extra": "的",
+      "words1": [
+        "appreciation"
+      ],
+      "words2": [
+        "appreciative",
+        "grateful"
+      ]
+    },
+    {
+      "m1": "慷慨",
+      "m2": "慷慨的",
+      "extra": "的",
+      "words1": [
+        "generosity"
+      ],
+      "words2": [
+        "generous"
+      ]
+    },
+    {
+      "m1": "未偿付",
+      "m2": "未偿付的",
+      "extra": "的",
+      "words1": [
+        "outstanding"
+      ],
+      "words2": [
+        "outstanding"
+      ]
+    },
+    {
+      "m1": "杂种",
+      "m2": "杂种的",
+      "extra": "的",
+      "words1": [
+        "hybrid"
+      ],
+      "words2": [
+        "hybrid"
+      ]
+    },
+    {
+      "m1": "极端",
+      "m2": "极端的",
+      "extra": "的",
+      "words1": [
+        "extreme"
+      ],
+      "words2": [
+        "extreme",
+        "violent"
+      ]
+    },
+    {
+      "m1": "棕色",
+      "m2": "棕色的",
+      "extra": "的",
+      "words1": [
+        "brown"
+      ],
+      "words2": [
+        "brown"
+      ]
+    },
+    {
+      "m1": "植物学",
+      "m2": "植物学的",
+      "extra": "的",
+      "words1": [
+        "botany"
+      ],
+      "words2": [
+        "botanical"
+      ]
+    },
+    {
+      "m1": "橙色",
+      "m2": "橙色的",
+      "extra": "的",
+      "words1": [
+        "orange"
+      ],
+      "words2": [
+        "orange"
+      ]
+    },
+    {
+      "m1": "欢乐",
+      "m2": "欢乐的",
+      "extra": "的",
+      "words1": [
+        "joy"
+      ],
+      "words2": [
+        "jocund"
+      ]
+    },
+    {
+      "m1": "正常",
+      "m2": "正常的",
+      "extra": "的",
+      "words1": [
+        "normal"
+      ],
+      "words2": [
+        "normal"
+      ]
+    },
+    {
+      "m1": "正直",
+      "m2": "正直的",
+      "extra": "的",
+      "words1": [
+        "honesty",
+        "integrity"
+      ],
+      "words2": [
+        "honest"
+      ]
+    }
+  ],
+  "not_equiv": [
+    {
+      "m1": "一定",
+      "m2": "一定的",
+      "extra": "的",
+      "words1": [
+        "sure"
+      ],
+      "words2": [
+        "constant",
+        "definite"
+      ]
+    },
+    {
+      "m1": "一致",
+      "m2": "一致的",
+      "extra": "的",
+      "words1": [
+        "agree with",
+        "agreement",
+        "concert",
+        "correspond"
+      ],
+      "words2": [
+        "consistent",
+        "corresponding",
+        "uniform"
+      ]
+    },
+    {
+      "m1": "上面",
+      "m2": "上面的",
+      "extra": "的",
+      "words1": [
+        "top"
+      ],
+      "words2": [
+        "upper"
+      ]
+    },
+    {
+      "m1": "下雨",
+      "m2": "下雨的",
+      "extra": "的",
+      "words1": [
+        "rain"
+      ],
+      "words2": [
+        "wet"
+      ]
+    },
+    {
+      "m1": "不同",
+      "m2": "不同地",
+      "extra": "地",
+      "words1": [
+        "differ",
+        "difference"
+      ],
+      "words2": [
+        "otherwise"
+      ]
+    },
+    {
+      "m1": "不安",
+      "m2": "不安地",
+      "extra": "地",
+      "words1": [
+        "unrest"
+      ],
+      "words2": [
+        "anxiously"
+      ]
+    },
+    {
+      "m1": "不安",
+      "m2": "不安的",
+      "extra": "的",
+      "words1": [
+        "unrest"
+      ],
+      "words2": [
+        "uncomfortable"
+      ]
+    },
+    {
+      "m1": "不幸",
+      "m2": "不幸地",
+      "extra": "地",
+      "words1": [
+        "disaster",
+        "evil",
+        "ill",
+        "sorrow"
+      ],
+      "words2": [
+        "unfortunately"
+      ]
+    },
+    {
+      "m1": "不注意",
+      "m2": "不注意的",
+      "extra": "的",
+      "words1": [
+        "regardless"
+      ],
+      "words2": [
+        "forgetful"
+      ]
+    },
+    {
+      "m1": "不满",
+      "m2": "不满的",
+      "extra": "的",
+      "words1": [
+        "complain"
+      ],
+      "words2": [
+        "be fed up with"
+      ]
+    },
+    {
+      "m1": "专家",
+      "m2": "专家的",
+      "extra": "的",
+      "words1": [
+        "authority",
+        "expert",
+        "specialist"
+      ],
+      "words2": [
+        "specialist"
+      ]
+    },
+    {
+      "m1": "两倍",
+      "m2": "两倍的",
+      "extra": "的",
+      "words1": [
+        "twice"
+      ],
+      "words2": [
+        "double"
+      ]
+    },
+    {
+      "m1": "中心",
+      "m2": "中心的",
+      "extra": "的",
+      "words1": [
+        "center",
+        "centre"
+      ],
+      "words2": [
+        "nuclear"
+      ]
+    },
+    {
+      "m1": "临时",
+      "m2": "临时地",
+      "extra": "地",
+      "words1": [
+        "temporary"
+      ],
+      "words2": [
+        "casually"
+      ]
+    },
+    {
+      "m1": "临界",
+      "m2": "临界的",
+      "extra": "的",
+      "words1": [
+        "crisis"
+      ],
+      "words2": [
+        "critical"
+      ]
+    },
+    {
+      "m1": "义务",
+      "m2": "义务的",
+      "extra": "的",
+      "words1": [
+        "duty"
+      ],
+      "words2": [
+        "compulsory"
+      ]
+    },
+    {
+      "m1": "习惯",
+      "m2": "习惯的",
+      "extra": "的",
+      "words1": [
+        "custom",
+        "habit"
+      ],
+      "words2": [
+        "accustomed",
+        "conventional"
+      ]
+    },
+    {
+      "m1": "了解",
+      "m2": "了解的",
+      "extra": "的",
+      "words1": [
+        "know"
+      ],
+      "words2": [
+        "intelligent"
+      ]
+    },
+    {
+      "m1": "争论",
+      "m2": "争论的",
+      "extra": "的",
+      "words1": [
+        "argue",
+        "argument",
+        "contest",
+        "debate"
+      ],
+      "words2": [
+        "controversial"
+      ]
+    },
+    {
+      "m1": "事实上",
+      "m2": "事实上的",
+      "extra": "的",
+      "words1": [
+        "actually",
+        "really"
+      ],
+      "words2": [
+        "practical"
+      ]
+    },
+    {
+      "m1": "他们",
+      "m2": "他们的",
+      "extra": "的",
+      "words1": [
+        "them",
+        "they"
+      ],
+      "words2": [
+        "their",
+        "theirs"
+      ]
+    },
+    {
+      "m1": "体系",
+      "m2": "体系的",
+      "extra": "的",
+      "words1": [
+        "system"
+      ],
+      "words2": [
+        "systematic"
+      ]
+    },
+    {
+      "m1": "你们",
+      "m2": "你们的",
+      "extra": "的",
+      "words1": [
+        "you"
+      ],
+      "words2": [
+        "your",
+        "yours"
+      ]
+    },
+    {
+      "m1": "保留",
+      "m2": "保留的",
+      "extra": "的",
+      "words1": [
+        "keep",
+        "reserve"
+      ],
+      "words2": [
+        "reserved"
+      ]
+    },
+    {
+      "m1": "信任",
+      "m2": "信任的",
+      "extra": "的",
+      "words1": [
+        "belief",
+        "credit",
+        "faith",
+        "rely"
+      ],
+      "words2": [
+        "unsuspecting"
+      ]
+    },
+    {
+      "m1": "值得",
+      "m2": "值得的",
+      "extra": "的",
+      "words1": [
+        "deserve"
+      ],
+      "words2": [
+        "worth",
+        "worthy"
+      ]
+    },
+    {
+      "m1": "假设",
+      "m2": "假设的",
+      "extra": "的",
+      "words1": [
+        "tentative"
+      ],
+      "words2": [
+        "theoretical"
+      ]
+    },
+    {
+      "m1": "健康",
+      "m2": "健康地",
+      "extra": "地",
+      "words1": [
+        "health"
+      ],
+      "words2": [
+        "healthily"
+      ]
+    },
+    {
+      "m1": "充满",
+      "m2": "充满的",
+      "extra": "的",
+      "words1": [
+        "fill"
+      ],
+      "words2": [
+        "full"
+      ]
+    },
+    {
+      "m1": "充足",
+      "m2": "充足地",
+      "extra": "地",
+      "words1": [
+        "plenty"
+      ],
+      "words2": [
+        "enough"
+      ]
+    },
+    {
+      "m1": "光辉",
+      "m2": "光辉的",
+      "extra": "的",
+      "words1": [
+        "flame",
+        "ray"
+      ],
+      "words2": [
+        "brilliant"
+      ]
+    },
+    {
+      "m1": "免除",
+      "m2": "免除的",
+      "extra": "的",
+      "words1": [
+        "forgive",
+        "freedom",
+        "release"
+      ],
+      "words2": [
+        "immune"
+      ]
+    },
+    {
+      "m1": "公民",
+      "m2": "公民的",
+      "extra": "的",
+      "words1": [
+        "citizen"
+      ],
+      "words2": [
+        "civil"
+      ]
+    },
+    {
+      "m1": "关联",
+      "m2": "关联的",
+      "extra": "的",
+      "words1": [
+        "association",
+        "relationship"
+      ],
+      "words2": [
+        "bound"
+      ]
+    },
+    {
+      "m1": "典型",
+      "m2": "典型的",
+      "extra": "的",
+      "words1": [
+        "pattern",
+        "representative",
+        "soul"
+      ],
+      "words2": [
+        "characteristic",
+        "classical",
+        "representative",
+        "typical"
+      ]
+    },
+    {
+      "m1": "军队",
+      "m2": "军队的",
+      "extra": "的",
+      "words1": [
+        "army",
+        "troop"
+      ],
+      "words2": [
+        "military"
+      ]
+    },
+    {
+      "m1": "决心",
+      "m2": "决心的",
+      "extra": "的",
+      "words1": [
+        "determination",
+        "push",
+        "resolution",
+        "resolve"
+      ],
+      "words2": [
+        "bent"
+      ]
+    },
+    {
+      "m1": "出生",
+      "m2": "出生地",
+      "extra": "地",
+      "words1": [
+        "birth"
+      ],
+      "words2": [
+        "birthplace"
+      ]
+    },
+    {
+      "m1": "出生",
+      "m2": "出生的",
+      "extra": "的",
+      "words1": [
+        "birth"
+      ],
+      "words2": [
+        "born"
+      ]
+    },
+    {
+      "m1": "出生地",
+      "m2": "出生地的",
+      "extra": "的",
+      "words1": [
+        "birthplace"
+      ],
+      "words2": [
+        "mother"
+      ]
+    },
+    {
+      "m1": "分离",
+      "m2": "分离的",
+      "extra": "的",
+      "words1": [
+        "separation",
+        "split"
+      ],
+      "words2": [
+        "apart"
+      ]
+    },
+    {
+      "m1": "分离",
+      "m2": "分离着",
+      "extra": "着",
+      "words1": [
+        "separation",
+        "split"
+      ],
+      "words2": [
+        "apart"
+      ]
+    },
+    {
+      "m1": "分类",
+      "m2": "分类的",
+      "extra": "的",
+      "words1": [
+        "category",
+        "classification",
+        "classify"
+      ],
+      "words2": [
+        "systematic"
+      ]
+    },
+    {
+      "m1": "创新",
+      "m2": "创新的",
+      "extra": "的",
+      "words1": [
+        "innovate",
+        "innovation"
+      ],
+      "words2": [
+        "innovative"
+      ]
+    },
+    {
+      "m1": "创造",
+      "m2": "创造的",
+      "extra": "的",
+      "words1": [
+        "create",
+        "creation",
+        "invent"
+      ],
+      "words2": [
+        "creative"
+      ]
+    },
+    {
+      "m1": "初期",
+      "m2": "初期的",
+      "extra": "的",
+      "words1": [
+        "morning"
+      ],
+      "words2": [
+        "young"
+      ]
+    },
+    {
+      "m1": "刺痛",
+      "m2": "刺痛的",
+      "extra": "的",
+      "words1": [
+        "bite"
+      ],
+      "words2": [
+        "raw"
+      ]
+    },
+    {
+      "m1": "前进",
+      "m2": "前进的",
+      "extra": "的",
+      "words1": [
+        "advance",
+        "fetch",
+        "march",
+        "ongoing"
+      ],
+      "words2": [
+        "ongoing"
+      ]
+    },
+    {
+      "m1": "剩余",
+      "m2": "剩余的",
+      "extra": "的",
+      "words1": [
+        "surplus"
+      ],
+      "words2": [
+        "odd"
+      ]
+    },
+    {
+      "m1": "努力",
+      "m2": "努力的",
+      "extra": "的",
+      "words1": [
+        "apply oneself to sth",
+        "effort",
+        "strive",
+        "struggle"
+      ],
+      "words2": [
+        "hard"
+      ]
+    },
+    {
+      "m1": "危象",
+      "m2": "危象的",
+      "extra": "的",
+      "words1": [
+        "crisis"
+      ],
+      "words2": [
+        "critical"
+      ]
+    },
+    {
+      "m1": "危险",
+      "m2": "危险的",
+      "extra": "的",
+      "words1": [
+        "danger"
+      ],
+      "words2": [
+        "critical",
+        "threatening"
+      ]
+    },
+    {
+      "m1": "压低",
+      "m2": "压低的",
+      "extra": "的",
+      "words1": [
+        "depression"
+      ],
+      "words2": [
+        "depressed"
+      ]
+    },
+    {
+      "m1": "参与",
+      "m2": "参与的",
+      "extra": "的",
+      "words1": [
+        "engage",
+        "participate"
+      ],
+      "words2": [
+        "concerned",
+        "participant"
+      ]
+    },
+    {
+      "m1": "参加",
+      "m2": "参加的",
+      "extra": "的",
+      "words1": [
+        "attend",
+        "join",
+        "participate"
+      ],
+      "words2": [
+        "participant"
+      ]
+    },
+    {
+      "m1": "反对",
+      "m2": "反对的",
+      "extra": "的",
+      "words1": [
+        "oppose",
+        "protest",
+        "react"
+      ],
+      "words2": [
+        "contradictory",
+        "opponent",
+        "opposed"
+      ]
+    },
+    {
+      "m1": "变化",
+      "m2": "变化的",
+      "extra": "的",
+      "words1": [
+        "change",
+        "movement",
+        "shift",
+        "variation"
+      ],
+      "words2": [
+        "varied"
+      ]
+    },
+    {
+      "m1": "坚定",
+      "m2": "坚定的",
+      "extra": "的",
+      "words1": [
+        "firmly",
+        "resolution"
+      ],
+      "words2": [
+        "firm"
+      ]
+    },
+    {
+      "m1": "坚强",
+      "m2": "坚强的",
+      "extra": "的",
+      "words1": [
+        "iron"
+      ],
+      "words2": [
+        "firm",
+        "steel",
+        "strong"
+      ]
+    },
+    {
+      "m1": "坚硬",
+      "m2": "坚硬的",
+      "extra": "的",
+      "words1": [
+        "steel"
+      ],
+      "words2": [
+        "firm",
+        "solid",
+        "stiff"
+      ]
+    },
+    {
+      "m1": "坦率",
+      "m2": "坦率的",
+      "extra": "的",
+      "words1": [
+        "freedom"
+      ],
+      "words2": [
+        "bare",
+        "frank",
+        "outspoken"
+      ]
+    },
+    {
+      "m1": "复制",
+      "m2": "复制的",
+      "extra": "的",
+      "words1": [
+        "copy"
+      ],
+      "words2": [
+        "reproductive"
+      ]
+    },
+    {
+      "m1": "外出",
+      "m2": "外出的",
+      "extra": "的",
+      "words1": [
+        "outgoing"
+      ],
+      "words2": [
+        "outward",
+        "outwards"
+      ]
+    },
+    {
+      "m1": "大量",
+      "m2": "大量地",
+      "extra": "地",
+      "words1": [
+        "lots of",
+        "mass",
+        "much",
+        "packet"
+      ],
+      "words2": [
+        "heavily"
+      ]
+    },
+    {
+      "m1": "失效",
+      "m2": "失效的",
+      "extra": "的",
+      "words1": [
+        "failure"
+      ],
+      "words2": [
+        "disabled"
+      ]
+    },
+    {
+      "m1": "她们",
+      "m2": "她们的",
+      "extra": "的",
+      "words1": [
+        "them",
+        "they"
+      ],
+      "words2": [
+        "their",
+        "theirs"
+      ]
+    },
+    {
+      "m1": "存在",
+      "m2": "存在的",
+      "extra": "的",
+      "words1": [
+        "be",
+        "being",
+        "exist",
+        "existence"
+      ],
+      "words2": [
+        "alive"
+      ]
+    },
+    {
+      "m1": "它们",
+      "m2": "它们的",
+      "extra": "的",
+      "words1": [
+        "them",
+        "they"
+      ],
+      "words2": [
+        "their",
+        "theirs"
+      ]
+    },
+    {
+      "m1": "平等",
+      "m2": "平等的",
+      "extra": "的",
+      "words1": [
+        "equality"
+      ],
+      "words2": [
+        "equal"
+      ]
+    },
+    {
+      "m1": "平衡",
+      "m2": "平衡的",
+      "extra": "的",
+      "words1": [
+        "balance"
+      ],
+      "words2": [
+        "balanced"
+      ]
+    },
+    {
+      "m1": "年度",
+      "m2": "年度的",
+      "extra": "的",
+      "words1": [
+        "year"
+      ],
+      "words2": [
+        "annually"
+      ]
+    },
+    {
+      "m1": "年轻",
+      "m2": "年轻的",
+      "extra": "的",
+      "words1": [
+        "youth"
+      ],
+      "words2": [
+        "young"
+      ]
+    },
+    {
+      "m1": "幸运",
+      "m2": "幸运地",
+      "extra": "地",
+      "words1": [
+        "luck"
+      ],
+      "words2": [
+        "luckily"
+      ]
+    },
+    {
+      "m1": "广告",
+      "m2": "广告的",
+      "extra": "的",
+      "words1": [
+        "advertisement",
+        "advertising",
+        "literature"
+      ],
+      "words2": [
+        "advertising"
+      ]
+    },
+    {
+      "m1": "广大",
+      "m2": "广大的",
+      "extra": "的",
+      "words1": [
+        "extensively"
+      ],
+      "words2": [
+        "broad"
+      ]
+    },
+    {
+      "m1": "广泛",
+      "m2": "广泛地",
+      "extra": "地",
+      "words1": [
+        "extensively"
+      ],
+      "words2": [
+        "widely"
+      ]
+    },
+    {
+      "m1": "广泛",
+      "m2": "广泛的",
+      "extra": "的",
+      "words1": [
+        "extensively"
+      ],
+      "words2": [
+        "far-reaching"
+      ]
+    },
+    {
+      "m1": "广阔",
+      "m2": "广阔地",
+      "extra": "地",
+      "words1": [
+        "extensively",
+        "ocean"
+      ],
+      "words2": [
+        "widely"
+      ]
+    },
+    {
+      "m1": "开始",
+      "m2": "开始的",
+      "extra": "的",
+      "words1": [
+        "begin",
+        "entrance",
+        "institute",
+        "launch"
+      ],
+      "words2": [
+        "initial"
+      ]
+    },
+    {
+      "m1": "弹性",
+      "m2": "弹性的",
+      "extra": "的",
+      "words1": [
+        "bounce",
+        "flexibility",
+        "resilience"
+      ],
+      "words2": [
+        "stretch"
+      ]
+    },
+    {
+      "m1": "强调",
+      "m2": "强调的",
+      "extra": "的",
+      "words1": [
+        "insist",
+        "stress",
+        "underline"
+      ],
+      "words2": [
+        "stressed"
+      ]
+    },
+    {
+      "m1": "微量",
+      "m2": "微量的",
+      "extra": "的",
+      "words1": [
+        "atom",
+        "shade"
+      ],
+      "words2": [
+        "tiny"
+      ]
+    },
+    {
+      "m1": "心灵",
+      "m2": "心灵的",
+      "extra": "的",
+      "words1": [
+        "soul"
+      ],
+      "words2": [
+        "psychological",
+        "spiritual"
+      ]
+    },
+    {
+      "m1": "成熟",
+      "m2": "成熟的",
+      "extra": "的",
+      "words1": [
+        "maturity",
+        "ripen",
+        "seed"
+      ],
+      "words2": [
+        "adult",
+        "mature",
+        "ripe"
+      ]
+    },
+    {
+      "m1": "战争",
+      "m2": "战争的",
+      "extra": "的",
+      "words1": [
+        "war"
+      ],
+      "words2": [
+        "martial"
+      ]
+    },
+    {
+      "m1": "所有",
+      "m2": "所有的",
+      "extra": "的",
+      "words1": [
+        "possession"
+      ],
+      "words2": [
+        "whole"
+      ]
+    },
+    {
+      "m1": "打击",
+      "m2": "打击的",
+      "extra": "的",
+      "words1": [
+        "blow",
+        "strike"
+      ],
+      "words2": [
+        "striking"
+      ]
+    },
+    {
+      "m1": "批评",
+      "m2": "批评的",
+      "extra": "的",
+      "words1": [
+        "comment",
+        "criticise"
+      ],
+      "words2": [
+        "critical"
+      ]
+    },
+    {
+      "m1": "抑郁",
+      "m2": "抑郁的",
+      "extra": "的",
+      "words1": [
+        "depression"
+      ],
+      "words2": [
+        "depressed"
+      ]
+    },
+    {
+      "m1": "报答",
+      "m2": "报答的",
+      "extra": "的",
+      "words1": [
+        "reward"
+      ],
+      "words2": [
+        "rewarding"
+      ]
+    },
+    {
+      "m1": "抽样",
+      "m2": "抽样的",
+      "extra": "的",
+      "words1": [
+        "sample"
+      ],
+      "words2": [
+        "spot"
+      ]
+    },
+    {
+      "m1": "担心",
+      "m2": "担心的",
+      "extra": "的",
+      "words1": [
+        "afraid"
+      ],
+      "words2": [
+        "concerned",
+        "worried"
+      ]
+    },
+    {
+      "m1": "担忧",
+      "m2": "担忧的",
+      "extra": "的",
+      "words1": [
+        "fear",
+        "worry"
+      ],
+      "words2": [
+        "nervous"
+      ]
+    },
+    {
+      "m1": "拥挤",
+      "m2": "拥挤的",
+      "extra": "的",
+      "words1": [
+        "crow",
+        "jam"
+      ],
+      "words2": [
+        "crowded",
+        "heavy"
+      ]
+    },
+    {
+      "m1": "挑剔",
+      "m2": "挑剔的",
+      "extra": "的",
+      "words1": [
+        "fault"
+      ],
+      "words2": [
+        "particular"
+      ]
+    },
+    {
+      "m1": "接近",
+      "m2": "接近地",
+      "extra": "地",
+      "words1": [
+        "access",
+        "approach",
+        "border"
+      ],
+      "words2": [
+        "closely",
+        "hard"
+      ]
+    },
+    {
+      "m1": "推理",
+      "m2": "推理的",
+      "extra": "的",
+      "words1": [
+        "logic"
+      ],
+      "words2": [
+        "theoretical"
+      ]
+    },
+    {
+      "m1": "描写",
+      "m2": "描写的",
+      "extra": "的",
+      "words1": [
+        "picture"
+      ],
+      "words2": [
+        "representative"
+      ]
+    },
+    {
+      "m1": "政党",
+      "m2": "政党的",
+      "extra": "的",
+      "words1": [
+        "party"
+      ],
+      "words2": [
+        "political"
+      ]
+    },
+    {
+      "m1": "教堂",
+      "m2": "教堂的",
+      "extra": "的",
+      "words1": [
+        "church",
+        "temple"
+      ],
+      "words2": [
+        "church"
+      ]
+    },
+    {
+      "m1": "数字",
+      "m2": "数字的",
+      "extra": "的",
+      "words1": [
+        "digit",
+        "figure",
+        "number",
+        "statistics"
+      ],
+      "words2": [
+        "digital"
+      ]
+    },
+    {
+      "m1": "整个",
+      "m2": "整个的",
+      "extra": "的",
+      "words1": [
+        "wholly"
+      ],
+      "words2": [
+        "entire",
+        "mass"
+      ]
+    },
+    {
+      "m1": "整体",
+      "m2": "整体的",
+      "extra": "的",
+      "words1": [
+        "economy"
+      ],
+      "words2": [
+        "whole"
+      ]
+    },
+    {
+      "m1": "文件",
+      "m2": "文件的",
+      "extra": "的",
+      "words1": [
+        "document",
+        "file",
+        "paper"
+      ],
+      "words2": [
+        "documentary"
+      ]
+    },
+    {
+      "m1": "旋转",
+      "m2": "旋转的",
+      "extra": "的",
+      "words1": [
+        "revolution",
+        "swing",
+        "turn"
+      ],
+      "words2": [
+        "swing"
+      ]
+    },
+    {
+      "m1": "明白",
+      "m2": "明白的",
+      "extra": "的",
+      "words1": [
+        "awareness"
+      ],
+      "words2": [
+        "obvious"
+      ]
+    },
+    {
+      "m1": "暗示",
+      "m2": "暗示的",
+      "extra": "的",
+      "words1": [
+        "clue",
+        "imply",
+        "suggest"
+      ],
+      "words2": [
+        "significant"
+      ]
+    },
+    {
+      "m1": "更新",
+      "m2": "更新的",
+      "extra": "的",
+      "words1": [
+        "improve",
+        "refresh",
+        "update"
+      ],
+      "words2": [
+        "new"
+      ]
+    },
+    {
+      "m1": "最远",
+      "m2": "最远的",
+      "extra": "的",
+      "words1": [
+        "farthest"
+      ],
+      "words2": [
+        "ultimate"
+      ]
+    },
+    {
+      "m1": "有价值",
+      "m2": "有价值的",
+      "extra": "的",
+      "words1": [
+        "count"
+      ],
+      "words2": [
+        "worthy"
+      ]
+    },
+    {
+      "m1": "有效",
+      "m2": "有效地",
+      "extra": "地",
+      "words1": [
+        "efficiently",
+        "significance"
+      ],
+      "words2": [
+        "effectively"
+      ]
+    },
+    {
+      "m1": "每个",
+      "m2": "每个的",
+      "extra": "的",
+      "words1": [
+        "each"
+      ],
+      "words2": [
+        "every"
+      ]
+    },
+    {
+      "m1": "每天",
+      "m2": "每天的",
+      "extra": "的",
+      "words1": [
+        "every day"
+      ],
+      "words2": [
+        "everyday"
+      ]
+    },
+    {
+      "m1": "民族",
+      "m2": "民族的",
+      "extra": "的",
+      "words1": [
+        "nation",
+        "nationality",
+        "people"
+      ],
+      "words2": [
+        "ethical",
+        "national"
+      ]
+    },
+    {
+      "m1": "沉着",
+      "m2": "沉着的",
+      "extra": "的",
+      "words1": [
+        "philosophy"
+      ],
+      "words2": [
+        "calm"
+      ]
+    },
+    {
+      "m1": "注意",
+      "m2": "注意的",
+      "extra": "的",
+      "words1": [
+        "attention",
+        "notice",
+        "observation",
+        "observe"
+      ],
+      "words2": [
+        "warning"
+      ]
+    },
+    {
+      "m1": "活动",
+      "m2": "活动的",
+      "extra": "的",
+      "words1": [
+        "activity",
+        "movement"
+      ],
+      "words2": [
+        "mobile",
+        "moving"
+      ]
+    },
+    {
+      "m1": "流动",
+      "m2": "流动的",
+      "extra": "的",
+      "words1": [
+        "flow",
+        "stream"
+      ],
+      "words2": [
+        "liquid"
+      ]
+    },
+    {
+      "m1": "流畅",
+      "m2": "流畅地",
+      "extra": "地",
+      "words1": [
+        "fluency"
+      ],
+      "words2": [
+        "smooth"
+      ]
+    },
+    {
+      "m1": "流行",
+      "m2": "流行的",
+      "extra": "的",
+      "words1": [
+        "fashion",
+        "obtain"
+      ],
+      "words2": [
+        "current",
+        "epidemic",
+        "popular"
+      ]
+    },
+    {
+      "m1": "流通",
+      "m2": "流通的",
+      "extra": "的",
+      "words1": [
+        "utter"
+      ],
+      "words2": [
+        "current"
+      ]
+    },
+    {
+      "m1": "海滨",
+      "m2": "海滨的",
+      "extra": "的",
+      "words1": [
+        "coast"
+      ],
+      "words2": [
+        "seaside"
+      ]
+    },
+    {
+      "m1": "滑动",
+      "m2": "滑动的",
+      "extra": "的",
+      "words1": [
+        "bowl",
+        "slide",
+        "slip"
+      ],
+      "words2": [
+        "slip"
+      ]
+    },
+    {
+      "m1": "激动",
+      "m2": "激动的",
+      "extra": "的",
+      "words1": [
+        "boil",
+        "emotion",
+        "excitement",
+        "thrill"
+      ],
+      "words2": [
+        "excited",
+        "hot"
+      ]
+    },
+    {
+      "m1": "热情",
+      "m2": "热情的",
+      "extra": "的",
+      "words1": [
+        "electricity",
+        "warmth"
+      ],
+      "words2": [
+        "hot",
+        "intense",
+        "passionate"
+      ]
+    },
+    {
+      "m1": "爱好",
+      "m2": "爱好的",
+      "extra": "的",
+      "words1": [
+        "appetite",
+        "bent"
+      ],
+      "words2": [
+        "fond"
+      ]
+    },
+    {
+      "m1": "物理学",
+      "m2": "物理学的",
+      "extra": "的",
+      "words1": [
+        "physics"
+      ],
+      "words2": [
+        "physical"
+      ]
+    },
+    {
+      "m1": "物质",
+      "m2": "物质的",
+      "extra": "的",
+      "words1": [
+        "material"
+      ],
+      "words2": [
+        "physical"
+      ]
+    },
+    {
+      "m1": "特别",
+      "m2": "特别地",
+      "extra": "地",
+      "words1": [
+        "especially",
+        "in particular"
+      ],
+      "words2": [
+        "extra"
+      ]
+    },
+    {
+      "m1": "犯罪",
+      "m2": "犯罪的",
+      "extra": "的",
+      "words1": [
+        "crime",
+        "offence"
+      ],
+      "words2": [
+        "guilty"
+      ]
+    },
+    {
+      "m1": "独自",
+      "m2": "独自地",
+      "extra": "地",
+      "words1": [
+        "alone",
+        "on one's own"
+      ],
+      "words2": [
+        "respectively"
+      ]
+    },
+    {
+      "m1": "现场",
+      "m2": "现场的",
+      "extra": "的",
+      "words1": [
+        "scene"
+      ],
+      "words2": [
+        "spot"
+      ]
+    },
+    {
+      "m1": "生命",
+      "m2": "生命的",
+      "extra": "的",
+      "words1": [
+        "being",
+        "life"
+      ],
+      "words2": [
+        "vital"
+      ]
+    },
+    {
+      "m1": "生气",
+      "m2": "生气的",
+      "extra": "的",
+      "words1": [
+        "mood"
+      ],
+      "words2": [
+        "angry"
+      ]
+    },
+    {
+      "m1": "生活",
+      "m2": "生活的",
+      "extra": "的",
+      "words1": [
+        "existence",
+        "get on",
+        "life",
+        "live"
+      ],
+      "words2": [
+        "vital"
+      ]
+    },
+    {
+      "m1": "男性",
+      "m2": "男性的",
+      "extra": "的",
+      "words1": [
+        "mankind"
+      ],
+      "words2": [
+        "male"
+      ]
+    },
+    {
+      "m1": "疲劳",
+      "m2": "疲劳的",
+      "extra": "的",
+      "words1": [
+        "tire"
+      ],
+      "words2": [
+        "tired"
+      ]
+    },
+    {
+      "m1": "痛苦",
+      "m2": "痛苦的",
+      "extra": "的",
+      "words1": [
+        "pine",
+        "suffering"
+      ],
+      "words2": [
+        "bitter",
+        "painful"
+      ]
+    },
+    {
+      "m1": "目的",
+      "m2": "目的地",
+      "extra": "地",
+      "words1": [
+        "destination",
+        "goal",
+        "intention",
+        "objective"
+      ],
+      "words2": [
+        "destination"
+      ]
+    },
+    {
+      "m1": "相当",
+      "m2": "相当的",
+      "extra": "的",
+      "words1": [
+        "correspond",
+        "pretty",
+        "quite",
+        "rather"
+      ],
+      "words2": [
+        "corresponding"
+      ]
+    },
+    {
+      "m1": "相等",
+      "m2": "相等的",
+      "extra": "的",
+      "words1": [
+        "balance"
+      ],
+      "words2": [
+        "equal"
+      ]
+    },
+    {
+      "m1": "看不见",
+      "m2": "看不见的",
+      "extra": "的",
+      "words1": [
+        "disappearance"
+      ],
+      "words2": [
+        "unseen"
+      ]
+    },
+    {
+      "m1": "真实",
+      "m2": "真实地",
+      "extra": "地",
+      "words1": [
+        "sincerity"
+      ],
+      "words2": [
+        "actually",
+        "truly"
+      ]
+    },
+    {
+      "m1": "真实",
+      "m2": "真实的",
+      "extra": "的",
+      "words1": [
+        "sincerity"
+      ],
+      "words2": [
+        "actual",
+        "real"
+      ]
+    },
+    {
+      "m1": "矛盾",
+      "m2": "矛盾的",
+      "extra": "的",
+      "words1": [
+        "conflict"
+      ],
+      "words2": [
+        "contrary"
+      ]
+    },
+    {
+      "m1": "知道",
+      "m2": "知道的",
+      "extra": "的",
+      "words1": [
+        "know",
+        "tell"
+      ],
+      "words2": [
+        "aware"
+      ]
+    },
+    {
+      "m1": "确定",
+      "m2": "确定的",
+      "extra": "的",
+      "words1": [
+        "confirm",
+        "determine",
+        "fix",
+        "identify"
+      ],
+      "words2": [
+        "certain",
+        "firm"
+      ]
+    },
+    {
+      "m1": "确实",
+      "m2": "确实的",
+      "extra": "的",
+      "words1": [
+        "indeed",
+        "really"
+      ],
+      "words2": [
+        "hard",
+        "real",
+        "reliable"
+      ]
+    },
+    {
+      "m1": "祭祀",
+      "m2": "祭祀的",
+      "extra": "的",
+      "words1": [
+        "sacrifice"
+      ],
+      "words2": [
+        "sacred"
+      ]
+    },
+    {
+      "m1": "禁猎",
+      "m2": "禁猎地",
+      "extra": "地",
+      "words1": [
+        "preserve"
+      ],
+      "words2": [
+        "preserve"
+      ]
+    },
+    {
+      "m1": "秘密",
+      "m2": "秘密的",
+      "extra": "的",
+      "words1": [
+        "privacy",
+        "secret",
+        "wrap"
+      ],
+      "words2": [
+        "confidential",
+        "private",
+        "underground"
+      ]
+    },
+    {
+      "m1": "突出",
+      "m2": "突出的",
+      "extra": "的",
+      "words1": [
+        "highlight"
+      ],
+      "words2": [
+        "outstanding"
+      ]
+    },
+    {
+      "m1": "突然",
+      "m2": "突然的",
+      "extra": "的",
+      "words1": [
+        "short",
+        "suddenly"
+      ],
+      "words2": [
+        "abrupt",
+        "sudden"
+      ]
+    },
+    {
+      "m1": "立即",
+      "m2": "立即的",
+      "extra": "的",
+      "words1": [
+        "immediately",
+        "instant"
+      ],
+      "words2": [
+        "instant"
+      ]
+    },
+    {
+      "m1": "立方",
+      "m2": "立方的",
+      "extra": "的",
+      "words1": [
+        "cube"
+      ],
+      "words2": [
+        "cubic",
+        "solid"
+      ]
+    },
+    {
+      "m1": "竞争",
+      "m2": "竞争的",
+      "extra": "的",
+      "words1": [
+        "battle",
+        "contest"
+      ],
+      "words2": [
+        "competitive"
+      ]
+    },
+    {
+      "m1": "精确",
+      "m2": "精确地",
+      "extra": "地",
+      "words1": [
+        "accuracy"
+      ],
+      "words2": [
+        "precisely"
+      ]
+    },
+    {
+      "m1": "精神",
+      "m2": "精神的",
+      "extra": "的",
+      "words1": [
+        "genius",
+        "nerve",
+        "soul",
+        "spirit"
+      ],
+      "words2": [
+        "mental",
+        "spiritual"
+      ]
+    },
+    {
+      "m1": "精神上",
+      "m2": "精神上的",
+      "extra": "的",
+      "words1": [
+        "mentally"
+      ],
+      "words2": [
+        "moral",
+        "psychological"
+      ]
+    },
+    {
+      "m1": "系统",
+      "m2": "系统的",
+      "extra": "的",
+      "words1": [
+        "system"
+      ],
+      "words2": [
+        "scientific",
+        "systematic"
+      ]
+    },
+    {
+      "m1": "组成",
+      "m2": "组成的",
+      "extra": "的",
+      "words1": [
+        "compose",
+        "constitution"
+      ],
+      "words2": [
+        "component"
+      ]
+    },
+    {
+      "m1": "组织",
+      "m2": "组织的",
+      "extra": "的",
+      "words1": [
+        "engine",
+        "organisation",
+        "organise",
+        "organization"
+      ],
+      "words2": [
+        "organic"
+      ]
+    },
+    {
+      "m1": "结实",
+      "m2": "结实的",
+      "extra": "的",
+      "words1": [
+        "seed"
+      ],
+      "words2": [
+        "firm",
+        "stout"
+      ]
+    },
+    {
+      "m1": "继续",
+      "m2": "继续的",
+      "extra": "的",
+      "words1": [
+        "continuation",
+        "continue",
+        "keep",
+        "pursue"
+      ],
+      "words2": [
+        "continuous"
+      ]
+    },
+    {
+      "m1": "综合",
+      "m2": "综合的",
+      "extra": "的",
+      "words1": [
+        "integrate"
+      ],
+      "words2": [
+        "global"
+      ]
+    },
+    {
+      "m1": "缄默",
+      "m2": "缄默的",
+      "extra": "的",
+      "words1": [
+        "silence"
+      ],
+      "words2": [
+        "reserved"
+      ]
+    },
+    {
+      "m1": "罢工",
+      "m2": "罢工的",
+      "extra": "的",
+      "words1": [
+        "strike"
+      ],
+      "words2": [
+        "striking"
+      ]
+    },
+    {
+      "m1": "羞愧",
+      "m2": "羞愧的",
+      "extra": "的",
+      "words1": [
+        "blush",
+        "shame"
+      ],
+      "words2": [
+        "ashamed"
+      ]
+    },
+    {
+      "m1": "耗尽",
+      "m2": "耗尽的",
+      "extra": "的",
+      "words1": [
+        "consume"
+      ],
+      "words2": [
+        "extinct"
+      ]
+    },
+    {
+      "m1": "职业",
+      "m2": "职业的",
+      "extra": "的",
+      "words1": [
+        "business",
+        "career",
+        "occupation",
+        "profession"
+      ],
+      "words2": [
+        "professional"
+      ]
+    },
+    {
+      "m1": "职员",
+      "m2": "职员的",
+      "extra": "的",
+      "words1": [
+        "clerk",
+        "employee",
+        "official",
+        "personnel"
+      ],
+      "words2": [
+        "staff"
+      ]
+    },
+    {
+      "m1": "联合",
+      "m2": "联合的",
+      "extra": "的",
+      "words1": [
+        "band",
+        "combine",
+        "link",
+        "union"
+      ],
+      "words2": [
+        "associate",
+        "joint"
+      ]
+    },
+    {
+      "m1": "肯定",
+      "m2": "肯定的",
+      "extra": "的",
+      "words1": [
+        "sure"
+      ],
+      "words2": [
+        "positive"
+      ]
+    },
+    {
+      "m1": "能胜任",
+      "m2": "能胜任的",
+      "extra": "的",
+      "words1": [
+        "efficiently"
+      ],
+      "words2": [
+        "be capable of"
+      ]
+    },
+    {
+      "m1": "自负",
+      "m2": "自负的",
+      "extra": "的",
+      "words1": [
+        "assumption"
+      ],
+      "words2": [
+        "vain"
+      ]
+    },
+    {
+      "m1": "舞台",
+      "m2": "舞台的",
+      "extra": "的",
+      "words1": [
+        "platform",
+        "stage"
+      ],
+      "words2": [
+        "scenic"
+      ]
+    },
+    {
+      "m1": "艰苦",
+      "m2": "艰苦的",
+      "extra": "的",
+      "words1": [
+        "trial"
+      ],
+      "words2": [
+        "tough"
+      ]
+    },
+    {
+      "m1": "艺术家",
+      "m2": "艺术家的",
+      "extra": "的",
+      "words1": [
+        "artist"
+      ],
+      "words2": [
+        "artistic"
+      ]
+    },
+    {
+      "m1": "节省",
+      "m2": "节省的",
+      "extra": "的",
+      "words1": [
+        "save"
+      ],
+      "words2": [
+        "economic"
+      ]
+    },
+    {
+      "m1": "虚构",
+      "m2": "虚构的",
+      "extra": "的",
+      "words1": [
+        "fable",
+        "invention",
+        "romance"
+      ],
+      "words2": [
+        "imaginary"
+      ]
+    },
+    {
+      "m1": "表演",
+      "m2": "表演的",
+      "extra": "的",
+      "words1": [
+        "perform",
+        "stage"
+      ],
+      "words2": [
+        "dramatic"
+      ]
+    },
+    {
+      "m1": "表现",
+      "m2": "表现的",
+      "extra": "的",
+      "words1": [
+        "behave",
+        "display",
+        "exhibition",
+        "performance"
+      ],
+      "words2": [
+        "representative"
+      ]
+    },
+    {
+      "m1": "表面",
+      "m2": "表面的",
+      "extra": "的",
+      "words1": [
+        "surface"
+      ],
+      "words2": [
+        "facial"
+      ]
+    },
+    {
+      "m1": "规则",
+      "m2": "规则的",
+      "extra": "的",
+      "words1": [
+        "criterion",
+        "regulation",
+        "rule"
+      ],
+      "words2": [
+        "regular"
+      ]
+    },
+    {
+      "m1": "讨厌",
+      "m2": "讨厌的",
+      "extra": "的",
+      "words1": [
+        "hate"
+      ],
+      "words2": [
+        "annoying",
+        "evil",
+        "tiresome"
+      ]
+    },
+    {
+      "m1": "记录",
+      "m2": "记录的",
+      "extra": "的",
+      "words1": [
+        "chalk",
+        "log",
+        "memorise",
+        "page"
+      ],
+      "words2": [
+        "recording"
+      ]
+    },
+    {
+      "m1": "记忆",
+      "m2": "记忆的",
+      "extra": "的",
+      "words1": [
+        "memory",
+        "recollection"
+      ],
+      "words2": [
+        "memorial"
+      ]
+    },
+    {
+      "m1": "诚实",
+      "m2": "诚实地",
+      "extra": "地",
+      "words1": [
+        "honesty",
+        "sincerity"
+      ],
+      "words2": [
+        "genuinely"
+      ]
+    },
+    {
+      "m1": "诚心诚意",
+      "m2": "诚心诚意地",
+      "extra": "地",
+      "words1": [
+        "sincerity"
+      ],
+      "words2": [
+        "faithfully"
+      ]
+    },
+    {
+      "m1": "象征",
+      "m2": "象征地",
+      "extra": "地",
+      "words1": [
+        "indicate",
+        "represent",
+        "symbol"
+      ],
+      "words2": [
+        "symbolically"
+      ]
+    },
+    {
+      "m1": "软弱",
+      "m2": "软弱的",
+      "extra": "的",
+      "words1": [
+        "weakness"
+      ],
+      "words2": [
+        "soft"
+      ]
+    },
+    {
+      "m1": "辛苦",
+      "m2": "辛苦地",
+      "extra": "地",
+      "words1": [
+        "difficulty"
+      ],
+      "words2": [
+        "hard"
+      ]
+    },
+    {
+      "m1": "辛苦",
+      "m2": "辛苦的",
+      "extra": "的",
+      "words1": [
+        "difficulty"
+      ],
+      "words2": [
+        "hard"
+      ]
+    },
+    {
+      "m1": "过长的",
+      "m2": "长的",
+      "extra": "过",
+      "words1": [
+        "long"
+      ],
+      "words2": [
+        "tall"
+      ]
+    },
+    {
+      "m1": "运动",
+      "m2": "运动的",
+      "extra": "的",
+      "words1": [
+        "campaign",
+        "movement",
+        "sport"
+      ],
+      "words2": [
+        "athletic"
+      ]
+    },
+    {
+      "m1": "运动员",
+      "m2": "运动员的",
+      "extra": "的",
+      "words1": [
+        "athlete",
+        "player"
+      ],
+      "words2": [
+        "athletic"
+      ]
+    },
+    {
+      "m1": "近似",
+      "m2": "近似地",
+      "extra": "地",
+      "words1": [
+        "approach",
+        "border"
+      ],
+      "words2": [
+        "approximately"
+      ]
+    },
+    {
+      "m1": "进行",
+      "m2": "进行的",
+      "extra": "的",
+      "words1": [
+        "go",
+        "march",
+        "perform",
+        "proceed"
+      ],
+      "words2": [
+        "ongoing"
+      ]
+    },
+    {
+      "m1": "连接",
+      "m2": "连接的",
+      "extra": "的",
+      "words1": [
+        "connect",
+        "connection",
+        "joint",
+        "link"
+      ],
+      "words2": [
+        "joint"
+      ]
+    },
+    {
+      "m1": "通信",
+      "m2": "通信的",
+      "extra": "的",
+      "words1": [
+        "communicate",
+        "correspond"
+      ],
+      "words2": [
+        "corresponding"
+      ]
+    },
+    {
+      "m1": "通常",
+      "m2": "通常的",
+      "extra": "的",
+      "words1": [
+        "in general"
+      ],
+      "words2": [
+        "accustomed",
+        "usual"
+      ]
+    },
+    {
+      "m1": "逼真",
+      "m2": "逼真的",
+      "extra": "的",
+      "words1": [
+        "reality"
+      ],
+      "words2": [
+        "photographic",
+        "realistic",
+        "vivid"
+      ]
+    },
+    {
+      "m1": "邪恶",
+      "m2": "邪恶地",
+      "extra": "地",
+      "words1": [
+        "evil"
+      ],
+      "words2": [
+        "bad",
+        "wrong"
+      ]
+    },
+    {
+      "m1": "部分",
+      "m2": "部分的",
+      "extra": "的",
+      "words1": [
+        "element",
+        "parcel",
+        "part",
+        "percent"
+      ],
+      "words2": [
+        "parcel"
+      ]
+    },
+    {
+      "m1": "酒精",
+      "m2": "酒精的",
+      "extra": "的",
+      "words1": [
+        "alcohol"
+      ],
+      "words2": [
+        "alcoholic"
+      ]
+    },
+    {
+      "m1": "错误",
+      "m2": "错误地",
+      "extra": "地",
+      "words1": [
+        "error"
+      ],
+      "words2": [
+        "wrong"
+      ]
+    },
+    {
+      "m1": "闪烁",
+      "m2": "闪烁的",
+      "extra": "的",
+      "words1": [
+        "ray",
+        "twinkle"
+      ],
+      "words2": [
+        "sparkling"
+      ]
+    },
+    {
+      "m1": "闲暇",
+      "m2": "闲暇的",
+      "extra": "的",
+      "words1": [
+        "leisure"
+      ],
+      "words2": [
+        "vacant"
+      ]
+    },
+    {
+      "m1": "阴暗",
+      "m2": "阴暗的",
+      "extra": "的",
+      "words1": [
+        "shade",
+        "shadow"
+      ],
+      "words2": [
+        "dull"
+      ]
+    },
+    {
+      "m1": "阻抑",
+      "m2": "阻抑的",
+      "extra": "的",
+      "words1": [
+        "depression"
+      ],
+      "words2": [
+        "depressed"
+      ]
+    },
+    {
+      "m1": "降低",
+      "m2": "降低的",
+      "extra": "的",
+      "words1": [
+        "lower",
+        "reduce"
+      ],
+      "words2": [
+        "depressed"
+      ]
+    },
+    {
+      "m1": "降雨",
+      "m2": "降雨的",
+      "extra": "的",
+      "words1": [
+        "rain"
+      ],
+      "words2": [
+        "showery"
+      ]
+    },
+    {
+      "m1": "随意",
+      "m2": "随意的",
+      "extra": "的",
+      "words1": [
+        "random"
+      ],
+      "words2": [
+        "optional"
+      ]
+    },
+    {
+      "m1": "雇员",
+      "m2": "雇员的",
+      "extra": "的",
+      "words1": [
+        "employee",
+        "servant"
+      ],
+      "words2": [
+        "staff"
+      ]
+    },
+    {
+      "m1": "非常",
+      "m2": "非常地",
+      "extra": "地",
+      "words1": [
+        "bad",
+        "lot",
+        "much",
+        "rare"
+      ],
+      "words2": [
+        "extremely"
+      ]
+    },
+    {
+      "m1": "非常",
+      "m2": "非常的",
+      "extra": "的",
+      "words1": [
+        "bad",
+        "lot",
+        "much",
+        "rare"
+      ],
+      "words2": [
+        "extraordinary",
+        "intense"
+      ]
+    },
+    {
+      "m1": "靠近",
+      "m2": "靠近地",
+      "extra": "地",
+      "words1": [
+        "approach",
+        "beside",
+        "by",
+        "near"
+      ],
+      "words2": [
+        "closely"
+      ]
+    },
+    {
+      "m1": "顺利",
+      "m2": "顺利地",
+      "extra": "地",
+      "words1": [
+        "big"
+      ],
+      "words2": [
+        "successfully"
+      ]
+    },
+    {
+      "m1": "顺利",
+      "m2": "顺利的",
+      "extra": "的",
+      "words1": [
+        "big"
+      ],
+      "words2": [
+        "smooth"
+      ]
+    },
+    {
+      "m1": "预付",
+      "m2": "预付的",
+      "extra": "的",
+      "words1": [
+        "advance"
+      ],
+      "words2": [
+        "advanced"
+      ]
+    },
+    {
+      "m1": "预备",
+      "m2": "预备的",
+      "extra": "的",
+      "words1": [
+        "preparation"
+      ],
+      "words2": [
+        "reserved"
+      ]
+    },
+    {
+      "m1": "预定",
+      "m2": "预定的",
+      "extra": "的",
+      "words1": [
+        "schedule"
+      ],
+      "words2": [
+        "reserved"
+      ]
+    },
+    {
+      "m1": "预期",
+      "m2": "预期的",
+      "extra": "的",
+      "words1": [
+        "anticipate"
+      ],
+      "words2": [
+        "due"
+      ]
+    },
+    {
+      "m1": "高兴",
+      "m2": "高兴地",
+      "extra": "地",
+      "words1": [
+        "glee",
+        "pleased",
+        "pleasure"
+      ],
+      "words2": [
+        "happily"
+      ]
+    },
+    {
+      "m1": "黑人",
+      "m2": "黑人的",
+      "extra": "的",
+      "words1": [
+        "black"
+      ],
+      "words2": [
+        "black",
+        "soul"
+      ]
+    },
+    {
+      "m1": "可能",
+      "m2": "可能地",
+      "extra": "地",
+      "words1": [
+        "could",
+        "likelihood",
+        "maybe",
+        "perhaps"
+      ],
+      "words2": [
+        "potentially"
+      ]
+    },
+    {
+      "m1": "各自",
+      "m2": "各自地",
+      "extra": "地",
+      "words1": [
+        "each"
+      ],
+      "words2": [
+        "respectively"
+      ]
+    },
+    {
+      "m1": "合并",
+      "m2": "合并的",
+      "extra": "的",
+      "words1": [
+        "incorporate",
+        "marriage"
+      ],
+      "words2": [
+        "incorporate"
+      ]
+    },
+    {
+      "m1": "同事",
+      "m2": "同事的",
+      "extra": "的",
+      "words1": [
+        "associate",
+        "brother",
+        "colleague",
+        "companion"
+      ],
+      "words2": [
+        "fellow"
+      ]
+    },
+    {
+      "m1": "同伴",
+      "m2": "同伴的",
+      "extra": "的",
+      "words1": [
+        "companion"
+      ],
+      "words2": [
+        "fellow"
+      ]
+    },
+    {
+      "m1": "同样",
+      "m2": "同样地",
+      "extra": "地",
+      "words1": [
+        "as well as ......"
+      ],
+      "words2": [
+        "as well"
+      ]
+    },
+    {
+      "m1": "同等",
+      "m2": "同等的",
+      "extra": "的",
+      "words1": [
+        "equality"
+      ],
+      "words2": [
+        "identical"
+      ]
+    },
+    {
+      "m1": "吸收",
+      "m2": "吸收的",
+      "extra": "的",
+      "words1": [
+        "absorb",
+        "incorporate",
+        "take up"
+      ],
+      "words2": [
+        "absorbing"
+      ]
+    },
+    {
+      "m1": "喜爱",
+      "m2": "喜爱的",
+      "extra": "的",
+      "words1": [
+        "enjoy"
+      ],
+      "words2": [
+        "fond"
+      ]
+    },
+    {
+      "m1": "喧闹",
+      "m2": "喧闹的",
+      "extra": "的",
+      "words1": [
+        "buzz",
+        "jazz"
+      ],
+      "words2": [
+        "loud"
+      ]
+    },
+    {
+      "m1": "器官",
+      "m2": "器官的",
+      "extra": "的",
+      "words1": [
+        "organ"
+      ],
+      "words2": [
+        "organic"
+      ]
+    },
+    {
+      "m1": "困难",
+      "m2": "困难地",
+      "extra": "地",
+      "words1": [
+        "difficulty",
+        "embarrassment",
+        "hardship",
+        "inconvenience"
+      ],
+      "words2": [
+        "hard"
+      ]
+    },
+    {
+      "m1": "固定",
+      "m2": "固定的",
+      "extra": "的",
+      "words1": [
+        "root"
+      ],
+      "words2": [
+        "permanent"
+      ]
+    },
+    {
+      "m1": "国民",
+      "m2": "国民的",
+      "extra": "的",
+      "words1": [
+        "citizen",
+        "nationality"
+      ],
+      "words2": [
+        "civil"
+      ]
+    },
+    {
+      "m1": "在外",
+      "m2": "在外的",
+      "extra": "的",
+      "words1": [
+        "out"
+      ],
+      "words2": [
+        "outer"
+      ]
+    },
+    {
+      "m1": "坚固",
+      "m2": "坚固的",
+      "extra": "的",
+      "words1": [
+        "firmly",
+        "steel"
+      ],
+      "words2": [
+        "consistent"
+      ]
+    },
+    {
+      "m1": "安宁",
+      "m2": "安宁的",
+      "extra": "的",
+      "words1": [
+        "peace",
+        "welfare"
+      ],
+      "words2": [
+        "well-being"
+      ]
+    },
+    {
+      "m1": "完全",
+      "m2": "完全的",
+      "extra": "的",
+      "words1": [
+        "altogether"
+      ],
+      "words2": [
+        "absolute",
+        "blank",
+        "full",
+        "integrate"
+      ]
+    },
+    {
+      "m1": "完整",
+      "m2": "完整地",
+      "extra": "地",
+      "words1": [
+        "integrity"
+      ],
+      "words2": [
+        "full"
+      ]
+    },
+    {
+      "m1": "完整",
+      "m2": "完整的",
+      "extra": "的",
+      "words1": [
+        "integrity"
+      ],
+      "words2": [
+        "integrate"
+      ]
+    },
+    {
+      "m1": "定居",
+      "m2": "定居的",
+      "extra": "的",
+      "words1": [
+        "locate"
+      ],
+      "words2": [
+        "resident"
+      ]
+    },
+    {
+      "m1": "定期",
+      "m2": "定期的",
+      "extra": "的",
+      "words1": [
+        "periodically"
+      ],
+      "words2": [
+        "regular",
+        "time"
+      ]
+    },
+    {
+      "m1": "实际上",
+      "m2": "实际上的",
+      "extra": "的",
+      "words1": [
+        "effectively",
+        "in fact",
+        "literally"
+      ],
+      "words2": [
+        "practical"
+      ]
+    },
+    {
+      "m1": "容易",
+      "m2": "容易地",
+      "extra": "地",
+      "words1": [
+        "facility"
+      ],
+      "words2": [
+        "easily"
+      ]
+    },
+    {
+      "m1": "容易",
+      "m2": "容易的",
+      "extra": "的",
+      "words1": [
+        "facility"
+      ],
+      "words2": [
+        "easy"
+      ]
+    },
+    {
+      "m1": "对不起",
+      "m2": "对不起的",
+      "extra": "的",
+      "words1": [
+        "pardon"
+      ],
+      "words2": [
+        "sorry"
+      ]
+    },
+    {
+      "m1": "对抗",
+      "m2": "对抗的",
+      "extra": "的",
+      "words1": [
+        "war"
+      ],
+      "words2": [
+        "opposed"
+      ]
+    },
+    {
+      "m1": "尊敬",
+      "m2": "尊敬的",
+      "extra": "的",
+      "words1": [
+        "honour",
+        "regard",
+        "respect"
+      ],
+      "words2": [
+        "dear"
+      ]
+    },
+    {
+      "m1": "少量",
+      "m2": "少量的",
+      "extra": "的",
+      "words1": [
+        "dash",
+        "handful",
+        "spot"
+      ],
+      "words2": [
+        "a little",
+        "odd"
+      ]
+    },
+    {
+      "m1": "尖锐",
+      "m2": "尖锐的",
+      "extra": "的",
+      "words1": [
+        "edge"
+      ],
+      "words2": [
+        "acute",
+        "severe"
+      ]
+    },
+    {
+      "m1": "工业",
+      "m2": "工业的",
+      "extra": "的",
+      "words1": [
+        "industry"
+      ],
+      "words2": [
+        "industrial",
+        "technical"
+      ]
+    },
+    {
+      "m1": "市民",
+      "m2": "市民的",
+      "extra": "的",
+      "words1": [
+        "citizen"
+      ],
+      "words2": [
+        "civil"
+      ]
+    },
+    {
+      "m1": "布景",
+      "m2": "布景的",
+      "extra": "的",
+      "words1": [
+        "scene",
+        "setting"
+      ],
+      "words2": [
+        "scenic"
+      ]
+    },
+    {
+      "m1": "常规",
+      "m2": "常规的",
+      "extra": "的",
+      "words1": [
+        "general",
+        "routine"
+      ],
+      "words2": [
+        "conventional"
+      ]
+    },
+    {
+      "m1": "忠实",
+      "m2": "忠实地",
+      "extra": "地",
+      "words1": [
+        "faith"
+      ],
+      "words2": [
+        "faithfully"
+      ]
+    },
+    {
+      "m1": "忠实",
+      "m2": "忠实的",
+      "extra": "的",
+      "words1": [
+        "faith"
+      ],
+      "words2": [
+        "faithful"
+      ]
+    },
+    {
+      "m1": "快乐",
+      "m2": "快乐地",
+      "extra": "地",
+      "words1": [
+        "delight"
+      ],
+      "words2": [
+        "happily"
+      ]
+    },
+    {
+      "m1": "怀疑",
+      "m2": "怀疑的",
+      "extra": "的",
+      "words1": [
+        "disbelief",
+        "doubt",
+        "suspect"
+      ],
+      "words2": [
+        "sceptical"
+      ]
+    },
+    {
+      "m1": "总计",
+      "m2": "总计的",
+      "extra": "的",
+      "words1": [
+        "foot",
+        "sum"
+      ],
+      "words2": [
+        "total"
+      ]
+    },
+    {
+      "m1": "恐吓",
+      "m2": "恐吓的",
+      "extra": "的",
+      "words1": [
+        "cow",
+        "threat"
+      ],
+      "words2": [
+        "threatening"
+      ]
+    },
+    {
+      "m1": "恐慌",
+      "m2": "恐慌的",
+      "extra": "的",
+      "words1": [
+        "panic",
+        "scare"
+      ],
+      "words2": [
+        "panic"
+      ]
+    },
+    {
+      "m1": "悬挂",
+      "m2": "悬挂的",
+      "extra": "的",
+      "words1": [
+        "hang",
+        "suspension",
+        "swing"
+      ],
+      "words2": [
+        "swing"
+      ]
+    },
+    {
+      "m1": "悲痛",
+      "m2": "悲痛地",
+      "extra": "地",
+      "words1": [
+        "bleed"
+      ],
+      "words2": [
+        "bitterly"
+      ]
+    },
+    {
+      "m1": "惊慌",
+      "m2": "惊慌的",
+      "extra": "的",
+      "words1": [
+        "panic"
+      ],
+      "words2": [
+        "panic"
+      ]
+    },
+    {
+      "m1": "惯例",
+      "m2": "惯例的",
+      "extra": "的",
+      "words1": [
+        "institution",
+        "tradition"
+      ],
+      "words2": [
+        "conventional"
+      ]
+    },
+    {
+      "m1": "想像",
+      "m2": "想像的",
+      "extra": "的",
+      "words1": [
+        "picture"
+      ],
+      "words2": [
+        "imaginary"
+      ]
+    },
+    {
+      "m1": "愉快",
+      "m2": "愉快地",
+      "extra": "地",
+      "words1": [
+        "pleased",
+        "pleasure"
+      ],
+      "words2": [
+        "sprightly"
+      ]
+    },
+    {
+      "m1": "愉快",
+      "m2": "愉快的",
+      "extra": "的",
+      "words1": [
+        "pleased",
+        "pleasure"
+      ],
+      "words2": [
+        "enjoyable",
+        "good",
+        "merry",
+        "pleasant"
+      ]
+    },
+    {
+      "m1": "意味",
+      "m2": "意味着",
+      "extra": "着",
+      "words1": [
+        "imply",
+        "significance"
+      ],
+      "words2": [
+        "mean",
+        "spell"
+      ]
+    },
+    {
+      "m1": "感谢",
+      "m2": "感谢的",
+      "extra": "的",
+      "words1": [
+        "thanksgiving"
+      ],
+      "words2": [
+        "grateful",
+        "thankful"
+      ]
+    },
+    {
+      "m1": "戏剧",
+      "m2": "戏剧的",
+      "extra": "的",
+      "words1": [
+        "play",
+        "stage"
+      ],
+      "words2": [
+        "dramatic"
+      ]
+    },
+    {
+      "m1": "成功",
+      "m2": "成功地",
+      "extra": "地",
+      "words1": [
+        "career",
+        "success"
+      ],
+      "words2": [
+        "successfully"
+      ]
+    },
+    {
+      "m1": "有能力",
+      "m2": "有能力的",
+      "extra": "的",
+      "words1": [
+        "efficiently"
+      ],
+      "words2": [
+        "be capable of",
+        "capable"
+      ]
+    },
+    {
+      "m1": "期望",
+      "m2": "期望的",
+      "extra": "的",
+      "words1": [
+        "expect",
+        "expectation",
+        "hope"
+      ],
+      "words2": [
+        "expectant"
+      ]
+    },
+    {
+      "m1": "本来",
+      "m2": "本来的",
+      "extra": "的",
+      "words1": [
+        "originally"
+      ],
+      "words2": [
+        "inward"
+      ]
+    },
+    {
+      "m1": "本质",
+      "m2": "本质的",
+      "extra": "的",
+      "words1": [
+        "essential",
+        "metal"
+      ],
+      "words2": [
+        "essential"
+      ]
+    },
+    {
+      "m1": "来回",
+      "m2": "来回的",
+      "extra": "的",
+      "words1": [
+        "return"
+      ],
+      "words2": [
+        "round-trip"
+      ]
+    },
+    {
+      "m1": "极期",
+      "m2": "极期的",
+      "extra": "的",
+      "words1": [
+        "crisis"
+      ],
+      "words2": [
+        "critical"
+      ]
+    },
+    {
+      "m1": "极端",
+      "m2": "极端地",
+      "extra": "地",
+      "words1": [
+        "extreme"
+      ],
+      "words2": [
+        "extremely",
+        "violently"
+      ]
+    },
+    {
+      "m1": "极限",
+      "m2": "极限的",
+      "extra": "的",
+      "words1": [
+        "limit",
+        "limiting"
+      ],
+      "words2": [
+        "ultimate"
+      ]
+    },
+    {
+      "m1": "构成",
+      "m2": "构成的",
+      "extra": "的",
+      "words1": [
+        "structure"
+      ],
+      "words2": [
+        "component"
+      ]
+    },
+    {
+      "m1": "枯萎",
+      "m2": "枯萎的",
+      "extra": "的",
+      "words1": [
+        "fade"
+      ],
+      "words2": [
+        "dead"
+      ]
+    },
+    {
+      "m1": "标准",
+      "m2": "标准的",
+      "extra": "的",
+      "words1": [
+        "criteria",
+        "criterion",
+        "normal"
+      ],
+      "words2": [
+        "classical",
+        "normal"
+      ]
+    },
+    {
+      "m1": "根本",
+      "m2": "根本的",
+      "extra": "的",
+      "words1": [
+        "root",
+        "ultimate"
+      ],
+      "words2": [
+        "organic",
+        "ultimate"
+      ]
+    },
+    {
+      "m1": "植物",
+      "m2": "植物的",
+      "extra": "的",
+      "words1": [
+        "botany",
+        "vegetable"
+      ],
+      "words2": [
+        "botanical",
+        "vegetable"
+      ]
+    },
+    {
+      "m1": "次要",
+      "m2": "次要的",
+      "extra": "的",
+      "words1": [
+        "minor"
+      ],
+      "words2": [
+        "secondary"
+      ]
+    },
+    {
+      "m1": "正好",
+      "m2": "正好的",
+      "extra": "的",
+      "words1": [
+        "precisely"
+      ],
+      "words2": [
+        "very"
+      ]
+    },
+    {
+      "m1": "正常",
+      "m2": "正常地",
+      "extra": "地",
+      "words1": [
+        "normal"
+      ],
+      "words2": [
+        "normally"
+      ]
+    },
+    {
+      "m1": "正确",
+      "m2": "正确地",
+      "extra": "地",
+      "words1": [
+        "accuracy",
+        "justice"
+      ],
+      "words2": [
+        "properly"
+      ]
+    },
+    {
+      "m1": "此外",
+      "m2": "此外的",
+      "extra": "的",
+      "words1": [
+        "additionally",
+        "again",
+        "further",
+        "moreover"
+      ],
+      "words2": [
+        "further"
+      ]
+    },
+    {
+      "m1": "不同",
+      "m2": "不同的",
+      "extra": "的",
+      "words1": [
+        "differ",
+        "difference"
+      ],
+      "words2": [
+        "different",
+        "diverse",
+        "varied",
+        "various"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "不足",
+      "m2": "不足的",
+      "extra": "的",
+      "words1": [
+        "failure",
+        "lack"
+      ],
+      "words2": [
+        "short"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "专业",
+      "m2": "专业的",
+      "extra": "的",
+      "words1": [
+        "career"
+      ],
+      "words2": [
+        "professional",
+        "specialist"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "丰富",
+      "m2": "丰富的",
+      "extra": "的",
+      "words1": [
+        "plenty"
+      ],
+      "words2": [
+        "abundant",
+        "ample",
+        "generous"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "主要",
+      "m2": "主要的",
+      "extra": "的",
+      "words1": [
+        "mostly"
+      ],
+      "words2": [
+        "chief",
+        "grand",
+        "head",
+        "main"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "全世界",
+      "m2": "全世界的",
+      "extra": "的",
+      "words1": [
+        "all around the world"
+      ],
+      "words2": [
+        "universal"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "全部",
+      "m2": "全部的",
+      "extra": "的",
+      "words1": [
+        "all",
+        "altogether",
+        "wholly"
+      ],
+      "words2": [
+        "entire",
+        "overall",
+        "total",
+        "whole"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "公平",
+      "m2": "公平的",
+      "extra": "的",
+      "words1": [
+        "justice"
+      ],
+      "words2": [
+        "balanced",
+        "fair"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "共同",
+      "m2": "共同的",
+      "extra": "的",
+      "words1": [
+        "together"
+      ],
+      "words2": [
+        "joint"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "关心",
+      "m2": "关心的",
+      "extra": "的",
+      "words1": [
+        "attention",
+        "care",
+        "consideration",
+        "regard"
+      ],
+      "words2": [
+        "concerned"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "关键",
+      "m2": "关键的",
+      "extra": "的",
+      "words1": [
+        "at the heart of"
+      ],
+      "words2": [
+        "key"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "其他",
+      "m2": "其他的",
+      "extra": "的",
+      "words1": [
+        "other"
+      ],
+      "words2": [
+        "else"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "再三",
+      "m2": "再三地",
+      "extra": "地",
+      "words1": [
+        "oft"
+      ],
+      "words2": [
+        "over and over"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "冻结",
+      "m2": "冻结的",
+      "extra": "的",
+      "words1": [
+        "freeze"
+      ],
+      "words2": [
+        "frozen"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "刺激",
+      "m2": "刺激的",
+      "extra": "的",
+      "words1": [
+        "excite",
+        "excitement",
+        "impulse",
+        "motivation"
+      ],
+      "words2": [
+        "stimulating"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "原始",
+      "m2": "原始的",
+      "extra": "的",
+      "words1": [
+        "originality"
+      ],
+      "words2": [
+        "original",
+        "primitive",
+        "rude"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "及时",
+      "m2": "及时地",
+      "extra": "地",
+      "words1": [
+        "in time"
+      ],
+      "words2": [
+        "timely"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "反驳",
+      "m2": "反驳的",
+      "extra": "的",
+      "words1": [
+        "counter"
+      ],
+      "words2": [
+        "contradictory"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "坚持",
+      "m2": "坚持的",
+      "extra": "的",
+      "words1": [
+        "insist",
+        "maintain"
+      ],
+      "words2": [
+        "consistent",
+        "persistent"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "多余",
+      "m2": "多余的",
+      "extra": "的",
+      "words1": [
+        "above"
+      ],
+      "words2": [
+        "spare"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "大胆",
+      "m2": "大胆的",
+      "extra": "的",
+      "words1": [
+        "dare"
+      ],
+      "words2": [
+        "daring"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "婚礼",
+      "m2": "婚礼的",
+      "extra": "的",
+      "words1": [
+        "wedding"
+      ],
+      "words2": [
+        "bridal"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "孤独",
+      "m2": "孤独的",
+      "extra": "的",
+      "words1": [
+        "solitude"
+      ],
+      "words2": [
+        "lonely"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "学院",
+      "m2": "学院的",
+      "extra": "的",
+      "words1": [
+        "academy",
+        "college",
+        "institute",
+        "school"
+      ],
+      "words2": [
+        "academic",
+        "ivy"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "宇宙",
+      "m2": "宇宙的",
+      "extra": "的",
+      "words1": [
+        "universe"
+      ],
+      "words2": [
+        "universal"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "安乐",
+      "m2": "安乐地",
+      "extra": "地",
+      "words1": [
+        "ease"
+      ],
+      "words2": [
+        "comfortably"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "广阔",
+      "m2": "广阔的",
+      "extra": "的",
+      "words1": [
+        "extensively",
+        "ocean"
+      ],
+      "words2": [
+        "vast"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "强烈",
+      "m2": "强烈的",
+      "extra": "的",
+      "words1": [
+        "intensity"
+      ],
+      "words2": [
+        "intense",
+        "keen",
+        "stiff"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "心理上",
+      "m2": "心理上的",
+      "extra": "的",
+      "words1": [
+        "mentally"
+      ],
+      "words2": [
+        "psychological"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "我们",
+      "m2": "我们的",
+      "extra": "的",
+      "words1": [
+        "us"
+      ],
+      "words2": [
+        "our",
+        "ours"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "技术",
+      "m2": "技术的",
+      "extra": "的",
+      "words1": [
+        "science",
+        "skill",
+        "technique",
+        "technology"
+      ],
+      "words2": [
+        "technological"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "放松",
+      "m2": "放松的",
+      "extra": "的",
+      "words1": [
+        "ease",
+        "relax",
+        "release"
+      ],
+      "words2": [
+        "relaxed"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "整齐",
+      "m2": "整齐的",
+      "extra": "的",
+      "words1": [
+        "arrangement"
+      ],
+      "words2": [
+        "regular",
+        "tidy"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "文学",
+      "m2": "文学的",
+      "extra": "的",
+      "words1": [
+        "letter",
+        "literature"
+      ],
+      "words2": [
+        "literary"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "新奇",
+      "m2": "新奇的",
+      "extra": "的",
+      "words1": [
+        "originality"
+      ],
+      "words2": [
+        "novel"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "日光",
+      "m2": "日光的",
+      "extra": "的",
+      "words1": [
+        "sunlight",
+        "sunshine"
+      ],
+      "words2": [
+        "solar"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "普通",
+      "m2": "普通的",
+      "extra": "的",
+      "words1": [
+        "currently",
+        "normal"
+      ],
+      "words2": [
+        "common",
+        "ordinary",
+        "plain"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "最后",
+      "m2": "最后的",
+      "extra": "的",
+      "words1": [
+        "at last",
+        "eventually",
+        "omega"
+      ],
+      "words2": [
+        "ultimate"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "有关",
+      "m2": "有关的",
+      "extra": "的",
+      "words1": [
+        "relate"
+      ],
+      "words2": [
+        "concerned",
+        "relevant"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "有关系",
+      "m2": "有关系的",
+      "extra": "的",
+      "words1": [
+        "relativity"
+      ],
+      "words2": [
+        "relevant"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "有前途",
+      "m2": "有前途的",
+      "extra": "的",
+      "words1": [
+        "prospect"
+      ],
+      "words2": [
+        "hopeful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "有帮助",
+      "m2": "有帮助的",
+      "extra": "的",
+      "words1": [
+        "help"
+      ],
+      "words2": [
+        "assistant",
+        "helpful",
+        "useful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "有效",
+      "m2": "有效的",
+      "extra": "的",
+      "words1": [
+        "efficiently",
+        "significance"
+      ],
+      "words2": [
+        "available",
+        "effective",
+        "significant",
+        "valid"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "有用",
+      "m2": "有用的",
+      "extra": "的",
+      "words1": [
+        "boot",
+        "help"
+      ],
+      "words2": [
+        "useful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "沉思",
+      "m2": "沉思的",
+      "extra": "的",
+      "words1": [
+        "reflection"
+      ],
+      "words2": [
+        "pensive",
+        "reflective"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "沮丧",
+      "m2": "沮丧的",
+      "extra": "的",
+      "words1": [
+        "depression",
+        "disappointment"
+      ],
+      "words2": [
+        "blue",
+        "depressed",
+        "disappointed"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "浪费",
+      "m2": "浪费的",
+      "extra": "的",
+      "words1": [
+        "shoot"
+      ],
+      "words2": [
+        "wasteful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "混乱",
+      "m2": "混乱的",
+      "extra": "的",
+      "words1": [
+        "chaos"
+      ],
+      "words2": [
+        "confused",
+        "upset",
+        "upside down"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "混合",
+      "m2": "混合的",
+      "extra": "的",
+      "words1": [
+        "incorporate",
+        "mix",
+        "mixture"
+      ],
+      "words2": [
+        "hybrid"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "清楚",
+      "m2": "清楚地",
+      "extra": "地",
+      "words1": [
+        "clarity"
+      ],
+      "words2": [
+        "clearly"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "渴望",
+      "m2": "渴望的",
+      "extra": "的",
+      "words1": [
+        "ache",
+        "desire",
+        "hunger",
+        "pine"
+      ],
+      "words2": [
+        "anxious",
+        "eager",
+        "hungry",
+        "keen"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "火山",
+      "m2": "火山的",
+      "extra": "的",
+      "words1": [
+        "volcano"
+      ],
+      "words2": [
+        "volcanic"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "焦虑",
+      "m2": "焦虑的",
+      "extra": "的",
+      "words1": [
+        "anxiety"
+      ],
+      "words2": [
+        "nervous"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "狂热",
+      "m2": "狂热的",
+      "extra": "的",
+      "words1": [
+        "abandon",
+        "fever"
+      ],
+      "words2": [
+        "crazy",
+        "enthusiastic"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "猛烈",
+      "m2": "猛烈地",
+      "extra": "地",
+      "words1": [
+        "violence"
+      ],
+      "words2": [
+        "hard",
+        "heavily",
+        "strong",
+        "violently"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "现实",
+      "m2": "现实的",
+      "extra": "的",
+      "words1": [
+        "reality"
+      ],
+      "words2": [
+        "practical",
+        "realistic"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "理想",
+      "m2": "理想的",
+      "extra": "的",
+      "words1": [
+        "dream"
+      ],
+      "words2": [
+        "desirable"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "生殖",
+      "m2": "生殖的",
+      "extra": "的",
+      "words1": [
+        "generation"
+      ],
+      "words2": [
+        "reproductive"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "确实",
+      "m2": "确实地",
+      "extra": "地",
+      "words1": [
+        "indeed",
+        "really"
+      ],
+      "words2": [
+        "literally"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "移动",
+      "m2": "移动的",
+      "extra": "的",
+      "words1": [
+        "motion",
+        "move",
+        "movement",
+        "shift"
+      ],
+      "words2": [
+        "moving"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "紧张",
+      "m2": "紧张的",
+      "extra": "的",
+      "words1": [
+        "intensity",
+        "tense",
+        "tension"
+      ],
+      "words2": [
+        "intense",
+        "stressed",
+        "stressed out",
+        "stressful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "羊毛",
+      "m2": "羊毛的",
+      "extra": "的",
+      "words1": [
+        "wool"
+      ],
+      "words2": [
+        "woolen"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "美丽",
+      "m2": "美丽的",
+      "extra": "的",
+      "words1": [
+        "beauty"
+      ],
+      "words2": [
+        "beautiful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "胜任",
+      "m2": "胜任的",
+      "extra": "的",
+      "words1": [
+        "competence"
+      ],
+      "words2": [
+        "capable",
+        "equal"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "自制",
+      "m2": "自制的",
+      "extra": "的",
+      "words1": [
+        "contain",
+        "self-control"
+      ],
+      "words2": [
+        "continent"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "自由",
+      "m2": "自由的",
+      "extra": "的",
+      "words1": [
+        "freedom",
+        "liberty"
+      ],
+      "words2": [
+        "free",
+        "loose"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "舒适",
+      "m2": "舒适的",
+      "extra": "的",
+      "words1": [
+        "comfort"
+      ],
+      "words2": [
+        "comfortable",
+        "cosy",
+        "cozy"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "艰难",
+      "m2": "艰难的",
+      "extra": "的",
+      "words1": [
+        "difficulty"
+      ],
+      "words2": [
+        "difficult",
+        "stiff"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "英国人",
+      "m2": "英国人的",
+      "extra": "的",
+      "words1": [
+        "english",
+        "englishman"
+      ],
+      "words2": [
+        "british"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "表达",
+      "m2": "表达的",
+      "extra": "的",
+      "words1": [
+        "communication",
+        "couch",
+        "express"
+      ],
+      "words2": [
+        "expressive"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "视力",
+      "m2": "视力的",
+      "extra": "的",
+      "words1": [
+        "eye",
+        "eyesight",
+        "sight",
+        "vision"
+      ],
+      "words2": [
+        "visual"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "认可",
+      "m2": "认可的",
+      "extra": "的",
+      "words1": [
+        "permission",
+        "recognition"
+      ],
+      "words2": [
+        "recognised"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "许多",
+      "m2": "许多的",
+      "extra": "的",
+      "words1": [
+        "lot",
+        "lots of",
+        "many",
+        "ocean"
+      ],
+      "words2": [
+        "multiple"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "负责",
+      "m2": "负责的",
+      "extra": "的",
+      "words1": [
+        "take charge of"
+      ],
+      "words2": [
+        "responsible"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "身体",
+      "m2": "身体的",
+      "extra": "的",
+      "words1": [
+        "body",
+        "person"
+      ],
+      "words2": [
+        "physical"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "连续",
+      "m2": "连续的",
+      "extra": "的",
+      "words1": [
+        "continuation",
+        "progression",
+        "series"
+      ],
+      "words2": [
+        "continuous"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "遗憾",
+      "m2": "遗憾的",
+      "extra": "的",
+      "words1": [
+        "pity",
+        "sorrow"
+      ],
+      "words2": [
+        "sorry"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "遥远",
+      "m2": "遥远的",
+      "extra": "的",
+      "words1": [
+        "distance"
+      ],
+      "words2": [
+        "remote"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "部分",
+      "m2": "部分地",
+      "extra": "地",
+      "words1": [
+        "element",
+        "parcel",
+        "part",
+        "percent"
+      ],
+      "words2": [
+        "partly"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "错误",
+      "m2": "错误的",
+      "extra": "的",
+      "words1": [
+        "error"
+      ],
+      "words2": [
+        "false",
+        "mistaken"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "附近",
+      "m2": "附近的",
+      "extra": "的",
+      "words1": [
+        "near"
+      ],
+      "words2": [
+        "handy",
+        "nearby"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "领先",
+      "m2": "领先的",
+      "extra": "的",
+      "words1": [
+        "get ahead"
+      ],
+      "words2": [
+        "ahead"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "高兴",
+      "m2": "高兴的",
+      "extra": "的",
+      "words1": [
+        "glee",
+        "pleased",
+        "pleasure"
+      ],
+      "words2": [
+        "cheerful",
+        "delighted",
+        "glad",
+        "happy"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "麻烦",
+      "m2": "麻烦的",
+      "extra": "的",
+      "words1": [
+        "bother",
+        "headache"
+      ],
+      "words2": [
+        "troublesome"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "口渴",
+      "m2": "口渴的",
+      "extra": "的",
+      "words1": [
+        "thirst"
+      ],
+      "words2": [
+        "dry",
+        "thirsty"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "可能",
+      "m2": "可能的",
+      "extra": "的",
+      "words1": [
+        "could",
+        "likelihood",
+        "maybe",
+        "perhaps"
+      ],
+      "words2": [
+        "possible",
+        "potential"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "商业",
+      "m2": "商业的",
+      "extra": "的",
+      "words1": [
+        "business"
+      ],
+      "words2": [
+        "commercial",
+        "merchant"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "善良",
+      "m2": "善良的",
+      "extra": "的",
+      "words1": [
+        "goodness"
+      ],
+      "words2": [
+        "kind"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "困难",
+      "m2": "困难的",
+      "extra": "的",
+      "words1": [
+        "difficulty",
+        "embarrassment",
+        "hardship",
+        "inconvenience"
+      ],
+      "words2": [
+        "challenging",
+        "hard",
+        "painful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "国家",
+      "m2": "国家的",
+      "extra": "的",
+      "words1": [
+        "country",
+        "nation",
+        "nationality",
+        "soil"
+      ],
+      "words2": [
+        "national"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "完成",
+      "m2": "完成的",
+      "extra": "的",
+      "words1": [
+        "accomplish",
+        "finish",
+        "manage",
+        "perform"
+      ],
+      "words2": [
+        "complete"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "宗教",
+      "m2": "宗教的",
+      "extra": "的",
+      "words1": [
+        "religion"
+      ],
+      "words2": [
+        "religious"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "定期",
+      "m2": "定期地",
+      "extra": "地",
+      "words1": [
+        "periodically"
+      ],
+      "words2": [
+        "regularly"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "小心",
+      "m2": "小心地",
+      "extra": "地",
+      "words1": [
+        "caution"
+      ],
+      "words2": [
+        "carefully"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "悲哀",
+      "m2": "悲哀地",
+      "extra": "地",
+      "words1": [
+        "sadness"
+      ],
+      "words2": [
+        "sadly"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "情绪",
+      "m2": "情绪的",
+      "extra": "的",
+      "words1": [
+        "emotion",
+        "feeling",
+        "humour"
+      ],
+      "words2": [
+        "emotional"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "成功",
+      "m2": "成功的",
+      "extra": "的",
+      "words1": [
+        "career",
+        "success"
+      ],
+      "words2": [
+        "successful"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "欣赏",
+      "m2": "欣赏的",
+      "extra": "的",
+      "words1": [
+        "appreciate",
+        "enjoy"
+      ],
+      "words2": [
+        "appreciative"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "欧洲",
+      "m2": "欧洲的",
+      "extra": "的",
+      "words1": [
+        "europe"
+      ],
+      "words2": [
+        "european"
+      ],
+      "reverified_rejection": true
+    },
+    {
+      "m1": "正确",
+      "m2": "正确的",
+      "extra": "的",
+      "words1": [
+        "accuracy",
+        "justice"
+      ],
+      "words2": [
+        "accurate",
+        "correct",
+        "right"
+      ],
+      "reverified_rejection": true
+    }
+  ],
+  "failed": []
+}

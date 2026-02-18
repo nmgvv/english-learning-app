@@ -26,7 +26,9 @@ Usage:
 """
 
 import re
+import json
 import logging
+from pathlib import Path
 from typing import Dict, Set, List, Optional
 from collections import defaultdict
 from bookmanager import JUNIOR_BOOKS, SENIOR_BOOKS
@@ -95,8 +97,31 @@ class SynonymIndex:
                 meanings.add(p)
         return meanings
 
+    def _load_meaning_map(self) -> Dict[str, str]:
+        """
+        加载含义等价映射表（经 LLM 验证 + 人工复核）
+
+        将虚词差异的等价含义归一化到较短形式，如 "安全的" → "安全"。
+        这样 safety(安全) 和 safe(安全的) 会被合并到同一组。
+        """
+        map_file = Path(__file__).parent / "data" / "meaning_map.json"
+        if not map_file.exists():
+            return {}
+
+        with open(map_file, encoding="utf-8") as f:
+            data = json.load(f)
+
+        normalize = {}
+        for p in data.get("equiv", []):
+            m1, m2 = p["m1"], p["m2"]
+            shorter = m1 if len(m1) <= len(m2) else m2
+            longer = m1 if len(m1) > len(m2) else m2
+            normalize[longer] = shorter
+        return normalize
+
     def _build(self, book_manager):
         """从所有词书构建同义词索引"""
+        meaning_normalize = self._load_meaning_map()
         word_count = 0
         seen_words = set()
 
@@ -117,8 +142,10 @@ class SynonymIndex:
                 word_count += 1
 
                 meanings = self._extract_meanings(word_obj.translation)
-                self._word_meanings[word_lower] = meanings
-                for m in meanings:
+                # 应用含义等价映射（如 "安全的" → "安全"）
+                normalized = {meaning_normalize.get(m, m) for m in meanings}
+                self._word_meanings[word_lower] = normalized
+                for m in normalized:
                     self._meaning_to_words[m].add(word_lower)
 
         # 构建反向索引：每个单词的同义词
