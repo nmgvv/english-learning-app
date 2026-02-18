@@ -42,6 +42,7 @@ from database import (
     ConfusingWords, ConfusionRecord, User, Progress
 )
 from bookmanager import BookManager, get_book_display_name, filter_books_by_grade
+from synonym import SynonymIndex
 
 # FSRS 算法和辅助函数 (从 dictation.py 复用)
 from dictation import (
@@ -115,6 +116,9 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 # 词书管理器
 book_manager = BookManager()
+
+# 同义词索引（基于所有词书构建，按学段过滤）
+synonym_index = SynonymIndex(book_manager)
 
 # 初始化数据库
 init_db()
@@ -885,17 +889,28 @@ async def api_session_submit(
 
     correct = data.input.strip().strip('.,!?;:').lower() == data.word.strip('.,!?;:').lower()
 
+    # 同义词检测：输入不正确时，检查是否为同义词
+    is_synonym = False
+    synonym_hint = ""
+    if not correct and data.input.strip():
+        user_grade = user.get("grade")
+        syn_result = synonym_index.check_synonym(data.word, data.input, grade=user_grade)
+        if syn_result:
+            is_synonym = True
+            synonym_hint = syn_result["hint"]
+
     # 使用 dictation.py 的相似度计算和提示
     similarity = 0.0
     hint = "错误"
-    if not correct and data.input.strip():
+    if not correct and not is_synonym and data.input.strip():
         similarity = calculate_similarity(data.word, data.input)
         hint = get_error_hint(data.word, data.input)
 
     return {
         "correct": correct,
+        "is_synonym": is_synonym,
         "similarity": similarity,
-        "hint": hint,
+        "hint": synonym_hint if is_synonym else hint,
         "remaining_attempts": 3 - data.attempt
     }
 
@@ -1241,12 +1256,18 @@ async def api_quiz_options(data: QuizOptionsRequest, user: dict = Depends(requir
     if not target_word:
         raise HTTPException(status_code=404, detail="单词不存在")
 
-    # 收集干扰英文单词：优先同单元、拼写相近的词
+    # 获取目标词的同义词集合（按学生学段过滤），选项中排除同义词避免歧义
+    user_grade = user.get("grade")
+    target_synonyms = synonym_index.get_synonyms(data.word, grade=user_grade)
+
+    # 收集干扰英文单词：优先同单元、拼写相近的词，排除同义词
     same_unit = []
     other_unit = []
     for w in words:
         if w.word == data.word:
             continue
+        if w.word.lower() in target_synonyms:
+            continue  # 排除同义词，避免选项歧义
         if data.unit and w.unit == data.unit:
             same_unit.append(w.word)
         else:
@@ -1273,6 +1294,14 @@ async def api_quiz_options(data: QuizOptionsRequest, user: dict = Depends(requir
     correct_idx = options.index(data.word)
 
     return {"options": options, "correct_idx": correct_idx}
+
+
+@app.get("/api/synonyms/{word}")
+async def api_get_synonyms(word: str, user: dict = Depends(require_auth)):
+    """获取单词的同义词列表（按学生学段过滤）"""
+    user_grade = user.get("grade")
+    synonyms = synonym_index.get_synonyms(word, grade=user_grade)
+    return {"word": word, "synonyms": sorted(synonyms)[:5]}  # 最多返回5个
 
 
 # ==================== 统计 API ====================
@@ -2488,27 +2517,31 @@ async def get_next_word(
 
 
 def get_or_generate_confusing(db: Session, word: str, word_pool: list) -> list:
-    """获取或生成混淆词（优先从缓存读取）"""
+    """获取或生成混淆词（优先从缓存读取，排除同义词避免歧义）"""
     import random
+
+    # 获取目标单词的同义词，从选项中排除
+    target_synonyms = synonym_index.get_synonyms(word)
+    exclude_set = {word} | target_synonyms
 
     cached = db.query(ConfusingWords).filter(ConfusingWords.word == word).first()
     if cached:
         confusing = json.loads(cached.confusing)
-        # 去重并排除正确答案
-        confusing = [c for c in confusing if c != word and c in word_pool]
+        # 去重并排除正确答案和同义词
+        confusing = [c for c in confusing if c not in exclude_set and c in word_pool]
         confusing = list(dict.fromkeys(confusing))[:3]
         options = [word] + confusing
         # 确保有4个选项
         if len(options) < 4:
-            fillers = [w for w in word_pool if w not in options]
+            fillers = [w for w in word_pool if w not in options and w not in exclude_set]
             random.shuffle(fillers)
             options.extend(fillers[:4 - len(options)])
         random.shuffle(options)
         return options[:4]
 
     confusing = generate_confusing_by_llm(word, word_pool)
-    # 去重并排除正确答案
-    confusing = [c for c in confusing if c != word]
+    # 去重并排除正确答案和同义词
+    confusing = [c for c in confusing if c not in exclude_set]
     confusing = list(dict.fromkeys(confusing))[:3]
 
     cache_entry = ConfusingWords(
@@ -2521,7 +2554,7 @@ def get_or_generate_confusing(db: Session, word: str, word_pool: list) -> list:
     options = [word] + confusing
     # 确保有4个选项
     if len(options) < 4:
-        fillers = [w for w in word_pool if w not in options]
+        fillers = [w for w in word_pool if w not in options and w not in exclude_set]
         random.shuffle(fillers)
         options.extend(fillers[:4 - len(options)])
     random.shuffle(options)

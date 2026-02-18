@@ -427,6 +427,12 @@
                         <div class="text-2xl font-bold text-slate-100 mt-1" x-text="currentCard?.word || ''"></div>
                         <div class="text-slate-500 text-sm mt-1" x-text="currentCard?.phonetic || ''"></div>
                     </div>
+
+                    <!-- 同义词展示（答题结束后） -->
+                    <div x-show="showResult && currentSynonyms.length > 0" x-cloak class="mt-3 bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 text-center">
+                        <span class="text-purple-300 text-sm">同义词: </span>
+                        <span class="text-purple-200 text-sm" x-text="currentSynonyms.join('、')"></span>
+                    </div>
                 </div>
             </div>
 
@@ -825,6 +831,9 @@ function dictationPage() {
         bestStreak: 0,
         totalAttempts: 0,
 
+        // 同义词
+        currentSynonyms: [],              // 当前单词的同义词列表
+
         // 学习计时（键盘空闲超1分钟暂停计时）
         sessionStartTime: null,
         elapsedActiveMs: 0,
@@ -1047,6 +1056,7 @@ function dictationPage() {
             this.remainingAttempts = this.maxAttempts;
             this.exampleSentence = '';
             this.exampleChinese = '';
+            this.currentSynonyms = [];
 
             // 重置跟读状态
             this.showPronunciationUI = false;
@@ -1363,6 +1373,16 @@ function dictationPage() {
 
             const result = await response.json();
             this.isCorrect = result.correct;
+
+            // 同义词处理：不消耗尝试次数，显示鼓励性提示后继续
+            if (result.is_synonym) {
+                this.attempt--;  // 回退，同义词不计入尝试次数
+                this.inputs.pop();
+                this.hint = result.hint;
+                this.userInput = '';
+                return;
+            }
+
             this.remainingAttempts = result.remaining_attempts;
 
             if (this.isCorrect) {
@@ -1463,6 +1483,21 @@ function dictationPage() {
                 });
             } catch (e) {
                 console.error('保存失败:', e);
+            }
+
+            // 异步获取同义词（不阻塞 UI）
+            this.fetchSynonyms(this.currentCard.word);
+        },
+
+        async fetchSynonyms(word) {
+            try {
+                const response = await fetch(`/api/synonyms/${encodeURIComponent(word)}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.currentSynonyms = data.synonyms || [];
+                }
+            } catch (e) {
+                // 静默失败，同义词显示为非关键功能
             }
         },
 
