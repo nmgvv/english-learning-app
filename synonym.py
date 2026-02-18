@@ -75,8 +75,8 @@ class SynonymIndex:
         # 截断人名部分（"人名；" 之后的内容通常是国家+音译，无实际含义）
         if '人名' in translation:
             translation = translation[:translation.index('人名')]
-        # 去掉词性标记
-        text = re.sub(r'[a-z]+\.\s*', '', translation)
+        # 去掉词性标记（含复合词性如 "n. & vi."、"adj."）
+        text = re.sub(r'(?:[a-z]+\.\s*(?:&\s*)?)+', '', translation)
         # 去掉方括号和圆括号内容（如 [计]、(英) 等）
         text = re.sub(r'\[.*?\]', '', text)
         text = re.sub(r'\(.*?\)', '', text)
@@ -84,6 +84,9 @@ class SynonymIndex:
         parts = re.split(r'[；;，,、/]', text)
         meanings = set()
         for p in parts:
+            # 去掉前缀噪音（残留的 &、*、# 等）和尾部标点（省略号、句号等）
+            p = re.sub(r'^[&*#\s]+', '', p)
+            p = p.rstrip('…….。 ')
             p = p.strip()
             # 至少2个中文字符，排除纯数字、纯标点和含残余括号的片段
             if (p and len(p) >= 2 and not p.isdigit()
