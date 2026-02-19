@@ -66,6 +66,23 @@
             </template>
         </div>
 
+        <!-- 回看模式：答题结果摘要 -->
+        <div x-show="reviewIndex >= 0" class="mb-4 px-2">
+            <div class="flex items-center justify-between text-sm">
+                <div>
+                    <span class="text-slate-500">正确答案：</span>
+                    <span class="text-emerald-400 font-medium" x-text="history[reviewIndex]?.word"></span>
+                </div>
+                <div x-show="!history[reviewIndex]?.correct">
+                    <span class="text-slate-500">你的选择：</span>
+                    <span class="text-red-400 font-medium" x-text="history[reviewIndex]?.selectedOption"></span>
+                </div>
+                <div x-show="history[reviewIndex]?.correct">
+                    <span class="text-emerald-400">&#10003; 回答正确</span>
+                </div>
+            </div>
+        </div>
+
         <!-- 回退/前进导航 -->
         <div class="flex items-center justify-between" x-show="history.length > 0">
             <!-- 上一题 -->
