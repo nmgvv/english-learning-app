@@ -66,6 +66,24 @@
             </template>
         </div>
 
+        <!-- 答错后：显示结果和下一题按钮 -->
+        <div x-show="answered && !lastCorrect && reviewIndex < 0" class="mb-4 px-2">
+            <div class="flex items-center justify-between text-sm mb-3">
+                <div>
+                    <span class="text-slate-500">正确答案：</span>
+                    <span class="text-emerald-400 font-medium" x-text="currentWord?.word"></span>
+                </div>
+                <div>
+                    <span class="text-slate-500">你的选择：</span>
+                    <span class="text-red-400 font-medium" x-text="selectedOption"></span>
+                </div>
+            </div>
+            <button @click="goNextAfterWrong"
+                class="w-full py-2.5 rounded-xl bg-sky-600 text-white font-medium hover:bg-sky-500 transition">
+                下一题
+            </button>
+        </div>
+
         <!-- 回看模式：答题结果摘要 -->
         <div x-show="reviewIndex >= 0" class="mb-4 px-2">
             <div class="flex items-center justify-between text-sm">
@@ -179,6 +197,7 @@ function assessmentPage() {
         options: [],
         selectedOption: null,
         answered: false,
+        lastCorrect: false,
         finished: false,
         masteredCount: 0,
         notMasteredCount: 0,
@@ -333,18 +352,31 @@ function assessmentPage() {
                 this.notMasteredCount++;
             }
 
-            // 短暂显示对错反馈后自动跳转
-            setTimeout(async () => {
-                // 检查本批是否完成
-                if (this.masteredCount + this.notMasteredCount >= this.totalCount) {
-                    this.batchComplete = true;
-                    this.submitting = false;
-                    return;
-                }
+            this.lastCorrect = correct;
 
-                await this.showNext();
+            if (correct) {
+                // 答对：短暂显示后自动跳转
+                setTimeout(async () => {
+                    if (this.masteredCount + this.notMasteredCount >= this.totalCount) {
+                        this.batchComplete = true;
+                        this.submitting = false;
+                        return;
+                    }
+                    await this.showNext();
+                    this.submitting = false;
+                }, 500);
+            } else {
+                // 答错：等待学生点击"下一题"
                 this.submitting = false;
-            }, correct ? 500 : 1000);
+            }
+        },
+
+        async goNextAfterWrong() {
+            if (this.masteredCount + this.notMasteredCount >= this.totalCount) {
+                this.batchComplete = true;
+                return;
+            }
+            await this.showNext();
         },
 
         async showNext() {
