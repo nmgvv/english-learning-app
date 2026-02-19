@@ -40,24 +40,57 @@
         </div>
     </div>
 
-    <!-- 主内容区 - 答题界面 -->
+    <!-- 主内容区 - 答题/回看界面 -->
     <div class="p-4 max-w-lg mx-auto" x-show="!finished && !batchComplete && !loading">
+        <!-- 回看模式提示 -->
+        <div x-show="reviewIndex >= 0" class="text-center mb-3">
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-700 text-slate-400">查看历史答题</span>
+        </div>
+
         <!-- 中文释义（大号显示） -->
         <div class="bg-slate-800 rounded-xl p-6 mb-6 text-center border border-slate-700/50">
-            <div class="text-2xl font-bold text-slate-100 leading-relaxed" x-text="currentWord?.translation"></div>
+            <div class="text-2xl font-bold text-slate-100 leading-relaxed"
+                 x-text="reviewIndex >= 0 ? history[reviewIndex].translation : currentWord?.translation"></div>
         </div>
 
         <!-- 四个英文选项 -->
-        <div class="grid grid-cols-2 gap-3 mb-6">
-            <template x-for="(opt, idx) in options" :key="idx">
+        <div class="grid grid-cols-2 gap-3 mb-4">
+            <template x-for="(opt, idx) in displayOptions" :key="idx">
                 <button
                     @click="selectOption(opt)"
-                    :disabled="answered"
+                    :disabled="answered || reviewIndex >= 0"
                     :class="getOptionClass(opt)"
                     class="border-2 rounded-xl p-4 text-lg font-medium transition"
                     x-text="opt"
                 ></button>
             </template>
+        </div>
+
+        <!-- 回退/前进导航 -->
+        <div class="flex items-center justify-between" x-show="history.length > 0">
+            <!-- 上一题 -->
+            <button @click="goPrev"
+                :disabled="reviewIndex === 0"
+                :class="reviewIndex === 0 ? 'text-slate-700' : 'text-slate-400 hover:text-slate-200'"
+                class="p-2 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <!-- 题号 -->
+            <span class="text-sm text-slate-500"
+                  x-text="reviewIndex >= 0
+                    ? `第 ${reviewIndex + 1} / ${history.length} 题`
+                    : `第 ${history.length + 1} 题`"></span>
+            <!-- 下一题 / 回到当前 -->
+            <button @click="goNext"
+                :disabled="reviewIndex < 0"
+                :class="reviewIndex < 0 ? 'text-slate-700' : 'text-slate-400 hover:text-slate-200'"
+                class="p-2 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
         </div>
     </div>
 
@@ -140,6 +173,8 @@ function assessmentPage() {
         submitting: false,
         nextWordData: null,
         prefetchPromise: null,
+        history: [],       // 答题历史
+        reviewIndex: -1,   // -1=当前答题，>=0=回看第N题
 
         async init() {
             await this.startBatch();
@@ -166,6 +201,8 @@ function assessmentPage() {
                 this.masteredCount = 0;
                 this.notMasteredCount = 0;
                 this.batchComplete = false;
+                this.history = [];
+                this.reviewIndex = -1;
 
                 // 立即预加载下一题
                 this.prefetchNext();
@@ -190,7 +227,26 @@ function assessmentPage() {
                 });
         },
 
+        get displayOptions() {
+            if (this.reviewIndex >= 0) {
+                return this.history[this.reviewIndex]?.options || [];
+            }
+            return this.options;
+        },
+
         getOptionClass(opt) {
+            // 回看模式：显示历史答题结果
+            if (this.reviewIndex >= 0) {
+                const h = this.history[this.reviewIndex];
+                if (opt === h.word) {
+                    return 'bg-emerald-600 border-emerald-500 text-white';
+                }
+                if (opt === h.selectedOption && opt !== h.word) {
+                    return 'bg-red-600 border-red-500 text-white';
+                }
+                return 'bg-slate-800 border-slate-700 text-slate-500 opacity-50';
+            }
+            // 答题模式
             if (!this.answered) {
                 return this.selectedOption === opt
                     ? 'bg-sky-600 border-sky-500 text-white'
@@ -205,14 +261,42 @@ function assessmentPage() {
             return 'bg-slate-800 border-slate-700 text-slate-500 opacity-50';
         },
 
+        goPrev() {
+            if (this.reviewIndex < 0) {
+                // 从当前题进入回看：查看最后一条历史
+                this.reviewIndex = this.history.length - 1;
+            } else if (this.reviewIndex > 0) {
+                this.reviewIndex--;
+            }
+        },
+
+        goNext() {
+            if (this.reviewIndex < 0) return;
+            if (this.reviewIndex < this.history.length - 1) {
+                this.reviewIndex++;
+            } else {
+                // 回到当前答题
+                this.reviewIndex = -1;
+            }
+        },
+
         async selectOption(opt) {
-            if (this.answered || this.submitting) return;
+            if (this.answered || this.submitting || this.reviewIndex >= 0) return;
 
             this.selectedOption = opt;
             this.answered = true;
             this.submitting = true;
 
             const correct = opt === this.currentWord.word;
+
+            // 记录到历史
+            this.history.push({
+                word: this.currentWord.word,
+                translation: this.currentWord.translation,
+                options: [...this.options],
+                selectedOption: opt,
+                correct: correct
+            });
 
             // 提交答案（不阻塞 UI）
             fetch('/api/assessment/submit', {
