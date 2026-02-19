@@ -44,36 +44,21 @@ cd "$APP_DIR"
 log "=== 开始部署 English Learning App ==="
 log "分支: $BRANCH"
 
-# 1. 拉取最新代码（优先 Codeup，备用 GitHub）
+# 1. 从 GitHub 拉取最新代码（带重试）
 log "步骤 1/4: 拉取最新代码..."
 PULLED=0
 
-# 优先从 Codeup 拉取（国内快速）
-if git remote | grep -q codeup; then
-    log "尝试从 Codeup 拉取..."
-    if git fetch codeup 2>/dev/null; then
-        git reset --hard codeup/$BRANCH
+log "从 GitHub 拉取最新代码..."
+for i in 1 2 3; do
+    if git fetch origin 2>/dev/null; then
+        git reset --hard origin/$BRANCH
         PULLED=1
-        log "✓ 从 Codeup 拉取成功"
-    else
-        warn "Codeup 拉取失败，切换到 GitHub..."
+        log "✓ 从 GitHub 拉取成功（第${i}次尝试）"
+        break
     fi
-fi
-
-# Codeup 失败则从 GitHub 拉取（带重试）
-if [ $PULLED -eq 0 ]; then
-    log "尝试从 GitHub 拉取..."
-    for i in 1 2 3; do
-        if git fetch origin 2>/dev/null; then
-            git reset --hard origin/$BRANCH
-            PULLED=1
-            log "✓ 从 GitHub 拉取成功（第${i}次尝试）"
-            break
-        fi
-        warn "GitHub 第${i}次失败，${i}秒后重试..."
-        sleep $((i * 5))
-    done
-fi
+    warn "GitHub 第${i}次失败，${i}秒后重试..."
+    sleep $((i * 5))
+done
 
 if [ $PULLED -eq 0 ]; then
     error "所有远端拉取均失败！"
