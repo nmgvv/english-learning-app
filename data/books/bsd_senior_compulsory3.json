@@ -2,7 +2,7 @@
   {
     "word": "component",
     "phonetic": "/kəmˈpəunənt/",
-    "translation": "n. 元件，组件，成分；a. 组成的，构成的；[计] 组件",
+    "translation": "n. 元件，组件，成分；adj. 组成的，构成的；[计] 组件",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -44,7 +44,7 @@
   {
     "word": "starry",
     "phonetic": "/ˈstɑ:ri/",
-    "translation": "a. 星光照耀的，多星的，星形的，明亮的",
+    "translation": "adj. 星光照耀的，多星的，星形的，明亮的",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -58,7 +58,7 @@
   {
     "word": "massive",
     "phonetic": "/ˈmæsiv/",
-    "translation": "a. 大而重的，宽大的，宏伟的；[医] 大块的，整块的，大量的",
+    "translation": "adj. 大而重的，宽大的，宏伟的；[医] 大块的，整块的，大量的",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -86,7 +86,7 @@
   {
     "word": "spot",
     "phonetic": "/spɒt/",
-    "translation": "n. 污点，地点，斑点，点，娱乐场所，处境，少量；a. 当场的，现场的，现货买卖的，现金交易的，抽样的；vt. 点缀，玷污，认出，准确定...的位，用灯光照射；vi. 玷污，(从空中)侦察敌方目标",
+    "translation": "n. 污点，地点，斑点，点，娱乐场所，处境，少量；adj. 当场的，现场的，现货买卖的，现金交易的，抽样的；vt. 点缀，玷污，认出，准确定...的位，用灯光照射；vi. 玷污，(从空中)侦察敌方目标",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -107,14 +107,14 @@
   {
     "word": "female",
     "phonetic": "/ˈfiːmeil/",
-    "translation": "n. 女性，女人，雌性动物；a. 女性的，女子的",
+    "translation": "n. 女性，女人，雌性动物；adj. 女性的，女子的",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
   {
     "word": "male",
     "phonetic": "/meil/",
-    "translation": "n. 男人，雄性动物；a. 男性的，雄性的，有力的",
+    "translation": "n. 男人，雄性动物；adj. 男性的，雄性的，有力的",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -149,7 +149,7 @@
   {
     "word": "master",
     "phonetic": "/ˈmɑ:stə. ˈmæstə/",
-    "translation": "n. 主人，硕士，大师，母机；a. 主人的，主要的；vt. 征服，控制，精通",
+    "translation": "n. 主人，硕士，大师，母机；adj. 主人的，主要的；vt. 征服，控制，精通",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -177,14 +177,14 @@
   {
     "word": "uplifting",
     "phonetic": "/ˌʌpˈlɪftɪŋ/",
-    "translation": "a. 令人振奋的；使人开心的；v. 举起(uplift的现在分词)",
+    "translation": "adj. 令人振奋的；使人开心的；v. 举起(uplift的现在分词)",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
   {
     "word": "striking",
     "phonetic": "/ˈstraikiŋ/",
-    "translation": "a. 醒目的，惊人的，打击的，罢工的；[法] 罢工的，罢市的，罢课的",
+    "translation": "adj. 醒目的，惊人的，打击的，罢工的；[法] 罢工的，罢市的，罢课的",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -205,7 +205,7 @@
   {
     "word": "burning",
     "phonetic": "/ˈbə:niŋ/",
-    "translation": "a. 燃烧的，象燃烧一样的；n. 烧，燃烧",
+    "translation": "adj. 燃烧的，象燃烧一样的；n. 烧，燃烧",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -233,14 +233,14 @@
   {
     "word": "mysterious",
     "phonetic": "/misˈtiəriəs/",
-    "translation": "a. 神秘的，难解的，不可思议的",
+    "translation": "adj. 神秘的，难解的，不可思议的",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
   {
     "word": "visual",
     "phonetic": "/ˈviʒuəl/",
-    "translation": "a. 视觉的；[医] 视觉的，视力的，视觉性记忆优势者",
+    "translation": "adj. 视觉的；[医] 视觉的，视力的，视觉性记忆优势者",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -289,7 +289,7 @@
   {
     "word": "complex",
     "phonetic": "/kəmˈpleks/",
-    "translation": "n. 综合体，情结，络合物；a. 复杂的，组合的",
+    "translation": "n. 综合体，情结，络合物；adj. 复杂的，组合的",
     "unit": "Unit 7 Topic Talk",
     "page": 17
   },
@@ -325,7 +325,7 @@
   {
     "word": "minor",
     "phonetic": "/ˈmainə/",
-    "translation": "n. 未成年人，副修科目；a. 较小的，二流的，未成年的；vi. 副修；[计] 次要",
+    "translation": "n. 未成年人，副修科目；adj. 较小的，二流的，未成年的；vi. 副修；[计] 次要",
     "unit": "Unit 7 Topic Talk",
     "page": 18
   },
@@ -388,7 +388,7 @@
   {
     "word": "tense",
     "phonetic": "/tens/",
-    "translation": "a. 紧张的，拉紧的；v. (使)紧张，(使)拉紧；n. 时态",
+    "translation": "adj. 紧张的，拉紧的；v. (使)紧张，(使)拉紧；n. 时态",
     "unit": "Unit 7 Lesson 3",
     "page": 18
   },
@@ -407,7 +407,7 @@
     "page": 18
   },
   {
-    "word": "not hesitate to do sth",
+    "word": "not hesitate to do something",
     "phonetic": "/dʊ ˈnɒt ˈhez.ɪ.teɪt tə duː ˈsʌm.θɪŋ/",
     "translation": "请务必/切勿犹豫做某事（常用于礼貌请求或鼓励）",
     "unit": "Unit 7 Lesson 3",
@@ -430,21 +430,21 @@
   {
     "word": "joyous",
     "phonetic": "/ˈdʒɒiəs/",
-    "translation": "a. 快乐的，高兴的",
+    "translation": "adj. 快乐的，高兴的",
     "unit": "Unit 7 Lesson 3",
     "page": 18
   },
   {
     "word": "signal",
     "phonetic": "/ˈsignl/",
-    "translation": "n. 信号，暗号，近因，导火线；vt. 向...作信号，标志，用信号通知；vi. 发信号；a. 作为信号的，显著的；[计] 信号",
+    "translation": "n. 信号，暗号，近因，导火线；vt. 向...作信号，标志，用信号通知；vi. 发信号；adj. 作为信号的，显著的；[计] 信号",
     "unit": "Unit 7 Lesson 3",
     "page": 18
   },
   {
     "word": "broad",
     "phonetic": "/brɒ:d/",
-    "translation": "a. 宽广的，辽阔的，广大的，显著的；adv. 宽阔地；n. 宽阔部分",
+    "translation": "adj. 宽广的，辽阔的，广大的，显著的；adv. 宽阔地；n. 宽阔部分",
     "unit": "Unit 7 Lesson 3",
     "page": 18
   },
@@ -486,7 +486,7 @@
   {
     "word": "martial",
     "phonetic": "/ˈmɑ:ʃəl/",
-    "translation": "a. 战争的，军事的，尚武的，威武的；[医] 含铁的",
+    "translation": "adj. 战争的，军事的，尚武的，威武的；[医] 含铁的",
     "unit": "Unit 7 Writing Workshop",
     "page": 18
   },
@@ -507,7 +507,7 @@
   {
     "word": "documentary",
     "phonetic": "/.dɒkjuˈmentəri/",
-    "translation": "n. 记录片；a. 文件的",
+    "translation": "n. 记录片；adj. 文件的",
     "unit": "Unit 7 Writing Workshop",
     "page": 18
   },
@@ -521,14 +521,14 @@
   {
     "word": "acceptable",
     "phonetic": "/əkˈseptəbl/",
-    "translation": "a. 可接受的，合意的，可忍受的",
+    "translation": "adj. 可接受的，合意的，可忍受的",
     "unit": "Unit 7 Writing Workshop",
     "page": 18
   },
   {
     "word": "individual",
     "phonetic": "/.indiˈvidʒuəl/",
-    "translation": "n. 人，个人，个体；a. 个别的，个人的，独特的",
+    "translation": "n. 人，个人，个体；adj. 个别的，个人的，独特的",
     "unit": "Unit 7 Writing Workshop",
     "page": 18
   },
@@ -549,14 +549,14 @@
   {
     "word": "expressive",
     "phonetic": "/ikˈspresiv/",
-    "translation": "a. 表达的，富于表情的",
+    "translation": "adj. 表达的，富于表情的",
     "unit": "Unit 7 Reading Club 1",
     "page": 18
   },
   {
     "word": "artistic",
     "phonetic": "/ɑ:ˈtistik/",
-    "translation": "a. 艺术的，艺术家的，富有艺术性的",
+    "translation": "adj. 艺术的，艺术家的，富有艺术性的",
     "unit": "Unit 7 Reading Club 1",
     "page": 18
   },
@@ -591,7 +591,7 @@
   {
     "word": "best-selling",
     "phonetic": "/ˈbestˈseliŋ/",
-    "translation": "a. 最畅销的，畅销作品的",
+    "translation": "adj. 最畅销的，畅销作品的",
     "unit": "Unit 7 Reading Club 1",
     "page": 18
   },
@@ -605,7 +605,7 @@
   {
     "word": "threatening",
     "phonetic": "/ˈθretniŋ/",
-    "translation": "a. 胁迫的，危险的；[法] 威胁的，恐吓的，危险的",
+    "translation": "adj. 胁迫的，危险的；[法] 威胁的，恐吓的，危险的",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
@@ -640,21 +640,21 @@
   {
     "word": "desert",
     "phonetic": "/ˈdezət. diˈsə:t/",
-    "translation": "n. 沙漠，应得的赏罚，功劳；a. 沙漠的，不毛的；vt. 放弃，遗弃，擅离；vi. 逃掉",
+    "translation": "n. 沙漠，应得的赏罚，功劳；adj. 沙漠的，不毛的；vt. 放弃，遗弃，擅离；vi. 逃掉",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
   {
     "word": "global",
     "phonetic": "/ˈgləubl/",
-    "translation": "a. 通用的，全球的，球形的，综合的，普遍的；[计] 共用",
+    "translation": "adj. 通用的，全球的，球形的，综合的，普遍的；[计] 共用",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
   {
     "word": "industrial",
     "phonetic": "/inˈdʌstriəl/",
-    "translation": "a. 工业的，供工业用的，工业高度发展的，产业的；n. 工业工人，工业股票",
+    "translation": "adj. 工业的，供工业用的，工业高度发展的，产业的；n. 工业工人，工业股票",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
@@ -689,12 +689,12 @@
   {
     "word": "bothered",
     "phonetic": "/ˈbɒðəd/",
-    "translation": "a. 烦（恼）的；感到讨厌的",
+    "translation": "adj. 烦（恼）的；感到讨厌的",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
   {
-    "word": "not be bothered to do sth",
+    "word": "not be bothered to do something",
     "phonetic": "/nɒt biː ˈbɒðəd tə duː sʌmθɪŋ/",
     "translation": "懒得做某事",
     "unit": "Unit 8 Reading Club 1",
@@ -732,14 +732,14 @@
   {
     "word": "messy",
     "phonetic": "/ˈmesi/",
-    "translation": "a. 散乱的，污秽的，麻烦的",
+    "translation": "adj. 散乱的，污秽的，麻烦的",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
   {
     "word": "punishable",
     "phonetic": "/ˈpʌniʃəbl/",
-    "translation": "a. 该罚的，可罚的；[法] 该罚的，可受惩处的",
+    "translation": "adj. 该罚的，可罚的；[法] 该罚的，可受惩处的",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
@@ -760,7 +760,7 @@
   {
     "word": "recycle",
     "phonetic": "/.riːˈsaikl/",
-    "translation": "vt. 使再循环，重新利用，再制；n. 再循环",
+    "translation": "vt. 使再循环，重新利用，可重复使用；n. 再循环",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
@@ -786,7 +786,7 @@
     "page": 19
   },
   {
-    "word": "do my part for sth",
+    "word": "do my part for something",
     "phonetic": "/duː maɪ pɑːt fɔː ˈsʌmθɪŋ/",
     "translation": "尽自己的一份力做某事",
     "unit": "Unit 8 Reading Club 1",
@@ -795,7 +795,7 @@
   {
     "word": "flat",
     "phonetic": "/flæt/",
-    "translation": "a. 平坦的，单调的，无力的，浅的，萧条的，干脆的，无聊的；adv. 平直地，断然地；n. 扁平物，平面，平地，平原，平板车；v. (使)变平",
+    "translation": "adj. 平坦的，单调的，无力的，浅的，萧条的，干脆的，无聊的；adv. 平直地，断然地；n. 扁平物，平面，平地，平原，平板车；v. (使)变平",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
@@ -809,7 +809,7 @@
   {
     "word": "firm",
     "phonetic": "/fə:m/",
-    "translation": "n. 公司，商号；a. 坚定的，坚强的，牢固的，结实的，坚硬的，坚挺的，严格的，确定的；vt. 使牢固，使坚定；vi. 变稳固，变坚实；adv. 稳固地",
+    "translation": "n. 公司，商号；adj. 坚定的，坚强的，牢固的，结实的，坚硬的，坚挺的，严格的，确定的；vt. 使牢固，使坚定；vi. 变稳固，变坚实；adv. 稳固地",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
@@ -823,7 +823,7 @@
   {
     "word": "brick",
     "phonetic": "/brik/",
-    "translation": "n. 砖块，积木；a. 用砖做的；vt. 用砖造，用砖砌",
+    "translation": "n. 砖块，积木；adj. 用砖做的；vt. 用砖造，用砖砌",
     "unit": "Unit 8 Reading Club 1",
     "page": 19
   },
@@ -893,7 +893,7 @@
   {
     "word": "contented",
     "phonetic": "/kənˈtentid/",
-    "translation": "a. 满足的，心安的",
+    "translation": "adj. 满足的，心安的",
     "unit": "Unit 8 Topic Talk",
     "page": 20
   },
@@ -905,7 +905,7 @@
     "page": 20
   },
   {
-    "word": "make sb's dream come true",
+    "word": "make somebody's dream come true",
     "phonetic": "/meɪk səmˈwʌnз ˈdriːm kʌm truː/",
     "translation": "使某人的梦想成真",
     "unit": "Unit 8 Topic Talk",
@@ -935,14 +935,14 @@
   {
     "word": "slim",
     "phonetic": "/slim/",
-    "translation": "a. 瘦的，苗条的，微小的，稀少的，微薄的；vi. 变苗条；vt. 使苗条",
+    "translation": "adj. 瘦的，苗条的，微小的，稀少的，微薄的；vi. 变苗条；vt. 使苗条",
     "unit": "Unit 8 Lesson 2",
     "page": 20
   },
   {
     "word": "survival",
     "phonetic": "/səˈvaivəl/",
-    "translation": "n. 生存，残存，幸存者；a. 赖以生存的",
+    "translation": "n. 生存，残存，幸存者；adj. 赖以生存的",
     "unit": "Unit 8 Lesson 2",
     "page": 20
   },
@@ -991,14 +991,14 @@
   {
     "word": "former",
     "phonetic": "/ˈfɒ:mə/",
-    "translation": "a. 从前的，前者的；n. 起形成作用的人(或物)，模型，样板",
+    "translation": "adj. 从前的，前者的；n. 起形成作用的人(或物)，模型，样板",
     "unit": "Unit 8 Lesson 2",
     "page": 20
   },
   {
     "word": "current",
     "phonetic": "/ˈkʌrənt/",
-    "translation": "n. 涌流，趋势，流；a. 流通的，现在的，当前的，流行的；[计] 当前的",
+    "translation": "n. 涌流，趋势，流；adj. 流通的，现在的，当前的，流行的；[计] 当前的",
     "unit": "Unit 8 Lesson 2",
     "page": 20
   },
@@ -1012,14 +1012,14 @@
   {
     "word": "ordinary",
     "phonetic": "/ˈɒ:dinəri/",
-    "translation": "a. 平常的，普通的，平凡的；n. 平常的人(或事)",
+    "translation": "adj. 平常的，普通的，平凡的；n. 平常的人(或事)",
     "unit": "Unit 8 Lesson 2",
     "page": 20
   },
   {
     "word": "parking",
     "phonetic": "/ˈpɑ:kiŋ/",
-    "translation": "n. 停车；a. 停车的",
+    "translation": "n. 停车；adj. 停车的",
     "unit": "Unit 8 Lesson 3",
     "page": 20
   },
@@ -1068,21 +1068,21 @@
   {
     "word": "pedal",
     "phonetic": "/ˈpedl/",
-    "translation": "n. 踏板，脚蹬子；a. 脚的，脚踏的；vt. 用脚踏动；vi. 踩踏板，骑车",
+    "translation": "n. 踏板，脚蹬子；adj. 脚的，脚踏的；vt. 用脚踏动；vi. 踩踏板，骑车",
     "unit": "Unit 8 Lesson 3",
     "page": 20
   },
   {
     "word": "Resident",
     "phonetic": "/ˈrezidənt/",
-    "translation": "n. 居民，常驻程序，居住者，留鸟；a. 居留的，定居的",
+    "translation": "n. 居民，常驻程序，居住者，留鸟；adj. 居留的，定居的",
     "unit": "Unit 8 Writing Workshop",
     "page": 20
   },
   {
     "word": "official",
     "phonetic": "/əˈfiʃəl/",
-    "translation": "n. 官员，公务员，职员；a. 公务的，官方的，正式的",
+    "translation": "n. 官员，公务员，职员；adj. 公务的，官方的，正式的",
     "unit": "Unit 8 Writing Workshop",
     "page": 20
   },
@@ -1124,7 +1124,7 @@
   {
     "word": "disposable",
     "phonetic": "/disˈpəuzəbl/",
-    "translation": "a. 可任意处理的；[法] 可任意处理或处置的，可自由使用的",
+    "translation": "adj. 可任意处理的；[法] 可任意处理或处置的，可自由使用的",
     "unit": "Unit 8 Writing Workshop",
     "page": 20
   },
@@ -1138,14 +1138,14 @@
   {
     "word": "plastic",
     "phonetic": "/ˈplæstik/",
-    "translation": "n. 塑料，可塑体，可塑性物质；a. 塑料的，塑造的，有可塑性的，造型的，易受影响的，有创造力的",
+    "translation": "n. 塑料，可塑体，可塑性物质；adj. 塑料的，塑造的，有可塑性的，造型的，易受影响的，有创造力的",
     "unit": "Unit 8 Writing Workshop",
     "page": 20
   },
   {
     "word": "honey",
     "phonetic": "/ˈhʌni/",
-    "translation": "n. 蜂蜜，甜蜜，爱人；a. 蜂蜜似的，甜蜜的，甘美的；vt. 加蜜使甜，对...说甜言蜜语；vi. 说甜言蜜语，奉承",
+    "translation": "n. 蜂蜜，甜蜜，爱人；adj. 蜂蜜似的，甜蜜的，甘美的；vt. 加蜜使甜，对...说甜言蜜语；vi. 说甜言蜜语，奉承",
     "unit": "Unit 8 Writing Workshop",
     "page": 20
   },
@@ -1208,7 +1208,7 @@
   {
     "word": "build-up",
     "phonetic": "/ˈbildʌp/",
-    "translation": "a. 内建的",
+    "translation": "adj. 内建的",
     "unit": "Unit 9 Writing Workshop",
     "page": 21
   },
@@ -1264,14 +1264,14 @@
   {
     "word": "automatic",
     "phonetic": "/.ɒ:təˈmætik/",
-    "translation": "n. 自动手枪，自动机械；a. 自动的，机械的，必然的，无意识的",
+    "translation": "n. 自动手枪，自动机械；adj. 自动的，机械的，必然的，无意识的",
     "unit": "Unit 9 Writing Workshop",
     "page": 21
   },
   {
     "word": "inner",
     "phonetic": "/ˈinə/",
-    "translation": "a. 内部的，内心的；n. 内部",
+    "translation": "adj. 内部的，内心的；n. 内部",
     "unit": "Unit 9 Writing Workshop",
     "page": 21
   },
@@ -1355,14 +1355,14 @@
   {
     "word": "outer",
     "phonetic": "/ˈautə/",
-    "translation": "a. 外部的，外面的，在外的，远离中心的；[机] 外部的，外面的，外侧的",
+    "translation": "adj. 外部的，外面的，在外的，远离中心的；[机] 外部的，外面的，外侧的",
     "unit": "Unit 9 Writing Workshop",
     "page": 21
   },
   {
     "word": "flexible",
     "phonetic": "/ˈfleksəbl/",
-    "translation": "a. 易曲的，灵活的，柔顺的，能变形的，可通融的；[医] 能屈的",
+    "translation": "adj. 易曲的，灵活的，柔顺的，能变形的，可通融的；[医] 能屈的",
     "unit": "Unit 9 Writing Workshop",
     "page": 21
   },
@@ -1411,7 +1411,7 @@
   {
     "word": "unlikely",
     "phonetic": "/.ʌnˈlaikli/",
-    "translation": "a. 不太可能的",
+    "translation": "adj. 不太可能的",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
@@ -1439,7 +1439,7 @@
   {
     "word": "classic",
     "phonetic": "/ˈklæsik/",
-    "translation": "n. 古典作品，杰作，大艺术家；a. 第一流的，最优秀的，古典的",
+    "translation": "n. 古典作品，杰作，大艺术家；adj. 第一流的，最优秀的，古典的",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
@@ -1488,14 +1488,14 @@
   {
     "word": "novel",
     "phonetic": "/ˈnɒvl/",
-    "translation": "n. 小说，长篇故事；a. 新奇的，异常的",
+    "translation": "n. 小说，长篇故事；adj. 新奇的，异常的",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
   {
     "word": "sufficient",
     "phonetic": "/səˈfiʃənt/",
-    "translation": "a. 充分的，足够的；[法] 充分的，足够的",
+    "translation": "adj. 充分的，足够的；[法] 充分的，足够的",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
@@ -1523,7 +1523,7 @@
   {
     "word": "emotional",
     "phonetic": "/iˈməuʃənəl/",
-    "translation": "a. 情绪的，情感的；[医] 情绪的",
+    "translation": "adj. 情绪的，情感的；[医] 情绪的",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
@@ -1544,7 +1544,7 @@
   {
     "word": "photographic",
     "phonetic": "/.fəutəˈgræfik/",
-    "translation": "a. 照相的，摄影用的，详细记录的，逼真的，酷似的",
+    "translation": "adj. 照相的，摄影用的，详细记录的，逼真的，酷似的",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
@@ -1612,7 +1612,7 @@
     "page": 22
   },
   {
-    "word": "be honoured to do sth",
+    "word": "be honoured to do something",
     "phonetic": "/biː ˈɒnəd tə duː ˈsʌmθɪŋ/",
     "translation": "很荣幸做某事",
     "unit": "Unit 9 Writing Workshop",
@@ -1621,7 +1621,7 @@
   {
     "word": "odd",
     "phonetic": "/ɒd/",
-    "translation": "a. 奇数的，古怪的，剩余的，零散的，各种各样的，少量的；n. 奇特的事物，怪人；[计] 奇数，奇校验，光数据数字转换器",
+    "translation": "adj. 奇数的，古怪的，剩余的，零散的，各种各样的，少量的；n. 奇特的事物，怪人；[计] 奇数，奇校验，光数据数字转换器",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
@@ -1678,14 +1678,14 @@
   {
     "word": "sharp",
     "phonetic": "/ʃɑ:p/",
-    "translation": "n. 半升音调，利刃，骗子；a. 锋利的，明显的，敏锐的，急剧的，尖刻的，严厉的，刺耳的，精明的；adv. 锐利地，急速地",
+    "translation": "n. 半升音调，利刃，骗子；adj. 锋利的，明显的，敏锐的，急剧的，尖刻的，严厉的，刺耳的，精明的；adv. 锐利地，急速地",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },
   {
     "word": "timely",
     "phonetic": "/ˈtaili/",
-    "translation": "a. 及时的，适时的；adv. 及时地",
+    "translation": "adj. 及时的，适时的；adv. 及时地",
     "unit": "Unit 9 Writing Workshop",
     "page": 22
   },

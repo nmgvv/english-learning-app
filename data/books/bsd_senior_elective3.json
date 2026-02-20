@@ -9,7 +9,7 @@
   {
     "word": "assistant",
     "phonetic": "/əˈsistənt/",
-    "translation": "n. 助手，助理，助教；a. 有帮助的，辅助的，助理的",
+    "translation": "n. 助手，助理，助教；adj. 有帮助的，辅助的，助理的",
     "unit": "Unit 7 Topic Talk",
     "page": 38
   },
@@ -150,7 +150,7 @@
   {
     "word": "reliable",
     "phonetic": "/riˈlaiəbl/",
-    "translation": "a. 可靠的，可信赖的；[法] 可靠的，可信赖的，确实的",
+    "translation": "adj. 可靠的，可信赖的；[法] 可靠的，可信赖的，确实的",
     "unit": "Unit 7 Topic Talk",
     "page": 38
   },
@@ -178,7 +178,7 @@
   {
     "word": "brilliant",
     "phonetic": "/ˈbriljənt/",
-    "translation": "a. 光辉的，灿烂的，有才气的；[机] 亮的",
+    "translation": "adj. 光辉的，灿烂的，有才气的；[机] 亮的",
     "unit": "Unit 7 Topic Talk",
     "page": 38
   },
@@ -209,7 +209,7 @@
   {
     "word": "impressive",
     "phonetic": "/imˈpresiv/",
-    "translation": "a. 给人深刻印象的，威严的",
+    "translation": "adj. 给人深刻印象的，威严的",
     "unit": "Unit 7 Topic Talk",
     "page": 38
   },
@@ -266,7 +266,7 @@
   {
     "word": "lower",
     "phonetic": "/ˈləuə/",
-    "translation": "a. 低的，下级的，下层的；vi. 降低，跌落，减弱；vt. 放下，降下，减弱，贬低",
+    "translation": "adj. 低的，下级的，下层的；vi. 降低，跌落，减弱；vt. 放下，降下，减弱，贬低",
     "unit": "Unit 7 Lesson 1",
     "page": 38
   },
@@ -280,7 +280,7 @@
   {
     "word": "internal",
     "phonetic": "/inˈtə:nəl/",
-    "translation": "a. 内在的，国内的；[医] 内的，内部的",
+    "translation": "adj. 内在的，国内的；[医] 内的，内部的",
     "unit": "Unit 7 Lesson 1",
     "page": 38
   },
@@ -308,14 +308,14 @@
   {
     "word": "willing",
     "phonetic": "/ˈwiliŋ/",
-    "translation": "a. 乐意的，自愿的，甘愿的",
+    "translation": "adj. 乐意的，自愿的，甘愿的",
     "unit": "Unit 7 Topic Talk",
     "page": 39
   },
   {
     "word": "disabled",
     "phonetic": "/disˈeibld/",
-    "translation": "a. 残废的，有缺陷的，失效的；[计] 失效的",
+    "translation": "adj. 残废的，有缺陷的，失效的；[计] 失效的",
     "unit": "Unit 7 Topic Talk",
     "page": 39
   },
@@ -343,14 +343,14 @@
   {
     "word": "financial",
     "phonetic": "/faiˈnænʃəl/",
-    "translation": "a. 财政的，金融的；[经] 财政的，金融的，财务的",
+    "translation": "adj. 财政的，金融的；[经] 财政的，金融的，财务的",
     "unit": "Unit 7 Lesson 2",
     "page": 39
   },
   {
     "word": "logical",
     "phonetic": "/ˈlɒdʒikəl/",
-    "translation": "a. 合乎逻辑的，合理的；[法] 逻辑的，符合逻辑的",
+    "translation": "adj. 合乎逻辑的，合理的；[法] 逻辑的，符合逻辑的",
     "unit": "Unit 7 Lesson 2",
     "page": 39
   },
@@ -434,7 +434,7 @@
   {
     "word": "relevant",
     "phonetic": "/ˈrelivənt/",
-    "translation": "a. 有关联的，有关系的，适当的，相应的；[法] 有关的，相关的",
+    "translation": "adj. 有关联的，有关系的，适当的，相应的；[法] 有关的，相关的",
     "unit": "Unit 7 Lesson 3",
     "page": 39
   },
@@ -449,7 +449,7 @@
   {
     "word": "decent",
     "phonetic": "/ˈdiːsənt/",
-    "translation": "a. 有分寸的，得体的，大方的",
+    "translation": "adj. 有分寸的，得体的，大方的",
     "unit": "Unit 7 Lesson 3",
     "page": 39
   },
@@ -477,7 +477,7 @@
   {
     "word": "specialist",
     "phonetic": "/ˈspeiʃəlist/",
-    "translation": "n. 专门医师，专家；a. 专业的，专家的",
+    "translation": "n. 专门医师，专家；adj. 专业的，专家的",
     "unit": "Unit 7 Lesson 3",
     "page": 39
   },
@@ -527,14 +527,14 @@
   {
     "word": "multiple",
     "phonetic": "/ˈmʌltipl/",
-    "translation": "n. 倍数，并联；a. 多样的，许多的，多功能的",
+    "translation": "n. 倍数，并联；adj. 多样的，许多的，多功能的",
     "unit": "Unit 7 Lesson 3",
     "page": 39
   },
   {
     "word": "essential",
     "phonetic": "/iˈsenʃəl/",
-    "translation": "n. 要素，要点，本质；a. 必要的，重要的，本质的；[计] 本质冒险",
+    "translation": "n. 要素，要点，本质；adj. 必要的，重要的，本质的；[计] 本质冒险",
     "unit": "Unit 7 Lesson 3",
     "page": 39
   },
@@ -555,7 +555,7 @@
   {
     "word": "part-time",
     "phonetic": "/ˌpɑːtˈtaɪm/",
-    "translation": "a. 兼任的，半工半读的，部分时间的；adv. 部分时间，兼任地",
+    "translation": "adj. 兼任的，半工半读的，部分时间的；adv. 部分时间，兼任地",
     "unit": "Unit 7 Writing Workshop",
     "page": 39
   },
@@ -656,7 +656,7 @@
   {
     "word": "detective",
     "phonetic": "/diˈtektiv/",
-    "translation": "n. 侦探；a. 侦探的",
+    "translation": "n. 侦探；adj. 侦探的",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
@@ -677,14 +677,14 @@
   {
     "word": "stimulating",
     "phonetic": "/ˈstimjuleitiŋ/",
-    "translation": "a. 刺激的，有刺激性的",
+    "translation": "adj. 刺激的，有刺激性的",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
   {
     "word": "absorbing",
     "phonetic": "/əbˈsɒ:biŋ/",
-    "translation": "a. 吸引人的，非常有趣的；[机] 吸收的",
+    "translation": "adj. 吸引人的，非常有趣的；[机] 吸收的",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
@@ -698,7 +698,7 @@
   {
     "word": "subjective",
     "phonetic": "/səbˈdʒektiv/",
-    "translation": "a. 主观的，个人的；[医] 主观的，自觉的",
+    "translation": "adj. 主观的，个人的；[医] 主观的，自觉的",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
@@ -720,7 +720,7 @@
   {
     "word": "elderly",
     "phonetic": "/ˈeldəli/",
-    "translation": "a. 过了中年的，稍老的",
+    "translation": "adj. 过了中年的，稍老的",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
@@ -762,7 +762,7 @@
   {
     "word": "contradictory",
     "phonetic": "/.kɒntrəˈdiktəri/",
-    "translation": "a. 反驳的，反对的，抗辩的；n. 矛盾因素，对立物",
+    "translation": "adj. 反驳的，反对的，抗辩的；n. 矛盾因素，对立物",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
@@ -776,7 +776,7 @@
   {
     "word": "literary",
     "phonetic": "/ˈlitərəri/",
-    "translation": "a. 文学的，文艺的，精通文学的；[法] 文学的，从事文学的，从事写作的",
+    "translation": "adj. 文学的，文艺的，精通文学的；[法] 文学的，从事文学的，从事写作的",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
@@ -811,7 +811,7 @@
   {
     "word": "historical",
     "phonetic": "/hiˈstɒrikəl/",
-    "translation": "a. 历史的，史实的，历史上的；[法] 历史性的",
+    "translation": "adj. 历史的，史实的，历史上的；[法] 历史性的",
     "unit": "Unit 7 Writing Workshop",
     "page": 40
   },
@@ -854,7 +854,7 @@
   {
     "word": "unseen",
     "phonetic": "/.ʌnˈsiːn/",
-    "translation": "a. 未被看见的，看不见的",
+    "translation": "adj. 未被看见的，看不见的",
     "unit": "Unit 8 Lesson 1",
     "page": 41
   },
@@ -869,7 +869,7 @@
   {
     "word": "icy",
     "phonetic": "/ˈaisi/",
-    "translation": "a. 冰的，冰冷的，冷淡的，滑溜的",
+    "translation": "adj. 冰的，冰冷的，冷淡的，滑溜的",
     "unit": "Unit 8 Lesson 1",
     "page": 41
   },
@@ -883,14 +883,14 @@
   {
     "word": "blank",
     "phonetic": "/blæŋk/",
-    "translation": "n. 空格，空白；a. 空白的，空虚的，完全的，无色的；vi. 消失，成为空白；vt. 使无效，取消，封锁；[计] 空白",
+    "translation": "n. 空格，空白；adj. 空白的，空虚的，完全的，无色的；vi. 消失，成为空白；vt. 使无效，取消，封锁；[计] 空白",
     "unit": "Unit 8 Lesson 1",
     "page": 41
   },
   {
     "word": "blanket",
     "phonetic": "/ˈblæŋkit/",
-    "translation": "n. 毛毯，毯子；vt. 掩盖，覆盖；a. 总共的",
+    "translation": "n. 毛毯，毯子；vt. 掩盖，覆盖；adj. 总共的",
     "unit": "Unit 8 Lesson 1",
     "page": 41
   },
@@ -911,7 +911,7 @@
   {
     "word": "ivy",
     "phonetic": "/ˈaivi/",
-    "translation": "n. 常春藤；a. 学院的，抽象的",
+    "translation": "n. 常春藤；adj. 学院的，抽象的",
     "unit": "Unit 8 Lesson 1",
     "page": 41,
     "optional": true
@@ -949,7 +949,7 @@
   {
     "word": "slip",
     "phonetic": "/slip/",
-    "translation": "n. 滑，滑行，事故，溜，差错，滑台，下降，插条，后裔，板条，瘦长的年轻人；vi. 滑动，滑倒，失足，溜走，滑落，犯错，变坏；vt. 使滑动，滑过，摆脱，闪开，塞入，从...取接枝；a. 滑动的，滑移的，活络的，有活结的；[计] 串行线接口协议",
+    "translation": "n. 滑，滑行，事故，溜，差错，滑台，下降，插条，后裔，板条，瘦长的年轻人；vi. 滑动，滑倒，失足，溜走，滑落，犯错，变坏；vt. 使滑动，滑过，摆脱，闪开，塞入，从...取接枝；adj. 滑动的，滑移的，活络的，有活结的；[计] 串行线接口协议",
     "unit": "Unit 8 Lesson 1",
     "page": 41
   },
@@ -977,7 +977,7 @@
   {
     "word": "fellow",
     "phonetic": "/ˈfeləu/",
-    "translation": "n. 男人，朋友，同事；a. 同伴的，同事的，同道的",
+    "translation": "n. 男人，朋友，同事；adj. 同伴的，同事的，同道的",
     "unit": "Unit 8 Lesson 1",
     "page": 41
   },
@@ -1014,7 +1014,7 @@
   {
     "word": "frozen",
     "phonetic": "/ˈfrəuzn/",
-    "translation": "a. 冻结的，冰冷的，严寒的，冻伤的，冷酷的；freeze的过去分词",
+    "translation": "adj. 冻结的，冰冷的，严寒的，冻伤的，冷酷的；freeze的过去分词",
     "unit": "Unit 8 Lesson 2",
     "page": 41
   },
@@ -1036,7 +1036,7 @@
   {
     "word": "downy",
     "phonetic": "/ˈdauni/",
-    "translation": "a. 绒毛的，柔和的，有草丘陵地的",
+    "translation": "adj. 绒毛的，柔和的，有草丘陵地的",
     "unit": "Unit 8 Lesson 2",
     "page": 41,
     "optional": true
@@ -1044,7 +1044,7 @@
   {
     "word": "fake",
     "phonetic": "/feik/",
-    "translation": "n. 假货，欺骗，诡计；a. 假的；vt. 假造，仿造；vi. 伪装",
+    "translation": "n. 假货，欺骗，诡计；adj. 假的；vt. 假造，仿造；vi. 伪装",
     "unit": "Unit 8 Lesson 2",
     "page": 41,
     "optional": true
@@ -1052,7 +1052,7 @@
   {
     "word": "daffodil",
     "phonetic": "/ˈdæfədil/",
-    "translation": "n. 水仙花；a. 水仙花色的",
+    "translation": "n. 水仙花；adj. 水仙花色的",
     "unit": "Unit 8 Lesson 2",
     "page": 41,
     "optional": true
@@ -1091,7 +1091,7 @@
   {
     "word": "continuous",
     "phonetic": "/kənˈtinjuəs/",
-    "translation": "a. 连续的，继续的，连续不断的；[计] 连续的",
+    "translation": "adj. 连续的，继续的，连续不断的；[计] 连续的",
     "unit": "Unit 8 Lesson 2",
     "page": 41
   },
@@ -1106,7 +1106,7 @@
   {
     "word": "stretch",
     "phonetic": "/stretʃ/",
-    "translation": "n. 伸展，张开，连绵，一段路，一段时间；a. 可伸缩的，弹性的；vt. 伸展，张开，曲解，使过度伸展；vi. 伸展，延伸；[计] 伸展",
+    "translation": "n. 伸展，张开，连绵，一段路，一段时间；adj. 可伸缩的，弹性的；vt. 伸展，张开，曲解，使过度伸展；vi. 伸展，延伸；[计] 伸展",
     "unit": "Unit 8 Lesson 2",
     "page": 41
   },
@@ -1144,7 +1144,7 @@
   {
     "word": "sprightly",
     "phonetic": "/ˈspraitli/",
-    "translation": "a. 活泼的，愉快的；adv. 活泼地，愉快地",
+    "translation": "adj. 活泼的，愉快的；adv. 活泼地，愉快地",
     "unit": "Unit 8 Lesson 2",
     "page": 41,
     "optional": true
@@ -1159,7 +1159,7 @@
   {
     "word": "sparkling",
     "phonetic": "/ˈspɑ:liŋ/",
-    "translation": "a. 闪闪发光的，闪烁的，闪烁着才华的",
+    "translation": "adj. 闪闪发光的，闪烁的，闪烁着才华的",
     "unit": "Unit 8 Lesson 2",
     "page": 41,
     "optional": true
@@ -1188,7 +1188,7 @@
   {
     "word": "jocund",
     "phonetic": "/ˈdʒɒkənd/",
-    "translation": "a. 欢乐的，高兴的",
+    "translation": "adj. 欢乐的，高兴的",
     "unit": "Unit 8 Lesson 2",
     "page": 42
   },
@@ -1216,21 +1216,21 @@
   {
     "word": "vacant",
     "phonetic": "/ˈveikənt/",
-    "translation": "a. 空的，空白的，空虚的，空闲的，茫然的，空缺的；[法] 空的，空虚的，闲暇的",
+    "translation": "adj. 空的，空白的，空虚的，空闲的，茫然的，空缺的；[法] 空的，空虚的，闲暇的",
     "unit": "Unit 8 Lesson 2",
     "page": 42
   },
   {
     "word": "pensive",
     "phonetic": "/ˈpensiv/",
-    "translation": "a. 沉思的，哀思的，忧郁的",
+    "translation": "adj. 沉思的，哀思的，忧郁的",
     "unit": "Unit 8 Lesson 2",
     "page": 42
   },
   {
     "word": "inward",
     "phonetic": "/ˈinwəd/",
-    "translation": "a. 内心的，向内的，本来的；[医] 向内的",
+    "translation": "adj. 内心的，向内的，本来的；[医] 向内的",
     "unit": "Unit 8 Lesson 2",
     "page": 42
   },
@@ -1258,7 +1258,7 @@
   {
     "word": "violent",
     "phonetic": "/ˈvaiələnt/",
-    "translation": "a. 暴力的，猛烈的，激烈的，极端的，凶暴的",
+    "translation": "adj. 暴力的，猛烈的，激烈的，极端的，凶暴的",
     "unit": "Unit 8 Topic Talk",
     "page": 42
   },
@@ -1335,7 +1335,7 @@
   {
     "word": "unconscious",
     "phonetic": "/.ʌnˈkɒnʃəs/",
-    "translation": "a. 未意识到的，无意识的，无知觉的；[医] 人事不省的，神志丧失的；无意识的",
+    "translation": "adj. 未意识到的，无意识的，无知觉的；[医] 人事不省的，神志丧失的；无意识的",
     "unit": "Unit 8 Topic Talk",
     "page": 42
   },
@@ -1370,7 +1370,7 @@
   {
     "word": "steel",
     "phonetic": "/stiːl/",
-    "translation": "n. 钢，钢制品，钢铁，坚硬，坚固；a. 钢的，钢制的，钢铁业的，坚强的；vt. 使坚强，钢化，使冷酷",
+    "translation": "n. 钢，钢制品，钢铁，坚硬，坚固；adj. 钢的，钢制的，钢铁业的，坚强的；vt. 使坚强，钢化，使冷酷",
     "unit": "Unit 8 Topic Talk",
     "page": 42
   },
@@ -1384,7 +1384,7 @@
   {
     "word": "solid",
     "phonetic": "/ˈsɒlid/",
-    "translation": "n. 固体；a. 坚硬的，稳固的，固体的，实心的，纯质的，立体的，立方的；[计] 原色",
+    "translation": "n. 固体；adj. 坚硬的，稳固的，固体的，实心的，纯质的，立体的，立方的；[计] 原色",
     "unit": "Unit 8 Topic Talk",
     "page": 42
   },
@@ -1412,7 +1412,7 @@
   {
     "word": "utter",
     "phonetic": "/ˈʌtə/",
-    "translation": "a. 全然的，绝对的，完全的；vt. 发出声音，做声，发表，发射，流通",
+    "translation": "adj. 全然的，绝对的，完全的；vt. 发出声音，做声，发表，发射，流通",
     "unit": "Unit 8 Topic Talk",
     "page": 42
   },
@@ -1454,7 +1454,7 @@
   {
     "word": "emotional",
     "phonetic": "/iˈməuʃənəl/",
-    "translation": "a. 情绪的，情感的；[医] 情绪的",
+    "translation": "adj. 情绪的，情感的；[医] 情绪的",
     "unit": "Unit 9 Writing Workshop",
     "page": 43
   },
@@ -1496,7 +1496,7 @@
   {
     "word": "noble",
     "phonetic": "/ˈnəubl/",
-    "translation": "n. 贵族；a. 高贵的，高尚的，贵族的，辉煌的",
+    "translation": "n. 贵族；adj. 高贵的，高尚的，贵族的，辉煌的",
     "unit": "Unit 9 Writing Workshop",
     "page": 43
   },
@@ -1575,7 +1575,7 @@
   {
     "word": "vaccine",
     "phonetic": "/ˈvæksiːn/",
-    "translation": "n. 牛痘苗，疫苗；a. 疫苗的，牛痘的",
+    "translation": "n. 牛痘苗，疫苗；adj. 疫苗的，牛痘的",
     "unit": "Unit 9 Topic Talk",
     "page": 43,
     "optional": true
@@ -1591,7 +1591,7 @@
   {
     "word": "participant",
     "phonetic": "/pɑ:ˈtisipənt/",
-    "translation": "n. 参加者，参与者；a. 有份的，参加的，参与的",
+    "translation": "n. 参加者，参与者；adj. 有份的，参加的，参与的",
     "unit": "Unit 9 Topic Talk",
     "page": 43
   },
@@ -1642,14 +1642,14 @@
   {
     "word": "identical",
     "phonetic": "/aiˈdentikəl/",
-    "translation": "a. 同一的，恒等的，完全相同的；[医] 同一的，同等的",
+    "translation": "adj. 同一的，恒等的，完全相同的；[医] 同一的，同等的",
     "unit": "Unit 9 Lesson 1",
     "page": 43
   },
   {
     "word": "twin",
     "phonetic": "/twin/",
-    "translation": "n. 双胞胎中一人，一对非常相像的人(或物)中的一个；a. 双胞胎的，成对的，孪生的；vi. 生双胞胎，成对；vt. 怀(双胞胎)，使成对",
+    "translation": "n. 双胞胎中一人，一对非常相像的人(或物)中的一个；adj. 双胞胎的，成对的，孪生的；vi. 生双胞胎，成对；vt. 怀(双胞胎)，使成对",
     "unit": "Unit 9 Lesson 1",
     "page": 43
   },
@@ -1715,7 +1715,7 @@
   {
     "word": "reproductive",
     "phonetic": "/.riːprəˈdʌktiv/",
-    "translation": "a. 生殖的，再生的，复制的；[医] 生殖的，复现的",
+    "translation": "adj. 生殖的，再生的，复制的；[医] 生殖的，复现的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
@@ -1736,7 +1736,7 @@
   {
     "word": "accurate",
     "phonetic": "/ˈækjurət/",
-    "translation": "a. 正确的，精确的；[经] 准确的，精确的",
+    "translation": "adj. 正确的，精确的；[经] 准确的，精确的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
@@ -1810,7 +1810,7 @@
   {
     "word": "epidemic",
     "phonetic": "/.epiˈdemik/",
-    "translation": "n. 传染病，流行病；a. 流行的，传染性的",
+    "translation": "n. 传染病，流行病；adj. 流行的，传染性的",
     "unit": "Unit 9 Lesson 1",
     "page": 44,
     "optional": true
@@ -1861,7 +1861,7 @@
   {
     "word": "rare",
     "phonetic": "/rєə/",
-    "translation": "a. 稀罕的，罕有的，珍奇的，稀薄的，半熟的，非常好的；adv. 非常",
+    "translation": "adj. 稀罕的，罕有的，珍奇的，稀薄的，半熟的，非常好的；adv. 非常",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
@@ -1875,21 +1875,21 @@
   {
     "word": "crucial",
     "phonetic": "/ˈkruːʃəl/",
-    "translation": "a. 决定性的，重要的，严厉的；[医] 十字形的；决断的，定局的",
+    "translation": "adj. 决定性的，重要的，严厉的；[医] 十字形的；决断的，定局的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
   {
     "word": "bound",
     "phonetic": "/baund/",
-    "translation": "n. 跃，回跳，范围，边界；a. 受约束的，装有封面的，有义务的，关联的，被束缚的，准备去...的，便秘的；vi. 跳跃，弹起；vt. 使跳，限制，形成...的疆界；bind过去式和过去分词；[计] 装订的",
+    "translation": "n. 跃，回跳，范围，边界；adj. 受约束的，装有封面的，有义务的，关联的，被束缚的，准备去...的，便秘的；vi. 跳跃，弹起；vt. 使跳，限制，形成...的疆界；bind过去式和过去分词；[计] 装订的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
   {
     "word": "ethical",
     "phonetic": "/ˈeθikəl/",
-    "translation": "a. 伦理的，民族的，民族特有的；[医] 伦理的，道德的",
+    "translation": "adj. 伦理的，民族的，民族特有的；[医] 伦理的，道德的",
     "unit": "Unit 9 Lesson 1",
     "page": 44,
     "optional": true
@@ -1897,14 +1897,14 @@
   {
     "word": "mere",
     "phonetic": "/miə/",
-    "translation": "n. 小湖，池塘；a. 仅仅的，只不过的",
+    "translation": "n. 小湖，池塘；adj. 仅仅的，只不过的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
   {
     "word": "inferior",
     "phonetic": "/inˈfiəriə/",
-    "translation": "a. 次等的，较差的，下方的，下级的；n. 部下，次品，下标(符号)",
+    "translation": "adj. 次等的，较差的，下方的，下级的；n. 部下，次品，下标(符号)",
     "unit": "Unit 9 Lesson 1",
     "page": 44,
     "optional": true
@@ -1970,14 +1970,14 @@
   {
     "word": "opposed",
     "phonetic": "/əˈpəuzd/",
-    "translation": "a. 反对的，敌对的，对抗的，相对的；[机] 反对的，相反的，对立的",
+    "translation": "adj. 反对的，敌对的，对抗的，相对的；[机] 反对的，相反的，对立的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
   {
     "word": "widespread",
     "phonetic": "/ˈwaidspred/",
-    "translation": "a. 充分伸展的，广布的，普及的，流传广的",
+    "translation": "adj. 充分伸展的，广布的，普及的，流传广的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },
@@ -1991,7 +1991,7 @@
   {
     "word": "parallel",
     "phonetic": "/ˈpærəlel/",
-    "translation": "n. 平行，对比，相匹敌之物；a. 平行的，相似的；vt. 与...平行，与...相似，相比，使平行；[计] 并联；并行",
+    "translation": "n. 平行，对比，相匹敌之物；adj. 平行的，相似的；vt. 与...平行，与...相似，相比，使平行；[计] 并联；并行",
     "unit": "Unit 9 Lesson 1",
     "page": 44,
     "optional": true
@@ -1999,7 +1999,7 @@
   {
     "word": "depressing",
     "phonetic": "/diˈpresiŋ/",
-    "translation": "a. 抑压的，沉闷的，阴沉的",
+    "translation": "adj. 抑压的，沉闷的，阴沉的",
     "unit": "Unit 9 Lesson 1",
     "page": 44
   },

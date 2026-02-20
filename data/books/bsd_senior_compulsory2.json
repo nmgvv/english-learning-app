@@ -65,7 +65,7 @@
   {
     "word": "concerned",
     "phonetic": "/kənˈsə:nd/",
-    "translation": "a. 关心的，有关的，参与的，担心的",
+    "translation": "adj. 关心的，有关的，参与的，担心的",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
@@ -79,7 +79,7 @@
   {
     "word": "rewarding",
     "phonetic": "/riˈwɒ:diŋ/",
-    "translation": "a. 有益的，有报酬的，报答的",
+    "translation": "adj. 有益的，有报酬的，报答的",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
@@ -100,21 +100,21 @@
   {
     "word": "content",
     "phonetic": "/kənˈtent/",
-    "translation": "n. 内容，满足，意义，要旨；a. 满足的，满意的；vt. 使...满足，使...安心；[计] 内容",
+    "translation": "n. 内容，满足，意义，要旨；adj. 满足的，满意的；vt. 使...满足，使...安心；[计] 内容",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
   {
     "word": "shallow",
     "phonetic": "/ˈʃæləu/",
-    "translation": "n. 水浅的地方，浅滩；a. 浅的，肤浅的；v. (使)变浅",
+    "translation": "n. 水浅的地方，浅滩；adj. 浅的，肤浅的；v. (使)变浅",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
   {
     "word": "trivial",
     "phonetic": "/ˈtiviəl/",
-    "translation": "a. 琐碎的，不重要的，轻微的，平常的",
+    "translation": "adj. 琐碎的，不重要的，轻微的，平常的",
     "unit": "Unit 4 Lesson 2",
     "page": 11,
     "optional": true
@@ -157,14 +157,14 @@
   {
     "word": "optional",
     "phonetic": "/ˈɒpʃənl/",
-    "translation": "a. 可选择的，随意的；[化] 选购的",
+    "translation": "adj. 可选择的，随意的；[化] 选购的",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
   {
     "word": "imaginary",
     "phonetic": "/iˈmædʒinəri/",
-    "translation": "a. 想像的，虚构的，假想的",
+    "translation": "adj. 想像的，虚构的，假想的",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
@@ -248,14 +248,14 @@
   {
     "word": "limiting",
     "phonetic": "/ˈlimitiŋ/",
-    "translation": "a. 限制的；[电] 极限",
+    "translation": "adj. 限制的；[电] 极限",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
   {
     "word": "brief",
     "phonetic": "/briːf/",
-    "translation": "n. 摘要，简报；a. 简短的，短暂的；vt. 对...作简报，摘要，节录",
+    "translation": "n. 摘要，简报；adj. 简短的，短暂的；vt. 对...作简报，摘要，节录",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
@@ -270,7 +270,7 @@
   {
     "word": "creative",
     "phonetic": "/kriːˈeitiv/",
-    "translation": "a. 有创造力的，创作的，产生的",
+    "translation": "adj. 有创造力的，创作的，产生的",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
@@ -313,7 +313,7 @@
   {
     "word": "accessible",
     "phonetic": "/əkˈsesəbl/",
-    "translation": "a. 易接近的，可进入的，可使用的，易受影响的，可理解的",
+    "translation": "adj. 易接近的，可进入的，可使用的，易受影响的，可理解的",
     "unit": "Unit 4 Lesson 2",
     "page": 11
   },
@@ -363,7 +363,7 @@
   {
     "word": "volcanic",
     "phonetic": "/vɒlˈkænik/",
-    "translation": "a. 火山的，猛烈的；n. 火山岩",
+    "translation": "adj. 火山的，猛烈的；n. 火山岩",
     "unit": "Unit 4 Topic Talk",
     "page": 11
   },
@@ -541,7 +541,7 @@
   {
     "word": "tidal",
     "phonetic": "/ˈtaidl/",
-    "translation": "a. 潮汐的，受潮汐影响的",
+    "translation": "adj. 潮汐的，受潮汐影响的",
     "unit": "Unit 4 Topic Talk",
     "page": 12,
     "optional": true
@@ -564,7 +564,7 @@
   {
     "word": "soul",
     "phonetic": "/səul/",
-    "translation": "n. 灵魂，心灵，精神，精髓，人，化身，典型，鬼魂；a. 黑人的",
+    "translation": "n. 灵魂，心灵，精神，精髓，人，化身，典型，鬼魂；adj. 黑人的",
     "unit": "Unit 4 Topic Talk",
     "page": 12
   },
@@ -592,7 +592,7 @@
   {
     "word": "shock",
     "phonetic": "/ʃɒk/",
-    "translation": "n. 震动，冲突，震惊，冲击，突击，禾束堆，休克，长毛狗；vt. 使震动，使休克，使受电击，震惊得；vi. 震动，吓人；a. 蓬乱浓密的",
+    "translation": "n. 震动，冲突，震惊，冲击，突击，禾束堆，休克，长毛狗；vt. 使震动，使休克，使受电击，震惊得；vi. 震动，吓人；adj. 蓬乱浓密的",
     "unit": "Unit 4 Topic Talk",
     "page": 12
   },
@@ -641,14 +641,14 @@
   {
     "word": "frightened",
     "phonetic": "/ˈfrait(ə)nd/",
-    "translation": "a. 受惊吓的，受惊的，(非正式)害怕...的",
+    "translation": "adj. 受惊吓的，受惊的，(非正式)害怕...的",
     "unit": "Unit 4 Topic Talk",
     "page": 12
   },
   {
     "word": "horrible",
     "phonetic": "/ˈhɒrəbl/",
-    "translation": "a. 可怕的，遭透的，极讨厌的",
+    "translation": "adj. 可怕的，遭透的，极讨厌的",
     "unit": "Unit 4 Topic Talk",
     "page": 12
   },
@@ -677,7 +677,7 @@
   {
     "word": "curious",
     "phonetic": "/ˈkjuəriəs/",
-    "translation": "a. 好奇的，求知的，古怪的",
+    "translation": "adj. 好奇的，求知的，古怪的",
     "unit": "Unit 4 Topic Talk",
     "page": 12
   },
@@ -691,7 +691,7 @@
   {
     "word": "equal",
     "phonetic": "/ˈiːkwəl/",
-    "translation": "n. 对手，匹敌，同辈；a. 相等的，平等的，胜任的，合适的，平静的，不相上下的；vt. 等于，比得上；[计] 等长度编码",
+    "translation": "n. 对手，匹敌，同辈；adj. 相等的，平等的，胜任的，合适的，平静的，不相上下的；vt. 等于，比得上；[计] 等长度编码",
     "unit": "Unit 4 Topic Talk",
     "page": 12
   },
@@ -775,7 +775,7 @@
   {
     "word": "overseas",
     "phonetic": "/ˈəuvəˈsiːz/",
-    "translation": "a. 海外的，国外的；adv. 在海外，在国外",
+    "translation": "adj. 海外的，国外的；adv. 在海外，在国外",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
@@ -789,7 +789,7 @@
   {
     "word": "process",
     "phonetic": "/ˈprɒses/",
-    "translation": "n. 程序，进行，过程；vt. 加工，使...接受处理，对...处置，对...起诉；a. 经加工的，有特殊光效的；[计] 进程",
+    "translation": "n. 程序，进行，过程；vt. 加工，使...接受处理，对...处置，对...起诉；adj. 经加工的，有特殊光效的；[计] 进程",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
@@ -838,7 +838,7 @@
   {
     "word": "nearby",
     "phonetic": "/ˈniəbai/",
-    "translation": "a. 附近的，近旁的；adv. 在附近，近旁地；prep. 在...附近",
+    "translation": "adj. 附近的，近旁的；adv. 在附近，近旁地；prep. 在...附近",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
@@ -924,14 +924,14 @@
   {
     "word": "polar",
     "phonetic": "/ˈpəulə/",
-    "translation": "a. 两极的，极地的，正好相反的，极性的；n. 极线，极面",
+    "translation": "adj. 两极的，极地的，正好相反的，极性的；n. 极线，极面",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
   {
     "word": "base",
     "phonetic": "/beis/",
-    "translation": "n. 底部，垒，基础，基地；vt. 以...作基础；a. 卑鄙的，低劣的；[计] 基准",
+    "translation": "n. 底部，垒，基础，基地；vt. 以...作基础；adj. 卑鄙的，低劣的；[计] 基准",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
@@ -966,7 +966,7 @@
   {
     "word": "cheerful",
     "phonetic": "/ˈtʃiəful/",
-    "translation": "a. 快活的，高兴的，兴高采烈的",
+    "translation": "adj. 快活的，高兴的，兴高采烈的",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
@@ -980,14 +980,14 @@
   {
     "word": "distant",
     "phonetic": "/ˈdistənt/",
-    "translation": "a. 远的，疏远的；[经] 远期的",
+    "translation": "adj. 远的，疏远的；[经] 远期的",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
   {
     "word": "continent",
     "phonetic": "/ˈkɒntinənt/",
-    "translation": "n. 大陆，洲；a. 自制的",
+    "translation": "n. 大陆，洲；adj. 自制的",
     "unit": "Unit 5 Topic Talk",
     "page": 13
   },
@@ -1043,14 +1043,14 @@
   {
     "word": "varied",
     "phonetic": "/ˈvєərid/",
-    "translation": "a. 不同的，杂色的，各式各样的；[法] 不同的，种种的，变化的",
+    "translation": "adj. 不同的，杂色的，各式各样的；[法] 不同的，种种的，变化的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
   {
     "word": "scary",
     "phonetic": "/ˈskєəri/",
-    "translation": "a. 容易受惊的，胆小的，提心吊胆的",
+    "translation": "adj. 容易受惊的，胆小的，提心吊胆的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
@@ -1064,7 +1064,7 @@
   {
     "word": "admirable",
     "phonetic": "/ˈædmərəbl/",
-    "translation": "a. 可钦佩的，极好的，令人惊奇的",
+    "translation": "adj. 可钦佩的，极好的，令人惊奇的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
@@ -1078,7 +1078,7 @@
   {
     "word": "remarkable",
     "phonetic": "/riˈmɑ:kəbl/",
-    "translation": "a. 不平常的，值得注意的，显著的",
+    "translation": "adj. 不平常的，值得注意的，显著的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
@@ -1104,7 +1104,7 @@
     "page": 14
   },
   {
-    "word": "fight for...",
+    "word": "fight for",
     "phonetic": "/faɪt fɔː/",
     "translation": "努力争取；为……而斗争",
     "unit": "Unit 5 Writing Workshop",
@@ -1127,12 +1127,12 @@
   {
     "word": "apart",
     "phonetic": "/əˈpɑ:t/",
-    "translation": "adv. 成零碎，成距离，分别地，分离着；a. 分离的",
+    "translation": "adv. 成零碎，成距离，分别地，分离着；adj. 分离的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
   {
-    "word": "apart from...",
+    "word": "apart from",
     "phonetic": "/əˈpɑːt frɒm/",
     "translation": "除......之外",
     "unit": "Unit 5 Writing Workshop",
@@ -1148,21 +1148,21 @@
   {
     "word": "effective",
     "phonetic": "/iˈfektiv/",
-    "translation": "a. 有效的，有力的，实际的；n. 有生力量",
+    "translation": "adj. 有效的，有力的，实际的；n. 有生力量",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
   {
     "word": "metal",
     "phonetic": "/ˈmetəl/",
-    "translation": "n. 金属，金属制品，合金，本质，质料；a. 金属制的；vt. 以金属覆盖",
+    "translation": "n. 金属，金属制品，合金，本质，质料；adj. 金属制的；vt. 以金属覆盖",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
   {
     "word": "harmless",
     "phonetic": "/ˈhɑ:mlis/",
-    "translation": "a. 无害处的，未受损害的，无辜的，无恶意的；[法] 无害的，无恶意的，无损害的",
+    "translation": "adj. 无害处的，未受损害的，无辜的，无恶意的；[法] 无害的，无恶意的，无损害的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
@@ -1204,14 +1204,14 @@
   {
     "word": "intelligent",
     "phonetic": "/inˈtelidʒənt/",
-    "translation": "a. 聪明的，智能的，了解的",
+    "translation": "adj. 聪明的，智能的，了解的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
   {
     "word": "generous",
     "phonetic": "/ˈdʒenərəs/",
-    "translation": "a. 慷慨的，有雅量的，大量的，丰富的",
+    "translation": "adj. 慷慨的，有雅量的，大量的，丰富的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
@@ -1225,7 +1225,7 @@
   {
     "word": "evil",
     "phonetic": "/ˈiːvl/",
-    "translation": "n. 邪恶，不幸，罪恶；a. 邪恶的，不幸的，有害的，讨厌的",
+    "translation": "n. 邪恶，不幸，罪恶；adj. 邪恶的，不幸的，有害的，讨厌的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14,
     "optional": true
@@ -1240,7 +1240,7 @@
   {
     "word": "female",
     "phonetic": "/ˈfiːmeil/",
-    "translation": "n. 女性，女人，雌性动物；a. 女性的，女子的",
+    "translation": "n. 女性，女人，雌性动物；adj. 女性的，女子的",
     "unit": "Unit 5 Writing Workshop",
     "page": 14
   },
@@ -1303,7 +1303,7 @@
   {
     "word": "chemical",
     "phonetic": "/ˈkemikl/",
-    "translation": "n. 化学药品；a. 化学的，化学上用的",
+    "translation": "n. 化学药品；adj. 化学的，化学上用的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1331,7 +1331,7 @@
   {
     "word": "limited",
     "phonetic": "/ˈlimitid/",
-    "translation": "a. 有限制的，有限的，有限责任的；n. 特别快车",
+    "translation": "adj. 有限制的，有限的，有限责任的；n. 特别快车",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1345,7 +1345,7 @@
   {
     "word": "staff",
     "phonetic": "/stɑ:f/",
-    "translation": "n. 全体人员，工作班子，棍棒，杆，拐杖，支柱，权杖；a. 职员的，雇员的，参谋的；vt. 为...配备人员",
+    "translation": "n. 全体人员，工作班子，棍棒，杆，拐杖，支柱，权杖；adj. 职员的，雇员的，参谋的；vt. 为...配备人员",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1374,7 +1374,7 @@
   {
     "word": "peaceful",
     "phonetic": "/ˈpiːsful/",
-    "translation": "a. 平静的，和平的，和平时期的，爱好和平的，喜爱安静的；[法] 和平的，爱好和平的，和平时期的",
+    "translation": "adj. 平静的，和平的，和平时期的，爱好和平的，喜爱安静的；[法] 和平的，爱好和平的，和平时期的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1388,7 +1388,7 @@
   {
     "word": "racial",
     "phonetic": "/ˈreiʃəl/",
-    "translation": "a. 人种的，种族的；[医] 种族的",
+    "translation": "adj. 人种的，种族的；[医] 种族的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1402,7 +1402,7 @@
   {
     "word": "inspiring",
     "phonetic": "/inˈspaiəriŋ/",
-    "translation": "a. 鼓舞人心的",
+    "translation": "adj. 鼓舞人心的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1437,7 +1437,7 @@
   {
     "word": "promising",
     "phonetic": "/ˈprɒmisiŋ/",
-    "translation": "a. 有希望的，前途有望的；[经] 有希望的",
+    "translation": "adj. 有希望的，前途有望的；[经] 有希望的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1452,7 +1452,7 @@
   {
     "word": "renowned",
     "phonetic": "/riˈnaund/",
-    "translation": "a. 有名的，有声誉的",
+    "translation": "adj. 有名的，有声誉的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15,
     "optional": true
@@ -1474,21 +1474,21 @@
   {
     "word": "potential",
     "phonetic": "/pəˈtenʃəl/",
-    "translation": "n. 潜在性，可能性，潜力，潜能，势，位；a. 有潜力的，可能的，潜在的",
+    "translation": "n. 潜在性，可能性，潜力，潜能，势，位；adj. 有潜力的，可能的，潜在的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
   {
     "word": "advance",
     "phonetic": "/ədˈvɑ:ns/",
-    "translation": "n. 前进，进展，行过的路程；vi. 前进，进展，提高，上涨；vt. 使前进，促进，提出，提高，使提前，预付；a. 前面的，预先的",
+    "translation": "n. 前进，进展，行过的路程；vi. 前进，进展，提高，上涨；vt. 使前进，促进，提出，提高，使提前，预付；adj. 前面的，预先的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
   {
     "word": "integrate",
     "phonetic": "/ˈintigreit/",
-    "translation": "vt. 综合，使完整，使成整体；vi. 成一体；a. 完整的，完全的",
+    "translation": "vt. 综合，使完整，使成整体；vi. 成一体；adj. 完整的，完全的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1509,7 +1509,7 @@
   {
     "word": "further",
     "phonetic": "/ˈfə:ðə/",
-    "translation": "a. 更远的，此外的，更多的；vt. 促进，增进，助长；adv. 更进一步地，更远地，此外",
+    "translation": "adj. 更远的，此外的，更多的；vt. 促进，增进，助长；adv. 更进一步地，更远地，此外",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1523,7 +1523,7 @@
   {
     "word": "self-evident",
     "phonetic": "/ˈselfˈevidənt/",
-    "translation": "a. 不言自明的；[法] 不证自明，不言而喻的",
+    "translation": "adj. 不言自明的；[法] 不证自明，不言而喻的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1537,7 +1537,7 @@
   {
     "word": "impressive",
     "phonetic": "/imˈpresiv/",
-    "translation": "a. 给人深刻印象的，威严的",
+    "translation": "adj. 给人深刻印象的，威严的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1551,7 +1551,7 @@
   {
     "word": "independent",
     "phonetic": "/.indiˈpendənt/",
-    "translation": "n. 独立自主者，无党派者；a. 独立的，有主见的，不须依赖的，不受约束的",
+    "translation": "n. 独立自主者，无党派者；adj. 独立的，有主见的，不须依赖的，不受约束的",
     "unit": "Unit 6 Writing Workshop",
     "page": 15
   },
@@ -1643,7 +1643,7 @@
   {
     "word": "severe",
     "phonetic": "/siˈviə/",
-    "translation": "a. 严格的，尖锐的，严肃的，严重的，严厉的，朴素的；[法] 严厉的，苛刻的，严重的",
+    "translation": "adj. 严格的，尖锐的，严肃的，严重的，严厉的，朴素的；[法] 严厉的，苛刻的，严重的",
     "unit": "Unit 6 Lesson 3",
     "page": 16
   },
@@ -1679,7 +1679,7 @@
   {
     "word": "summary",
     "phonetic": "/ˈsʌməri/",
-    "translation": "n. 摘要，概要；a. 摘要的，简略的；[计] 摘要；概要",
+    "translation": "n. 摘要，概要；adj. 摘要的，简略的；[计] 摘要；概要",
     "unit": "Unit 6 Writing Workshop",
     "page": 16
   },
@@ -1693,7 +1693,7 @@
   {
     "word": "daring",
     "phonetic": "/ˈdєəriŋ/",
-    "translation": "a. 大胆的",
+    "translation": "adj. 大胆的",
     "unit": "Unit 6 Reading Club 1",
     "page": 16
   },
@@ -1735,14 +1735,14 @@
   {
     "word": "classical",
     "phonetic": "/ˈklæsikl/",
-    "translation": "a. 古典的，正统派的，经典的；[医] 古典的；标准的，典型的",
+    "translation": "adj. 古典的，正统派的，经典的；[医] 古典的；标准的，典型的",
     "unit": "Unit 6 Topic Talk",
     "page": 16
   },
   {
     "word": "jazz",
     "phonetic": "/dʒæz/",
-    "translation": "n. 爵士乐，喧闹；a. 爵士乐的，喧吵的；vi. 演奏爵士乐，跳爵士舞，游荡；vt. 奏爵士乐，使活泼",
+    "translation": "n. 爵士乐，喧闹；adj. 爵士乐的，喧吵的；vi. 演奏爵士乐，跳爵士舞，游荡；vt. 奏爵士乐，使活泼",
     "unit": "Unit 6 Topic Talk",
     "page": 16
   },
@@ -1777,21 +1777,21 @@
   {
     "word": "talented",
     "phonetic": "/ˈtæləntid/",
-    "translation": "a. 天资高的，有才能的",
+    "translation": "adj. 天资高的，有才能的",
     "unit": "Unit 6 Topic Talk",
     "page": 16
   },
   {
     "word": "professional",
     "phonetic": "/prəˈfeʃənl/",
-    "translation": "n. 专业人才；a. 专业的，职业的",
+    "translation": "n. 专业人才；adj. 专业的，职业的",
     "unit": "Unit 6 Topic Talk",
     "page": 16
   },
   {
     "word": "ongoing",
     "phonetic": "/ˈɒngəuiŋ/",
-    "translation": "a. 前进的，进行的，不间断的；n. 前进，发展",
+    "translation": "adj. 前进的，进行的，不间断的；n. 前进，发展",
     "unit": "Unit 6 Topic Talk",
     "page": 16
   },
@@ -1813,7 +1813,7 @@
   {
     "word": "intense",
     "phonetic": "/inˈtens/",
-    "translation": "a. 非常的，强烈的，紧张的，热情的；[医] 强的",
+    "translation": "adj. 非常的，强烈的，紧张的，热情的；[医] 强的",
     "unit": "Unit 6 Topic Talk",
     "page": 16
   },
@@ -1842,7 +1842,7 @@
   {
     "word": "passionate",
     "phonetic": "/ˈpæʃənit/",
-    "translation": "a. 热情的，热烈的，易怒的，热恋的",
+    "translation": "adj. 热情的，热烈的，易怒的，热恋的",
     "unit": "Unit 6 Topic Talk",
     "page": 16
   },

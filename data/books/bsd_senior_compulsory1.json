@@ -296,7 +296,7 @@
   {
     "word": "quality",
     "phonetic": "/ˈkwɒləti/",
-    "translation": "n. 品质，特性，才能，质量；a. 优质的；[计] 品质",
+    "translation": "n. 品质，特性，才能，质量；adj. 优质的；[计] 品质",
     "unit": "Unit 1 Lesson 1",
     "page": 2
   },
@@ -364,7 +364,7 @@
     "page": 3
   },
   {
-    "word": "tend to do sth",
+    "word": "tend to do something",
     "phonetic": "/tend tuː ˈdʊː ˈsʌmθɪŋ/",
     "translation": "vi. 倾向于做某事；往往做某事",
     "unit": "Unit 1 Lesson 1",
@@ -618,7 +618,7 @@
   {
     "word": "professional",
     "phonetic": "/prəˈfeʃənl/",
-    "translation": "n. 专业人才；a. 专业的，职业的",
+    "translation": "n. 专业人才；adj. 专业的，职业的",
     "unit": "Unit 1 Lesson 3",
     "page": 3
   },
@@ -777,7 +777,7 @@
     "page": 4
   },
   {
-    "word": "adapt to sth",
+    "word": "adapt to something",
     "phonetic": "/əˈdæpt tə ˈsʌmθɪŋ/",
     "translation": "vi. 适应（某事）",
     "unit": "Unit 1 Writing Workshop",
@@ -840,7 +840,7 @@
     "page": 4
   },
   {
-    "word": "as well as ......",
+    "word": "as well as",
     "phonetic": "/əz wel əz/",
     "translation": "conj. 以及；不但……而且…… \nadv. 也；同样",
     "unit": "Unit 1 Reading Club 1",
@@ -1135,7 +1135,7 @@
     "page": 5
   },
   {
-    "word": "try out for sth",
+    "word": "try out for something",
     "phonetic": "/traɪ ˈaʊt fə ˈsʌmθɪŋ/",
     "translation": "vi. 参加选拔 \nvt. 为……进行选拔",
     "unit": "Unit 2 Lesson 1",
@@ -1192,7 +1192,7 @@
     "page": 5
   },
   {
-    "word": "not...anymore",
+    "word": "not anymore",
     "phonetic": "/nɒt əˈnɔː/",
     "translation": "adv. 不再……",
     "unit": "Unit 2 Lesson 1",
@@ -1234,7 +1234,7 @@
     "page": 6
   },
   {
-    "word": "let sb down",
+    "word": "let somebody down",
     "phonetic": "/let ˈsʌm.bən daʊn/",
     "translation": "vt. 使某人失望；辜负某人的期望",
     "unit": "Unit 2 Reading Club 2",
@@ -1698,7 +1698,7 @@
     "page": 7
   },
   {
-    "word": "take advantage of sth",
+    "word": "take advantage of something",
     "phonetic": "/teɪk ədˈvæn.tɪdʒ əv ˈsʌm.θɪŋ/",
     "translation": "vt. 利用；占……便宜",
     "unit": "Unit 3 Writing Workshop",
@@ -2049,7 +2049,7 @@
     "page": 8
   },
   {
-    "word": "scare sb",
+    "word": "scare somebody",
     "phonetic": "/skeə/",
     "translation": "vt. 吓唬；使惊恐",
     "unit": "Unit 3 Lesson 2",
@@ -2409,7 +2409,7 @@
     "page": 9
   },
   {
-    "word": "catch sb's eye",
+    "word": "catch somebody's eye",
     "phonetic": "/ˈkætʃ ˈsʌmbədi ˈaɪ/",
     "translation": "v. 吸引某人的注意 \nv. 引起某人注意",
     "unit": "Unit 3 Writing Workshop",

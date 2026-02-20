@@ -37,7 +37,7 @@
   {
     "word": "memorial",
     "phonetic": "/miˈmɒ:riəl/",
-    "translation": "n. 纪念物，请愿书；a. 记念的，记忆的",
+    "translation": "n. 纪念物，请愿书；adj. 记念的，记忆的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -79,7 +79,7 @@
   {
     "word": "humorous",
     "phonetic": "/ˈhjuːmərəs/",
-    "translation": "a. 富幽默感的，滑稽的，诙谐的",
+    "translation": "adj. 富幽默感的，滑稽的，诙谐的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -108,7 +108,7 @@
   {
     "word": "facial",
     "phonetic": "/ˈfeiʃəl/",
-    "translation": "n. 美颜，脸部按摩；a. 脸的，表面的，脸部用的",
+    "translation": "n. 美颜，脸部按摩；adj. 脸的，表面的，脸部用的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -129,14 +129,14 @@
   {
     "word": "well-being",
     "phonetic": "/ˈwelbiiŋ/",
-    "translation": "a. 安宁的，康乐的",
+    "translation": "adj. 安宁的，康乐的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
   {
     "word": "significant",
     "phonetic": "/sigˈnifikənt/",
-    "translation": "a. 重要的，有效的，有含义的，暗示的，值得注意的",
+    "translation": "adj. 重要的，有效的，有含义的，暗示的，值得注意的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -171,28 +171,28 @@
   {
     "word": "scenic",
     "phonetic": "/ˈsiːnik/",
-    "translation": "a. 风景好的，戏剧性的，舞台的，布景的；n. 风光影片，风景照片",
+    "translation": "adj. 风景好的，戏剧性的，舞台的，布景的；n. 风光影片，风景照片",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
   {
     "word": "historic",
     "phonetic": "/hiˈstɒrik/",
-    "translation": "a. 历史上著名的，有历史性的",
+    "translation": "adj. 历史上著名的，有历史性的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
   {
     "word": "agricultural",
     "phonetic": "/.ægriˈkʌltʃərəl/",
-    "translation": "a. 农业的；[法] 农业的，耕作的",
+    "translation": "adj. 农业的；[法] 农业的，耕作的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
   {
     "word": "Atlantic",
     "phonetic": "/ətˈlæntik/",
-    "translation": "n. 大西洋；a. 大西洋的",
+    "translation": "n. 大西洋；adj. 大西洋的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -207,7 +207,7 @@
   {
     "word": "terrified",
     "phonetic": "/ˈterifaid/",
-    "translation": "a. 受惊吓的；感到恐惧的",
+    "translation": "adj. 受惊吓的；感到恐惧的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30,
     "optional": true
@@ -215,21 +215,21 @@
   {
     "word": "dizzy",
     "phonetic": "/ˈdizi/",
-    "translation": "a. 晕眩的，眼花缭乱的；vt. 使晕眩",
+    "translation": "adj. 晕眩的，眼花缭乱的；vt. 使晕眩",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
   {
     "word": "unbalanced",
     "phonetic": "/.ʌnˈbælənt/",
-    "translation": "a. 不平衡的，错乱的，不稳定的，收支不平衡的；[法] 不均衡的，不平衡的，精神错乱的",
+    "translation": "adj. 不平衡的，错乱的，不稳定的，收支不平衡的；[法] 不均衡的，不平衡的，精神错乱的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
   {
     "word": "swing",
     "phonetic": "/swiŋ/",
-    "translation": "n. 摇摆，振幅，音律，节奏，涨落，秋千，旋转，行动自由；vi. 摇摆，悬挂，旋转，大摇大摆地走，转向；vt. 挥舞，使旋转，使转向，悬挂，吊运；a. 旋转的，悬挂的，强节奏爵士音乐的",
+    "translation": "n. 摇摆，振幅，音律，节奏，涨落，秋千，旋转，行动自由；vi. 摇摆，悬挂，旋转，大摇大摆地走，转向；vt. 挥舞，使旋转，使转向，悬挂，吊运；adj. 旋转的，悬挂的，强节奏爵士音乐的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -243,7 +243,7 @@
   {
     "word": "embarrassed",
     "phonetic": "/imˈbærəst/",
-    "translation": "a. 尴尬的；窘迫的",
+    "translation": "adj. 尴尬的；窘迫的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -257,14 +257,14 @@
   {
     "word": "confused",
     "phonetic": "/kənˈfjuːzd/",
-    "translation": "a. 困惑的，混乱的",
+    "translation": "adj. 困惑的，混乱的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
   {
     "word": "potential",
     "phonetic": "/pəˈtenʃəl/",
-    "translation": "n. 潜在性，可能性，潜力，潜能，势，位；a. 有潜力的，可能的，潜在的",
+    "translation": "n. 潜在性，可能性，潜力，潜能，势，位；adj. 有潜力的，可能的，潜在的",
     "unit": "Unit 4 Writing Workshop",
     "page": 30
   },
@@ -285,7 +285,7 @@
   {
     "word": "antique",
     "phonetic": "/ænˈtiːk/",
-    "translation": "n. 古董，古物；a. 古老的，古风的，旧式的，过时的",
+    "translation": "n. 古董，古物；adj. 古老的，古风的，旧式的，过时的",
     "unit": "Unit 4 Topic Talk",
     "page": 31
   },
@@ -314,7 +314,7 @@
   {
     "word": "faithful",
     "phonetic": "/ˈfeiθful/",
-    "translation": "a. 忠实的，详确的，可靠的；n. 信徒",
+    "translation": "adj. 忠实的，详确的，可靠的；n. 信徒",
     "unit": "Unit 4 Topic Talk",
     "page": 31
   },
@@ -367,7 +367,7 @@
   {
     "word": "scientific",
     "phonetic": "/.saiənˈtifik/",
-    "translation": "a. 科学的，系统的，符合科学规律的；[计] 科学记数法",
+    "translation": "adj. 科学的，系统的，符合科学规律的；[计] 科学记数法",
     "unit": "Unit 4 Topic Talk",
     "page": 31
   },
@@ -395,7 +395,7 @@
   {
     "word": "middle-aged",
     "phonetic": "/ˈmidlˈeidʒd/",
-    "translation": "a. 中年的",
+    "translation": "adj. 中年的",
     "unit": "Unit 4 Lesson 1",
     "page": 31
   },
@@ -501,7 +501,7 @@
   {
     "word": "physical",
     "phonetic": "/ˈfizikl/",
-    "translation": "a. 身体的，物质的，自然的，物理学的，好色的；n. 体格检查",
+    "translation": "adj. 身体的，物质的，自然的，物理学的，好色的；n. 体格检查",
     "unit": "Unit 4 Lesson 2",
     "page": 31,
     "optional": true
@@ -517,7 +517,7 @@
   {
     "word": "psychological",
     "phonetic": "/.saikəˈlɒdʒikəl/",
-    "translation": "a. 心理学的，精神上的，心灵的；[法] 心理上的，心理学的",
+    "translation": "adj. 心理学的，精神上的，心灵的；[法] 心理上的，心理学的",
     "unit": "Unit 4 Lesson 2",
     "page": 31
   },
@@ -531,7 +531,7 @@
   {
     "word": "far-reaching",
     "phonetic": "/ˈfɑːˌriːtʃɪŋ/",
-    "translation": "a. 深远的，广泛的，伸至远处的",
+    "translation": "adj. 深远的，广泛的，伸至远处的",
     "unit": "Unit 4 Lesson 2",
     "page": 31
   },
@@ -545,7 +545,7 @@
   {
     "word": "immune",
     "phonetic": "/iˈmjuːn/",
-    "translation": "a. 免疫的，免除的，不受影响的；n. 免疫者",
+    "translation": "adj. 免疫的，免除的，不受影响的；n. 免疫者",
     "unit": "Unit 4 Lesson 2",
     "page": 31
   },
@@ -566,7 +566,7 @@
   {
     "word": "incorporate",
     "phonetic": "/inˈkɒ:pəreit/",
-    "translation": "a. 合并的，组成公司的，一体化的；vt. 吸收，合并，使组成公司，体现；vi. 合并，混合，组成公司",
+    "translation": "adj. 合并的，组成公司的，一体化的；vt. 吸收，合并，使组成公司，体现；vi. 合并，混合，组成公司",
     "unit": "Unit 4 Lesson 2",
     "page": 31,
     "optional": true
@@ -608,7 +608,7 @@
     "page": 31
   },
   {
-    "word": "at sb's expense",
+    "word": "at somebody's expense",
     "phonetic": "/æt səmˈbɒdiz ɪkˈspens/",
     "translation": "归某人付钱，归某人负担，由...负担费用，在损害...的情况下",
     "unit": "Unit 4 Lesson 2",
@@ -673,7 +673,7 @@
   {
     "word": "universal",
     "phonetic": "/.juːniˈvə:sl/",
-    "translation": "a. 全世界的，普遍的，宇宙的，通用的；n. 一般概念",
+    "translation": "adj. 全世界的，普遍的，宇宙的，通用的；n. 一般概念",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
@@ -701,7 +701,7 @@
   {
     "word": "raw",
     "phonetic": "/rɒ:/",
-    "translation": "n. 擦伤处，半成品；a. 生的，未加工的，生疏的，不成熟的，阴冷的，刺痛的，擦掉皮的；vt. 擦伤；[计] 写后读",
+    "translation": "n. 擦伤处，半成品；adj. 生的，未加工的，生疏的，不成熟的，阴冷的，刺痛的，擦掉皮的；vt. 擦伤；[计] 写后读",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
@@ -729,7 +729,7 @@
   {
     "word": "contemporary",
     "phonetic": "/kənˈtempərəri/",
-    "translation": "n. 同时代的人；a. 同时代的，属于同一时期的",
+    "translation": "n. 同时代的人；adj. 同时代的，属于同一时期的",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
@@ -750,7 +750,7 @@
   {
     "word": "unfortunate",
     "phonetic": "/.ʌnˈfɒ:tʃənit/",
-    "translation": "a. 不幸的，不合适的，不吉利的",
+    "translation": "adj. 不幸的，不合适的，不吉利的",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
@@ -786,7 +786,7 @@
   {
     "word": "clumsy",
     "phonetic": "/ˈklʌmzi/",
-    "translation": "a. 笨拙的，不雅观的，粗陋的",
+    "translation": "adj. 笨拙的，不雅观的，粗陋的",
     "unit": "Unit 4 Lesson 2",
     "page": 32,
     "optional": true
@@ -794,7 +794,7 @@
   {
     "word": "amusing",
     "phonetic": "/əˈmjuːziŋ/",
-    "translation": "a. 有趣的，引人发笑的",
+    "translation": "adj. 有趣的，引人发笑的",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
@@ -808,14 +808,14 @@
   {
     "word": "contrary",
     "phonetic": "/ˈkɒntrəri/",
-    "translation": "a. 相反的，矛盾的，对立的；n. 相反，对立面；adv. 相反地",
+    "translation": "adj. 相反的，矛盾的，对立的；n. 相反，对立面；adv. 相反地",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
   {
     "word": "academic",
     "phonetic": "/.ækəˈdemik/",
-    "translation": "a. 学院的，学术的，不切实际的；n. 大学生，大学教师，学者，学会会员",
+    "translation": "adj. 学院的，学术的，不切实际的；n. 大学生，大学教师，学者，学会会员",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
@@ -900,7 +900,7 @@
   {
     "word": "convinced",
     "phonetic": "/kənˈvinst/",
-    "translation": "a. 确信的，深信的",
+    "translation": "adj. 确信的，深信的",
     "unit": "Unit 4 Lesson 2",
     "page": 32
   },
@@ -956,7 +956,7 @@
   {
     "word": "consistent",
     "phonetic": "/kənˈsistənt/",
-    "translation": "a. 一致的，坚持的，并立的，坚固的",
+    "translation": "adj. 一致的，坚持的，并立的，坚固的",
     "unit": "Unit 5 Topic Talk",
     "page": 33
   },
@@ -1035,7 +1035,7 @@
   {
     "word": "severe",
     "phonetic": "/siˈviə/",
-    "translation": "a. 严格的，尖锐的，严肃的，严重的，严厉的，朴素的；[法] 严厉的，苛刻的，严重的",
+    "translation": "adj. 严格的，尖锐的，严肃的，严重的，严厉的，朴素的；[法] 严厉的，苛刻的，严重的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
@@ -1049,21 +1049,21 @@
   {
     "word": "unbearable",
     "phonetic": "/.ʌnˈbєərəbl/",
-    "translation": "a. 无法忍受的，承受不住的",
+    "translation": "adj. 无法忍受的，承受不住的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
   {
     "word": "troublesome",
     "phonetic": "/ˈtrʌblsəm/",
-    "translation": "a. 麻烦的，令人讨厌的",
+    "translation": "adj. 麻烦的，令人讨厌的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
   {
     "word": "stubborn",
     "phonetic": "/ˈstʌbən/",
-    "translation": "a. 顽固的，不听话的，执拗的，棘手的",
+    "translation": "adj. 顽固的，不听话的，执拗的，棘手的",
     "unit": "Unit 5 Lesson 1",
     "page": 33,
     "optional": true
@@ -1078,7 +1078,7 @@
   {
     "word": "superb",
     "phonetic": "/sjuˈpə:b/",
-    "translation": "a. 极度的，华丽的，极好的",
+    "translation": "adj. 极度的，华丽的，极好的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
@@ -1106,7 +1106,7 @@
   {
     "word": "straightforward",
     "phonetic": "/streitˈfɒ:wəd/",
-    "translation": "a. 笔直的，率直的，明确的，简单的，直接的",
+    "translation": "adj. 笔直的，率直的，明确的，简单的，直接的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
@@ -1150,14 +1150,14 @@
   {
     "word": "liquid",
     "phonetic": "/ˈlikwid/",
-    "translation": "n. 液体，流体，流音；a. 液体的，透明的，明亮的，流动的，易变的",
+    "translation": "n. 液体，流体，流音；adj. 液体的，透明的，明亮的，流动的，易变的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
   {
     "word": "precious",
     "phonetic": "/ˈpreʃəs/",
-    "translation": "a. 宝贵的，珍贵的，过于精致的，珍爱的",
+    "translation": "adj. 宝贵的，珍贵的，过于精致的，珍爱的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
@@ -1171,21 +1171,21 @@
   {
     "word": "gradual",
     "phonetic": "/ˈgrædʒuəl/",
-    "translation": "a. 逐渐的，渐增的；n. 弥撒升阶圣歌",
+    "translation": "adj. 逐渐的，渐增的；n. 弥撒升阶圣歌",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
   {
     "word": "painful",
     "phonetic": "/ˈpeinful/",
-    "translation": "a. 痛苦的，困难的，令人烦恼的；[医] 疼痛的",
+    "translation": "adj. 痛苦的，困难的，令人烦恼的；[医] 疼痛的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
   {
     "word": "enthusiastic",
     "phonetic": "/in.θjuːziˈæstik/",
-    "translation": "a. 狂热的，热心的，热烈的",
+    "translation": "adj. 狂热的，热心的，热烈的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
@@ -1206,14 +1206,14 @@
   {
     "word": "complex",
     "phonetic": "/kəmˈpleks/",
-    "translation": "n. 综合体，情结，络合物；a. 复杂的，组合的",
+    "translation": "n. 综合体，情结，络合物；adj. 复杂的，组合的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
   {
     "word": "violet",
     "phonetic": "/ˈvaiəlit/",
-    "translation": "n. 堇菜，紫罗兰；a. 堇菜科的，紫罗兰色的",
+    "translation": "n. 堇菜，紫罗兰；adj. 堇菜科的，紫罗兰色的",
     "unit": "Unit 5 Lesson 1",
     "page": 33,
     "optional": true
@@ -1236,7 +1236,7 @@
   {
     "word": "apparent",
     "phonetic": "/əˈpærənt/",
-    "translation": "a. 清晰可见的，显然的，表面上的；[电] 外在的",
+    "translation": "adj. 清晰可见的，显然的，表面上的；[电] 外在的",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
@@ -1257,7 +1257,7 @@
   {
     "word": "abstract",
     "phonetic": "/ˈæbstrækt/",
-    "translation": "a. 抽象的，深奥的；n. 摘要，抽象概念；vt. 摘要，提炼，使抽象化；[计] 摘录；摘要；抽象",
+    "translation": "adj. 抽象的，深奥的；n. 摘要，抽象概念；vt. 摘要，提炼，使抽象化；[计] 摘录；摘要；抽象",
     "unit": "Unit 5 Lesson 1",
     "page": 33
   },
@@ -1293,7 +1293,7 @@
   {
     "word": "objective",
     "phonetic": "/əbˈdʒektiv/",
-    "translation": "n. 目的，目标，宗旨，宾格，实物；a. 客观的，如实的，无偏见的，宾格的",
+    "translation": "n. 目的，目标，宗旨，宾格，实物；adj. 客观的，如实的，无偏见的，宾格的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1307,7 +1307,7 @@
   {
     "word": "well-rounded",
     "phonetic": "/ˌwɛlˈraʊndɪd/",
-    "translation": "a. 丰满的，面面俱到的，具有多方面兴趣的",
+    "translation": "adj. 丰满的，面面俱到的，具有多方面兴趣的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1321,7 +1321,7 @@
   {
     "word": "critical",
     "phonetic": "/ˈkritikəl/",
-    "translation": "a. 批评的，决定性的，危险的，临界的；[医] 危象的；临界的，极期的",
+    "translation": "adj. 批评的，决定性的，危险的，临界的；[医] 危象的；临界的，极期的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1350,7 +1350,7 @@
   {
     "word": "civil",
     "phonetic": "/ˈsivəl/",
-    "translation": "a. 市民的，公民的，有礼貌的；[法] 公民的，国民的，民用的",
+    "translation": "adj. 市民的，公民的，有礼貌的；[法] 公民的，国民的，民用的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1379,7 +1379,7 @@
   {
     "word": "moral",
     "phonetic": "/ˈmɒrəl/",
-    "translation": "n. 道德，品行，寓意；a. 道德的，品性端正的，精神上的",
+    "translation": "n. 道德，品行，寓意；adj. 道德的，品性端正的，精神上的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1421,14 +1421,14 @@
   {
     "word": "surrounding",
     "phonetic": "/səˈraundiŋ/",
-    "translation": "n. 环境；a. 周围的",
+    "translation": "n. 环境；adj. 周围的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
   {
     "word": "vivid",
     "phonetic": "/ˈvivid/",
-    "translation": "a. 生动的，鲜明的，鲜艳的，活泼的，逼真的，清晰的",
+    "translation": "adj. 生动的，鲜明的，鲜艳的，活泼的，逼真的，清晰的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1449,7 +1449,7 @@
   {
     "word": "regardless",
     "phonetic": "/riˈgɑ:dlis/",
-    "translation": "a. 不管，不注意，不顾",
+    "translation": "adj. 不管，不注意，不顾",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1526,21 +1526,21 @@
   {
     "word": "initiative",
     "phonetic": "/iˈniʃiətiv/",
-    "translation": "n. 主动行动，首创精神，主动权；a. 自发的，起始的",
+    "translation": "n. 主动行动，首创精神，主动权；adj. 自发的，起始的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
   {
     "word": "autonomous",
     "phonetic": "/ɒ:ˈtɒnəməs/",
-    "translation": "a. 自治的；[医] 自主的",
+    "translation": "adj. 自治的；[医] 自主的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
   {
     "word": "brilliant",
     "phonetic": "/ˈbriljənt/",
-    "translation": "a. 光辉的，灿烂的，有才气的；[机] 亮的",
+    "translation": "adj. 光辉的，灿烂的，有才气的；[机] 亮的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1561,7 +1561,7 @@
   {
     "word": "obvious",
     "phonetic": "/ˈɒbviəs/",
-    "translation": "a. 明显的，明白的，显然的，平淡无奇的",
+    "translation": "adj. 明显的，明白的，显然的，平淡无奇的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1575,35 +1575,35 @@
   {
     "word": "rank",
     "phonetic": "/ræŋk/",
-    "translation": "n. 等级，排，横列，队伍，阶级；a. 茂密丛生的，恶臭的，十足的，粗俗的；vt. 排列，归类于，把...分等；vi. 列为，列队；n. 秩；[计] 秩",
+    "translation": "n. 等级，排，横列，队伍，阶级；adj. 茂密丛生的，恶臭的，十足的，粗俗的；vt. 排列，归类于，把...分等；vi. 列为，列队；n. 秩；[计] 秩",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
   {
     "word": "royal",
     "phonetic": "/ˈrɒiəl/",
-    "translation": "n. 王室，皇族；a. 王室的，皇家的，盛大的，庄严的",
+    "translation": "n. 王室，皇族；adj. 王室的，皇家的，盛大的，庄严的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
   {
     "word": "inefficient",
     "phonetic": "/.iniˈfiʃənt/",
-    "translation": "a. 无效率的，无能的；[医] 无效的，无效力的",
+    "translation": "adj. 无效率的，无能的；[医] 无效的，无效力的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
   {
     "word": "worthy",
     "phonetic": "/ˈwə:ði/",
-    "translation": "n. 杰出人物；a. 有价值的，可敬的，值得的",
+    "translation": "n. 杰出人物；adj. 有价值的，可敬的，值得的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
   {
     "word": "church",
     "phonetic": "/tʃə:tʃ/",
-    "translation": "n. 教堂，礼拜，教会；vt. 使人接受宗教仪式；a. 教堂的",
+    "translation": "n. 教堂，礼拜，教会；vt. 使人接受宗教仪式；adj. 教堂的",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1617,7 +1617,7 @@
   {
     "word": "primitive",
     "phonetic": "/ˈprimitiv/",
-    "translation": "n. 原始人，早期艺术家；a. 原始的，上古的；[计] 图元；原语；基元",
+    "translation": "n. 原始人，早期艺术家；adj. 原始的，上古的；[计] 图元；原语；基元",
     "unit": "Unit 5 Lesson 1",
     "page": 34
   },
@@ -1716,7 +1716,7 @@
   {
     "word": "routine",
     "phonetic": "/ruːˈtiːn/",
-    "translation": "n. 常规，日常工作，惯例，例行公事；a. 日常的，常规的；[计] 例程",
+    "translation": "n. 常规，日常工作，惯例，例行公事；adj. 日常的，常规的；[计] 例程",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
@@ -1758,7 +1758,7 @@
   {
     "word": "broadcast",
     "phonetic": "/ˈbrɒ:dkæst/",
-    "translation": "n. 广播，传播；a. 广播的；v. 广播；adv. 经广播，四散地；[计] 广播命令，广播",
+    "translation": "n. 广播，传播；adj. 广播的；v. 广播；adv. 经广播，四散地；[计] 广播命令，广播",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
@@ -1773,28 +1773,28 @@
   {
     "word": "economic",
     "phonetic": "/.iːkəˈnɒmik/",
-    "translation": "a. 经济上的，实用的，节省的；[经] 经济的",
+    "translation": "adj. 经济上的，实用的，节省的；[经] 经济的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
   {
     "word": "political",
     "phonetic": "/pəˈlitikl/",
-    "translation": "a. 政治的，政治上的，政党的，从事政治的；[法] 政治的，政治上的，党派政治的",
+    "translation": "adj. 政治的，政治上的，政党的，从事政治的；[法] 政治的，政治上的，党派政治的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
   {
     "word": "diverse",
     "phonetic": "/daiˈvə:s/",
-    "translation": "a. 不同的，变化多的",
+    "translation": "adj. 不同的，变化多的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
   {
     "word": "conventional",
     "phonetic": "/kənˈvenʃənl/",
-    "translation": "a. 传统的，习惯的，约定的；[经] 惯例的，常规的，传统的",
+    "translation": "adj. 传统的，习惯的，约定的；[经] 惯例的，常规的，传统的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
@@ -1815,14 +1815,14 @@
   {
     "word": "vital",
     "phonetic": "/ˈvaitl/",
-    "translation": "a. 生命的，重要的，充满活力的，生死攸关的，致命的；[医] 生命的，生活的，生活上必需的，紧要的",
+    "translation": "adj. 生命的，重要的，充满活力的，生死攸关的，致命的；[医] 生命的，生活的，生活上必需的，紧要的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
   {
     "word": "beneficial",
     "phonetic": "/.beniˈfiʃəl/",
-    "translation": "a. 有益的，受益的；[经] 有使用权的，可享利益的",
+    "translation": "adj. 有益的，受益的；[经] 有使用权的，可享利益的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
@@ -1843,7 +1843,7 @@
   {
     "word": "overall",
     "phonetic": "/ˈəuvərɒ:l/",
-    "translation": "a. 全部的，全体的，从头至尾的，一切在内的；adv. 从头到尾，总的说来；n. 罩衫，工作服",
+    "translation": "adj. 全部的，全体的，从头至尾的，一切在内的；adv. 从头到尾，总的说来；n. 罩衫，工作服",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
@@ -1857,7 +1857,7 @@
   {
     "word": "preoccupied",
     "phonetic": "/priːˈɒkjupaid/",
-    "translation": "a. 被先占的，入神的，一心一意的",
+    "translation": "adj. 被先占的，入神的，一心一意的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
@@ -1913,7 +1913,7 @@
   {
     "word": "available",
     "phonetic": "/əˈveiləbl/",
-    "translation": "a. 可利用的，可获得的，有效的；[医] 有效的，可得的",
+    "translation": "adj. 可利用的，可获得的，有效的；[医] 有效的，可得的",
     "unit": "Unit 5 Lesson 1",
     "page": 35
   },
@@ -1941,7 +1941,7 @@
   {
     "word": "up-to-date",
     "phonetic": "/ˈʌptəˈdeit/",
-    "translation": "a. 直到现在的，最近的，现代化的；[化] 最新的",
+    "translation": "adj. 直到现在的，最近的，现代化的；[化] 最新的",
     "unit": "Unit 6 Reading Club 2",
     "page": 36
   },
@@ -1976,28 +1976,28 @@
   {
     "word": "pessimistic",
     "phonetic": "/.pesiˈmistik/",
-    "translation": "a. 悲观的，厌世的，悲观主义的",
+    "translation": "adj. 悲观的，厌世的，悲观主义的",
     "unit": "Unit 6 Reading Club 2",
     "page": 36
   },
   {
     "word": "classic",
     "phonetic": "/ˈklæsik/",
-    "translation": "n. 古典作品，杰作，大艺术家；a. 第一流的，最优秀的，古典的",
+    "translation": "n. 古典作品，杰作，大艺术家；adj. 第一流的，最优秀的，古典的",
     "unit": "Unit 6 Reading Club 2",
     "page": 36
   },
   {
     "word": "novel",
     "phonetic": "/ˈnɒvl/",
-    "translation": "n. 小说，长篇故事；a. 新奇的，异常的",
+    "translation": "n. 小说，长篇故事；adj. 新奇的，异常的",
     "unit": "Unit 6 Reading Club 2",
     "page": 36
   },
   {
     "word": "comic",
     "phonetic": "/ˈkɒmik/",
-    "translation": "n. 连环漫画，喜剧演员，滑稽的人；a. 滑稽的，有趣的，喜剧的",
+    "translation": "n. 连环漫画，喜剧演员，滑稽的人；adj. 滑稽的，有趣的，喜剧的",
     "unit": "Unit 6 Reading Club 2",
     "page": 36
   },
@@ -2062,14 +2062,14 @@
   {
     "word": "complicated",
     "phonetic": "/ˈkɒmplikeitid/",
-    "translation": "a. 复杂的；[医] 并发的",
+    "translation": "adj. 复杂的；[医] 并发的",
     "unit": "Unit 6 Lesson 1",
     "page": 36
   },
   {
     "word": "alternative",
     "phonetic": "/ɒ:lˈtə:nətiv/",
-    "translation": "n. 两者择一，供替代的选择；a. 两者择一的，供选择的；[计] 选择对象",
+    "translation": "n. 两者择一，供替代的选择；adj. 两者择一的，供选择的；[计] 选择对象",
     "unit": "Unit 6 Lesson 1",
     "page": 36
   },
@@ -2090,7 +2090,7 @@
   {
     "word": "appropriate",
     "phonetic": "/əˈprəupriət/",
-    "translation": "a. 适当的；[经] 适当的，拨出，占用",
+    "translation": "adj. 适当的；[经] 适当的，拨出，占用",
     "unit": "Unit 6 Lesson 1",
     "page": 36
   },
@@ -2118,14 +2118,14 @@
   {
     "word": "definite",
     "phonetic": "/ˈdefinit/",
-    "translation": "a. 明确的，一定的；[法] 明确的，确切的，一定的",
+    "translation": "adj. 明确的，一定的；[法] 明确的，确切的，一定的",
     "unit": "Unit 6 Lesson 1",
     "page": 36
   },
   {
     "word": "technical",
     "phonetic": "/ˈteknikl/",
-    "translation": "a. 技术上的，专门的，工业的，严格根据法律的；[化] 技巧",
+    "translation": "adj. 技术上的，专门的，工业的，严格根据法律的；[化] 技巧",
     "unit": "Unit 6 Lesson 1",
     "page": 36
   },
@@ -2153,7 +2153,7 @@
   {
     "word": "proof",
     "phonetic": "/pruːf/",
-    "translation": "n. 证据，证明，试验，检验，考验；a. 不能透入的，证明用的，防...的，耐...的；vt. 检验，试验，校对，使不被穿透；[计] 审稿",
+    "translation": "n. 证据，证明，试验，检验，考验；adj. 不能透入的，证明用的，防...的，耐...的；vt. 检验，试验，校对，使不被穿透；[计] 审稿",
     "unit": "Unit 6 Lesson 1",
     "page": 36
   },
@@ -2167,14 +2167,14 @@
   {
     "word": "recording",
     "phonetic": "/riˈkɒ:diŋ/",
-    "translation": "a. 记录的，记录用的；n. 录音",
+    "translation": "adj. 记录的，记录用的；n. 录音",
     "unit": "Unit 6 Lesson 2",
     "page": 36
   },
   {
     "word": "high-definition",
     "phonetic": "/hai ˌdefiˈniʃən/",
-    "translation": "a. 非常鲜明的",
+    "translation": "adj. 非常鲜明的",
     "unit": "Unit 6 Lesson 2",
     "page": 36
   },
@@ -2202,7 +2202,7 @@
   {
     "word": "interactive",
     "phonetic": "/,intərˈæktiv/",
-    "translation": "a. 相互作用的，相互影响的；[计] 交互，人机对话的",
+    "translation": "adj. 相互作用的，相互影响的；[计] 交互，人机对话的",
     "unit": "Unit 6 Lesson 2",
     "page": 36
   },
@@ -2216,14 +2216,14 @@
   {
     "word": "spot",
     "phonetic": "/spɒt/",
-    "translation": "n. 污点，地点，斑点，点，娱乐场所，处境，少量；a. 当场的，现场的，现货买卖的，现金交易的，抽样的；vt. 点缀，玷污，认出，准确定...的位，用灯光照射；vi. 玷污，(从空中)侦察敌方目标",
+    "translation": "n. 污点，地点，斑点，点，娱乐场所，处境，少量；adj. 当场的，现场的，现货买卖的，现金交易的，抽样的；vt. 点缀，玷污，认出，准确定...的位，用灯光照射；vi. 玷污，(从空中)侦察敌方目标",
     "unit": "Unit 6 Lesson 2",
     "page": 36
   },
   {
     "word": "advertising",
     "phonetic": "/ˈædvətaiziŋ/",
-    "translation": "n. 广告业，广告；a. 广告的；[计] 发广告",
+    "translation": "n. 广告业，广告；adj. 广告的；[计] 发广告",
     "unit": "Unit 6 Lesson 2",
     "page": 36
   },
@@ -2244,7 +2244,7 @@
   {
     "word": "fundamental",
     "phonetic": "/.fʌndəˈmentəl/",
-    "translation": "n. 基本原理，原则，基波；a. 基本的，重要的，原音的",
+    "translation": "n. 基本原理，原则，基波；adj. 基本的，重要的，原音的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2258,14 +2258,14 @@
   {
     "word": "commercial",
     "phonetic": "/kəˈmə:ʃəl/",
-    "translation": "a. 商业的，商用的，商品化的；n. 商业广告节目",
+    "translation": "adj. 商业的，商用的，商品化的；n. 商业广告节目",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
   {
     "word": "technological",
     "phonetic": "/.teknəˈlɒdʒikl/",
-    "translation": "a. 技术的；[经] 工艺的，技术的",
+    "translation": "adj. 技术的；[经] 工艺的，技术的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2293,7 +2293,7 @@
   {
     "word": "suitable",
     "phonetic": "/ˈsjuːtəbl/",
-    "translation": "a. 适当的，相配的；[法] 合适的，适宜的，适当的",
+    "translation": "adj. 适当的，相配的；[法] 合适的，适宜的，适当的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2321,14 +2321,14 @@
   {
     "word": "budget",
     "phonetic": "/ˈbʌdʒit/",
-    "translation": "n. 预算；vi. 编预算；vt. 编入预算，安排；a. 廉价的",
+    "translation": "n. 预算；vi. 编预算；vt. 编入预算，安排；adj. 廉价的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
   {
     "word": "visual",
     "phonetic": "/ˈviʒuəl/",
-    "translation": "a. 视觉的；[医] 视觉的，视力的，视觉性记忆优势者",
+    "translation": "adj. 视觉的；[医] 视觉的，视力的，视觉性记忆优势者",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2342,7 +2342,7 @@
   {
     "word": "competitive",
     "phonetic": "/kəmˈpetitiv/",
-    "translation": "a. 竞争的；[经] 竞争的",
+    "translation": "adj. 竞争的；[经] 竞争的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2384,7 +2384,7 @@
   {
     "word": "welfare",
     "phonetic": "/ˈwelfєə/",
-    "translation": "n. 福利，安宁，幸福，福利事业；a. 福利的",
+    "translation": "n. 福利，安宁，幸福，福利事业；adj. 福利的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2427,7 +2427,7 @@
   {
     "word": "fairy",
     "phonetic": "/ˈfєəri/",
-    "translation": "n. 仙女，精灵；a. 仙女的",
+    "translation": "n. 仙女，精灵；adj. 仙女的",
     "unit": "Unit 6 Lesson 3",
     "page": 37,
     "optional": true
@@ -2471,7 +2471,7 @@
   {
     "word": "abnormal",
     "phonetic": "/æbˈnɒ:məl/",
-    "translation": "a. 反常的，不规则的，变态的，畸形的；n. 畸形的人",
+    "translation": "adj. 反常的，不规则的，变态的，畸形的；n. 畸形的人",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2520,7 +2520,7 @@
   {
     "word": "frightening",
     "phonetic": "/ˈfraitəniŋ/",
-    "translation": "a. 令人恐惧的；引起突然惊恐的",
+    "translation": "adj. 令人恐惧的；引起突然惊恐的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },
@@ -2534,7 +2534,7 @@
   {
     "word": "splendid",
     "phonetic": "/ˈspendid/",
-    "translation": "a. 光亮的，了不起的，灿烂的，壮丽的，显著的，杰出的",
+    "translation": "adj. 光亮的，了不起的，灿烂的，壮丽的，显著的，杰出的",
     "unit": "Unit 6 Lesson 3",
     "page": 37
   },

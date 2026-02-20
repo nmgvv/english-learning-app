@@ -9,7 +9,7 @@
   {
     "word": "visible",
     "phonetic": "/ˈvizəbl/",
-    "translation": "a. 看得见的，明显的，显然的；n. 可见物",
+    "translation": "adj. 看得见的，明显的，显然的；n. 可见物",
     "unit": "Unit 10 Lesson 1",
     "page": 45
   },
@@ -60,7 +60,7 @@
   {
     "word": "corresponding",
     "phonetic": "/.kɒriˈspɒndiŋ/",
-    "translation": "a. 相当的，一致的，通信的；[计] 对应",
+    "translation": "adj. 相当的，一致的，通信的；[计] 对应",
     "unit": "Unit 10 Lesson 1",
     "page": 45
   },
@@ -88,7 +88,7 @@
   {
     "word": "suspect",
     "phonetic": "/səˈspekt/",
-    "translation": "n. 被怀疑者，嫌疑犯；a. 令人怀疑的，不可信的，可疑的；v. 怀疑，猜想",
+    "translation": "n. 被怀疑者，嫌疑犯；adj. 令人怀疑的，不可信的，可疑的；v. 怀疑，猜想",
     "unit": "Unit 10 Lesson 1",
     "page": 45
   },
@@ -109,14 +109,14 @@
   {
     "word": "trial",
     "phonetic": "/ˈtraiəl/",
-    "translation": "n. 审判，试验，艰苦，麻烦事，考验；a. 审讯的，试验性的",
+    "translation": "n. 审判，试验，艰苦，麻烦事，考验；adj. 审讯的，试验性的",
     "unit": "Unit 10 Lesson 1",
     "page": 45
   },
   {
     "word": "actual",
     "phonetic": "/ˈæktʃuəl/",
-    "translation": "a. 真实的，实际的，现行的；[医] 实际死亡率",
+    "translation": "adj. 真实的，实际的，现行的；[医] 实际死亡率",
     "unit": "Unit 10 Lesson 1",
     "page": 45
   },
@@ -137,7 +137,7 @@
   {
     "word": "systematic",
     "phonetic": "/.sistiˈmætik/",
-    "translation": "a. 有系统的，分类上的，体系的；[医] 系统的，系的，分类的",
+    "translation": "adj. 有系统的，分类上的，体系的；[医] 系统的，系的，分类的",
     "unit": "Unit 10 Lesson 1",
     "page": 45
   },
@@ -165,7 +165,7 @@
   {
     "word": "mineral",
     "phonetic": "/ˈminərəl/",
-    "translation": "n. 矿物，无机物，苏打水；a. 矿物的，似矿物的",
+    "translation": "n. 矿物，无机物，苏打水；adj. 矿物的，似矿物的",
     "unit": "Unit 10 Lesson 1",
     "page": 45
   },
@@ -349,14 +349,14 @@
   {
     "word": "random",
     "phonetic": "/ˈrændəm/",
-    "translation": "n. 随意，随机；a. 任意的，随便的，胡乱的，随机的；adv. 胡乱地",
+    "translation": "n. 随意，随机；adj. 任意的，随便的，胡乱的，随机的；adv. 胡乱地",
     "unit": "Unit 10 Lesson 1",
     "page": 46
   },
   {
     "word": "parcel",
     "phonetic": "/ˈpɑ:sl/",
-    "translation": "n. 包裹，部分，片；vt. 分配，打包；a. 部分的；adv. 局部地",
+    "translation": "n. 包裹，部分，片；vt. 分配，打包；adj. 部分的；adv. 局部地",
     "unit": "Unit 10 Lesson 1",
     "page": 46
   },
@@ -370,7 +370,7 @@
   {
     "word": "bimonthly",
     "phonetic": "/.baiˈmʌnθli/",
-    "translation": "a. 两月一次的，每月两次的",
+    "translation": "adj. 两月一次的，每月两次的",
     "unit": "Unit 10 Lesson 1",
     "page": 46
   },
@@ -391,7 +391,7 @@
   {
     "word": "closely-knit",
     "phonetic": "/ˈkləʊsli ˌnɪt/",
-    "translation": "a. 紧紧结合在一起的，论据严谨的",
+    "translation": "adj. 紧紧结合在一起的，论据严谨的",
     "unit": "Unit 10 Lesson 2",
     "page": 46,
     "optional": true
@@ -406,7 +406,7 @@
   {
     "word": "household",
     "phonetic": "/ˈhaushəuld/",
-    "translation": "n. 一家人，家庭，家族，王室；a. 家庭的，家常的，王室的",
+    "translation": "n. 一家人，家庭，家族，王室；adj. 家庭的，家常的，王室的",
     "unit": "Unit 10 Lesson 2",
     "page": 46
   },
@@ -450,7 +450,7 @@
   {
     "word": "stiff",
     "phonetic": "/stif/",
-    "translation": "a. 坚硬的，严厉的，呆板的，生硬的，刚强的，强烈的，粘的，稠的，艰难的；n. 死尸，醉鬼，钞票；vt. 不肯付...小费",
+    "translation": "adj. 坚硬的，严厉的，呆板的，生硬的，刚强的，强烈的，粘的，稠的，艰难的；n. 死尸，醉鬼，钞票；vt. 不肯付...小费",
     "unit": "Unit 10 Lesson 3",
     "page": 46,
     "optional": true
@@ -503,14 +503,14 @@
   {
     "word": "tear-stained",
     "phonetic": "/ˈtɪərˌsteɪnd/",
-    "translation": "a. 泪水沾湿的",
+    "translation": "adj. 泪水沾湿的",
     "unit": "Unit 10 Lesson 3",
     "page": 46
   },
   {
     "word": "orphan",
     "phonetic": "/ˈɒ:fən/",
-    "translation": "n. 孤儿；a. 无双亲的，孤儿的；vt. 使成孤儿；[计] 弧体",
+    "translation": "n. 孤儿；adj. 无双亲的，孤儿的；vt. 使成孤儿；[计] 弧体",
     "unit": "Unit 10 Lesson 3",
     "page": 46,
     "optional": true
@@ -548,7 +548,7 @@
   {
     "word": "bare",
     "phonetic": "/bєə/",
-    "translation": "a. 赤裸的，缺少的，无遮蔽的，坦率的；vt. 使赤裸，露出",
+    "translation": "adj. 赤裸的，缺少的，无遮蔽的，坦率的；vt. 使赤裸，露出",
     "unit": "Unit 10 Lesson 3",
     "page": 47,
     "optional": true
@@ -674,7 +674,7 @@
   {
     "word": "legal",
     "phonetic": "/ˈliːgəl/",
-    "translation": "a. 法律的，法定的，合法的；[经] 法定权利；法律(上)的，合法的",
+    "translation": "adj. 法律的，法定的，合法的；[经] 法定权利；法律(上)的，合法的",
     "unit": "Unit 10 Lesson 3",
     "page": 47
   },
@@ -752,7 +752,7 @@
   {
     "word": "ashamed",
     "phonetic": "/əˈʃeimd/",
-    "translation": "a. 惭愧的，羞耻的",
+    "translation": "adj. 惭愧的，羞耻的",
     "unit": "Unit 11 Topic Talk",
     "page": 47
   },
@@ -880,7 +880,7 @@
   {
     "word": "bitter",
     "phonetic": "/ˈbitə/",
-    "translation": "a. 苦的，痛苦的，怀恨的；adv. 刺骨；v. (使)变苦",
+    "translation": "adj. 苦的，痛苦的，怀恨的；adv. 刺骨；v. (使)变苦",
     "unit": "Unit 11 Lesson 1",
     "page": 48
   },
@@ -901,7 +901,7 @@
   {
     "word": "remote",
     "phonetic": "/riˈməut/",
-    "translation": "a. 遥远的，偏僻的，疏远的，微少的；[计] 远程，远程访问实用程序",
+    "translation": "adj. 遥远的，偏僻的，疏远的，微少的；[计] 远程，远程访问实用程序",
     "unit": "Unit 11 Lesson 1",
     "page": 48
   },
@@ -929,7 +929,7 @@
   {
     "word": "pleasant",
     "phonetic": "/ˈpleznt/",
-    "translation": "a. 愉快的，可爱的，活泼的，亲切的",
+    "translation": "adj. 愉快的，可爱的，活泼的，亲切的",
     "unit": "Unit 11 Lesson 1",
     "page": 48
   },
@@ -957,7 +957,7 @@
   {
     "word": "keen",
     "phonetic": "/kiːn/",
-    "translation": "a. 锋利的，敏锐的，强烈的，敏捷的，热心的，渴望的；n. 挽歌，痛哭；v. 唱挽歌，痛哭",
+    "translation": "adj. 锋利的，敏锐的，强烈的，敏捷的，热心的，渴望的；n. 挽歌，痛哭；v. 唱挽歌，痛哭",
     "unit": "Unit 11 Lesson 1",
     "page": 48,
     "optional": true
@@ -973,7 +973,7 @@
   {
     "word": "unsuspecting",
     "phonetic": "/.ʌnsəˈspektiŋ/",
-    "translation": "a. 不怀疑的，无疑虑的，信任的；[法] 无怀疑的，信任的",
+    "translation": "adj. 不怀疑的，无疑虑的，信任的；[法] 无怀疑的，信任的",
     "unit": "Unit 11 Lesson 1",
     "page": 48
   },
@@ -1029,7 +1029,7 @@
   {
     "word": "general",
     "phonetic": "/ˈdʒenərəl/",
-    "translation": "n. 一般，将军，大体；a. 全面的，大体的，总的，一般的，普遍的；n. 常规；[计] 常规",
+    "translation": "n. 一般，将军，大体；adj. 全面的，大体的，总的，一般的，普遍的；n. 常规；[计] 常规",
     "unit": "Unit 11 Lesson 3",
     "page": 48
   },
@@ -1080,7 +1080,7 @@
   {
     "word": "civilian",
     "phonetic": "/siˈviljən/",
-    "translation": "n. 平民，民法专家；a. 平民的，百姓的，民用的",
+    "translation": "n. 平民，民法专家；adj. 平民的，百姓的，民用的",
     "unit": "Unit 11 Lesson 3",
     "page": 49
   },
@@ -1094,7 +1094,7 @@
   {
     "word": "panic",
     "phonetic": "/ˈpænik/",
-    "translation": "n. 恐慌，惊慌；a. 惊慌的，没有理由的，恐慌的；vt. 使惊慌，使狂热；vi. 惊慌",
+    "translation": "n. 恐慌，惊慌；adj. 惊慌的，没有理由的，恐慌的；vt. 使惊慌，使狂热；vi. 惊慌",
     "unit": "Unit 11 Lesson 3",
     "page": 49
   },
@@ -1179,21 +1179,21 @@
   {
     "word": "sacred",
     "phonetic": "/ˈseikrid/",
-    "translation": "a. 神圣的，献给上帝的，庄严的，祭祀的；[法] 神圣的，不可侵犯的",
+    "translation": "adj. 神圣的，献给上帝的，庄严的，祭祀的；[法] 神圣的，不可侵犯的",
     "unit": "Unit 11 Reading Club 1",
     "page": 49
   },
   {
     "word": "permanent",
     "phonetic": "/ˈpə:mənənt/",
-    "translation": "a. 永久的，不变的，固定的，持久的；n. 烫发；[计] 永久的",
+    "translation": "adj. 永久的，不变的，固定的，持久的；n. 烫发；[计] 永久的",
     "unit": "Unit 11 Reading Club 1",
     "page": 49
   },
   {
     "word": "representative",
     "phonetic": "/.repriˈzentətiv/",
-    "translation": "n. 代表，众议员，典型；a. 描写的，表现的，代理的，代表的，代议制的，典型的",
+    "translation": "n. 代表，众议员，典型；adj. 描写的，表现的，代理的，代表的，代议制的，典型的",
     "unit": "Unit 11 Reading Club 2",
     "page": 49
   },
@@ -1221,14 +1221,14 @@
   {
     "word": "temporary",
     "phonetic": "/ˈtempərəri/",
-    "translation": "a. 暂时的，临时的；n. 临时工，临时雇员；[计] 临时",
+    "translation": "adj. 暂时的，临时的；n. 临时工，临时雇员；[计] 临时",
     "unit": "Unit 11 Reading Club 2",
     "page": 49
   },
   {
     "word": "midnight",
     "phonetic": "/ˈmidnait/",
-    "translation": "n. 午夜，子夜，半夜；a. 午夜的，半夜的",
+    "translation": "n. 午夜，子夜，半夜；adj. 午夜的，半夜的",
     "unit": "Unit 11 Reading Club 2",
     "page": 49
   },
@@ -1242,7 +1242,7 @@
   {
     "word": "dozen",
     "phonetic": "/ˈdʌzn/",
-    "translation": "n. 打，十二个；a. 一打的",
+    "translation": "n. 打，十二个；adj. 一打的",
     "unit": "Unit 11 Reading Club 2",
     "page": 49
   },
@@ -1271,7 +1271,7 @@
   {
     "word": "incident",
     "phonetic": "/ˈinsidənt/",
-    "translation": "n. 事件，事变，小事；a. 附带的，易于发生的，外来的，入射的",
+    "translation": "n. 事件，事变，小事；adj. 附带的，易于发生的，外来的，入射的",
     "unit": "Unit 11 Reading Club 2",
     "page": 49
   },
@@ -1293,7 +1293,7 @@
   {
     "word": "false",
     "phonetic": "/fɒ:ls/",
-    "translation": "a. 错误的，虚伪的，假的，不老实的；adv. 不准确地，欺诈地",
+    "translation": "adj. 错误的，虚伪的，假的，不老实的；adv. 不准确地，欺诈地",
     "unit": "Unit 11 Reading Club 2",
     "page": 49
   },
@@ -1314,7 +1314,7 @@
   {
     "word": "beneficial",
     "phonetic": "/.beniˈfiʃəl/",
-    "translation": "a. 有益的，受益的；[经] 有使用权的，可享利益的",
+    "translation": "adj. 有益的，受益的；[经] 有使用权的，可享利益的",
     "unit": "Unit 11 Reading Club 2",
     "page": 49
   },
@@ -1328,7 +1328,7 @@
   {
     "word": "loose",
     "phonetic": "/luːs/",
-    "translation": "n. 发射，放任，放纵；a. 宽松的，松的，宽的，不牢固的，散漫的，自由的，不精确的；vt. 释放，放枪，开船；vi. 变松，开火；adv. 松散地",
+    "translation": "n. 发射，放任，放纵；adj. 宽松的，松的，宽的，不牢固的，散漫的，自由的，不精确的；vt. 释放，放枪，开船；vi. 变松，开火；adv. 松散地",
     "unit": "Unit 12 Reading Club 2",
     "page": 50
   },
@@ -1370,7 +1370,7 @@
   {
     "word": "well-being",
     "phonetic": "/ˈwelbiiŋ/",
-    "translation": "a. 安宁的，康乐的",
+    "translation": "adj. 安宁的，康乐的",
     "unit": "Unit 12 Reading Club 2",
     "page": 50
   },
@@ -1413,7 +1413,7 @@
   {
     "word": "productive",
     "phonetic": "/prəˈdʌktiv/",
-    "translation": "a. 能生产的，有生产价值的，多产的；[医] 产出性的，产生性的",
+    "translation": "adj. 能生产的，有生产价值的，多产的；[医] 产出性的，产生性的",
     "unit": "Unit 12 Reading Club 2",
     "page": 50
   },
@@ -1434,7 +1434,7 @@
   {
     "word": "scientific",
     "phonetic": "/.saiənˈtifik/",
-    "translation": "a. 科学的，系统的，符合科学规律的；[计] 科学记数法",
+    "translation": "adj. 科学的，系统的，符合科学规律的；[计] 科学记数法",
     "unit": "Unit 12 Topic Talk",
     "page": 50
   },
@@ -1462,7 +1462,7 @@
   {
     "word": "instant",
     "phonetic": "/ˈinstənt/",
-    "translation": "n. 立即，瞬间；a. 紧急的，立即的，即时的",
+    "translation": "n. 立即，瞬间；adj. 紧急的，立即的，即时的",
     "unit": "Unit 12 Topic Talk",
     "page": 50
   },
@@ -1490,7 +1490,7 @@
   {
     "word": "split",
     "phonetic": "/split/",
-    "translation": "n. 劈开，裂片，裂缝，分裂，派系，派别，柳条；a. 劈开的；vi. 分离，分开，裂开，被劈开；vt. 劈开，切开，使分裂，使分离；[计] 拆分",
+    "translation": "n. 劈开，裂片，裂缝，分裂，派系，派别，柳条；adj. 劈开的；vi. 分离，分开，裂开，被劈开；vt. 劈开，切开，使分裂，使分离；[计] 拆分",
     "unit": "Unit 12 Topic Talk",
     "page": 50,
     "optional": true
@@ -1506,14 +1506,14 @@
   {
     "word": "premier",
     "phonetic": "/ˈpriːmjə/",
-    "translation": "n. 总理，首相；a. 首位的，最初的",
+    "translation": "n. 总理，首相；adj. 首位的，最初的",
     "unit": "Unit 12 Topic Talk",
     "page": 50
   },
   {
     "word": "outspoken",
     "phonetic": "/.autˈspəukən/",
-    "translation": "a. 直言无讳的，坦率的，坦白无隐的",
+    "translation": "adj. 直言无讳的，坦率的，坦白无隐的",
     "unit": "Unit 12 Topic Talk",
     "page": 50,
     "optional": true
@@ -1536,7 +1536,7 @@
   {
     "word": "constant",
     "phonetic": "/ˈkɒnstənt/",
-    "translation": "n. 常数，恒量；a. 不变的，一定的，时常的；[计] 常量；常数；恒值",
+    "translation": "n. 常数，恒量；adj. 不变的，一定的，时常的；[计] 常量；常数；恒值",
     "unit": "Unit 12 Topic Talk",
     "page": 50
   },
@@ -1587,7 +1587,7 @@
   {
     "word": "humble",
     "phonetic": "/ˈhʌmbl/",
-    "translation": "a. 低下的，谦逊的，粗陋的；vt. 使...卑下，降低...地位，贬抑",
+    "translation": "adj. 低下的，谦逊的，粗陋的；vt. 使...卑下，降低...地位，贬抑",
     "unit": "Unit 12 Topic Talk",
     "page": 50
   },
@@ -1615,7 +1615,7 @@
   {
     "word": "missile",
     "phonetic": "/ˈmisail/",
-    "translation": "n. 发射物，导弹，飞弹，火箭；a. 可发射的",
+    "translation": "n. 发射物，导弹，飞弹，火箭；adj. 可发射的",
     "unit": "Unit 12 Lesson 1",
     "page": 51
   },
@@ -1629,7 +1629,7 @@
   {
     "word": "joint",
     "phonetic": "/dʒɒint/",
-    "translation": "n. 连接处，接合，关节；a. 共同的，联合的，连接的，合办的；vt. 连接，接合，使有接头；vi. 贴合，长节",
+    "translation": "n. 连接处，接合，关节；adj. 共同的，联合的，连接的，合办的；vt. 连接，接合，使有接头；vi. 贴合，长节",
     "unit": "Unit 12 Lesson 1",
     "page": 51
   },
@@ -1651,14 +1651,14 @@
   {
     "word": "clueless",
     "phonetic": "/ˈkluːləs/",
-    "translation": "a. 无能的，笨的",
+    "translation": "adj. 无能的，笨的",
     "unit": "Unit 12 Lesson 1",
     "page": 51
   },
   {
     "word": "theoretical",
     "phonetic": "/θiəˈretikəl/",
-    "translation": "a. 理论的，理论上的，假设的，推理的；[计] 理论的",
+    "translation": "adj. 理论的，理论上的，假设的，推理的；[计] 理论的",
     "unit": "Unit 12 Lesson 1",
     "page": 51
   },
@@ -1687,14 +1687,14 @@
   {
     "word": "grand",
     "phonetic": "/grænd/",
-    "translation": "a. 庄重的，壮观的，显赫的，重大的，最高的，雄伟的，宏大的，豪华的，傲慢的；[法] 重大的，主要的，伟大的",
+    "translation": "adj. 庄重的，壮观的，显赫的，重大的，最高的，雄伟的，宏大的，豪华的，傲慢的；[法] 重大的，主要的，伟大的",
     "unit": "Unit 12 Lesson 1",
     "page": 51
   },
   {
     "word": "steam",
     "phonetic": "/stiːm/",
-    "translation": "n. 蒸汽，精力；a. 蒸汽的；vi. 蒸发，行驶，发怒；vt. 蒸，煮，散发",
+    "translation": "n. 蒸汽，精力；adj. 蒸汽的；vi. 蒸发，行驶，发怒；vt. 蒸，煮，散发",
     "unit": "Unit 12 Lesson 1",
     "page": 51
   },
@@ -1829,7 +1829,7 @@
   {
     "word": "mass",
     "phonetic": "/mæs/",
-    "translation": "n. 块，大多数，质量，大量，群众，弥撒；a. 群众的，大规模的，整个的；vt. 使集合，集中；vi. 聚集",
+    "translation": "n. 块，大多数，质量，大量，群众，弥撒；adj. 群众的，大规模的，整个的；vt. 使集合，集中；vi. 聚集",
     "unit": "Unit 12 Lesson 1",
     "page": 51
   },
@@ -1850,7 +1850,7 @@
   {
     "word": "mechanical",
     "phonetic": "/miˈkænikəl/",
-    "translation": "a. 机械的，机械性的，力学的；[医] 机械的，力学的",
+    "translation": "adj. 机械的，机械性的，力学的；[医] 机械的，力学的",
     "unit": "Unit 12 Reading Club 2",
     "page": 52
   },
@@ -1871,14 +1871,14 @@
   {
     "word": "accurate",
     "phonetic": "/ˈækjurət/",
-    "translation": "a. 正确的，精确的；[经] 准确的，精确的",
+    "translation": "adj. 正确的，精确的；[经] 准确的，精确的",
     "unit": "Unit 12 Reading Club 2",
     "page": 52
   },
   {
     "word": "electric",
     "phonetic": "/iˈlektik/",
-    "translation": "a. 电的，导电的，电动的；[医] 电的",
+    "translation": "adj. 电的，导电的，电动的；[医] 电的",
     "unit": "Unit 12 Reading Club 2",
     "page": 52
   }
