@@ -1680,7 +1680,12 @@ function dictationPage() {
                 }
 
                 const formData = new FormData();
-                formData.append('audio', audioBlob, 'recording.webm');
+                // 根据实际 MIME 类型确定文件扩展名
+                let audioFilename = 'recording.webm';
+                if (audioBlob.type.includes('mp4')) audioFilename = 'recording.m4a';
+                else if (audioBlob.type.includes('ogg')) audioFilename = 'recording.ogg';
+                else if (audioBlob.type.includes('wav')) audioFilename = 'recording.wav';
+                formData.append('audio', audioBlob, audioFilename);
                 formData.append('word', this.currentCard.word);
                 // book_id 从 currentCard 获取，支持全局复习
                 formData.append('book_id', this.currentCard.book_id || this.bookId || '');

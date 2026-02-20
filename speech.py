@@ -142,7 +142,7 @@ class SpeechRecognizer:
             return {"success": False, "text": "", "error": "Azure Speech 服务未配置"}
 
         # 需要将 webm 转换为 wav 格式
-        if file_ext in [".webm", ".ogg"]:
+        if file_ext in [".webm", ".ogg", ".mp4", ".m4a"]:
             converted_data = await self._convert_to_wav(audio_data, file_ext)
             if converted_data is None:
                 return {"success": False, "text": "", "error": "音频格式转换失败"}
@@ -424,7 +424,7 @@ class PronunciationAssessor:
             return {"success": False, "error": "Azure Speech 服务未配置"}
 
         # 转换音频格式（如需要）
-        if file_ext in [".webm", ".ogg"]:
+        if file_ext in [".webm", ".ogg", ".mp4", ".m4a"]:
             converted_data = await self._convert_to_wav(audio_data, file_ext)
             if converted_data is None:
                 return {"success": False, "error": "音频格式转换失败"}
@@ -837,7 +837,7 @@ class QwenChineseSpeechRecognizer:
             dashscope.base_http_api_url = 'https://dashscope.aliyuncs.com/api/v1'
 
             # 需要将音频转换为 WAV 格式
-            if file_ext in [".webm", ".ogg"]:
+            if file_ext in [".webm", ".ogg", ".mp4", ".m4a"]:
                 converted_data = await self._convert_to_wav(audio_data, file_ext)
                 if converted_data is None:
                     return {"success": False, "text": "", "error": "音频格式转换失败"}
@@ -1026,7 +1026,7 @@ class QwenEnglishSpeechRecognizer:
             dashscope.base_http_api_url = 'https://dashscope.aliyuncs.com/api/v1'
 
             # 需要将音频转换为 WAV 格式
-            if file_ext in [".webm", ".ogg"]:
+            if file_ext in [".webm", ".ogg", ".mp4", ".m4a"]:
                 converted_data = await self._convert_to_wav(audio_data, file_ext)
                 if converted_data is None:
                     return {"success": False, "text": "", "is_correct": False, "error": "音频格式转换失败"}

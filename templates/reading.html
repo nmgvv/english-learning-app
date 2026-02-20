@@ -914,7 +914,9 @@ function readingPage() {
 
             // 根据 audioBlob 类型确定文件名
             let filename = 'recording.webm';
-            if (audioBlob.type.includes('ogg')) {
+            if (audioBlob.type.includes('mp4')) {
+                filename = 'recording.m4a';
+            } else if (audioBlob.type.includes('ogg')) {
                 filename = 'recording.ogg';
             } else if (audioBlob.type.includes('wav')) {
                 filename = 'recording.wav';
@@ -1045,7 +1047,9 @@ function readingPage() {
 
             // 根据 audioBlob 的 MIME 类型确定文件扩展名
             let filename = 'recording.webm';
-            if (audioBlob.type.includes('ogg')) {
+            if (audioBlob.type.includes('mp4')) {
+                filename = 'recording.m4a';
+            } else if (audioBlob.type.includes('ogg')) {
                 filename = 'recording.ogg';
             } else if (audioBlob.type.includes('wav')) {
                 filename = 'recording.wav';
@@ -1090,7 +1094,9 @@ function readingPage() {
         async assessFullPassage(audioBlob) {
             // 根据 audioBlob 的 MIME 类型确定文件扩展名
             let filename = 'recording.webm';
-            if (audioBlob.type.includes('ogg')) {
+            if (audioBlob.type.includes('mp4')) {
+                filename = 'recording.m4a';
+            } else if (audioBlob.type.includes('ogg')) {
                 filename = 'recording.ogg';
             } else if (audioBlob.type.includes('wav')) {
                 filename = 'recording.wav';
@@ -1325,7 +1331,9 @@ function readingPage() {
 
                 // 确定文件名
                 let filename = 'recording.webm';
-                if (audioBlob.type.includes('ogg')) {
+                if (audioBlob.type.includes('mp4')) {
+                    filename = 'recording.m4a';
+                } else if (audioBlob.type.includes('ogg')) {
                     filename = 'recording.ogg';
                 } else if (audioBlob.type.includes('wav')) {
                     filename = 'recording.wav';
