@@ -237,8 +237,8 @@ class SynonymIndex:
                 "hint": "give up 也表示「放弃」，但这里要复习的是 abandon 哦"
             }
         """
-        input_lower = user_input.strip().strip('.,!?;:').lower()
-        target_lower = target_word.strip().strip('.,!?;:').lower()
+        input_lower = ' '.join(user_input.strip().strip('.,!?;:').lower().split())
+        target_lower = ' '.join(target_word.strip().strip('.,!?;:').lower().split())
 
         if input_lower == target_lower:
             return None  # 完全匹配，不是同义词场景

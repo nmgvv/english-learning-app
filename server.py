@@ -887,7 +887,10 @@ async def api_session_submit(
     if not word_obj:
         raise HTTPException(status_code=404, detail="单词不存在")
 
-    correct = data.input.strip().strip('.,!?;:').lower() == data.word.strip('.,!?;:').lower()
+    # 规范化：去首尾空格/标点，多个空格合并为一个
+    user_input_normalized = ' '.join(data.input.strip().strip('.,!?;:').lower().split())
+    word_normalized = ' '.join(data.word.strip('.,!?;:').lower().split())
+    correct = user_input_normalized == word_normalized
 
     # 同义词检测：输入不正确时，检查是否为同义词
     is_synonym = False
