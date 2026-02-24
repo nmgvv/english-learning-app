@@ -1331,8 +1331,9 @@ async def api_global_stats(user: dict = Depends(require_auth), db: Session = Dep
             total_words += len(words)
     stats["total_words"] = total_words
 
-    # 获取全局待复习数
+    # 获取全局待复习数（过滤掉词书中已不存在的孤儿记录）
     due_cards = get_due_cards(db, user["id"])  # 不传 book_id = 全局
+    due_cards = [p for p in due_cards if book_manager.get_word(p.book_id, p.word)]
     stats["due_today"] = len(due_cards)
 
     # 获取当前掌握数（从曲线数据获取）
@@ -1464,8 +1465,9 @@ async def api_stats(book_id: str, user: dict = Depends(require_auth), db: Sessio
     words = book_manager.load(book_id)
     stats["total_words"] = len(words) if words else 0
 
-    # 获取今日待复习数（该词书）
+    # 获取今日待复习数（该词书，过滤掉词书中已不存在的孤儿记录）
     due_cards = get_due_cards(db, user["id"], book_id)
+    due_cards = [p for p in due_cards if book_manager.get_word(p.book_id, p.word)]
     stats["due_today"] = len(due_cards)
 
     return stats
