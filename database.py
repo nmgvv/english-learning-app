@@ -559,35 +559,42 @@ def update_progress(db: Session, user_id: int, book_id: str, word: str,
     return progress
 
 
+MAX_DAILY_REVIEWS = 100  # 每日最大复习量
+
+
 def get_due_cards(db: Session, user_id: int, book_id: str = None) -> List[Progress]:
     """获取今日待复习的单词（全局或指定词书）
 
-    Args:
-        user_id: 用户ID
-        book_id: 词书ID，如果为 None 则获取所有词书的待复习单词
-
-    Returns:
-        随机顺序的待复习单词列表（防止顺序记忆）
+    分档 + 随机目标 + 逐档拉取：
+    1. 每日随机一个复习目标数量（40-70），避免学生产生惰性
+    2. 所有已学单词按 due 日期升序排列（最紧急在前）
+    3. 从最紧急的开始拉取，直到达到目标数量
+    4. 超过上限时截断
     """
     import random
     now = datetime.utcnow()
-    # 计算今日结束时间（23:59:59），避免复习过程中数量增加
-    end_of_today = now.replace(hour=23, minute=59, second=59, microsecond=999999)
 
+    # 随机每日目标（40-70），避免每天复习量一致
+    daily_target = random.randint(40, 70)
+
+    # 获取所有已学单词，按 due 升序（最紧急→最不紧急）
     query = db.query(Progress).filter(
         Progress.user_id == user_id,
-        Progress.due <= end_of_today
+        Progress.state >= 1  # 排除新卡（state=0）
     )
 
-    # 如果指定了词书，则过滤
     if book_id:
         query = query.filter(Progress.book_id == book_id)
 
-    cards = query.all()
+    all_cards = query.order_by(Progress.due.asc()).all()
 
-    # 随机打乱顺序，防止顺序记忆
-    random.shuffle(cards)
-    return cards
+    # 从最紧急的开始取，直到达到目标或上限
+    target = min(daily_target, MAX_DAILY_REVIEWS, len(all_cards))
+    result = all_cards[:target]
+
+    # 打乱顺序（防止学生从顺序猜到难度档位）
+    random.shuffle(result)
+    return result
 
 
 # ==================== 历史记录操作 ====================
@@ -618,6 +625,27 @@ def get_word_history(db: Session, user_id: int, book_id: str, word: str) -> List
         History.book_id == book_id,
         History.word == word
     ).order_by(History.time.desc()).all()
+
+
+def get_difficulty_coefficient(db: Session, user_id: int, book_id: str, word: str) -> float:
+    """根据近期复习历史的错误率计算难度系数，用于调整复习间隔
+
+    系数范围 0.5-1.0：
+    - 错误率 0% → 1.0（无调整）
+    - 错误率 30% → 0.85（间隔缩短15%）
+    - 错误率 50% → 0.75（间隔缩短25%）
+    - 错误率 100% → 0.5（间隔缩短50%）
+    """
+    history = get_word_history(db, user_id, book_id, word)
+    recent = history[:10]  # 最近10次复习记录
+
+    if len(recent) < 3:
+        return 1.0  # 数据不足，不调整
+
+    error_count = sum(1 for h in recent if h.result != "correct")
+    error_rate = error_count / len(recent)
+
+    return max(0.5, 1.0 - error_rate * 0.5)
 
 
 def get_words_history_stats(db: Session, user_id: int, words_with_books: List[tuple]) -> dict:

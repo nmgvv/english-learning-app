@@ -37,7 +37,7 @@ from database import (
     init_db, get_db, Session,
     create_user, authenticate_user, get_user_by_id,
     create_token, verify_token,
-    get_user_progress, update_progress, get_due_cards,
+    get_user_progress, update_progress, get_due_cards, MAX_DAILY_REVIEWS,
     add_history, get_user_stats, get_words_history_stats,
     ConfusingWords, ConfusionRecord, User, Progress
 )
@@ -839,8 +839,8 @@ async def api_session_start(
                     "is_new": True
                 })
         elif data.mode == "review":
-            # 指定词书的复习模式
-            if p and p.due and p.due <= now.replace(hour=23, minute=59, second=59):
+            # 指定词书的复习模式：收集所有已学单词（由下方统一截断）
+            if p and p.state >= 1:
                 cards.append({
                     "word": word.word,
                     "phonetic": word.phonetic,
@@ -848,6 +848,7 @@ async def api_session_start(
                     "unit": word.unit,
                     "book_id": data.book_id,
                     "is_new": False,
+                    "due": p.due,
                     "history_stats": history_stats.get((data.book_id, word.word))
                 })
         else:
@@ -862,8 +863,17 @@ async def api_session_start(
                 "is_new": is_new
             })
 
-    # 复习模式：随机顺序（防止顺序记忆）
+    # 指定词书复习模式：分档 + 随机目标 + 逐档拉取
     if data.mode == "review":
+        # 按 due 升序排列（最紧急在前）
+        cards.sort(key=lambda c: c.get("due") or datetime.min)
+        # 随机每日目标（40-70）
+        daily_target = random.randint(40, 70)
+        target = min(daily_target, MAX_DAILY_REVIEWS, len(cards))
+        cards = cards[:target]
+        # 移除临时 due 字段
+        for c in cards:
+            c.pop("due", None)
         random.shuffle(cards)
 
     # 限制数量
@@ -941,9 +951,9 @@ async def api_session_complete(
         reps = progress.reps + 1
         lapses = progress.lapses
 
-        # 计算当前可提取性
-        if progress.due:
-            elapsed = (now - progress.due).days
+        # 计算当前可提取性（elapsed = 距上次复习的天数）
+        if progress.last_review:
+            elapsed = (now - progress.last_review).days
         else:
             elapsed = 0
         r = retrievability(progress.stability, max(0, elapsed))
@@ -971,8 +981,11 @@ async def api_session_complete(
         stability = init_stability(grade)
         state = 1 if grade < 3 else 2
 
-    # 计算下次复习间隔
-    interval_days = next_interval(stability)
+    # 计算下次复习间隔（应用难度系数）
+    from database import get_difficulty_coefficient
+    base_interval = next_interval(stability)
+    difficulty_coeff = get_difficulty_coefficient(db, user["id"], data.book_id, data.word)
+    interval_days = max(1, round(base_interval * difficulty_coeff))
     due = now + timedelta(days=interval_days)
 
     # 更新数据库

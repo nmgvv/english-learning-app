@@ -259,7 +259,7 @@ def next_interval(s: float, desired_r: float = 0.9) -> int:
     FACTOR = 19.0 / 81.0  # FSRS-4.5 标准常量
     DECAY = -0.5
     interval = (s / FACTOR) * (pow(desired_r, 1.0 / DECAY) - 1)
-    return max(1, min(365, round(interval)))  # 最小间隔 1 天
+    return max(1, min(60, round(interval)))  # 最小间隔 1 天，最大 60 天
 
 
 def fsrs_schedule(card: Card, grade: int) -> Card:
@@ -292,10 +292,10 @@ def fsrs_schedule(card: Card, grade: int) -> Card:
         card.state = 1 if grade < 3 else 2
 
     else:  # 复习卡
-        # 计算当前可提取性
-        if card.due:
-            due_time = datetime.fromisoformat(card.due)
-            elapsed = (now - due_time).days
+        # 计算当前可提取性（elapsed = 距上次复习的天数）
+        if card.last_review:
+            last_review_time = datetime.fromisoformat(card.last_review)
+            elapsed = (now - last_review_time).days
         else:
             elapsed = 0
 
