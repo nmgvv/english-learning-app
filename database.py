@@ -559,23 +559,29 @@ def update_progress(db: Session, user_id: int, book_id: str, word: str,
     return progress
 
 
-MAX_DAILY_REVIEWS = 100  # 每日最大复习量
+def get_daily_target_range(user_grade: str = None):
+    """根据年级返回 (最小, 最大) 每日复习目标"""
+    if user_grade and user_grade.startswith("senior"):
+        return (70, 120)
+    return (50, 100)  # 初中/未设置
 
 
-def get_due_cards(db: Session, user_id: int, book_id: str = None) -> List[Progress]:
+def get_due_cards(db: Session, user_id: int, book_id: str = None,
+                  user_grade: str = None) -> tuple:
     """获取今日待复习的单词（全局或指定词书）
 
     分档 + 随机目标 + 逐档拉取：
-    1. 每日随机一个复习目标数量（40-70），避免学生产生惰性
+    1. 根据年级随机一个复习目标（初中50-100，高中70-120）
     2. 所有已学单词按 due 日期升序排列（最紧急在前）
     3. 从最紧急的开始拉取，直到达到目标数量
-    4. 超过上限时截断
+
+    Returns:
+        (cards, daily_target) — 复习卡列表和本次目标数量
     """
     import random
-    now = datetime.utcnow()
 
-    # 随机每日目标（40-70），避免每天复习量一致
-    daily_target = random.randint(40, 70)
+    min_t, max_t = get_daily_target_range(user_grade)
+    daily_target = random.randint(min_t, max_t)
 
     # 获取所有已学单词，按 due 升序（最紧急→最不紧急）
     query = db.query(Progress).filter(
@@ -588,13 +594,13 @@ def get_due_cards(db: Session, user_id: int, book_id: str = None) -> List[Progre
 
     all_cards = query.order_by(Progress.due.asc()).all()
 
-    # 从最紧急的开始取，直到达到目标或上限
-    target = min(daily_target, MAX_DAILY_REVIEWS, len(all_cards))
+    # 从最紧急的开始取，直到达到目标
+    target = min(daily_target, len(all_cards))
     result = all_cards[:target]
 
     # 打乱顺序（防止学生从顺序猜到难度档位）
     random.shuffle(result)
-    return result
+    return result, daily_target
 
 
 # ==================== 历史记录操作 ====================

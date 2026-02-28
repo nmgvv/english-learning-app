@@ -37,11 +37,11 @@ from database import (
     init_db, get_db, Session,
     create_user, authenticate_user, get_user_by_id,
     create_token, verify_token,
-    get_user_progress, update_progress, get_due_cards, MAX_DAILY_REVIEWS,
+    get_user_progress, update_progress, get_due_cards, get_daily_target_range,
     add_history, get_user_stats, get_words_history_stats,
     ConfusingWords, ConfusionRecord, User, Progress
 )
-from bookmanager import BookManager, get_book_display_name, filter_books_by_grade
+from bookmanager import BookManager, get_book_display_name, filter_books_by_grade, is_senior_student
 from synonym import SynonymIndex
 
 # FSRS 算法和辅助函数 (从 dictation.py 复用)
@@ -779,14 +779,18 @@ async def api_session_start(
 
     # 全局复习模式（不指定 book_id）
     if data.mode == "review" and not data.book_id:
-        # 获取所有待复习的单词（来自所有词书）
-        due_cards = get_due_cards(db, user["id"])  # 全局，已随机化
+        # 获取用户年级
+        db_user = db.query(User).filter(User.id == user["id"]).first()
+        user_grade = db_user.grade if db_user else None
+
+        # 获取复习卡（按年级目标范围：初中50-100，高中70-120）
+        due_cards, daily_target = get_due_cards(db, user["id"], user_grade=user_grade)
 
         # 批量获取历史统计
-        words_with_books = [(p.book_id, p.word) for p in due_cards[:data.limit]]
+        words_with_books = [(p.book_id, p.word) for p in due_cards]
         history_stats = get_words_history_stats(db, user["id"], words_with_books)
 
-        for p in due_cards[:data.limit]:
+        for p in due_cards:
             # 从词书获取单词详情
             word_obj = book_manager.get_word(p.book_id, p.word)
             if word_obj:
@@ -795,11 +799,35 @@ async def api_session_start(
                     "phonetic": word_obj.phonetic,
                     "translation": word_obj.translation,
                     "unit": word_obj.unit,
-                    "book_id": p.book_id,  # 记录词书来源
+                    "book_id": p.book_id,
                     "is_new": False,
                     "history_stats": history_stats.get((p.book_id, p.word))
                 })
 
+        # 高中生：自动混入 10-20 个 bsd_senior_all 中未学过的新词
+        if is_senior_student(user_grade):
+            new_count = random.randint(10, 20)
+            existing = set(
+                w for (w,) in db.query(Progress.word).filter(
+                    Progress.user_id == user["id"],
+                    Progress.book_id == "bsd_senior_all"
+                ).all()
+            )
+            all_words = book_manager.load("bsd_senior_all")
+            if all_words:
+                candidates = [w for w in all_words if w.word not in existing]
+                random.shuffle(candidates)
+                for w in candidates[:new_count]:
+                    cards.append({
+                        "word": w.word,
+                        "phonetic": w.phonetic,
+                        "translation": w.translation,
+                        "unit": w.unit,
+                        "book_id": "bsd_senior_all",
+                        "is_new": True
+                    })
+
+        random.shuffle(cards)
         return {
             "total": len(cards),
             "cards": cards
@@ -865,11 +893,15 @@ async def api_session_start(
 
     # 指定词书复习模式：分档 + 随机目标 + 逐档拉取
     if data.mode == "review":
+        # 获取用户年级
+        db_user = db.query(User).filter(User.id == user["id"]).first()
+        user_grade = db_user.grade if db_user else None
         # 按 due 升序排列（最紧急在前）
         cards.sort(key=lambda c: c.get("due") or datetime.min)
-        # 随机每日目标（40-70）
-        daily_target = random.randint(40, 70)
-        target = min(daily_target, MAX_DAILY_REVIEWS, len(cards))
+        # 按年级随机目标（初中50-100，高中70-120）
+        min_t, max_t = get_daily_target_range(user_grade)
+        daily_target = random.randint(min_t, max_t)
+        target = min(daily_target, len(cards))
         cards = cards[:target]
         # 移除临时 due 字段
         for c in cards:
@@ -1344,10 +1376,14 @@ async def api_global_stats(user: dict = Depends(require_auth), db: Session = Dep
             total_words += len(words)
     stats["total_words"] = total_words
 
-    # 获取全局待复习数（过滤掉词书中已不存在的孤儿记录）
-    due_cards = get_due_cards(db, user["id"])  # 不传 book_id = 全局
+    # 获取全局待复习数（按年级目标 + 高中生新词）
+    due_cards, daily_target = get_due_cards(db, user["id"], user_grade=user_grade)
     due_cards = [p for p in due_cards if book_manager.get_word(p.book_id, p.word)]
-    stats["due_today"] = len(due_cards)
+    due_count = len(due_cards)
+    # 高中生额外加 10-20 新词的估算中间值
+    if is_senior_student(user_grade):
+        due_count += 15
+    stats["due_today"] = due_count
 
     # 获取当前掌握数（从曲线数据获取）
     from database import get_global_mastered_curve
@@ -1478,8 +1514,11 @@ async def api_stats(book_id: str, user: dict = Depends(require_auth), db: Sessio
     words = book_manager.load(book_id)
     stats["total_words"] = len(words) if words else 0
 
-    # 获取今日待复习数（该词书，过滤掉词书中已不存在的孤儿记录）
-    due_cards = get_due_cards(db, user["id"], book_id)
+    # 获取今日待复习数（该词书，按年级目标）
+    from database import User as UserModel
+    db_user = db.query(UserModel).filter(UserModel.id == user["id"]).first()
+    user_grade = db_user.grade if db_user else None
+    due_cards, _ = get_due_cards(db, user["id"], book_id, user_grade=user_grade)
     due_cards = [p for p in due_cards if book_manager.get_word(p.book_id, p.word)]
     stats["due_today"] = len(due_cards)
 
