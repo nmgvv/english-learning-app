@@ -804,9 +804,11 @@ async def api_session_start(
                     "history_stats": history_stats.get((p.book_id, p.word))
                 })
 
-        # 高中生：自动混入 10-20 个 bsd_senior_all 中未学过的新词
+        # 高中生：自动混入 10-20 个 bsd_senior_all 中未学过的新词（同一天固定）
         if is_senior_student(user_grade):
-            new_count = random.randint(10, 20)
+            from datetime import date
+            new_seed = hash((date.today().isoformat(), user["id"], "new_words"))
+            new_count = random.Random(new_seed).randint(10, 20)
             existing = set(
                 w for (w,) in db.query(Progress.word).filter(
                     Progress.user_id == user["id"],
@@ -898,9 +900,12 @@ async def api_session_start(
         user_grade = db_user.grade if db_user else None
         # 按 due 升序排列（最紧急在前）
         cards.sort(key=lambda c: c.get("due") or datetime.min)
-        # 按年级随机目标（初中50-100，高中70-120）
+        # 按年级随机目标（初中50-100，高中70-120），同一天固定
+        from datetime import date
         min_t, max_t = get_daily_target_range(user_grade)
-        daily_target = random.randint(min_t, max_t)
+        day_seed = hash((date.today().isoformat(), user["id"], data.book_id or ""))
+        rng = random.Random(day_seed)
+        daily_target = rng.randint(min_t, max_t)
         target = min(daily_target, len(cards))
         cards = cards[:target]
         # 移除临时 due 字段

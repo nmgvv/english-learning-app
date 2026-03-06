@@ -1390,16 +1390,24 @@ function dictationPage() {
                 // 正确
                 this.showResult = true;
                 this.inputDisabled = true;
-                this.correctCount++;
                 this.totalCompleted++;
                 this.totalAttempts += this.attempt;
                 if (this.attempt === 1) this.firstAttemptCorrect++;
                 else if (this.attempt === 2) this.secondAttemptCorrect++;
                 else if (this.attempt === 3) this.thirdAttemptCorrect++;
-                this.currentStreak++;
-                if (this.currentStreak > this.bestStreak) this.bestStreak = this.currentStreak;
 
-                // 异步保存，不阻塞 UI
+                if (this.attempt <= 2) {
+                    // 第1、2次答对：算正确
+                    this.correctCount++;
+                    this.currentStreak++;
+                    if (this.currentStreak > this.bestStreak) this.bestStreak = this.currentStreak;
+                } else {
+                    // 第3次答对：统计上算错误（Hard）
+                    this.wrongCount++;
+                    this.currentStreak = 0;
+                }
+
+                // 异步保存，不阻塞 UI（FSRS 评分不变）
                 this.completeWord(true, false);
 
                 // 触发跟读练习

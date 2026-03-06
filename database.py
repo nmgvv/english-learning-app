@@ -579,9 +579,13 @@ def get_due_cards(db: Session, user_id: int, book_id: str = None,
         (cards, daily_target) — 复习卡列表和本次目标数量
     """
     import random
+    from datetime import date
 
     min_t, max_t = get_daily_target_range(user_grade)
-    daily_target = random.randint(min_t, max_t)
+    # 用日期+用户ID做种子，同一用户同一天目标固定
+    day_seed = hash((date.today().isoformat(), user_id, book_id or ""))
+    rng = random.Random(day_seed)
+    daily_target = rng.randint(min_t, max_t)
 
     # 获取所有已学单词，按 due 升序（最紧急→最不紧急）
     query = db.query(Progress).filter(
