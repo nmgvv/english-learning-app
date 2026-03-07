@@ -226,272 +226,177 @@ class SpeechRecognizer:
 
 
 class PronunciationAssessor:
-    """Azure Speech 发音评估器"""
+    """腾讯云智聆口语评测 (SOE) 发音评估器"""
 
     def __init__(self):
-        self.speech_key = os.getenv("AZURE_SPEECH_KEY")
-        self.speech_region = os.getenv("AZURE_SPEECH_REGION", "eastasia")
+        self.secret_id = os.getenv("TENCENT_SECRET_ID")
+        self.secret_key = os.getenv("TENCENT_SECRET_KEY")
+        self._client = None
 
     def is_available(self) -> bool:
         """检查服务是否可用"""
-        return AZURE_SPEECH_AVAILABLE and bool(self.speech_key)
+        return bool(self.secret_id and self.secret_key)
 
-    def _assess_sync(self, audio_path: str, reference_text: str) -> dict:
+    def _get_client(self):
+        """延迟初始化腾讯云 SOE 客户端"""
+        if self._client is None:
+            from tencentcloud.common import credential
+            from tencentcloud.soe.v20180724 import soe_client
+            cred = credential.Credential(self.secret_id, self.secret_key)
+            self._client = soe_client.SoeClient(cred, "")
+        return self._client
+
+    def _assess_sync(self, wav_data: bytes, reference_text: str, eval_mode: int = 0) -> dict:
         """
         同步发音评估（内部方法）
 
         Args:
-            audio_path: 音频文件路径
-            reference_text: 参考文本（单词）
-
-        Returns:
-            评估结果字典
+            wav_data: WAV 格式音频数据（16k/16bit/mono）
+            reference_text: 参考文本
+            eval_mode: 0=单词, 1=句子, 2=段落
         """
         if not self.is_available():
-            return {"success": False, "error": "Azure Speech 未配置"}
+            return {"success": False, "error": "腾讯云 SOE 未配置"}
 
-        print(f"[Azure Speech] 开始评估, 音频: {audio_path}")
-        print(f"[Azure Speech] 参考文本长度: {len(reference_text)} 字符")
+        import base64
+        import uuid
+        import json
 
-        try:
-            # 语音配置
-            speech_config = speechsdk.SpeechConfig(
-                subscription=self.speech_key,
-                region=self.speech_region
-            )
-            speech_config.speech_recognition_language = "en-US"
-
-            # 发音评估配置
-            pronunciation_config = speechsdk.PronunciationAssessmentConfig(
-                reference_text=reference_text,
-                grading_system=speechsdk.PronunciationAssessmentGradingSystem.HundredMark,
-                granularity=speechsdk.PronunciationAssessmentGranularity.Phoneme,
-                enable_miscue=True
-            )
-            # 使用 IPA 音标
-            pronunciation_config.phoneme_alphabet = "IPA"
-
-            # 音频配置
-            audio_config = speechsdk.AudioConfig(filename=audio_path)
-
-            # 创建识别器并应用发音评估配置
-            recognizer = speechsdk.SpeechRecognizer(
-                speech_config=speech_config,
-                audio_config=audio_config
-            )
-            pronunciation_config.apply_to(recognizer)
-
-            # 执行识别
-            result = recognizer.recognize_once()
-
-            print(f"[Azure Speech] 识别结果原因: {result.reason}")
-
-            if result.reason == speechsdk.ResultReason.RecognizedSpeech:
-                # 获取发音评估结果
-                pronunciation_result = speechsdk.PronunciationAssessmentResult(result)
-
-                # 获取详细 JSON 结果
-                json_result = result.properties.get(
-                    speechsdk.PropertyId.SpeechServiceResponse_JsonResult
-                )
-
-                # 解析音素级别详情
-                phoneme_details = self._extract_phoneme_details(json_result)
-
-                # 解析单词级别得分（用于句子评估）
-                word_scores = self._extract_word_scores(json_result)
-
-                print(f"[Azure Speech] 识别文本: {result.text}")
-                print(f"[Azure Speech] 准确度: {pronunciation_result.accuracy_score}, 流利度: {pronunciation_result.fluency_score}")
-                print(f"[Azure Speech] 完整度: {pronunciation_result.completeness_score}, 发音分: {pronunciation_result.pronunciation_score}")
-                print(f"[Azure Speech] 单词数: {len(word_scores)}")
-
-                return {
-                    "success": True,
-                    "recognized_text": result.text,
-                    "accuracy_score": pronunciation_result.accuracy_score,
-                    "pronunciation_score": pronunciation_result.pronunciation_score,
-                    "fluency_score": pronunciation_result.fluency_score,
-                    "completeness_score": pronunciation_result.completeness_score,
-                    "phoneme_details": phoneme_details,
-                    "word_scores": word_scores,
-                    "error": None
-                }
-            elif result.reason == speechsdk.ResultReason.NoMatch:
-                return {"success": False, "error": "未识别到语音，请重试"}
-            elif result.reason == speechsdk.ResultReason.Canceled:
-                cancellation = result.cancellation_details
-                return {
-                    "success": False,
-                    "error": f"评估取消: {cancellation.reason}"
-                }
-            else:
-                return {"success": False, "error": f"评估失败: {result.reason}"}
-
-        except Exception as e:
-            return {"success": False, "error": str(e)}
-
-    def _extract_phoneme_details(self, json_result: str) -> list:
-        """
-        从 JSON 结果中提取音素级别详情
-
-        Returns:
-            [{"phoneme": "h", "accuracy": 95.0, "error_type": "None"}, ...]
-        """
-        if not json_result:
-            return []
+        print(f"[SOE] 开始评估, 音频: {len(wav_data)} bytes, 模式: {eval_mode}")
+        print(f"[SOE] 参考文本: {reference_text[:100]}")
 
         try:
-            import json
-            data = json.loads(json_result)
-            phonemes = []
+            from tencentcloud.soe.v20180724 import models
 
-            # 遍历 NBest 中的单词和音素
-            for nbest in data.get("NBest", []):
-                for word in nbest.get("Words", []):
-                    word_error = word.get("PronunciationAssessment", {}).get("ErrorType", "None")
+            client = self._get_client()
+            req = models.TransmitOralProcessWithInitRequest()
 
-                    for phoneme in word.get("Phonemes", []):
-                        pa = phoneme.get("PronunciationAssessment", {})
-                        accuracy = pa.get("AccuracyScore", 0)
+            voice_data = base64.b64encode(wav_data).decode()
 
-                        # 如果音素准确度低于60分，标记错误类型
-                        error_type = "None"
-                        if accuracy < 60:
-                            error_type = word_error if word_error != "None" else "Mispronunciation"
+            params = {
+                "SessionId": str(uuid.uuid4()),
+                "RefText": reference_text,
+                "WorkMode": 0,
+                "EvalMode": eval_mode,
+                "ScoreCoeff": 3.0,
+                "ServerType": 0,
+                "VoiceFileType": 2,
+                "VoiceEncodeType": 1,
+                "IsEnd": 1,
+                "UserVoiceData": voice_data,
+            }
+            req.from_json_string(json.dumps(params))
 
-                        phonemes.append({
-                            "phoneme": phoneme.get("Phoneme", ""),
-                            "accuracy": accuracy,
-                            "error_type": error_type
-                        })
+            resp = client.TransmitOralProcessWithInit(req)
+            result = json.loads(resp.to_json_string())
 
-            return phonemes
-        except Exception as e:
-            print(f"解析音素详情失败: {e}")
-            return []
+            print(f"[SOE] SuggestedScore={result.get('SuggestedScore')}, "
+                  f"PronAccuracy={result.get('PronAccuracy')}, "
+                  f"PronFluency={result.get('PronFluency')}, "
+                  f"PronCompletion={result.get('PronCompletion')}")
 
-    def _extract_word_scores(self, json_result: str) -> list:
-        """
-        从 JSON 结果中提取单词级别得分
-
-        用于句子/段落评估时获取每个单词的得分
-
-        Returns:
-            [{"word": "hello", "accuracy": 95.0, "error_type": "None"}, ...]
-        """
-        if not json_result:
-            return []
-
-        try:
-            import json
-            data = json.loads(json_result)
+            # 提取单词和音素得分
             word_scores = []
+            phoneme_details = []
+            words = result.get("Words", [])
+            for w in words:
+                pron_accuracy = w.get("PronAccuracy", 0)
+                error_type = "None"
+                if pron_accuracy < 0:
+                    error_type = "Mispronunciation"
+                    pron_accuracy = 0
+                elif pron_accuracy < 60:
+                    error_type = "Mispronunciation"
 
-            # 遍历 NBest 中的单词
-            for nbest in data.get("NBest", []):
-                for word in nbest.get("Words", []):
-                    word_text = word.get("Word", "")
-                    pa = word.get("PronunciationAssessment", {})
-                    accuracy = pa.get("AccuracyScore", 0)
-                    error_type = pa.get("ErrorType", "None")
+                word_scores.append({
+                    "word": w.get("ReferenceWord", ""),
+                    "accuracy": max(0, pron_accuracy),
+                    "error_type": error_type
+                })
 
-                    word_scores.append({
-                        "word": word_text,
-                        "accuracy": accuracy,
-                        "error_type": error_type
+                for phone in w.get("PhoneInfos", []):
+                    pa = phone.get("PronAccuracy", 0)
+                    p_error = "None"
+                    if pa < 0:
+                        p_error = "Mispronunciation"
+                        pa = 0
+                    elif pa < 60:
+                        p_error = "Mispronunciation"
+                    phoneme_details.append({
+                        "phoneme": phone.get("Phone", ""),
+                        "accuracy": max(0, pa),
+                        "error_type": p_error
                     })
 
-            return word_scores
+            # 转换为兼容格式
+            accuracy = max(0, result.get("PronAccuracy", 0))
+            fluency = result.get("PronFluency", -1)
+            fluency = max(0, fluency) * 100 if fluency >= 0 else 0
+            completion = result.get("PronCompletion", -1)
+            completion = max(0, completion) * 100 if completion >= 0 else 0
+            suggested = result.get("SuggestedScore", accuracy)
+
+            return {
+                "success": True,
+                "recognized_text": " ".join(w.get("ReferenceWord", "") for w in words),
+                "accuracy_score": accuracy,
+                "pronunciation_score": suggested,
+                "fluency_score": fluency,
+                "completeness_score": completion,
+                "phoneme_details": phoneme_details,
+                "word_scores": word_scores,
+                "error": None
+            }
+
         except Exception as e:
-            print(f"解析单词得分失败: {e}")
-            return []
+            print(f"[SOE] 评估异常: {e}")
+            return {"success": False, "error": str(e)}
 
     async def assess_from_bytes(self, audio_data: bytes, reference_text: str,
                                  file_ext: str = ".wav") -> dict:
-        """
-        从音频字节流进行发音评估
-
-        Args:
-            audio_data: 音频数据字节
-            reference_text: 参考文本（单词）
-            file_ext: 文件扩展名
-
-        Returns:
-            评估结果字典
-        """
+        """从音频字节流进行发音评估"""
         if not self.is_available():
-            return {"success": False, "error": "Azure Speech 服务未配置"}
+            return {"success": False, "error": "腾讯云 SOE 服务未配置"}
 
-        # 转换音频格式（如需要）
-        if file_ext in [".webm", ".ogg", ".mp4", ".m4a"]:
+        # 转换音频格式为 WAV（16k/16bit/mono）
+        if file_ext != ".wav":
             converted_data = await self._convert_to_wav(audio_data, file_ext)
             if converted_data is None:
                 return {"success": False, "error": "音频格式转换失败"}
             audio_data = converted_data
-            file_ext = ".wav"
 
-        # 临时保存文件后评估
-        with tempfile.NamedTemporaryFile(suffix=file_ext, delete=False) as f:
-            f.write(audio_data)
-            temp_path = f.name
+        # 根据参考文本判断评测模式
+        word_count = len(reference_text.split())
+        if word_count <= 2:
+            eval_mode = 0  # 单词
+        elif word_count <= 20:
+            eval_mode = 1  # 句子
+        else:
+            eval_mode = 2  # 段落
 
-        try:
-            loop = asyncio.get_event_loop()
-            return await loop.run_in_executor(
-                None, self._assess_sync, temp_path, reference_text
-            )
-        finally:
-            try:
-                os.unlink(temp_path)
-            except:
-                pass
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(
+            None, self._assess_sync, audio_data, reference_text, eval_mode
+        )
 
     async def _convert_to_wav(self, audio_data: bytes, source_ext: str) -> Optional[bytes]:
-        """
-        将音频转换为 Azure Speech SDK 兼容的 WAV 格式
-
-        Azure Speech 需要特定格式:
-        - PCM 16-bit
-        - 16kHz 采样率
-        - 单声道
-        - 标准 RIFF WAV 头
-        """
-        import subprocess
-
-        # 检查音频数据大小
+        """将音频转换为 WAV 格式（16k/16bit/mono）"""
         if len(audio_data) < 1000:
-            print(f"[FFmpeg] 音频数据太小: {len(audio_data)} bytes，可能录音时间太短")
+            print(f"[FFmpeg] 音频数据太小: {len(audio_data)} bytes")
             return None
-
-        # 检查 webm 文件头
-        if source_ext == ".webm":
-            # WebM 文件应以 EBML 头开始 (0x1A 0x45 0xDF 0xA3)
-            if len(audio_data) >= 4:
-                header = audio_data[:4]
-                if header != b'\x1a\x45\xdf\xa3':
-                    print(f"[FFmpeg] WebM 文件头异常: {header.hex()}，预期: 1a45dfa3")
 
         print(f"[FFmpeg] 开始转换: {len(audio_data)} bytes, 格式: {source_ext}")
 
-        # 创建临时文件
         with tempfile.NamedTemporaryFile(suffix=source_ext, delete=False) as src_file:
             src_file.write(audio_data)
             src_path = src_file.name
 
-        # 使用不同的文件名避免冲突
         dst_path = tempfile.mktemp(suffix=".wav")
 
         try:
-            # 使用 ffmpeg 转换 - 添加 -f wav 确保输出格式正确
             process = await asyncio.create_subprocess_exec(
-                "ffmpeg",
-                "-y",                    # 覆盖输出文件
-                "-i", src_path,          # 输入文件
-                "-acodec", "pcm_s16le",  # PCM 16-bit little-endian
-                "-ar", "16000",          # 16kHz 采样率
-                "-ac", "1",              # 单声道
-                "-f", "wav",             # 强制 WAV 格式
+                "ffmpeg", "-y", "-i", src_path,
+                "-acodec", "pcm_s16le", "-ar", "16000", "-ac", "1", "-f", "wav",
                 dst_path,
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE
@@ -499,9 +404,7 @@ class PronunciationAssessor:
             stdout, stderr = await process.communicate()
 
             if process.returncode != 0:
-                stderr_text = stderr.decode() if stderr else "无错误信息"
-                print(f"[FFmpeg] 转换失败 (returncode={process.returncode}):")
-                print(f"[FFmpeg] stderr: {stderr_text}")
+                print(f"[FFmpeg] 转换失败: {stderr.decode()}")
                 return None
 
             if os.path.exists(dst_path):
@@ -509,15 +412,10 @@ class PronunciationAssessor:
                     wav_data = f.read()
                 print(f"[FFmpeg] 转换成功: {len(audio_data)} -> {len(wav_data)} bytes")
                 return wav_data
-
-            print(f"[FFmpeg] 输出文件不存在: {dst_path}")
             return None
 
-        except FileNotFoundError:
-            print("[FFmpeg] FFmpeg 未安装或不在 PATH 中")
-            return None
         except Exception as e:
-            print(f"[FFmpeg] 音频转换异常: {type(e).__name__}: {e}")
+            print(f"[FFmpeg] 音频转换异常: {e}")
             return None
 
         finally:
