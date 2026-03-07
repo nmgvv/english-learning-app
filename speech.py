@@ -282,6 +282,7 @@ class PronunciationAssessor:
                 "ServerType": 0,
                 "VoiceFileType": 2,
                 "VoiceEncodeType": 1,
+                "SeqId": 1,
                 "IsEnd": 1,
                 "UserVoiceData": voice_data,
             }
