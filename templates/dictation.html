@@ -1214,8 +1214,8 @@ function dictationPage() {
 
         // 阶段1练习输入检查
         checkLearnPractice() {
-            const target = (this.currentCard?.word || '').trim().toLowerCase();
-            this.learnPracticeCorrect = this.learnPracticeInput.trim().toLowerCase() === target;
+            const target = (this.currentCard?.word || '').trim().toLowerCase().replace(/-/g, '');
+            this.learnPracticeCorrect = this.learnPracticeInput.trim().toLowerCase().replace(/-/g, '') === target;
         },
 
         // 播放选项单词的发音
@@ -1860,7 +1860,7 @@ function dictationPage() {
             const input = this.userInput.trim();
             if (!input) return;
 
-            const isCorrect = input.toLowerCase() === this.currentCard.word.toLowerCase();
+            const isCorrect = input.toLowerCase().replace(/-/g, '') === this.currentCard.word.toLowerCase().replace(/-/g, '');
 
             if (isCorrect) {
                 this.reinforceCount++;
