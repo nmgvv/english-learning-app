@@ -1622,7 +1622,10 @@ function dictationPage() {
             if (!this.currentCard) return;
             this.audioPlaying = true;
             try {
-                await TTS.playWord(this.currentCard.word, speed);
+                await Promise.race([
+                    TTS.playWord(this.currentCard.word, speed),
+                    new Promise((_, rej) => setTimeout(() => rej(new Error('audio timeout')), 5000))
+                ]);
             } catch (e) {
                 console.error('音频播放失败:', e);
             } finally {

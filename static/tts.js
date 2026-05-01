@@ -128,9 +128,14 @@ const TTS = {
     play(url) {
         return new Promise((resolve, reject) => {
             this.stop();
+            // 兜底：唤醒被 Howler 30 秒不活动后自动 suspend 的 audio context
+            if (window.Howler && window.Howler.ctx && window.Howler.ctx.state === 'suspended') {
+                window.Howler.ctx.resume().catch(() => {});
+            }
             this._player = new Howl({
                 src: [url],
                 format: ['mp3'],
+                html5: true,
                 onend: () => {
                     resolve();
                 },
@@ -140,6 +145,9 @@ const TTS = {
                 },
                 onplayerror: (id, err) => {
                     console.error('TTS 播放失败:', err);
+                    if (window.Howler && window.Howler.ctx) {
+                        window.Howler.ctx.resume().catch(() => {});
+                    }
                     reject(err);
                 }
             });
